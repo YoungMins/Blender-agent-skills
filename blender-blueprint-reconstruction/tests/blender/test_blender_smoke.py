@@ -346,6 +346,62 @@ def check_plate(api, tmp: Path) -> None:
     print("PLATE OK")
 
 
+def check_materials(api, tmp: Path) -> None:
+    """Material classes (WI-1): a class reaches the Principled values of a projected hull (stylized column) and a flat part
+    (physical column), the projected material keeps its name and active node, the colour metric render ignores the class,
+    and the lit preview restores the scene's world without leaving the temporary one behind."""
+    import json
+    import numpy as np
+    from bbr.blender import material, render, synthetic
+    from bbr.core import pbr
+
+    ex = SK / "examples" / "robot_character"
+    vs = str(ex / "view_spec.json")
+    spec = json.loads((ex / "scene_spec.json").read_text(encoding="utf-8"))
+    spec["components"][0]["params"].update(resolution=96, texture_size=512, target_faces=3000)
+    spec.setdefault("materials", {})["gilded"] = {"class": "gold", "roughness": 0.2}
+    spec["components"].append({"id": "plinth", "type": "box", "location": [0.0, 0.0, -0.02], "size": [0.05, 0.05, 0.02],
+                               "material": "gilded", "params": {"color_projection": False}})
+
+    def build(hull_class):
+        if hull_class:
+            spec["components"][0]["material"] = hull_class
+        else:
+            spec["components"][0].pop("material", None)
+        path = tmp / "materials_spec.json"
+        path.write_text(json.dumps(spec), encoding="utf-8")
+        bpy.ops.wm.read_factory_settings(use_empty=True)
+        res = api.build_from_scene_spec(str(path), vs)
+        assert res["ok"], res
+        dims, _ = synthetic.model_dimensions()
+        return render.render_color("front", synthetic.synthetic_calibration("front", "-Y", dims))
+
+    def principled(obj):
+        bsdf = next(n for n in obj.data.materials[0].node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+        return {k: bsdf.inputs[s].default_value for k, s in material.PBR_SOCKETS.items()}
+
+    plain = build(None)
+    classed = build("metal_steel")
+    assert np.array_equal(plain, classed), "the colour metric render must not depend on the material class"
+    body = next(o for o in bpy.data.objects if o.get("agent_id") == "robot_character:body")
+    mat = body.data.materials[0]
+    assert mat.name.startswith(material.REF_TEXTURE_MATERIAL) and mat.node_tree.nodes.active.name == material.REF_TEXTURE_NODE
+    for key, val in pbr.resolve("metal_steel", "stylized").items():
+        assert abs(principled(body)[key] - val) < 1e-6, (key, principled(body)[key], val)
+    plinth = next(o for o in bpy.data.objects if o.get("agent_id") == "robot_character:plinth")
+    want = pbr.resolve({"class": "gold", "roughness": 0.2}, "physical")
+    assert want == {"metallic": 1.0, "roughness": 0.2}
+    for key, val in want.items():
+        assert abs(principled(plinth)[key] - val) < 1e-6, (key, principled(plinth)[key], val)
+
+    sc = bpy.context.scene
+    old_world, worlds = sc.world, {w.name for w in bpy.data.worlds}
+    render.render_preview(tmp / "materials_preview.png", size=(96, 96))
+    assert sc.world == old_world and {w.name for w in bpy.data.worlds} == worlds, ({w.name for w in bpy.data.worlds}, worlds)
+    assert render.PREVIEW_WORLD not in bpy.data.worlds
+    print("MATERIALS OK")
+
+
 def check_update_component(api, tmp: Path) -> None:
     """update_component: merge + rebuild of one object; a failing rebuild restores the spec file."""
     import json
@@ -435,6 +491,7 @@ def main() -> None:
     check_hard_kit(api, tmp)
     check_lathe_attach(api, tmp)
     check_plate(api, tmp)
+    check_materials(api, tmp)
     check_update_component(api, tmp)
     print("SMOKE OK", {k: v for k, v in counts2.items()})
 

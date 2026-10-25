@@ -77,6 +77,7 @@
       "type": "cone",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "plastic",
       "params": {
         "flatten": 0.6,
         "segments": 20,
@@ -123,6 +124,7 @@
       "type": "cone",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "plastic",
       "params": {
         "flatten": 0.6,
         "segments": 20,
@@ -136,6 +138,7 @@
       "type": "sphere",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "metal_gold",
       "params": {
         "color_projection": true,
         "anchors_px": {
@@ -162,6 +165,7 @@
       "type": "cylinder",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "leather",
       "params": {
         "vertices": 16,
         "color_projection": true,
@@ -196,6 +200,7 @@
       "type": "blade",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "leather",
       "params": {
         "thickness": 0.016,
         "tip_width": 0.02,
@@ -237,8 +242,13 @@
       "type": "capsule",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "metal_steel",
       "params": {
-        "joint": {"part": "arm_l_fore", "at": "base", "self": "tip"},
+        "joint": {
+          "part": "arm_l_fore",
+          "at": "base",
+          "self": "tip"
+        },
         "segments": 16,
         "color_projection": true,
         "anchors_px": {
@@ -272,6 +282,7 @@
       "type": "capsule",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "metal_steel",
       "params": {
         "segments": 16,
         "color_projection": true,
@@ -306,6 +317,7 @@
       "type": "sphere",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "leather",
       "params": {
         "segments": 20,
         "color_projection": true,
@@ -339,6 +351,7 @@
       "type": "capsule",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "metal_steel",
       "params": {
         "segments": 16,
         "color_projection": true,
@@ -351,6 +364,7 @@
       "type": "capsule",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "metal_steel",
       "params": {
         "segments": 16,
         "color_projection": true,
@@ -363,6 +377,7 @@
       "type": "sphere",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "leather",
       "params": {
         "segments": 20,
         "color_projection": true,
@@ -375,6 +390,7 @@
       "type": "disc",
       "stage": "secondary",
       "confidence": "inferred",
+      "material": "wood",
       "params": {
         "thickness": 0.012,
         "dome_height": 0.02,
@@ -400,6 +416,7 @@
       "type": "layer_hull",
       "stage": "secondary",
       "confidence": "observed",
+      "material": "skin",
       "params": {
         "label": "face",
         "views": [

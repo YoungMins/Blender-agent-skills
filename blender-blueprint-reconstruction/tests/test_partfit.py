@@ -52,7 +52,8 @@ def test_recovers_a_cone_from_perturbed_anchors(calibs):
                          - centreline(base, mid, tip), axis=1).max()
     assert err <= 0.02 * length
     rb, rt = new.scalars["radius"]
-    assert rb == pytest.approx(0.018, rel=0.05) and rt == pytest.approx(0.004, rel=0.05)
+    # the 4 px tip radius is held to half a pixel: a relative bound is below mask quantisation and flips across platforms
+    assert rb == pytest.approx(0.018, rel=0.05) and rt == pytest.approx(0.004, abs=0.5 * MM)
     assert report["loss_fit"] < report["loss_init"] / 5
     iou = P.part_iou("cone", new, params, calibs, masks, masks)
     assert min(v["iou"] for v in iou.values()) > 0.97

@@ -43,7 +43,7 @@ def test_roundtrip(data):
 
 @pytest.mark.parametrize("mutate,needle", [
     (lambda d: d["components"].append(dict(d["components"][0])), "duplicate"),
-    (lambda d: d["components"][0].__setitem__("material", "gold"), "gold"),
+    (lambda d: d["components"][0].__setitem__("material", "unobtanium"), "unobtanium"),
     (lambda d: d["components"][0].__setitem__("boolean", {"target": "nope"}), "nope"),
     (lambda d: d["components"][0].__setitem__("boolean", {"target": "top"}), "itself"),
     (lambda d: d["components"][0].pop("size"), "size is required"),
