@@ -186,10 +186,46 @@ def _build_sphere(comp: Component, ctx: BuildContext) -> bpy.types.Object:
     return obj
 
 
+def _glove_frame(comp: Component, p: Mapping[str, Any]) -> tuple[float, bool]:
+    """``(angle about local Z, mirror X)`` that turn :func:`partgeom.glove_mesh` (palm +Y, thumb -X) so the palm faces
+    ``params.palm`` (world axis, default toward the body's centre line in X) and the thumb points along ``params.thumb``
+    (default -Y, forward), both projected across the hand's axis."""
+    from ..core.conventions import AXES
+    rx, ry, rz = np.radians(comp.rotation_deg)
+    cx, sx, cy, sy, cz, sz = np.cos(rx), np.sin(rx), np.cos(ry), np.sin(ry), np.cos(rz), np.sin(rz)
+    rot = (np.array([[cz, -sz, 0], [sz, cz, 0], [0, 0, 1]]) @ np.array([[cy, 0, sy], [0, 1, 0], [-sy, 0, cy]])
+           @ np.array([[1, 0, 0], [0, cx, -sx], [0, sx, cx]]))                   # Blender XYZ Euler: R = Rz Ry Rx
+    palm_w = np.asarray(AXES[p["palm"]], float) if p.get("palm") else np.array([-np.sign(comp.location[0]) or -1.0, 0.0, 0.0])
+    thumb_w = np.asarray(AXES[p.get("thumb", "-Y")], float)
+    palm_l, thumb_l = rot.T @ palm_w, rot.T @ thumb_w
+    palm_l[2] = thumb_l[2] = 0.0
+    if np.linalg.norm(palm_l) < 1e-6:
+        palm_l = np.array([0.0, 1.0, 0.0])
+    palm_l /= np.linalg.norm(palm_l)
+    angle = float(np.arctan2(-palm_l[0], palm_l[1]))          # turns +Y onto palm_l
+    thumb_now = np.array([-np.cos(angle), -np.sin(angle)])      # where -X goes under that turn
+    return angle, bool(np.dot(thumb_now, thumb_l[:2]) < 0)
+
+
 @register_component("capsule")
 def _build_capsule(comp: Component, ctx: BuildContext) -> bpy.types.Object:
+    """Capsule (limb, tapered when fitted). ``params.fingers`` (1-4) builds a glove in its place: the capsule's pose and
+    size, wrist at the base, fingertips at the tip (:func:`partgeom.glove_mesh`; ``palm`` / ``thumb`` world axes)."""
     obj, data = object_for(comp, ctx)
     size, p = _require_size(comp), comp.params
+    if p.get("fingers"):
+        verts, faces = partgeom.glove_mesh(size[2], size[0], int(p["fingers"]),
+                                           float(p.get("finger_frac", partgeom.GLOVE_FINGER_FRAC)),
+                                           float(p.get("curl_deg", partgeom.GLOVE_CURL_DEG)), thumb=bool(p.get("thumb_on", True)))
+        angle, mirror = _glove_frame(comp, p)
+        if mirror:
+            verts = verts * np.array([-1.0, 1.0, 1.0])
+            faces = [tuple(reversed(f)) for f in faces]
+        c, s_ = np.cos(angle), np.sin(angle)
+        verts = verts @ np.array([[c, s_, 0], [-s_, c, 0], [0, 0, 1]])
+        mesh.mesh_from_polygons(data, verts, faces)
+        mesh.set_smooth_by_angle(data)
+        return obj
     r0, r1 = size[0] / 2.0, float(p.get("tip_radius", size[0] / 2.0))
     if abs(r1 - r0) > 1e-9 and p.get("axis", "Z") == "Z":        # tapered capsule (fitted): end radii differ
         verts, faces = partgeom.capsule_mesh(r0, r1, size[2], int(p.get("segments", primitive.DEFAULT_CAPSULE_SEGMENTS)))

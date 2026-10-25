@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.468
+      "duration_s": 0.222
     },
     {
       "n": 2,
@@ -24,20 +24,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.301
+      "duration_s": 0.247
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.029
+      "duration_s": 0.024
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 1.007
+      "duration_s": 0.713
     },
     {
       "n": 6,
@@ -57,7 +57,7 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 49.228
+      "duration_s": 37.976
     },
     {
       "n": 9,
@@ -69,7 +69,7 @@
         "passed": true,
         "actual": {
           "width": 0.34444205835461617,
-          "depth": 0.24783305823802948,
+          "depth": 0.2478526346385479,
           "height": 0.5874787239299621
         },
         "target": {
@@ -79,14 +79,14 @@
         },
         "relative_error": {
           "width": -0.026837329909713437,
-          "depth": -0.010363594425854772,
+          "depth": -0.01028542277764588,
           "height": -0.020868793450063094
         },
         "tolerance": 0.05,
         "floor_z": 0.0004624309076461941,
         "tolerance_source": "AI-generated references"
       },
-      "duration_s": 174.383
+      "duration_s": 145.699
     },
     {
       "n": 10,
@@ -105,13 +105,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 322.641
+      "duration_s": 286.689
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 1.011
+      "duration_s": 0.969
     },
     {
       "n": 14,
@@ -124,13 +124,13 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 61.772
+      "duration_s": 57.269
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.055
+      "duration_s": 0.05
     }
   ],
   "outputs": {
@@ -372,8 +372,8 @@
           "validate"
         ],
         "verdict": "demote",
-        "error": 0.0327,
-        "excess_error": -0.0222
+        "error": 0.03538,
+        "excess_error": -0.01952
       },
       "side": {
         "axis": "-X",
@@ -418,8 +418,8 @@
           "validate"
         ],
         "verdict": "ok",
-        "error": 0.0668,
-        "excess_error": 0.0119
+        "error": 0.06883,
+        "excess_error": 0.01393
       }
     },
     "flags": [],
@@ -491,7 +491,7 @@
     "passed": true,
     "actual": {
       "width": 0.34444205835461617,
-      "depth": 0.24783305823802948,
+      "depth": 0.2478526346385479,
       "height": 0.5874787239299621
     },
     "target": {
@@ -501,7 +501,7 @@
     },
     "relative_error": {
       "width": -0.026837329909713437,
-      "depth": -0.010363594425854772,
+      "depth": -0.01028542277764588,
       "height": -0.020868793450063094
     },
     "tolerance": 0.05,
@@ -511,11 +511,11 @@
   "iterations": [
     {
       "iteration": 0,
-      "total_error": 0.05117272514602711,
+      "total_error": 0.053063533483862946,
       "per_view": {
-        "front": 0.0327,
-        "side": 0.05402,
-        "back": 0.0668
+        "front": 0.03538,
+        "side": 0.05498,
+        "back": 0.06883
       },
       "accepted": true
     }
@@ -529,7 +529,7 @@
           "passed": true,
           "actual": {
             "width": 0.34444205835461617,
-            "depth": 0.24783305823802948,
+            "depth": 0.2478526346385479,
             "height": 0.5874787239299621
           },
           "target": {
@@ -539,7 +539,7 @@
           },
           "relative_error": {
             "width": -0.026837329909713437,
-            "depth": -0.010363594425854772,
+            "depth": -0.01028542277764588,
             "height": -0.020868793450063094
           },
           "tolerance": 0.05,
@@ -584,20 +584,20 @@
     "warning_details": [],
     "reference_match": {
       "passed": true,
-      "total_error": 0.05117272514602711,
+      "total_error": 0.053063533483862946,
       "threshold": 0.08,
-      "front_error": 0.032695224466362194,
-      "side_error": 0.05401923789732088,
-      "back_error": 0.06680371307439825,
+      "front_error": 0.03537787372939072,
+      "side_error": 0.054982212886854565,
+      "back_error": 0.06883051383534355,
       "per_view": {
         "front": {
-          "iou": 0.9673047755336378,
-          "error": 0.032695224466362194,
-          "error_pct": 3.27,
-          "edge_px": 2.185451030731201,
+          "iou": 0.9646221262706093,
+          "error": 0.03537787372939072,
+          "error_pct": 3.54,
+          "edge_px": 2.617466926574707,
           "width_ratio": 0.9749478079331941,
           "height_ratio": 0.979064039408867,
-          "line": "Front Error : 3.3%",
+          "line": "Front Error : 3.5%",
           "bbox_delta_m": {
             "left": -0.004433497536945812,
             "right": -0.004433497536945812,
@@ -632,18 +632,18 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.05214,
+          "color_error": 0.04971,
           "floor": 0.0549,
-          "excess_error": -0.0222
+          "excess_error": -0.01952
         },
         "side": {
-          "iou": 0.9459807621026791,
-          "error": 0.05401923789732088,
-          "error_pct": 5.4,
-          "edge_px": 4.805390357971191,
+          "iou": 0.9450177871131454,
+          "error": 0.054982212886854565,
+          "error_pct": 5.5,
+          "edge_px": 4.675038814544678,
           "width_ratio": 0.9882697947214076,
           "height_ratio": 0.9791921664626683,
-          "line": "Side Error : 5.4%",
+          "line": "Side Error : 5.5%",
           "bbox_delta_m": {
             "left": -0.0014687882496940024,
             "right": -0.0014687882496940024,
@@ -652,42 +652,42 @@
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 4923,
+            "area_px": 5038,
             "bbox_px": [
-              44,
-              423,
-              129,
-              620
+              37,
+              424,
+              132,
+              615
             ],
             "center_world": [
               null,
-              0.08739290085679315,
-              0.2419828641370869
+              0.08886168910648715,
+              0.2434516523867809
             ],
             "world_bbox": {
               "min": [
                 null,
-                0.05618115055079559,
-                0.16964504283965728
+                0.05397796817625459,
+                0.17331701346389228
               ],
               "max": [
                 null,
-                0.11860465116279069,
-                0.3143206854345165
+                0.1237454100367197,
+                0.31358629130966953
               ]
             }
           },
           "components_in_region": [],
-          "color_error": 0.06954
+          "color_error": 0.06359
         },
         "back": {
-          "iou": 0.9331962869256017,
-          "error": 0.06680371307439825,
-          "error_pct": 6.68,
-          "edge_px": 3.612238883972168,
+          "iou": 0.9311694861646564,
+          "error": 0.06883051383534355,
+          "error_pct": 6.88,
+          "edge_px": 3.577693462371826,
           "width_ratio": 0.9748427672955975,
           "height_ratio": 0.9790382244143033,
-          "line": "Back Error : 6.7%",
+          "line": "Back Error : 6.9%",
           "bbox_delta_m": {
             "left": -0.004438964241676942,
             "right": -0.004438964241676942,
@@ -696,21 +696,21 @@
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 2892,
+            "area_px": 2928,
             "bbox_px": [
               106,
               522,
-              170,
+              173,
               642
             ],
             "center_world": [
-              0.1002466091245376,
+              0.09913686806411837,
               null,
               0.19901356350184954
             ],
             "world_bbox": {
               "min": [
-                0.07657213316892725,
+                0.07435265104808877,
                 null,
                 0.15462392108508013
               ],
@@ -722,9 +722,9 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.02973,
+          "color_error": 0.03058,
           "floor": 0.0549,
-          "excess_error": 0.0119
+          "excess_error": 0.01393
         }
       }
     },
@@ -782,20 +782,20 @@
   },
   "reference_match": {
     "passed": true,
-    "total_error": 0.05117272514602711,
+    "total_error": 0.053063533483862946,
     "threshold": 0.08,
-    "front_error": 0.032695224466362194,
-    "side_error": 0.05401923789732088,
-    "back_error": 0.06680371307439825,
+    "front_error": 0.03537787372939072,
+    "side_error": 0.054982212886854565,
+    "back_error": 0.06883051383534355,
     "per_view": {
       "front": {
-        "iou": 0.9673047755336378,
-        "error": 0.032695224466362194,
-        "error_pct": 3.27,
-        "edge_px": 2.185451030731201,
+        "iou": 0.9646221262706093,
+        "error": 0.03537787372939072,
+        "error_pct": 3.54,
+        "edge_px": 2.617466926574707,
         "width_ratio": 0.9749478079331941,
         "height_ratio": 0.979064039408867,
-        "line": "Front Error : 3.3%",
+        "line": "Front Error : 3.5%",
         "bbox_delta_m": {
           "left": -0.004433497536945812,
           "right": -0.004433497536945812,
@@ -830,18 +830,18 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.05214,
+        "color_error": 0.04971,
         "floor": 0.0549,
-        "excess_error": -0.0222
+        "excess_error": -0.01952
       },
       "side": {
-        "iou": 0.9459807621026791,
-        "error": 0.05401923789732088,
-        "error_pct": 5.4,
-        "edge_px": 4.805390357971191,
+        "iou": 0.9450177871131454,
+        "error": 0.054982212886854565,
+        "error_pct": 5.5,
+        "edge_px": 4.675038814544678,
         "width_ratio": 0.9882697947214076,
         "height_ratio": 0.9791921664626683,
-        "line": "Side Error : 5.4%",
+        "line": "Side Error : 5.5%",
         "bbox_delta_m": {
           "left": -0.0014687882496940024,
           "right": -0.0014687882496940024,
@@ -850,42 +850,42 @@
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 4923,
+          "area_px": 5038,
           "bbox_px": [
-            44,
-            423,
-            129,
-            620
+            37,
+            424,
+            132,
+            615
           ],
           "center_world": [
             null,
-            0.08739290085679315,
-            0.2419828641370869
+            0.08886168910648715,
+            0.2434516523867809
           ],
           "world_bbox": {
             "min": [
               null,
-              0.05618115055079559,
-              0.16964504283965728
+              0.05397796817625459,
+              0.17331701346389228
             ],
             "max": [
               null,
-              0.11860465116279069,
-              0.3143206854345165
+              0.1237454100367197,
+              0.31358629130966953
             ]
           }
         },
         "components_in_region": [],
-        "color_error": 0.06954
+        "color_error": 0.06359
       },
       "back": {
-        "iou": 0.9331962869256017,
-        "error": 0.06680371307439825,
-        "error_pct": 6.68,
-        "edge_px": 3.612238883972168,
+        "iou": 0.9311694861646564,
+        "error": 0.06883051383534355,
+        "error_pct": 6.88,
+        "edge_px": 3.577693462371826,
         "width_ratio": 0.9748427672955975,
         "height_ratio": 0.9790382244143033,
-        "line": "Back Error : 6.7%",
+        "line": "Back Error : 6.9%",
         "bbox_delta_m": {
           "left": -0.004438964241676942,
           "right": -0.004438964241676942,
@@ -894,21 +894,21 @@
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 2892,
+          "area_px": 2928,
           "bbox_px": [
             106,
             522,
-            170,
+            173,
             642
           ],
           "center_world": [
-            0.1002466091245376,
+            0.09913686806411837,
             null,
             0.19901356350184954
           ],
           "world_bbox": {
             "min": [
-              0.07657213316892725,
+              0.07435265104808877,
               null,
               0.15462392108508013
             ],
@@ -920,9 +920,9 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.02973,
+        "color_error": 0.03058,
         "floor": 0.0549,
-        "excess_error": 0.0119
+        "excess_error": 0.01393
       }
     }
   },
@@ -930,16 +930,16 @@
     "soft": true,
     "per_view": {
       "front": {
-        "error": 0.05213561863509168,
-        "pixels": 215677
+        "error": 0.049707167079838126,
+        "pixels": 214686
       },
       "side": {
-        "error": 0.06954155350861752,
-        "pixels": 147892
+        "error": 0.06359039758248954,
+        "pixels": 147900
       },
       "back": {
-        "error": 0.0297268069797652,
-        "pixels": 208241
+        "error": 0.030576385317996536,
+        "pixels": 207572
       }
     }
   },
@@ -951,15 +951,15 @@
       ],
       "cleanup": {
         "voxel_size": 0.0024,
-        "faces_before": 162562,
-        "faces_after": 106388,
+        "faces_before": 159136,
+        "faces_after": 104174,
         "island_vertices_removed": 8,
         "non_manifold_edges": 0
       },
       "retopo": {
         "requested": "decimate",
         "target_faces": 20000,
-        "faces_before": 106388,
+        "faces_before": 104174,
         "method": "decimate",
         "faces_after": 20000,
         "non_manifold_edges": 0
@@ -971,52 +971,22 @@
           0.0039
         ],
         "uv_max": [
-          0.9873,
-          0.9883
+          0.9888,
+          0.9953
         ]
       },
       "rings": {
         "slice_coherence": 0.03,
-        "ring_pct": 2.386
+        "ring_pct": 2.55
       },
       "debris": [
         {
-          "island": 5,
-          "voxels": 3121,
-          "volume_pct": 0.1997,
-          "box_m": [
-            [
-              0.0932,
-              -0.0379,
-              0.0814
-            ],
-            [
-              0.1171,
-              0.0456,
-              0.1052
-            ]
-          ],
-          "views": {
-            "front": {
-              "separate": false,
-              "label": "sword_blade"
-            },
-            "side": {
-              "separate": false,
-              "label": null
-            }
-          },
-          "dropped": false,
-          "rule": null,
-          "reason": "a detached part of the silhouette"
-        },
-        {
           "island": 2,
-          "voxels": 828,
-          "volume_pct": 0.053,
+          "voxels": 827,
+          "volume_pct": 0.0553,
           "box_m": [
             [
-              -0.036,
+              -0.038,
               -0.0876,
               0.2364
             ],
@@ -1043,7 +1013,7 @@
         {
           "island": 3,
           "voxels": 397,
-          "volume_pct": 0.0254,
+          "volume_pct": 0.0266,
           "box_m": [
             [
               -0.024,
@@ -1073,7 +1043,7 @@
         {
           "island": 4,
           "voxels": 30,
-          "volume_pct": 0.0019,
+          "volume_pct": 0.002,
           "box_m": [
             [
               -0.0042,
@@ -1101,6 +1071,19 @@
           "reason": "0.00% of the hull volume (< 0.3%) and under no labelled part"
         }
       ],
+      "slabs": [
+        {
+          "x": 0.104,
+          "y": 0.002,
+          "z": [
+            0.082,
+            0.128
+          ],
+          "width_x": 0.0219,
+          "depth_y": 0.0795,
+          "ratio": 0.275
+        }
+      ],
       "exclusion": {
         "components": [
           "horn_l",
@@ -1113,14 +1096,16 @@
           "hand_l",
           "arm_r_upper",
           "arm_r_fore",
-          "hand_r"
+          "hand_r",
+          "pauldron_l",
+          "pauldron_r"
         ],
         "dilate_px": 1,
         "views": {
           "front": {
             "mask_px_before": 231056,
-            "mask_px_after": 198933,
-            "part_px": 42538,
+            "mask_px_after": 188911,
+            "part_px": 48047,
             "source": "labels",
             "parts": {
               "horn_l": {
@@ -1132,20 +1117,20 @@
                 "restored_px": 54
               },
               "sword_pommel": {
-                "removed_px": 0,
-                "restored_px": 278
+                "removed_px": 3,
+                "restored_px": 275
               },
               "sword_grip": {
-                "removed_px": 0,
-                "restored_px": 1934
+                "removed_px": 2,
+                "restored_px": 1932
               },
               "sword_blade": {
-                "removed_px": 442,
-                "restored_px": 2856
+                "removed_px": 0,
+                "restored_px": 3298
               },
               "arm_l_upper": {
-                "removed_px": 1913,
-                "restored_px": 2737
+                "removed_px": 4198,
+                "restored_px": 452
               },
               "arm_l_fore": {
                 "removed_px": 3013,
@@ -1156,8 +1141,8 @@
                 "restored_px": 0
               },
               "arm_r_upper": {
-                "removed_px": 1769,
-                "restored_px": 2922
+                "removed_px": 4273,
+                "restored_px": 418
               },
               "arm_r_fore": {
                 "removed_px": 2777,
@@ -1165,6 +1150,14 @@
               },
               "hand_r": {
                 "removed_px": 3305,
+                "restored_px": 0
+              },
+              "pauldron_l": {
+                "removed_px": 2712,
+                "restored_px": 9
+              },
+              "pauldron_r": {
+                "removed_px": 2788,
                 "restored_px": 0
               }
             }
@@ -1193,7 +1186,7 @@
               },
               "arm_l_upper": {
                 "removed_px": 0,
-                "restored_px": 5582
+                "restored_px": 1453
               },
               "arm_l_fore": {
                 "removed_px": 0,
@@ -1202,6 +1195,10 @@
               "hand_l": {
                 "removed_px": 0,
                 "restored_px": 4989
+              },
+              "pauldron_l": {
+                "removed_px": 0,
+                "restored_px": 4129
               }
             }
           }
@@ -1225,24 +1222,24 @@
         "size": 2048,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_source_map.png",
-        "covered_texels": 1976313,
-        "coverage_pct": 47.1,
-        "texels_from_visible_samples_pct": 77.6,
+        "covered_texels": 2020530,
+        "coverage_pct": 48.2,
+        "texels_from_visible_samples_pct": 78.0,
         "views": {
-          "front": 0.2195,
-          "side": 0.1536,
-          "back": 0.2404,
-          "mirror_side": 0.1359
+          "front": 0.2186,
+          "side": 0.1564,
+          "back": 0.2388,
+          "mirror_side": 0.1355
         },
-        "blend_share": 0.0271,
-        "inpainted_share": 0.2236,
-        "conflict_ratio": 0.094,
+        "blend_share": 0.0305,
+        "inpainted_share": 0.2201,
+        "conflict_ratio": 0.0917,
         "background_leak_ratio": 5e-05,
-        "inpainted_uv_share": 0.1489,
-        "inpainted_3d_share": 0.0746,
-        "label_rejected_ratio": 0.0829,
-        "raster_s": 4.25,
-        "total_s": 49.04
+        "inpainted_uv_share": 0.1466,
+        "inpainted_3d_share": 0.0735,
+        "label_rejected_ratio": 0.0655,
+        "raster_s": 4.17,
+        "total_s": 27.77
       }
     },
     "face": {
@@ -1306,8 +1303,8 @@
         "inpainted_uv_share": 0.02,
         "inpainted_3d_share": 0.3078,
         "label_rejected_ratio": 0.067,
-        "raster_s": 7.35,
-        "total_s": 50.77
+        "raster_s": 3.44,
+        "total_s": 39.4
       },
       "material": {
         "key": "skin",
@@ -1349,8 +1346,8 @@
         "inpainted_uv_share": 0.1641,
         "inpainted_3d_share": 0.0559,
         "label_rejected_ratio": 0.141,
-        "raster_s": 0.11,
-        "total_s": 4.71
+        "raster_s": 0.1,
+        "total_s": 3.08
       },
       "material": {
         "key": "plastic",
@@ -1392,8 +1389,8 @@
         "inpainted_uv_share": 0.1581,
         "inpainted_3d_share": 0.0344,
         "label_rejected_ratio": 0.1075,
-        "raster_s": 0.1,
-        "total_s": 2.47
+        "raster_s": 0.08,
+        "total_s": 1.84
       },
       "material": {
         "key": "plastic",
@@ -1416,23 +1413,23 @@
         "size": 512,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_pommel_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_pommel_source_map.png",
-        "covered_texels": 119371,
+        "covered_texels": 119376,
         "coverage_pct": 45.5,
-        "texels_from_visible_samples_pct": 29.9,
+        "texels_from_visible_samples_pct": 30.5,
         "views": {
-          "front": 0.1332,
-          "side": 0.1646,
+          "front": 0.1387,
+          "side": 0.1644,
           "back": 0.0
         },
         "blend_share": 0.0014,
-        "inpainted_share": 0.7008,
-        "conflict_ratio": 0.0042,
+        "inpainted_share": 0.6954,
+        "conflict_ratio": 0.0043,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0015,
-        "inpainted_3d_share": 0.6993,
-        "label_rejected_ratio": 0.4708,
-        "raster_s": 0.12,
-        "total_s": 4.53
+        "inpainted_uv_share": 0.0021,
+        "inpainted_3d_share": 0.6933,
+        "label_rejected_ratio": 0.464,
+        "raster_s": 0.11,
+        "total_s": 3.73
       },
       "material": {
         "key": "metal_gold",
@@ -1472,7 +1469,7 @@
         "inpainted_3d_share": 0.4873,
         "label_rejected_ratio": 0.1498,
         "raster_s": 0.13,
-        "total_s": 4.39
+        "total_s": 3.43
       },
       "material": {
         "key": "leather",
@@ -1497,21 +1494,21 @@
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_blade_source_map.png",
         "covered_texels": 122825,
         "coverage_pct": 46.9,
-        "texels_from_visible_samples_pct": 26.2,
+        "texels_from_visible_samples_pct": 19.7,
         "views": {
-          "front": 0.1488,
+          "front": 0.1168,
           "side": 0.0712,
-          "back": 0.0418
+          "back": 0.0088
         },
         "blend_share": 0.0004,
-        "inpainted_share": 0.7378,
+        "inpainted_share": 0.8028,
         "conflict_ratio": 0.0008,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2232,
-        "inpainted_3d_share": 0.5146,
-        "label_rejected_ratio": 0.202,
-        "raster_s": 0.1,
-        "total_s": 1.87
+        "inpainted_uv_share": 0.1355,
+        "inpainted_3d_share": 0.6672,
+        "label_rejected_ratio": 0.2012,
+        "raster_s": 0.08,
+        "total_s": 1.36
       },
       "material": {
         "key": "leather",
@@ -1527,7 +1524,7 @@
         ],
         "uv_max": [
           0.9844,
-          0.7627
+          0.7682
         ]
       },
       "mirror_views": [
@@ -1537,24 +1534,24 @@
         "size": 512,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_upper_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_upper_source_map.png",
-        "covered_texels": 124240,
+        "covered_texels": 124149,
         "coverage_pct": 47.4,
-        "texels_from_visible_samples_pct": 29.9,
+        "texels_from_visible_samples_pct": 48.2,
         "views": {
-          "front": 0.154,
-          "side": 0.0623,
-          "back": 0.079,
+          "front": 0.2661,
+          "side": 0.0386,
+          "back": 0.1725,
           "mirror_side": 0.0
         },
-        "blend_share": 0.0039,
-        "inpainted_share": 0.7008,
-        "conflict_ratio": 0.0036,
+        "blend_share": 0.0051,
+        "inpainted_share": 0.5176,
+        "conflict_ratio": 0.0074,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3304,
-        "inpainted_3d_share": 0.3703,
-        "label_rejected_ratio": 0.2282,
-        "raster_s": 0.13,
-        "total_s": 22.6
+        "inpainted_uv_share": 0.3256,
+        "inpainted_3d_share": 0.192,
+        "label_rejected_ratio": 0.2499,
+        "raster_s": 0.09,
+        "total_s": 22.97
       },
       "material": {
         "key": "metal_steel",
@@ -1596,9 +1593,9 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.2061,
         "inpainted_3d_share": 0.3146,
-        "label_rejected_ratio": 0.3348,
-        "raster_s": 0.11,
-        "total_s": 27.96
+        "label_rejected_ratio": 0.3423,
+        "raster_s": 0.1,
+        "total_s": 21.41
       },
       "material": {
         "key": "metal_steel",
@@ -1641,8 +1638,8 @@
         "inpainted_uv_share": 0.1792,
         "inpainted_3d_share": 0.148,
         "label_rejected_ratio": 0.1678,
-        "raster_s": 0.13,
-        "total_s": 14.67
+        "raster_s": 0.11,
+        "total_s": 12.76
       },
       "material": {
         "key": "leather",
@@ -1658,7 +1655,7 @@
         ],
         "uv_max": [
           0.9844,
-          0.7627
+          0.7682
         ]
       },
       "mirror_views": [
@@ -1668,24 +1665,24 @@
         "size": 512,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_upper_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_upper_source_map.png",
-        "covered_texels": 124240,
+        "covered_texels": 124149,
         "coverage_pct": 47.4,
-        "texels_from_visible_samples_pct": 28.7,
+        "texels_from_visible_samples_pct": 49.5,
         "views": {
-          "front": 0.1499,
+          "front": 0.2804,
           "side": 0.0,
-          "back": 0.0835,
-          "mirror_side": 0.0503
+          "back": 0.1768,
+          "mirror_side": 0.0329
         },
-        "blend_share": 0.0032,
-        "inpainted_share": 0.713,
-        "conflict_ratio": 0.0024,
+        "blend_share": 0.0053,
+        "inpainted_share": 0.5045,
+        "conflict_ratio": 0.0058,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3295,
-        "inpainted_3d_share": 0.3835,
-        "label_rejected_ratio": 0.2056,
-        "raster_s": 0.13,
-        "total_s": 22.02
+        "inpainted_uv_share": 0.3311,
+        "inpainted_3d_share": 0.1734,
+        "label_rejected_ratio": 0.2136,
+        "raster_s": 0.11,
+        "total_s": 22.19
       },
       "material": {
         "key": "metal_steel",
@@ -1727,9 +1724,9 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.1936,
         "inpainted_3d_share": 0.2948,
-        "label_rejected_ratio": 0.3247,
-        "raster_s": 0.11,
-        "total_s": 25.86
+        "label_rejected_ratio": 0.3331,
+        "raster_s": 0.09,
+        "total_s": 19.55
       },
       "material": {
         "key": "metal_steel",
@@ -1772,8 +1769,8 @@
         "inpainted_uv_share": 0.2329,
         "inpainted_3d_share": 0.0814,
         "label_rejected_ratio": 0.1571,
-        "raster_s": 0.15,
-        "total_s": 9.53
+        "raster_s": 0.11,
+        "total_s": 9.09
       },
       "material": {
         "key": "leather",
@@ -1784,12 +1781,12 @@
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0161,
-          0.0162
+          0.0158,
+          0.0165
         ],
         "uv_max": [
-          0.9843,
-          0.9843
+          0.9841,
+          0.9363
         ]
       },
       "mirror_views": [
@@ -1799,28 +1796,106 @@
         "size": 512,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_source_map.png",
-        "covered_texels": 146823,
-        "coverage_pct": 56.0,
-        "texels_from_visible_samples_pct": 43.1,
+        "covered_texels": 129781,
+        "coverage_pct": 49.5,
+        "texels_from_visible_samples_pct": 43.2,
         "views": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.4311,
+          "back": 0.4315,
           "mirror_side": 0.0
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.5689,
+        "inpainted_share": 0.5685,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0256,
-        "inpainted_3d_share": 0.5432,
-        "label_rejected_ratio": 0.0577,
-        "raster_s": 0.23,
-        "total_s": 36.44
+        "inpainted_uv_share": 0.0403,
+        "inpainted_3d_share": 0.5282,
+        "label_rejected_ratio": 0.0765,
+        "raster_s": 0.18,
+        "total_s": 22.96
       },
       "material": {
         "key": "wood",
         "roughness": 0.7
+      }
+    },
+    "pauldron_l": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0157,
+          0.016
+        ],
+        "uv_max": [
+          0.8939,
+          0.9408
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_pauldron_l_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_pauldron_l_source_map.png",
+        "covered_texels": 121209,
+        "coverage_pct": 46.2,
+        "texels_from_visible_samples_pct": 52.5,
+        "views": {
+          "front": 0.141,
+          "side": 0.223,
+          "back": 0.152,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.009,
+        "inpainted_share": 0.475,
+        "conflict_ratio": 0.0347,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1526,
+        "inpainted_3d_share": 0.3224,
+        "label_rejected_ratio": 0.3548,
+        "raster_s": 0.1,
+        "total_s": 9.91
+      }
+    },
+    "pauldron_r": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0157,
+          0.016
+        ],
+        "uv_max": [
+          0.8939,
+          0.9408
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_pauldron_r_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_pauldron_r_source_map.png",
+        "covered_texels": 121209,
+        "coverage_pct": 46.2,
+        "texels_from_visible_samples_pct": 52.9,
+        "views": {
+          "front": 0.1696,
+          "side": 0.0,
+          "back": 0.1666,
+          "mirror_side": 0.1825
+        },
+        "blend_share": 0.0105,
+        "inpainted_share": 0.4709,
+        "conflict_ratio": 0.0207,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.12,
+        "inpainted_3d_share": 0.3509,
+        "label_rejected_ratio": 0.3554,
+        "raster_s": 0.09,
+        "total_s": 11.1
       }
     }
   },
@@ -1839,10 +1914,12 @@
       "arm_r_fore": "inferred",
       "hand_r": "inferred",
       "shield": "inferred",
-      "face": "observed"
+      "face": "observed",
+      "pauldron_l": "observed",
+      "pauldron_r": "observed"
     },
     "counts": {
-      "observed": 8,
+      "observed": 10,
       "inferred": 6
     },
     "views": {
@@ -1851,7 +1928,7 @@
       "back": "observed"
     }
   },
-  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part arm_r_upper (44% of camera-facing samples hidden in its best view front), occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side), misattribution arm_l_upper (8% of texels sourced from body), misattribution arm_r_upper (8% of texels sourced from body), part_outside_reference shield (only 1% of it on the reference silhouette), hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)",
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: misattribution sword_pommel (6% of texels sourced from sword_grip), misattribution arm_l_upper (6% of texels sourced from pauldron_l), part_outside_reference shield (only 1% of it on the reference silhouette), hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)",
   "diagnosis": [
     {
       "view": "back",
@@ -1903,10 +1980,8 @@
     }
   ],
   "warnings": [
-    "occluded_part:arm_r_upper",
-    "occluded_part:arm_l_upper",
+    "misattribution:sword_pommel",
     "misattribution:arm_l_upper",
-    "misattribution:arm_r_upper",
     "part_outside_reference:shield",
     "hull_debris:body"
   ],
@@ -1922,67 +1997,67 @@
     "misattribution_warn": 0.05,
     "objects": {
       "body": {
-        "samples": 102943,
-        "misattribution": 0.0029391846133008264,
+        "samples": 99758,
+        "misattribution": 0.002284135130562292,
         "top_confusion": {
-          "object": "arm_l_upper",
-          "share": 0.0012461059190031153
+          "object": "sword_blade",
+          "share": 0.0007895775759968417
         },
-        "occlusion_share": 0.14655858511422254,
+        "occlusion_share": 0.15795411808950732,
         "best_view": "back",
-        "pooled_occlusion": 0.19370813592550237,
-        "hidden_share": 0.17902454242928453,
+        "pooled_occlusion": 0.2067903544885847,
+        "hidden_share": 0.1841595503778681,
         "occlusion_per_view": {
-          "front": 0.20032636107402463,
-          "side": 0.23912756549858113,
-          "back": 0.14655858511422254
+          "front": 0.1941378117432462,
+          "side": 0.27255954377725594,
+          "back": 0.15795411808950732
         }
       },
       "horn_l": {
-        "samples": 3369,
-        "misattribution": 0.002326354270521768,
+        "samples": 3330,
+        "misattribution": 0.004048582995951417,
         "top_confusion": {
           "object": "body",
-          "share": 0.002326354270521768
+          "share": 0.004048582995951417
         },
         "occlusion_share": 0.0,
         "best_view": "side",
-        "pooled_occlusion": 0.030900243309002432,
-        "hidden_share": 0.03945324634979808,
+        "pooled_occlusion": 0.029597282872392043,
+        "hidden_share": 0.038232528987778125,
         "occlusion_per_view": {
-          "front": 0.07328891580860085,
+          "front": 0.06658739595719382,
           "side": 0.0,
-          "back": 0.004724409448818898
+          "back": 0.008431703204047217
         }
       },
       "horn_r": {
-        "samples": 3211,
-        "misattribution": 0.002777777777777778,
+        "samples": 3174,
+        "misattribution": 0.0039494470774091624,
         "top_confusion": {
           "object": "body",
-          "share": 0.002777777777777778
+          "share": 0.0039494470774091624
         },
-        "occlusion_share": 0.011326860841423949,
+        "occlusion_share": 0.006628003314001657,
         "best_view": "back",
-        "pooled_occlusion": 0.34935974873157766,
-        "hidden_share": 0.08151432469304229,
+        "pooled_occlusion": 0.3567124608339359,
+        "hidden_share": 0.081267217630854,
         "occlusion_per_view": {
-          "front": 0.06780735107731306,
-          "side": 1.0,
-          "back": 0.011326860841423949
+          "front": 0.06966434452184928,
+          "side": 0.9992663242846662,
+          "back": 0.006628003314001657
         }
       },
       "sword_pommel": {
         "samples": 600,
-        "misattribution": 0.04929577464788732,
+        "misattribution": 0.05813953488372093,
         "top_confusion": {
           "object": "sword_grip",
-          "share": 0.03051643192488263
+          "share": 0.04186046511627907
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.3047619047619048,
-        "hidden_share": 0.2749003984063745,
+        "pooled_occlusion": 0.34049079754601225,
+        "hidden_share": 0.2964426877470356,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
@@ -1990,191 +2065,222 @@
         }
       },
       "sword_grip": {
-        "samples": 698,
-        "misattribution": 0.03655352480417755,
+        "samples": 690,
+        "misattribution": 0.036312849162011177,
         "top_confusion": {
-          "object": "body",
-          "share": 0.013054830287206266
+          "object": "sword_blade",
+          "share": 0.0223463687150838
         },
-        "occlusion_share": 0.11785714285714285,
+        "occlusion_share": 0.11439114391143912,
         "best_view": "front",
-        "pooled_occlusion": 0.47368421052631576,
-        "hidden_share": 0.44901315789473684,
+        "pooled_occlusion": 0.46484375,
+        "hidden_share": 0.44264943457189015,
         "occlusion_per_view": {
-          "front": 0.11785714285714285,
-          "side": 0.2885572139303483,
+          "front": 0.11439114391143912,
+          "side": 0.24336283185840707,
           "back": 1.0
         }
       },
       "sword_blade": {
-        "samples": 2101,
-        "misattribution": 0.026806526806526808,
+        "samples": 2077,
+        "misattribution": 0.04735376044568245,
         "top_confusion": {
-          "object": "sword_grip",
-          "share": 0.017482517482517484
+          "object": "body",
+          "share": 0.026462395543175487
         },
-        "occlusion_share": 0.13757396449704143,
+        "occlusion_share": 0.2397163120567376,
         "best_view": "front",
-        "pooled_occlusion": 0.49732302201070794,
-        "hidden_share": 0.49732302201070794,
+        "pooled_occlusion": 0.5671282360024081,
+        "hidden_share": 0.5671282360024081,
         "occlusion_per_view": {
-          "front": 0.13757396449704143,
-          "side": 0.5667447306791569,
-          "back": 0.8667820069204152
+          "front": 0.2397163120567376,
+          "side": 0.6105527638190955,
+          "back": 0.9498207885304659
         }
       },
       "arm_l_upper": {
-        "samples": 2741,
-        "misattribution": 0.07940904893813482,
+        "samples": 2042,
+        "misattribution": 0.05772113943028486,
         "top_confusion": {
-          "object": "body",
-          "share": 0.06371191135734072
+          "object": "pauldron_l",
+          "share": 0.04122938530734633
         },
-        "occlusion_share": 0.3382352941176471,
-        "best_view": "side",
-        "pooled_occlusion": 0.47150610583446406,
-        "hidden_share": 0.5315116791538123,
+        "occlusion_share": 0.17793103448275863,
+        "best_view": "front",
+        "pooled_occlusion": 0.2771553823672674,
+        "hidden_share": 0.285288862418106,
         "occlusion_per_view": {
-          "front": 0.4293785310734463,
-          "side": 0.3382352941176471,
-          "back": 0.6552462526766595
+          "front": 0.17793103448275863,
+          "side": 0.35555555555555557,
+          "back": 0.30945558739255014
         }
       },
       "arm_l_fore": {
-        "samples": 2003,
-        "misattribution": 0.016644474034620507,
+        "samples": 1979,
+        "misattribution": 0.01555104800540906,
         "top_confusion": {
           "object": "arm_l_upper",
-          "share": 0.011318242343541944
+          "share": 0.010818120351588911
         },
-        "occlusion_share": 0.056818181818181816,
+        "occlusion_share": 0.0723589001447178,
         "best_view": "back",
-        "pooled_occlusion": 0.15921375921375922,
-        "hidden_share": 0.1506849315068493,
+        "pooled_occlusion": 0.1567926455566905,
+        "hidden_share": 0.1389786683904331,
         "occlusion_per_view": {
-          "front": 0.2027439024390244,
-          "side": 0.2237037037037037,
-          "back": 0.056818181818181816
+          "front": 0.1723027375201288,
+          "side": 0.23219814241486067,
+          "back": 0.0723589001447178
         }
       },
       "hand_l": {
-        "samples": 1953,
-        "misattribution": 0.025482093663911846,
+        "samples": 1930,
+        "misattribution": 0.0209351011863224,
         "top_confusion": {
           "object": "arm_l_fore",
-          "share": 0.01584022038567493
+          "share": 0.013956734124214934
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.0037837837837837837,
-        "hidden_share": 0.0047169811320754715,
+        "pooled_occlusion": 0.002137894174238375,
+        "hidden_share": 0.002688172043010753,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.01282051282051282
+          "back": 0.007042253521126761
         }
       },
       "arm_r_upper": {
-        "samples": 2741,
-        "misattribution": 0.07904642409033877,
+        "samples": 2042,
+        "misattribution": 0.037985865724381625,
         "top_confusion": {
-          "object": "body",
-          "share": 0.05771643663739021
+          "object": "arm_r_fore",
+          "share": 0.0176678445229682
         },
-        "occlusion_share": 0.44126074498567336,
+        "occlusion_share": 0.14264919941775836,
         "best_view": "front",
-        "pooled_occlusion": 0.6913756236635781,
-        "hidden_share": 0.6151111111111112,
+        "pooled_occlusion": 0.4981481481481482,
+        "hidden_share": 0.34973005398920215,
         "occlusion_per_view": {
-          "front": 0.44126074498567336,
+          "front": 0.14264919941775836,
           "side": 1.0,
-          "back": 0.6839145106861643
+          "back": 0.3537859007832898
         }
       },
       "arm_r_fore": {
-        "samples": 2003,
-        "misattribution": 0.025659824046920823,
+        "samples": 1979,
+        "misattribution": 0.026138909634055265,
         "top_confusion": {
           "object": "arm_r_upper",
-          "share": 0.01906158357771261
+          "share": 0.020164301717699777
         },
-        "occlusion_share": 0.06843575418994413,
+        "occlusion_share": 0.06997084548104957,
         "best_view": "back",
-        "pooled_occlusion": 0.43124101581217056,
-        "hidden_share": 0.2972172883362937,
+        "pooled_occlusion": 0.4209245742092457,
+        "hidden_share": 0.28827751196172247,
         "occlusion_per_view": {
-          "front": 0.2,
+          "front": 0.17857142857142858,
           "side": 1.0,
-          "back": 0.06843575418994413
+          "back": 0.06997084548104957
         }
       },
       "hand_r": {
-        "samples": 1953,
-        "misattribution": 0.026581118240146653,
+        "samples": 1930,
+        "misattribution": 0.01727447216890595,
         "top_confusion": {
           "object": "arm_r_fore",
-          "share": 0.026581118240146653
+          "share": 0.01727447216890595
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.40760295670538543,
-        "hidden_share": 0.25695364238410595,
+        "pooled_occlusion": 0.4005464480874317,
+        "hidden_share": 0.2532334921715453,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 1.0,
-          "back": 0.005415162454873646
+          "back": 0.0036036036036036037
         }
       },
       "shield": {
-        "samples": 9733,
-        "misattribution": 0.009101941747572815,
+        "samples": 9813,
+        "misattribution": 0.005036807438977141,
         "top_confusion": {
           "object": "body",
-          "share": 0.009101941747572815
+          "share": 0.005036807438977141
         },
         "occlusion_share": 0.0,
         "best_view": "back",
-        "pooled_occlusion": 0.4432550405321139,
-        "hidden_share": 0.4545257452574526,
+        "pooled_occlusion": 0.43580322514798936,
+        "hidden_share": 0.4464075382803298,
         "occlusion_per_view": {
-          "front": 1.0,
-          "side": 0.002277904328018223,
+          "front": 0.9699795314987492,
+          "side": 0.006038647342995169,
           "back": 0.0
         }
       },
       "face": {
-        "samples": 14365,
-        "misattribution": 0.004798818752307124,
+        "samples": 14198,
+        "misattribution": 0.004728992360858494,
         "top_confusion": {
           "object": "body",
-          "share": 0.004798818752307124
+          "share": 0.004728992360858494
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.4507262220833984,
-        "hidden_share": 0.45342489874977987,
+        "pooled_occlusion": 0.4482704892489872,
+        "hidden_share": 0.45090621150800636,
         "occlusion_per_view": {
           "front": 0.0,
-          "side": 0.16296296296296298,
+          "side": 0.17136993329912775,
           "back": 1.0
+        }
+      },
+      "pauldron_l": {
+        "samples": 2436,
+        "misattribution": 0.029115934356802542,
+        "top_confusion": {
+          "object": "arm_l_upper",
+          "share": 0.017998941238750663
+        },
+        "occlusion_share": 0.01174496644295302,
+        "best_view": "back",
+        "pooled_occlusion": 0.10685302073940486,
+        "hidden_share": 0.11180832857957787,
+        "occlusion_per_view": {
+          "front": 0.05417956656346749,
+          "side": 0.19979508196721313,
+          "back": 0.01174496644295302
+        }
+      },
+      "pauldron_r": {
+        "samples": 2436,
+        "misattribution": 0.03406169665809768,
+        "top_confusion": {
+          "object": "arm_r_upper",
+          "share": 0.019280205655526992
+        },
+        "occlusion_share": 0.01839464882943144,
+        "best_view": "back",
+        "pooled_occlusion": 0.4523135033050047,
+        "hidden_share": 0.32597327135386406,
+        "occlusion_per_view": {
+          "front": 0.04340567612687813,
+          "side": 1.0,
+          "back": 0.01839464882943144
         }
       }
     },
     "misattribution_max": {
-      "object": "arm_l_upper",
-      "share": 0.07940904893813482
+      "object": "sword_pommel",
+      "share": 0.05813953488372093
     },
     "occlusion_max": {
-      "object": "arm_r_upper",
-      "share": 0.44126074498567336
+      "object": "sword_blade",
+      "share": 0.2397163120567376
     },
-    "occluded_objects": [
-      "arm_r_upper",
-      "arm_l_upper"
-    ],
+    "occluded_objects": [],
     "misattributed_objects": [
-      "arm_l_upper",
-      "arm_r_upper"
+      "sword_pommel",
+      "arm_l_upper"
     ]
   },
   "part_iou": {
@@ -2223,7 +2329,7 @@
             "iou": 0.5975039001560063,
             "precision": 0.9607425059576069,
             "part_px": 7973,
-            "model_iou": 0.9262435677530018
+            "model_iou": 0.9260876344924373
           },
           "side": {
             "visible": true,
@@ -2237,7 +2343,7 @@
             "iou": 0.5961810466760962,
             "precision": 0.953979630328178,
             "part_px": 7953,
-            "model_iou": 0.9224320300869702
+            "model_iou": 0.9223536786022095
           }
         },
         "mean_iou": 0.5161340436841809,
@@ -2257,21 +2363,21 @@
             "iou": 0.22125382262996943,
             "precision": 0.9735366674142184,
             "part_px": 4459,
-            "model_iou": 0.9698758396092001
+            "model_iou": 0.9697771446016078
           },
           "side": {
             "visible": true,
             "iou": 0.2113741762265072,
             "precision": 0.9951163458776213,
             "part_px": 3481,
-            "model_iou": 0.9607345656638879
+            "model_iou": 0.9606741573033708
           },
           "back": {
             "visible": true,
             "iou": 0.25570303970579783,
             "precision": 0.9995507637017071,
             "part_px": 4452,
-            "model_iou": 0.8361511062057894
+            "model_iou": 0.836267870579383
           }
         },
         "mean_iou": 0.22944367952075817,
@@ -2289,34 +2395,34 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.49641136564742894,
-            "precision": 0.9668709306779012,
-            "part_px": 5222,
-            "model_iou": 0.9705043751843476
+            "iou": 0.47898842476094616,
+            "precision": 0.9684558636479267,
+            "part_px": 3931,
+            "model_iou": 0.9470306995470559
           },
           "side": {
             "visible": true,
-            "iou": 0.4679950625991889,
+            "iou": 0.4523540063377094,
             "precision": 1.0,
-            "part_px": 5308,
+            "part_px": 3997,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.49934601066505685,
-            "precision": 0.9513130151428024,
-            "part_px": 5217,
-            "model_iou": 0.9429980276134122
+            "iou": 0.49430702787593245,
+            "precision": 0.9622929936305733,
+            "part_px": 3925,
+            "model_iou": 0.9241511851377322
           }
         },
-        "mean_iou": 0.4879174796372249,
-        "min_precision": 0.9513130151428024,
+        "mean_iou": 0.4752164863248627,
+        "min_precision": 0.9622929936305733,
         "label_iou": {
-          "front": 0.6402,
-          "side": 0.2799,
-          "back": 0.5458
+          "front": 0.6786,
+          "side": 0.4478,
+          "back": 0.6975
         },
-        "mean_label_iou": 0.4886333333333333
+        "mean_label_iou": 0.6079666666666667
       },
       "arm_l_fore": {
         "type": "capsule",
@@ -2327,7 +2433,7 @@
             "iou": 0.5593056894889104,
             "precision": 0.9955860716037274,
             "part_px": 4078,
-            "model_iou": 0.9426646500756222
+            "model_iou": 0.9360297152290549
           },
           "side": {
             "visible": true,
@@ -2341,7 +2447,7 @@
             "iou": 0.645770030385415,
             "precision": 0.9916502946954814,
             "part_px": 4072,
-            "model_iou": 0.8324225865209471
+            "model_iou": 0.8269041941366251
           }
         },
         "mean_iou": 0.5514364787831404,
@@ -2359,33 +2465,33 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.49601965601965603,
-            "precision": 0.9670434949223989,
-            "part_px": 5219,
-            "model_iou": 0.9719929245283019
+            "iou": 0.4789281670650396,
+            "precision": 0.9684558636479267,
+            "part_px": 3931,
+            "model_iou": 0.946911561202667
           },
           "side": {
             "visible": true,
-            "iou": 0.4679950625991889,
+            "iou": 0.4523540063377094,
             "precision": 1.0,
-            "part_px": 5308,
+            "part_px": 3997,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.49591280653950953,
-            "precision": 0.942101226993865,
-            "part_px": 5216,
-            "model_iou": 0.9363421363815531
+            "iou": 0.49394258625230447,
+            "precision": 0.9559123343527013,
+            "part_px": 3924,
+            "model_iou": 0.919009113079194
           }
         },
-        "mean_iou": 0.48664250838611817,
-        "min_precision": 0.942101226993865,
+        "mean_iou": 0.4750749198850179,
+        "min_precision": 0.9559123343527013,
         "label_iou": {
-          "front": 0.6512,
-          "back": 0.623
+          "front": 0.6746,
+          "back": 0.8206
         },
-        "mean_label_iou": 0.6371
+        "mean_label_iou": 0.7476
       },
       "arm_r_fore": {
         "type": "capsule",
@@ -2396,7 +2502,7 @@
             "iou": 0.5535567151881351,
             "precision": 0.9889597644749755,
             "part_px": 4076,
-            "model_iou": 0.9480021893814997
+            "model_iou": 0.9411200876352184
           },
           "side": {
             "visible": true,
@@ -2410,7 +2516,7 @@
             "iou": 0.6421842567459684,
             "precision": 0.9865096884964435,
             "part_px": 4077,
-            "model_iou": 0.813221550302364
+            "model_iou": 0.8090909090909091
           }
         },
         "mean_iou": 0.5483248961363998,
@@ -2427,32 +2533,32 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.47343383267961503,
+            "iou": 0.4763887797595663,
             "precision": 1.0,
-            "part_px": 30055,
-            "model_iou": 0.9967428760247352
+            "part_px": 30315,
+            "model_iou": 0.9902306691129197
           },
           "side": {
             "visible": true,
-            "iou": 0.0026507301556701526,
-            "precision": 0.011160714285714286,
-            "part_px": 4928,
-            "model_iou": 0.7445560736432245
+            "iou": 0.003569080492157415,
+            "precision": 0.014893200078385264,
+            "part_px": 5103,
+            "model_iou": 0.7445313597826596
           },
           "back": {
             "visible": true,
-            "iou": 0.4811229895020707,
+            "iou": 0.48646039484481346,
             "precision": 1.0,
-            "part_px": 29973,
-            "model_iou": 0.9722880411756398
+            "part_px": 30234,
+            "model_iou": 0.9664912418506009
           }
         },
-        "mean_iou": 0.31906918411245194,
-        "min_precision": 0.011160714285714286,
+        "mean_iou": 0.3221394183655124,
+        "min_precision": 0.014893200078385264,
         "label_iou": {
-          "back": 0.9589
+          "back": 0.9496
         },
-        "mean_label_iou": 0.9589
+        "mean_label_iou": 0.9496
       }
     },
     "outside_warn": 0.7,
@@ -2468,7 +2574,7 @@
         "relief_applied": true,
         "profile_relief_m": 0.0155,
         "texels_per_px": 4.73,
-        "color_error": 0.0334
+        "color_error": 0.0333
       }
     },
     "closeup": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/face_closeup.png"
@@ -2477,23 +2583,26 @@
     "components": {
       "body": {
         "color_error": {
-          "front": 0.0553,
-          "side": 0.0682,
-          "back": 0.0295
+          "front": 0.0554,
+          "side": 0.0662,
+          "back": 0.0299
         },
-        "misattribution": 0.0029,
-        "occlusion": 0.1466,
-        "inpainted_share": 0.2236,
-        "texels_per_px": 1.72
+        "misattribution": 0.0023,
+        "occlusion": 0.158,
+        "inpainted_share": 0.2201,
+        "texels_per_px": 1.77,
+        "slab": {
+          "x +0.10 z 0.08-0.13": 0.275
+        }
       },
       "horn_l": {
         "color_error": {
           "front": 0.0571,
-          "side": 0.0769,
+          "side": 0.0767,
           "back": 0.0283
         },
         "label_iou": 0.7719999999999999,
-        "misattribution": 0.0023,
+        "misattribution": 0.004,
         "occlusion": 0.0,
         "inpainted_share": 0.2201,
         "texels_per_px": 2.41
@@ -2504,88 +2613,88 @@
           "back": 0.0229
         },
         "label_iou": 0.8372999999999999,
-        "misattribution": 0.0028,
-        "occlusion": 0.0113,
+        "misattribution": 0.0039,
+        "occlusion": 0.0066,
         "inpainted_share": 0.1925,
         "texels_per_px": 2.22
       },
       "sword_pommel": {
         "color_error": {
-          "front": 0.1917,
-          "side": 0.1717
+          "front": 0.1922,
+          "side": 0.17
         },
-        "misattribution": 0.0493,
+        "misattribution": 0.0581,
         "occlusion": 0.0,
-        "inpainted_share": 0.7008,
+        "inpainted_share": 0.6954,
         "texels_per_px": 10.16
       },
       "sword_grip": {
         "color_error": {
-          "front": 0.1018,
-          "side": 0.0815
+          "front": 0.1037,
+          "side": 0.0813
         },
-        "misattribution": 0.0366,
-        "occlusion": 0.1179,
+        "misattribution": 0.0363,
+        "occlusion": 0.1144,
         "inpainted_share": 0.584,
         "texels_per_px": 5.6
       },
       "sword_blade": {
         "color_error": {
-          "front": 0.0615,
-          "side": 0.076,
-          "back": 0.1461
+          "front": 0.1047,
+          "side": 0.0774,
+          "back": 0.148
         },
         "label_iou": 0.6304666666666666,
-        "misattribution": 0.0268,
-        "occlusion": 0.1376,
-        "inpainted_share": 0.7378,
+        "misattribution": 0.0474,
+        "occlusion": 0.2397,
+        "inpainted_share": 0.8028,
         "texels_per_px": 2.85
       },
       "arm_l_upper": {
         "color_error": {
-          "front": 0.1946,
-          "side": 0.183,
-          "back": 0.1337
+          "front": 0.1158,
+          "side": 0.0878,
+          "back": 0.1317
         },
-        "label_iou": 0.4886333333333333,
-        "misattribution": 0.0794,
-        "occlusion": 0.3382,
-        "inpainted_share": 0.7008,
-        "texels_per_px": 2.76
+        "label_iou": 0.6079666666666667,
+        "misattribution": 0.0577,
+        "occlusion": 0.1779,
+        "inpainted_share": 0.5176,
+        "texels_per_px": 3.21
       },
       "arm_l_fore": {
         "color_error": {
           "front": 0.0599,
-          "side": 0.1132,
+          "side": 0.1137,
           "back": 0.0711
         },
         "label_iou": 0.9143333333333333,
-        "misattribution": 0.0166,
-        "occlusion": 0.0568,
+        "misattribution": 0.0156,
+        "occlusion": 0.0724,
         "inpainted_share": 0.5207,
         "texels_per_px": 3.06
       },
       "hand_l": {
         "color_error": {
           "front": 0.0683,
-          "side": 0.0632,
+          "side": 0.0629,
           "back": 0.0529
         },
-        "misattribution": 0.0255,
+        "misattribution": 0.0209,
         "occlusion": 0.0,
         "inpainted_share": 0.3272,
         "texels_per_px": 3.37
       },
       "arm_r_upper": {
         "color_error": {
-          "front": 0.2078,
-          "back": 0.11
+          "front": 0.1181,
+          "back": 0.0975
         },
-        "label_iou": 0.6371,
-        "misattribution": 0.079,
-        "occlusion": 0.4413,
-        "inpainted_share": 0.713,
-        "texels_per_px": 2.79
+        "label_iou": 0.7476,
+        "misattribution": 0.038,
+        "occlusion": 0.1426,
+        "inpainted_share": 0.5045,
+        "texels_per_px": 3.16
       },
       "arm_r_fore": {
         "color_error": {
@@ -2593,8 +2702,8 @@
           "back": 0.0523
         },
         "label_iou": 0.95045,
-        "misattribution": 0.0257,
-        "occlusion": 0.0684,
+        "misattribution": 0.0261,
+        "occlusion": 0.07,
         "inpainted_share": 0.4884,
         "texels_per_px": 3.09
       },
@@ -2603,157 +2712,160 @@
           "front": 0.0838,
           "back": 0.0583
         },
-        "misattribution": 0.0266,
+        "misattribution": 0.0173,
         "occlusion": 0.0,
         "inpainted_share": 0.3143,
         "texels_per_px": 3.37
       },
       "shield": {
         "color_error": {
-          "back": 0.0246
+          "back": 0.025
         },
-        "label_iou": 0.9589,
-        "misattribution": 0.0091,
+        "label_iou": 0.9496,
+        "misattribution": 0.005,
         "occlusion": 0.0,
-        "inpainted_share": 0.5689,
-        "texels_per_px": 1.47
+        "inpainted_share": 0.5685,
+        "texels_per_px": 1.38
       },
       "face": {
         "color_error": {
-          "front": 0.0332,
+          "front": 0.0331,
           "side": 0.085
         },
-        "misattribution": 0.0048,
+        "misattribution": 0.0047,
         "occlusion": 0.0,
         "inpainted_share": 0.3278,
         "texels_per_px": 4.96
+      },
+      "pauldron_l": {
+        "color_error": {
+          "front": 0.0883,
+          "side": 0.0618,
+          "back": 0.0685
+        },
+        "misattribution": 0.0291,
+        "occlusion": 0.0117,
+        "inpainted_share": 0.475,
+        "texels_per_px": 2.83
+      },
+      "pauldron_r": {
+        "color_error": {
+          "front": 0.0681,
+          "back": 0.058
+        },
+        "misattribution": 0.0341,
+        "occlusion": 0.0184,
+        "inpainted_share": 0.4709,
+        "texels_per_px": 2.83
       }
     },
     "issues": [
       {
-        "component": "arm_r_upper",
-        "check": "color_error",
-        "view": "front",
-        "value": 0.2078,
-        "threshold": 0.08,
-        "severity": 2.6,
-        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
-      },
-      {
-        "component": "arm_l_upper",
-        "check": "color_error",
-        "view": "front",
-        "value": 0.1946,
-        "threshold": 0.08,
-        "severity": 2.43,
-        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
-      },
-      {
         "component": "sword_pommel",
         "check": "color_error",
         "view": "front",
-        "value": 0.1917,
+        "value": 0.1922,
         "threshold": 0.08,
         "severity": 2.4,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
-        "component": "arm_l_upper",
-        "check": "color_error",
-        "view": "side",
-        "value": 0.183,
-        "threshold": 0.08,
-        "severity": 2.29,
-        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
-      },
-      {
         "component": "sword_pommel",
         "check": "color_error",
         "view": "side",
-        "value": 0.1717,
+        "value": 0.17,
         "threshold": 0.08,
-        "severity": 2.15,
+        "severity": 2.12,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
         "component": "sword_blade",
         "check": "color_error",
         "view": "back",
-        "value": 0.1461,
+        "value": 0.148,
         "threshold": 0.08,
-        "severity": 1.83,
-        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
-      },
-      {
-        "component": "arm_l_upper",
-        "check": "color_error",
-        "view": "back",
-        "value": 0.1337,
-        "threshold": 0.08,
-        "severity": 1.67,
+        "severity": 1.85,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
         "component": "sword_blade",
         "check": "inpainted_share",
         "view": null,
-        "value": 0.7378,
+        "value": 0.8028,
+        "threshold": 0.45,
+        "severity": 1.78,
+        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+      },
+      {
+        "component": "arm_l_upper",
+        "check": "color_error",
+        "view": "back",
+        "value": 0.1317,
+        "threshold": 0.08,
+        "severity": 1.65,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "body",
+        "check": "slab",
+        "view": "x +0.10 z 0.08-0.13",
+        "value": 0.275,
         "threshold": 0.45,
         "severity": 1.64,
-        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
-      },
-      {
-        "component": "arm_r_upper",
-        "check": "inpainted_share",
-        "view": null,
-        "value": 0.713,
-        "threshold": 0.45,
-        "severity": 1.58,
-        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+        "action": "a limb of the hull is a flat slab (thin across, deep along the other axis): the views disagree on it (an AI sheet draws the arm out in front, hanging in the side) and the hull took the torso's depth; make it a part (capsule / sphere) from the view that shows it clearly, exclude it from the hull. Leave it if it is truly flat (cape, wing)"
       },
       {
         "component": "sword_pommel",
         "check": "inpainted_share",
         "view": null,
-        "value": 0.7008,
+        "value": 0.6954,
         "threshold": 0.45,
-        "severity": 1.56,
-        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
-      },
-      {
-        "component": "arm_l_upper",
-        "check": "inpainted_share",
-        "view": null,
-        "value": 0.7008,
-        "threshold": 0.45,
-        "severity": 1.56,
+        "severity": 1.55,
         "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
       },
       {
         "component": "arm_r_upper",
-        "check": "occlusion",
-        "view": null,
-        "value": 0.4413,
-        "threshold": 0.3,
-        "severity": 1.47,
-        "action": "most of it is hidden: it is embedded in the body or behind another part; check its placement and exclude_components"
+        "check": "color_error",
+        "view": "front",
+        "value": 0.1181,
+        "threshold": 0.08,
+        "severity": 1.48,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "arm_l_upper",
+        "check": "color_error",
+        "view": "front",
+        "value": 0.1158,
+        "threshold": 0.08,
+        "severity": 1.45,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
         "component": "arm_l_fore",
         "check": "color_error",
         "view": "side",
-        "value": 0.1132,
+        "value": 0.1137,
         "threshold": 0.08,
-        "severity": 1.41,
+        "severity": 1.42,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
-        "component": "arm_r_upper",
+        "component": "sword_blade",
         "check": "color_error",
-        "view": "back",
-        "value": 0.11,
+        "view": "front",
+        "value": 0.1047,
         "threshold": 0.08,
-        "severity": 1.38,
+        "severity": 1.31,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "sword_grip",
+        "check": "color_error",
+        "view": "front",
+        "value": 0.1037,
+        "threshold": 0.08,
+        "severity": 1.3,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
@@ -2766,31 +2878,22 @@
         "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
       },
       {
-        "component": "sword_grip",
-        "check": "color_error",
-        "view": "front",
-        "value": 0.1018,
-        "threshold": 0.08,
-        "severity": 1.27,
-        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
-      },
-      {
         "component": "shield",
         "check": "inpainted_share",
         "view": null,
-        "value": 0.5689,
+        "value": 0.5685,
         "threshold": 0.45,
         "severity": 1.26,
         "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
       },
       {
-        "component": "arm_l_upper",
-        "check": "label_iou",
-        "view": null,
-        "value": 0.4886,
-        "threshold": 0.6,
-        "severity": 1.23,
-        "action": "its shape or pose misses its label: fix anchors, the part type (kind) or fit_locked"
+        "component": "arm_r_upper",
+        "check": "color_error",
+        "view": "back",
+        "value": 0.0975,
+        "threshold": 0.08,
+        "severity": 1.22,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
         "component": "arm_l_fore",
@@ -2803,12 +2906,39 @@
       },
       {
         "component": "arm_l_upper",
-        "check": "occlusion",
+        "check": "inpainted_share",
         "view": null,
-        "value": 0.3382,
-        "threshold": 0.3,
-        "severity": 1.13,
-        "action": "most of it is hidden: it is embedded in the body or behind another part; check its placement and exclude_components"
+        "value": 0.5176,
+        "threshold": 0.45,
+        "severity": 1.15,
+        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+      },
+      {
+        "component": "arm_r_upper",
+        "check": "inpainted_share",
+        "view": null,
+        "value": 0.5045,
+        "threshold": 0.45,
+        "severity": 1.12,
+        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+      },
+      {
+        "component": "arm_l_upper",
+        "check": "color_error",
+        "view": "side",
+        "value": 0.0878,
+        "threshold": 0.08,
+        "severity": 1.1,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "pauldron_l",
+        "check": "color_error",
+        "view": "front",
+        "value": 0.0883,
+        "threshold": 0.08,
+        "severity": 1.1,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
         "component": "arm_r_fore",
@@ -2829,6 +2959,15 @@
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
+        "component": "pauldron_l",
+        "check": "inpainted_share",
+        "view": null,
+        "value": 0.475,
+        "threshold": 0.45,
+        "severity": 1.06,
+        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+      },
+      {
         "component": "hand_r",
         "check": "color_error",
         "view": "front",
@@ -2838,10 +2977,19 @@
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       },
       {
+        "component": "pauldron_r",
+        "check": "inpainted_share",
+        "view": null,
+        "value": 0.4709,
+        "threshold": 0.45,
+        "severity": 1.05,
+        "action": "much of its texture is guessed: no view sees it well; add mirror_color_views / a colour view, or accept it if it is truly hidden"
+      },
+      {
         "component": "sword_grip",
         "check": "color_error",
         "view": "side",
-        "value": 0.0815,
+        "value": 0.0813,
         "threshold": 0.08,
         "severity": 1.02,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
@@ -2849,29 +2997,29 @@
     ],
     "sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/review_sheet.png",
     "sheet_rows": [
-      "arm_r_upper",
-      "arm_l_upper",
       "sword_pommel",
       "sword_blade",
+      "arm_l_upper",
+      "body",
+      "arm_r_upper",
       "arm_l_fore",
       "sword_grip",
       "shield",
+      "pauldron_l",
       "arm_r_fore",
       "face",
       "hand_r",
-      "body",
+      "pauldron_r",
       "horn_l",
       "horn_r",
       "hand_l"
     ]
   },
   "warning_details": [
-    "occluded_part arm_r_upper (44% of camera-facing samples hidden in its best view front)",
-    "occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side)",
-    "misattribution arm_l_upper (8% of texels sourced from body)",
-    "misattribution arm_r_upper (8% of texels sourced from body)",
+    "misattribution sword_pommel (6% of texels sourced from sword_grip)",
+    "misattribution arm_l_upper (6% of texels sourced from pauldron_l)",
     "part_outside_reference shield (only 1% of it on the reference silhouette)",
     "hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)"
   ],
-  "elapsed_s": 632.95
+  "elapsed_s": 540.05
 }

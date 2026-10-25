@@ -67,7 +67,9 @@
           "hand_l",
           "arm_r_upper",
           "arm_r_fore",
-          "hand_r"
+          "hand_r",
+          "pauldron_l",
+          "pauldron_r"
         ],
         "exclude_dilate_px": 1,
         "layers": [
@@ -549,8 +551,8 @@
         "anchors_px": {
           "front": {
             "base": [
-              152,
-              466
+              148,
+              478
             ],
             "tip": [
               112,
@@ -560,8 +562,8 @@
           },
           "side": {
             "base": [
-              212,
-              458
+              205,
+              470
             ],
             "tip": [
               186,
@@ -572,45 +574,45 @@
         "fitted": {
           "iou": {
             "front": {
-              "iou": 0.64,
-              "iou_vis": 0.6402,
-              "covered": 0.8486,
-              "spill": 0.0375,
+              "iou": 0.6001,
+              "iou_vis": 0.6786,
+              "covered": 0.7069,
+              "spill": 0.0348,
               "label_px": 4650
             },
             "side": {
-              "iou": 0.2352,
-              "iou_vis": 0.2799,
-              "covered": 0.3793,
+              "iou": 0.2947,
+              "iou_vis": 0.4478,
+              "covered": 0.8796,
               "spill": 0.0,
-              "label_px": 5582
+              "label_px": 1453
             },
             "back": {
-              "iou": 0.5088,
-              "iou_vis": 0.5458,
-              "covered": 0.811,
-              "spill": 0.0542,
+              "iou": 0.602,
+              "iou_vis": 0.6975,
+              "covered": 0.7733,
+              "spill": 0.042,
               "label_px": 3873
             }
           },
           "location": [
-            -0.09028466153827043,
-            0.0009563547388910659,
-            0.26220310452816836
+            -0.09338386457686892,
+            0.004370867654166213,
+            0.26053273976809466
           ],
           "rotation_deg": [
-            -128.26254302299864,
-            19.31643372476121,
-            22.75366384594556
+            -128.46996987213402,
+            19.419987270211,
+            22.706745116019132
           ],
           "size": [
-            0.03991262969038656,
-            0.03991262969038656,
-            0.061618656924875226
+            0.05345559176590318,
+            0.05345559176590318,
+            0.05345559176590318
           ],
           "params": {
             "axis": "Z",
-            "tip_radius": 0.030805981182449253
+            "tip_radius": 0.01994051908997358
           }
         }
       },
@@ -952,17 +954,17 @@
         "fitted": {
           "iou": {
             "back": {
-              "iou": 0.9578,
-              "iou_vis": 0.9589,
-              "covered": 0.9998,
+              "iou": 0.9477,
+              "iou_vis": 0.9496,
+              "covered": 0.9989,
               "spill": 0.0,
               "label_px": 28715
             }
           },
           "location": [
-            0.0007009288144093551,
-            0.0874778619940077,
-            0.2433866172098548
+            0.0004970733105877645,
+            0.0891148269504783,
+            0.2433623012312724
           ],
           "rotation_deg": [
             0.0,
@@ -971,14 +973,14 @@
           ],
           "size": null,
           "params": {
-            "radius": 0.07332148756904967,
+            "radius": 0.07422851874012588,
             "axis": [
-              0.001225569964587018,
-              0.9376235142196694,
-              0.34765017411274146
+              0.009350714255477293,
+              0.9181347451089769,
+              0.3961579911684058
             ],
-            "thickness": 0.012133189328083334,
-            "dome_height": 0.01997529013948039,
+            "thickness": 0.011940613585907967,
+            "dome_height": 0.019940843264187755,
             "dome_radius": 0.03
           }
         }
@@ -1029,6 +1031,141 @@
       "bevel": null,
       "boolean": null,
       "notes": "Face recessed inside the helmet opening: its own hull from the face label (front + side), the body is recessed behind it (body.params.layers). Not in exclude_components: the body keeps the face pixels in its carve masks and is cut by the layer region instead."
+    },
+    {
+      "id": "pauldron_l",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 24,
+        "anchors_px": {
+          "front": {
+            "center": [
+              155,
+              446
+            ],
+            "radius_px": [
+              37,
+              26
+            ]
+          },
+          "side": {
+            "center": [
+              197,
+              444
+            ],
+            "radius_px": [
+              49,
+              26
+            ]
+          },
+          "back": {
+            "center": [
+              398,
+              446
+            ],
+            "radius_px": [
+              32,
+              26
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6906,
+              "iou_vis": 0.8409,
+              "covered": 0.9015,
+              "spill": 0.0268,
+              "label_px": 2721
+            },
+            "side": {
+              "iou": 0.6517,
+              "iou_vis": 0.6582,
+              "covered": 0.9302,
+              "spill": 0.0,
+              "label_px": 4129
+            },
+            "back": {
+              "iou": 0.6437,
+              "iou_vis": 0.7215,
+              "covered": 0.8893,
+              "spill": 0.0228,
+              "label_px": 2584
+            }
+          },
+          "location": [
+            -0.08269724153971493,
+            0.0063480730325798556,
+            0.29137307779457156
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            0.04666608166408304,
+            0.0785427040941661,
+            0.04898121546644871
+          ],
+          "params": {}
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "pauldron_r",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 24,
+        "mirror_of": "pauldron_l",
+        "fitted": {
+          "mirror_of": "pauldron_l"
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
     }
   ],
   "workflow": {

@@ -696,3 +696,55 @@ def euler_xyz_deg(rot: np.ndarray) -> list[float]:
 def rotation_z_to(axis: Sequence[float]) -> np.ndarray:
     """Rotation matrix taking the local +Z axis to the unit vector ``axis``."""
     return orthonormal_frame(axis).T
+
+
+# --------------------------------------------------------------------------- glove (a hand with fingers)
+GLOVE_FINGER_FRAC = 0.34            # share of the hand length the fingers take (cartoon glove: short)
+GLOVE_CURL_DEG = 60.0               # how far the fingers bend toward the palm (relaxed, half closed)
+GLOVE_THICKNESS = 0.7               # palm thickness over its width
+GLOVE_FINGER_RADIUS = 0.56          # finger radius over the width per finger (> 0.5: neighbours touch, a chunky glove)
+GLOVE_FINGER_LENGTHS = {1: (1.0,), 2: (1.0, 0.92), 3: (0.95, 1.0, 0.9), 4: (0.9, 1.0, 0.96, 0.82)}
+
+
+def glove_mesh(length: float, width: float, fingers: int = 4, finger_frac: float = GLOVE_FINGER_FRAC,
+               curl_deg: float = GLOVE_CURL_DEG, thickness: Optional[float] = None, thumb: bool = True,
+               sides: int = 10) -> tuple[np.ndarray, Faces]:
+    """A hand in the frame of a capsule of ``length`` x ``width`` (local +Z from the wrist at ``-length / 2`` to the
+    fingertips at ``+length / 2``): a rounded-box palm, ``fingers`` tubes (1-4) along +Z bent ``curl_deg`` toward the palm
+    side (+Y) and a thumb on the -X side pointing out, up and toward the palm. Each piece is closed; they overlap (one
+    object, no boolean). The palm faces +Y and the thumb is on -X: mirror X for the other hand."""
+    if length <= 0 or width <= 0:
+        raise BBRError(f"glove length and width must be > 0, got {length}, {width}")
+    n = int(fingers)
+    if n not in GLOVE_FINGER_LENGTHS:
+        raise BBRError(f"fingers must be 1-4, got {fingers}")
+    t = float(thickness if thickness is not None else GLOVE_THICKNESS * width)
+    z0 = -length / 2.0
+    finger_len = finger_frac * length
+    palm_len = length - finger_len
+    parts = [rounded_box_mesh([width, t, palm_len], [0.3 * width, 0.45 * t, 0.3 * palm_len])]
+    parts[0] = (parts[0][0] + np.array([0.0, 0.0, z0 + palm_len / 2.0]), parts[0][1])
+    rf = GLOVE_FINGER_RADIUS * width / n
+    curl = math.radians(curl_deg)
+    for i, scale in enumerate(GLOVE_FINGER_LENGTHS[n]):
+        x = -width / 2.0 + width / (2 * n) + i * width / n
+        lf = finger_len * scale + rf
+        p0 = np.array([x, 0.0, z0 + palm_len - rf])
+        d1 = np.array([0.0, math.sin(curl / 2.0), math.cos(curl / 2.0)])
+        d2 = np.array([0.0, math.sin(curl), math.cos(curl)])
+        pts = [p0, p0 + 0.4 * lf * d1, p0 + 0.4 * lf * d1 + 0.6 * lf * d2]
+        parts.append(strand_mesh(pts, [rf, 0.95 * rf, 0.8 * rf], sides=sides))
+    if thumb:
+        rt = 1.35 * rf
+        base = np.array([-0.32 * width, 0.15 * t, z0 + 0.35 * palm_len])
+        d = np.array([-0.55, 0.45, 0.7])
+        d /= np.linalg.norm(d)
+        lt = 0.5 * finger_len + 0.35 * width
+        pts = [base, base + 0.5 * lt * d, base + lt * (d + np.array([0.15, 0.1, 0.0]))]
+        parts.append(strand_mesh(pts, [rt, rt, 0.85 * rt], sides=sides))
+    verts, faces, offset = [], [], 0
+    for v, f in parts:
+        verts.append(np.asarray(v, dtype=float))
+        faces += [[int(k) + offset for k in poly] for poly in f]
+        offset += len(v)
+    return np.concatenate(verts), faces

@@ -23,11 +23,16 @@ and the side only gives the depth (u). The silhouette error rose from 1.6% to 3.
 drawn outline exactly), well under the 8% threshold; the arms are now round from every angle, which is what the
 reference character is.
 
+## Round 3 (total error 2.9%)
+
+| Issue | Seen in | Cause | Change |
+|---|---|---|---|
+| Hands are sphere mittens; the reference has chunky gloves with fingers and a thumb | hand close-up vs front reference | no hand shape | `hand_r` / `hand_l` as `capsule` with `"fingers": 4` (wrist -> fingertips from the front, depth from the side) |
+| First glove too thin, fingers splayed like claws; width check failed (-13%) | close-up, dimension check | default palm toward the body showed the hand edge-on from the front; finger proportions too slim | `palm: "+Y"`, thumb toward the body (the reference shows the back of the glove); glove defaults made chunky (short thick fingers, 60 degree curl, thicker palm and thumb); front radius 24 -> 27 px |
+
 ## Left as is
 
-- Hands are sphere mittens (fingers are not modelled; fine for the chibi style).
 - `face color_error (side)` near 0.09: painted shading of the profile seen through the glass.
 - `arm_r color_error (side)` 0.12, `hand_r` / `hand_l color_error (front)` 0.10 / 0.09: the side view draws the arm
   foreshortened and lower than the front (the disagreement above); the capsule follows the front, so its side
-  outline and the drawn one differ. Matching both would need a pose no single 3D arm has. The hands are mittens,
-  the drawn gloves have fingers.
+  outline and the drawn one differ. Matching both would need a pose no single 3D arm has. 

@@ -58,7 +58,9 @@
           "hand_l",
           "arm_r_upper",
           "arm_r_fore",
-          "hand_r"
+          "hand_r",
+          "pauldron_l",
+          "pauldron_r"
         ],
         "exclude_dilate_px": 1,
         "layers": [
@@ -254,8 +256,8 @@
         "anchors_px": {
           "front": {
             "base": [
-              152,
-              466
+              148,
+              478
             ],
             "tip": [
               112,
@@ -265,8 +267,8 @@
           },
           "side": {
             "base": [
-              212,
-              458
+              205,
+              470
             ],
             "tip": [
               186,
@@ -429,6 +431,57 @@
         "relief": true
       },
       "notes": "Face recessed inside the helmet opening: its own hull from the face label (front + side), the body is recessed behind it (body.params.layers). Not in exclude_components: the body keeps the face pixels in its carve masks and is cut by the layer region instead."
+    },
+    {
+      "id": "pauldron_l",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 24,
+        "anchors_px": {
+          "front": {
+            "center": [
+              155,
+              446
+            ],
+            "radius_px": [
+              37,
+              26
+            ]
+          },
+          "side": {
+            "center": [
+              197,
+              444
+            ],
+            "radius_px": [
+              49,
+              26
+            ]
+          },
+          "back": {
+            "center": [
+              398,
+              446
+            ],
+            "radius_px": [
+              32,
+              26
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "pauldron_r",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 24,
+        "mirror_of": "pauldron_l"
+      }
     }
   ],
   "workflow": {

@@ -271,17 +271,17 @@
     "warnings": [
       "arm_l_upper.tip: its anchors are 16 mm from the joint with arm_l_fore.base; the joint wins"
     ],
-    "clearance_radius": 0.03081,
+    "clearance_radius": 0.02673,
     "keypoints": {
       "base": [
-        -0.07511,
-        -0.01891,
-        0.28021
+        -0.08021,
+        -0.0128,
+        0.27621
       ],
       "tip": [
-        -0.10546,
-        0.02082,
-        0.2442
+        -0.10656,
+        0.02154,
+        0.24485
       ]
     },
     "sources": {
@@ -298,14 +298,14 @@
     },
     "view_spread_mm": {
       "base": {
-        "z": 4.13
+        "z": 4.19
       },
       "tip": {}
     },
     "location": [
-      -0.09028,
-      0.00096,
-      0.2622
+      -0.09338,
+      0.00437,
+      0.26053
     ]
   },
   "hand_l": {
@@ -344,17 +344,17 @@
     "type": "capsule",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.03081,
+    "clearance_radius": 0.02673,
     "keypoints": {
       "base": [
-        0.07511,
-        -0.01891,
-        0.28021
+        0.08021,
+        -0.0128,
+        0.27621
       ],
       "tip": [
-        0.10546,
-        0.02082,
-        0.2442
+        0.10656,
+        0.02154,
+        0.24485
       ]
     },
     "sources": {
@@ -374,9 +374,9 @@
       "tip": {}
     },
     "location": [
-      0.09028,
-      0.00096,
-      0.2622
+      0.09338,
+      0.00437,
+      0.26053
     ]
   },
   "arm_r_fore": {
@@ -450,12 +450,12 @@
     "type": "disc",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.07332,
+    "clearance_radius": 0.07423,
     "keypoints": {
       "center": [
-        0.0007,
-        0.08748,
-        0.24339
+        0.0005,
+        0.08911,
+        0.24336
       ]
     },
     "sources": {
@@ -469,9 +469,68 @@
       "center": {}
     },
     "location": [
-      0.0007,
-      0.08748,
-      0.24339
+      0.0005,
+      0.08911,
+      0.24336
+    ]
+  },
+  "pauldron_l": {
+    "type": "sphere",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.02333,
+    "keypoints": {
+      "center": [
+        -0.0827,
+        0.00635,
+        0.29137
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      }
+    },
+    "view_spread_mm": {
+      "center": {
+        "x": 3.81,
+        "z": 0.73
+      }
+    },
+    "location": [
+      -0.0827,
+      0.00635,
+      0.29137
+    ]
+  },
+  "pauldron_r": {
+    "type": "sphere",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.02333,
+    "keypoints": {
+      "center": [
+        0.0827,
+        0.00635,
+        0.29137
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "mirror:pauldron_l",
+        "y": "mirror:pauldron_l",
+        "z": "mirror:pauldron_l"
+      }
+    },
+    "view_spread_mm": {
+      "center": {}
+    },
+    "location": [
+      0.0827,
+      0.00635,
+      0.29137
     ]
   }
 }

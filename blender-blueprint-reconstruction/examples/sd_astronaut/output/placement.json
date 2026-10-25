@@ -121,33 +121,46 @@
     ]
   },
   "hand_r": {
-    "type": "sphere",
+    "type": "capsule",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.0293,
+    "clearance_radius": 0.02543,
     "keypoints": {
-      "center": [
-        -0.15649,
-        -0.00783,
-        0.18883
+      "base": [
+        -0.12199,
+        0.00148,
+        0.23527
+      ],
+      "tip": [
+        -0.18453,
+        -0.00663,
+        0.16036
       ]
     },
     "sources": {
-      "center": {
+      "base": {
+        "x": "fit:front+side+front",
+        "y": "fit:front+side+front",
+        "z": "fit:front+side+front"
+      },
+      "tip": {
         "x": "fit:front+side+front",
         "y": "fit:front+side+front",
         "z": "fit:front+side+front"
       }
     },
     "view_spread_mm": {
-      "center": {
+      "base": {
+        "z": 0.0
+      },
+      "tip": {
         "z": 0.0
       }
     },
     "location": [
-      -0.15649,
-      -0.00783,
-      0.18883
+      -0.15326,
+      -0.00258,
+      0.19782
     ]
   },
   "arm_l": {
@@ -190,31 +203,42 @@
     ]
   },
   "hand_l": {
-    "type": "sphere",
+    "type": "capsule",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.0293,
+    "clearance_radius": 0.02543,
     "keypoints": {
-      "center": [
-        0.15649,
-        -0.00783,
-        0.18883
+      "base": [
+        0.12199,
+        0.00148,
+        0.23527
+      ],
+      "tip": [
+        0.18453,
+        -0.00663,
+        0.16036
       ]
     },
     "sources": {
-      "center": {
+      "base": {
+        "x": "mirror:hand_r",
+        "y": "mirror:hand_r",
+        "z": "mirror:hand_r"
+      },
+      "tip": {
         "x": "mirror:hand_r",
         "y": "mirror:hand_r",
         "z": "mirror:hand_r"
       }
     },
     "view_spread_mm": {
-      "center": {}
+      "base": {},
+      "tip": {}
     },
     "location": [
-      0.15649,
-      -0.00783,
-      0.18883
+      0.15326,
+      -0.00258,
+      0.19782
     ]
   }
 }

@@ -144,3 +144,24 @@ def test_disc_radius_ratio_makes_an_elliptical_brim():
     assert g.mesh_volume(v, f) > 0
     with pytest.raises(BBRError):
         g.disc_mesh(0.1, 0.01, radius_ratio=0.0)
+
+
+def test_glove_is_closed_pieces_inside_the_capsule_box():
+    import numpy as np
+    from bbr.core import partgeom as G
+    verts, faces = G.glove_mesh(0.08, 0.05)
+    edges = {}
+    for poly in faces:
+        for a, b in zip(poly, poly[1:] + poly[:1]):
+            k = (min(a, b), max(a, b))
+            edges[k] = edges.get(k, 0) + 1
+    assert all(c == 2 for c in edges.values())                      # every piece closed
+    assert G.mesh_volume(verts, faces) > 0                           # outward
+    assert verts[:, 2].min() == pytest.approx(-0.04, abs=1e-6)       # wrist end
+    assert 0.03 < verts[:, 2].max() <= 0.045                         # fingertips near the far end
+    assert verts[:, 0].min() < -0.025                                # thumb sticks out on -X
+    assert verts[:, 1].max() > 0.5 * 0.55 * 0.05                     # curled toward the palm (+Y)
+    v3, f3 = G.glove_mesh(0.08, 0.05, fingers=3, thumb=False)
+    assert len(f3) < len(faces)
+    with pytest.raises(Exception):
+        G.glove_mesh(0.08, 0.05, fingers=5)

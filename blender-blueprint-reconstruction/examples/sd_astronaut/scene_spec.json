@@ -195,34 +195,38 @@
     },
     {
       "id": "hand_r",
-      "type": "sphere",
+      "type": "capsule",
       "stage": "secondary",
       "confidence": "observed",
       "material": "cloth",
       "params": {
-        "segments": 20,
+        "segments": 16,
+        "fingers": 4,
         "anchors_px": {
           "front": {
-            "center": [
-              78,
-              512
+            "base": [
+              98,
+              482
             ],
-            "radius_px": [
-              27,
-              33
-            ]
+            "tip": [
+              58,
+              543
+            ],
+            "radius_px": 27
           },
           "side": {
-            "center": [
-              160,
-              512
+            "base": [
+              165,
+              482
             ],
-            "radius_px": [
-              30,
-              33
+            "tip": [
+              172,
+              543
             ]
           }
-        }
+        },
+        "palm": "+Y",
+        "thumb": "+X"
       }
     },
     {
@@ -238,13 +242,16 @@
     },
     {
       "id": "hand_l",
-      "type": "sphere",
+      "type": "capsule",
       "stage": "secondary",
       "confidence": "inferred",
       "material": "cloth",
       "params": {
-        "segments": 20,
-        "mirror_of": "hand_r"
+        "segments": 16,
+        "fingers": 4,
+        "mirror_of": "hand_r",
+        "palm": "+Y",
+        "thumb": "-X"
       }
     }
   ],

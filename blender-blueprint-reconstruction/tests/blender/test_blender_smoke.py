@@ -430,6 +430,8 @@ def check_glass_and_relief(api, tmp: Path) -> None:
     assert not any(not e.is_manifold for e in bm.edges), "the visor shell is not closed"
     bm.free()
     assert face.data.materials[0].node_tree.nodes["bbr_basecolor"].image.size[0] == 2048
+    hand = scene.find_by_agent_id("sd_astronaut:hand_r")
+    assert hand is not None and len(hand.data.polygons) > 400, "the glove (capsule with fingers) was not built"
     dims, _ = synthetic.model_dimensions()
     cal = synthetic.synthetic_calibration("front", "-Y", dims)
     with_glass = render.render_color("front", cal)

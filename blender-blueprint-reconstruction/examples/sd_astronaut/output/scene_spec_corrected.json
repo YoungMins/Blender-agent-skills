@@ -425,7 +425,7 @@
     },
     {
       "id": "hand_r",
-      "type": "sphere",
+      "type": "capsule",
       "stage": "secondary",
       "confidence": "observed",
       "location": [
@@ -440,62 +440,69 @@
       ],
       "size": null,
       "params": {
-        "segments": 20,
+        "segments": 16,
+        "fingers": 4,
         "anchors_px": {
           "front": {
-            "center": [
-              78,
-              512
+            "base": [
+              98,
+              482
             ],
-            "radius_px": [
-              27,
-              33
-            ]
+            "tip": [
+              58,
+              543
+            ],
+            "radius_px": 27
           },
           "side": {
-            "center": [
-              160,
-              512
+            "base": [
+              165,
+              482
             ],
-            "radius_px": [
-              30,
-              33
+            "tip": [
+              172,
+              543
             ]
           }
         },
+        "palm": "+Y",
+        "thumb": "+X",
         "fitted": {
           "iou": {
             "front": {
-              "iou": 0.5287,
-              "iou_vis": 0.5287,
-              "covered": 0.6201,
-              "spill": 0.218,
+              "iou": 0.8537,
+              "iou_vis": 0.8578,
+              "covered": 0.9131,
+              "spill": 0.0657,
               "label_px": 5514
             },
             "side": {
-              "iou": 0.4687,
-              "iou_vis": 0.5734,
-              "covered": 0.629,
-              "spill": 0.0002,
+              "iou": 0.1972,
+              "iou_vis": 0.2572,
+              "covered": 0.2573,
+              "spill": 0.0,
               "label_px": 8402
             }
           },
           "location": [
-            -0.15649027908961577,
-            -0.007831785150011882,
-            0.18882524751387889
+            -0.1532562207871914,
+            -0.002576470296393422,
+            0.19781528184842231
           ],
           "rotation_deg": [
-            0.0,
-            0.0,
-            0.0
+            -140.0429538346239,
+            3.6466854283410925,
+            93.05032908604619
           ],
           "size": [
-            0.058603363556428575,
-            0.10926551166132945,
-            0.07245001666706696
+            0.05086962753968831,
+            0.05086962753968831,
+            0.09791673355576866
           ],
-          "params": {}
+          "params": {
+            "axis": "Z",
+            "tip_radius": 0.02155530467871148
+          }
         }
       },
       "material": "cloth",
@@ -543,7 +550,7 @@
     },
     {
       "id": "hand_l",
-      "type": "sphere",
+      "type": "capsule",
       "stage": "secondary",
       "confidence": "inferred",
       "location": [
@@ -558,8 +565,11 @@
       ],
       "size": null,
       "params": {
-        "segments": 20,
+        "segments": 16,
+        "fingers": 4,
         "mirror_of": "hand_r",
+        "palm": "+Y",
+        "thumb": "-X",
         "fitted": {
           "mirror_of": "hand_r"
         }
