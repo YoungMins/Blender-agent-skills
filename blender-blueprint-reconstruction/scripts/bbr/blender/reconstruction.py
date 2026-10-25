@@ -25,7 +25,7 @@ from ..core.metrics import aggregate, extent_gate
 from ..core.summary import format_summary, merge_label_iou  # noqa: F401  (format_summary re-exported: used by run_pipeline)
 from ..core.spec import SceneSpec, ViewSpec, load_scene_spec, load_view_spec, parse_scene_spec, project_textures
 from . import (attribution, camera, checkpoint, components, facedetail, material, mesh, partstex, primitive, projection, reference, render,
-               scene, validation)
+               review, scene, validation)
 from .components import HULL_TYPE, BuildContext, HullInputs
 
 log = get_logger(__name__)
@@ -729,6 +729,13 @@ def measure_extras(inp: Inputs, cfg: PipelineConfig, cmp: Mapping[str, Any], rep
     except Exception as exc:  # noqa: BLE001
         log.exception("turntable failed")
         outputs["turntable_preview"] = f"error: {type(exc).__name__}: {exc}"
+    try:
+        report["review"] = review.analyze(inp, report, out)
+        if report["review"].get("sheet"):
+            outputs["review_sheet"] = report["review"]["sheet"]
+    except Exception as exc:  # noqa: BLE001
+        log.exception("review failed")
+        report["review"] = {"error": f"{type(exc).__name__}: {exc}"}
     details = attribution_core.warning_details(report.get("attribution"), report.get("part_iou"))
     details += facedetail_core.warnings(report.get("face_detail"))
     if isinstance(report.get("face_detail"), dict) and report["face_detail"].get("closeup"):

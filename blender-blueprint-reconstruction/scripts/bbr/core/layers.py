@@ -216,7 +216,11 @@ def shell_mesh(layer: LayerField, thickness: float = DEFAULT_SHELL_THICKNESS_M) 
 # --------------------------------------------------------------------------- face detail: localised profile relief
 DEFAULT_RELIEF_SMOOTH = 0.08   # profile smoothing sigma, share of the label's height: nose, lips, chin are finer than this
 RELIEF_BASE_ITERATIONS = 12    # asymmetric baseline: smoothing with the protrusions clipped, repeated
-DEFAULT_RELIEF_WIDTH = 0.07    # relief sigma across the face, share of the layer's width (nose / lips sit on the midline)
+DEFAULT_RELIEF_WIDTH = 0.03    # falloff sigma across the face, share of the layer's width (a skin-coloured nose: this alone)
+DEFAULT_FEATURE_COLOR_DIST = 0.18   # RGB distance from the skin colour that marks a feature (hair fringe, mouth) in the front view
+FEATURE_WIDTH_SMOOTH_ROWS = 5       # median over this many rows of the front-view feature width
+FEATURE_WIDTH_BLUR = 0.03           # taper of the width over the rows, share of the label height: no ledge where a fringe ends
+RELIEF_DY_BLUR_ROWS = 1.5           # Gaussian over the rows of the feature depth: pixel steps of the profile are not features
 
 
 @dataclass
@@ -229,6 +233,7 @@ class ProfileRelief:
     mask: np.ndarray
     z: np.ndarray
     dy: np.ndarray
+    half_width: Optional[np.ndarray] = None   # per z (m): flat core of the feature across the face (front view)
 
     @property
     def amplitude(self) -> float:
@@ -285,7 +290,7 @@ def profile_relief(mask: np.ndarray, calib: ViewCalibration, smooth: float = DEF
     y_front = calib.px_to_plane(np.stack([front + 0.5, rows + 0.5], axis=1))[:, 1]
     y_base = calib.px_to_plane(np.stack([base + 0.5, rows + 0.5], axis=1))[:, 1]
     order = np.argsort(z)
-    return ProfileRelief(out, z[order], (y_front - y_base)[order])
+    return ProfileRelief(out, z[order], _gaussian_1d(y_front - y_base, RELIEF_DY_BLUR_ROWS)[order])
 
 
 def _between(cols: np.ndarray, a: float, b: float) -> np.ndarray:
@@ -293,14 +298,58 @@ def _between(cols: np.ndarray, a: float, b: float) -> np.ndarray:
     return (cols >= np.floor(lo)) & (cols <= np.ceil(hi))
 
 
+def skin_color(rgb: np.ndarray, mask: np.ndarray, levels: int = 12) -> np.ndarray:
+    """Dominant colour of ``mask`` in an RGB image (0..1): the median of the most frequent quantised colour bin."""
+    px = np.asarray(rgb, dtype=float)[..., :3][np.asarray(mask, dtype=bool)]
+    q = np.clip((px * levels).astype(int), 0, levels - 1)
+    key = (q[:, 0] * levels + q[:, 1]) * levels + q[:, 2]
+    return np.median(px[key == np.bincount(key).argmax()], axis=0)
+
+
+def feature_half_widths(rgb: np.ndarray, mask: np.ndarray, calib: ViewCalibration, x0: float,
+                        threshold: float = DEFAULT_FEATURE_COLOR_DIST) -> tuple[np.ndarray, np.ndarray]:
+    """How wide each height's profile feature is across the face, read off the front view (camera ``-Y``).
+
+    Per image row of ``mask`` (the face label): the run of pixels through the midline ``x0`` whose colour differs from
+    the skin (:func:`skin_color`) by more than ``threshold``; its half-width in metres (0 where the midline pixel is
+    skin, e.g. a nose drawn by shading only). A hair fringe spans the face, a mouth its own width. Returns ``(z ascending,
+    half_width)``; widths are a running median over FEATURE_WIDTH_SMOOTH_ROWS rows, then their ends tapered (the max with a FEATURE_WIDTH_BLUR
+    blur)."""
+    rgb = np.asarray(rgb, dtype=float)[..., :3]
+    rgb = rgb / 255.0 if rgb.max() > 1.0 else rgb
+    mask = np.asarray(mask, dtype=bool)
+    off = (np.linalg.norm(rgb - skin_color(rgb, mask), axis=2) > threshold) & mask
+    rows = np.nonzero(mask.any(axis=1))[0]
+    xc = int(np.clip(np.floor(calib.world_to_px(np.array([[x0, 0.0, 0.0]]))[0, 0]), 0, mask.shape[1] - 1))
+    widths = np.zeros(len(rows))
+    for i, r in enumerate(rows):
+        line = off[r]
+        if not line[xc]:
+            continue
+        left = xc - (np.argmin(line[xc::-1]) if not line[xc::-1].all() else xc + 1)
+        right = xc + (np.argmin(line[xc:]) if not line[xc:].all() else line.size - xc)
+        widths[i] = 0.5 * (right - left - 1) * calib.m_per_px
+    k = FEATURE_WIDTH_SMOOTH_ROWS // 2
+    padded = np.pad(widths, k, mode="edge")
+    widths = np.median(np.lib.stride_tricks.sliding_window_view(padded, 2 * k + 1), axis=1)
+    widths = np.maximum(widths, _gaussian_1d(widths, FEATURE_WIDTH_BLUR * len(rows)))   # taper the ends, keep the widths
+    z = calib.px_to_plane(np.stack([np.zeros(len(rows)), rows + 0.5], axis=1).astype(float))[:, 2]
+    order = np.argsort(z)
+    return z[order], widths[order]
+
+
 def apply_relief(verts: np.ndarray, layer: LayerField, relief: ProfileRelief, x0: float,
                  width: float) -> np.ndarray:
     """Put the profile features of ``relief`` back onto a layer carved from ``relief.mask``: every vertex in the front
-    half of its (x, z) column moves along y by ``dy(z) * exp(-((x - x0) / width)^2 / 2)``, fading to 0 at the column's
-    middle (the back of the layer, where the body is recessed, does not move). Returns new vertices."""
+    half of its (x, z) column moves along y by ``dy(z) * exp(-(max(|x - x0| - half_width(z), 0) / width)^2 / 2)``: flat
+    over the feature's front-view half-width (``relief.half_width``, 0 without it), a Gaussian falloff of sigma ``width``
+    beyond; fading to 0 at the column's middle (the back of the layer, where the body is recessed, does not move).
+    Returns new vertices."""
     v = np.asarray(verts, dtype=float).copy()
     dy = np.interp(v[:, 2], relief.z, relief.dy, left=0.0, right=0.0)
-    across = np.exp(-0.5 * ((v[:, 0] - x0) / max(width, 1e-9)) ** 2)
+    core = (np.interp(v[:, 2], relief.z, relief.half_width, left=0.0, right=0.0) if relief.half_width is not None
+            else np.zeros(len(v)))
+    across = np.exp(-0.5 * (np.maximum(np.abs(v[:, 0] - x0) - core, 0.0) / max(width, 1e-9)) ** 2)
     nz, nx = layer.y_front.shape
     ix = np.clip(np.round((v[:, 0] - layer.origin[0]) / layer.cell - 0.5).astype(int), 0, nx - 1)
     iz = np.clip(np.round((v[:, 2] - layer.origin[2]) / layer.cell - 0.5).astype(int), 0, nz - 1)

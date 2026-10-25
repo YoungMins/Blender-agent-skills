@@ -113,7 +113,26 @@ def next_action(report: Mapping[str, Any], failed: list[str]) -> str:
     floating = [g["part"] for g in report.get("floating_parts") or []]
     if floating:
         return f"next: passed, but {', '.join(floating)} float (WARNING floating_part): attach them and re-run before delivering."
+    issues = (report.get("review") or {}).get("issues") or []
+    if report.get("passed") and str(report.get("status", "")) == "passed":
+        return (f"next: passed. Review pass: {len(issues)} review issue(s) above; look at review_sheet and turntable "
+                f"(oblique views: ridges, slabs, wrong depth), write a plan (issue -> cause -> spec change), apply it and re-run "
+                f"while the budget lasts.") if issues else \
+            "next: passed, no review issue. Look at review_sheet and turntable for what numbers miss (oblique views) before delivering."
     return ""
+
+
+REVIEW_LINES = 8     # issues printed in the result block (all of them are in report.review.issues)
+
+
+def format_review(block: Optional[Mapping[str, Any]]) -> list[str]:
+    """``review N: ...`` lines, worst first (see :mod:`bbr.core.review`)."""
+    from .review import format_issue
+    issues = (block or {}).get("issues") or []
+    out = [f"review {k}: {format_issue(i)}" for k, i in enumerate(issues[:REVIEW_LINES], start=1)]
+    if len(issues) > REVIEW_LINES:
+        out.append(f"review: {len(issues) - REVIEW_LINES} more in report.review.issues")
+    return out
 
 
 def format_face_detail(block: Optional[Mapping[str, Any]]) -> list[str]:
@@ -168,7 +187,7 @@ def format_summary(report: Mapping[str, Any]) -> str:
     if report.get("error"):
         lines.append(f"error: {report['error']}")
     for key in ("blend", "report", "perspective_preview", "perspective_back_preview", "front_lit_preview", "side_lit_preview",
-                "top_preview", "turntable_preview", "comparison_sheet", "face_closeup_preview"):
+                "top_preview", "turntable_preview", "comparison_sheet", "face_closeup_preview", "review_sheet"):
         if key in (report.get("outputs") or {}):
             lines.append(f"{key}: {report['outputs'][key]}")
     for cid, st in (report.get("hull") or {}).items():
@@ -180,6 +199,7 @@ def format_summary(report: Mapping[str, Any]) -> str:
                          f"inpainted {100 * tex['inpainted_share']:.0f}% {tail} "
                          f"bg-leak {100 * tex.get('background_leak_ratio', 0.0):.2f}%")
     lines.extend(format_face_detail(report.get("face_detail")))
+    lines.extend(format_review(report.get("review")))
     lines.append(f"elapsed: {report.get('elapsed_s')} s")
     nxt = next_action(report, failed if report.get("passed") is False else [])
     if nxt:

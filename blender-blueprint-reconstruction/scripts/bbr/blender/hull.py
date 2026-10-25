@@ -130,14 +130,47 @@ def _layer_field(comp: Component, ctx: BuildContext) -> layers_core.LayerField:
             cols = np.nonzero(front.any(axis=0))[0]
             xs = hi.calibs[views[0]].px_to_plane(np.stack([cols + 0.5, np.zeros(len(cols))], axis=1))[:, 0]
             weights = front[:, cols].sum(axis=0)
+            x0 = float(relief.get("center_x", np.average(xs, weights=weights)))
+            if relief.get("color_width", True) and views[0] in hi.rgba:    # how wide each feature is: the front view
+                zw, hw = layers_core.feature_half_widths(hi.rgba[views[0]], front, hi.calibs[views[0]], x0,
+                                                         float(relief.get("color_threshold", layers_core.DEFAULT_FEATURE_COLOR_DIST)))
+                rel.half_width = np.interp(rel.z, zw, hw, left=0.0, right=0.0)
             ctx.extra.setdefault("_layer_reliefs", {})[comp.id] = (
-                rel, float(relief.get("center_x", np.average(xs, weights=weights))),
-                float(relief.get("width", layers_core.DEFAULT_RELIEF_WIDTH)) * float(xs.max() - xs.min()))
+                rel, x0, float(relief.get("width", layers_core.DEFAULT_RELIEF_WIDTH)) * float(xs.max() - xs.min()))
         cache[comp.id] = layers_core.build_layer_field(
             masks, hi.calibs, views[0], views[1], int(p.get("resolution", layers_core.DEFAULT_LAYER_RESOLUTION)),
             float(p.get("exponent", 2.0)), str(p.get("cross_section", "superellipse")),
             pair_max_aspect=float(p.get("pair_max_aspect", 4.0)))
     return cache[comp.id]
+
+
+def _layer_side_cut(comp: Component, ctx: BuildContext, masks: Any, carve_views: list[str]) -> tuple[Any, dict[str, int]]:
+    """Remove each layer's side-view label (and the labels of glass shells covering it) from the body's side carve mask.
+
+    The face is visible from the side through the helmet opening: the helmet's side walls end at the face's back edge.
+    Carved from the full side silhouette they would reach the front of the face (or the glass) at every x and hide the
+    face from the side view; the front mask is untouched (the recess cuts the body behind the face there).
+    ``params.layer_side_cut: false`` turns it off. Returns ``(masks, {view: removed px})``."""
+    ids = [str(i) for i in comp.params.get("layers") or []]
+    if not ids or comp.params.get("layer_side_cut", True) is False:
+        return masks, {}
+    labels = partstex.label_masks(ctx)
+    out, removed = dict(masks), {}
+    for lid in ids:
+        layer = ctx.scene.get_component(lid)
+        side = ([str(v) for v in layer.params.get("views") or ("front", "side")] + ["side"])[1]
+        if side not in carve_views or side not in labels or side not in out:
+            continue
+        names = [str(layer.params.get("label", layer.id))] + [
+            str(c.params.get("label", c.id)) for c in ctx.scene.components
+            if c.type == LAYER_TYPE and c.params.get("shell") and lid in (c.params.get("cover") or [])]
+        cut = labels_core.union(labels[side], names)
+        if cut is None:
+            continue
+        before = int(out[side].sum())
+        out[side] = out[side] & ~cut
+        removed[side] = removed.get(side, 0) + before - int(out[side].sum())
+    return out, removed
 
 
 def _relief_params(comp: Component) -> Optional[dict[str, Any]]:
@@ -178,6 +211,9 @@ def build_hull(comp: Component, ctx: BuildContext) -> bpy.types.Object:
     t0 = time.perf_counter()
     carve_views = list(p.get("carve_views") or [v.key for v in hi.view_spec.enabled_views("carve")])
     masks, exclusion = _excluded_masks(comp, ctx, carve_views)
+    masks, side_cut = _layer_side_cut(comp, ctx, masks, carve_views)
+    if side_cut:
+        exclusion = {**exclusion, "layer_side_cut": side_cut}
     slice_coherence = float(p.get("slice_coherence", DEFAULT_SLICE_COHERENCE))
     field, origin, cell = build_hull_field(
         masks, hi.calibs, hi.dims, int(p.get("resolution", cfg.hull_resolution)), carve_views=carve_views,

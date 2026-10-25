@@ -122,3 +122,34 @@ def test_apply_relief_moves_the_midline_front_only():
     assert out[1, 1] == pytest.approx(yb)                            # back: untouched
     assert abs(out[2, 1] - pts[2, 1]) < 1e-3                         # far from the midline: almost nothing
     assert out[3, 1] == pytest.approx(pts[3, 1])                     # outside the profile's z range
+
+
+def test_feature_half_widths_from_the_front_view():
+    cal = ViewCalibration("front", "-Y", (200, 200), MM, (100.0, 190.0))
+    rgb = np.zeros((200, 200, 3)); rgb[...] = (0.95, 0.72, 0.55)      # skin
+    mask = np.zeros((200, 200), bool); mask[20:180, 40:160] = True
+    rgb[20:60, 40:160] = (0.35, 0.2, 0.1)                                 # hair fringe across the face
+    rgb[140:150, 80:120] = (0.6, 0.1, 0.1)                                # a 40 px mouth on the midline
+    rgb[150:160, 30:50] = (0.1, 0.1, 0.1)                                 # dark, but off the midline
+    z, hw = layers.feature_half_widths(rgb, mask, cal, 0.0)
+    assert np.all(np.diff(z) > 0)
+
+    def at(row):
+        return float(np.interp(cal.px_to_plane(np.array([[0.0, row + 0.5]]))[0, 2], z, hw))
+    assert at(40) == pytest.approx(60 * MM)      # fringe: the whole 120 px label width
+    assert at(145) == pytest.approx(20 * MM)     # mouth
+    assert at(100) == 0.0 and at(170) == 0.0     # skin on the midline (a shaded nose; the dark blob at 150-160 is off-centre)
+    assert 0.0 < at(153) < 20 * MM               # the mouth width tapers off below it
+
+
+def test_apply_relief_keeps_a_wide_feature_flat_across():
+    lf = dome_layer(nx=20, nz=20)
+    xs, zs = lf.centers(0), lf.centers(2)
+    j = 10
+    hw = np.array([0.05, 0.05])
+    rel = layers.ProfileRelief(np.zeros((1, 1), bool), np.array([0.3, 0.6]), np.array([-0.005, -0.005]), hw)
+    p_mid = [xs[10], float(lf.y_front[j, 10]), zs[j]]
+    p_side = [xs[10] + 0.03, float(lf.y_front[j, 13]), zs[j]]
+    out = layers.apply_relief(np.array([p_mid, p_side]), lf, rel, x0=float(xs[10]), width=0.005)
+    assert out[0, 1] == pytest.approx(p_mid[1] - 0.005, abs=1e-4)
+    assert out[1, 1] == pytest.approx(p_side[1] - 0.005, abs=1e-3)   # inside the half-width: full depth too

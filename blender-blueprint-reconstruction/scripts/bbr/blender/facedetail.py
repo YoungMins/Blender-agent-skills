@@ -20,8 +20,8 @@ CLOSEUP_PAD = 0.15          # margin around the face label, share of its size
 CLOSEUP_SCALE = 3           # magnification of the sheet (nearest neighbour)
 
 
-def _mesh_arrays(obj: Any) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Per polygon of ``obj``: UV area (0..1 square), world area, cos of the angle to the front camera (-Y)."""
+def mesh_arrays(obj: Any) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Per polygon of ``obj``: UV area (0..1 square), world area, world unit normal ``[n, 3]``."""
     me = obj.data
     mw = np.array(obj.matrix_world)
     n = len(me.polygons)
@@ -43,7 +43,7 @@ def _mesh_arrays(obj: Any) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     scale = float(abs(np.linalg.det(mw[:3, :3]))) ** (1.0 / 3.0)
     world_n = normal.reshape(-1, 3) @ np.linalg.inv(mw[:3, :3])
     world_n /= np.maximum(np.linalg.norm(world_n, axis=1, keepdims=True), 1e-12)
-    return uv_area, area * scale ** 2, -world_n[:, 1]
+    return uv_area, area * scale ** 2, world_n
 
 
 def _closeup(ref: np.ndarray, model: np.ndarray, box: tuple[int, int, int, int]) -> np.ndarray:
@@ -83,7 +83,8 @@ def analyze(inp: Any, out: Path) -> dict[str, Any]:
             obj = scene.find_by_agent_id(spec.agent_id(comp.id))
             tex = (stats.get("texture") or {})
             if obj is not None and obj.data.uv_layers and tex.get("size"):
-                uv_area, area, facing = _mesh_arrays(obj)
+                uv_area, area, normals = mesh_arrays(obj)
+                facing = -normals[:, 1]                       # toward the front camera (-Y)
                 f["texels_per_px"] = round(core.texels_per_px(uv_area, area, facing, int(tex["size"]), hi.calibs[front].m_per_px), 2)
             if front in masks and front in hi.rgba:
                 model = render.render_color(front, hi.calibs[front], bg=(0.0, 0.0, 0.0))

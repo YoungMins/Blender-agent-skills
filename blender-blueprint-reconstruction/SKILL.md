@@ -53,7 +53,7 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
    ```bash
    $PY scripts/prepare_references.py anchors --view-spec $W/references/view_spec.json --view front --view side --view back --labels $W/labels.json --part staff --overlay $W/ov.png
    ```
-   `--kind auto` prints `suggested_type` ([which type](references/reconstruction-workflow.md); bat wings, ear fins, leaves: `plate`); base = the end touching the most other foreground. Read overlays, `WARNING`s; Twin tails, braids, long locks: `--kind strand --points 6`, never a cone.
+   `--kind auto` prints `suggested_type` ([which type](references/reconstruction-workflow.md); bat wings, ear fins, leaves: `plate`); base = the end touching the most other foreground. Read overlays, `WARNING`s; twin tails, braids, locks: `--kind strand --points 6`.
    - Under 0.6, or a part inside the body outline: type pixels read off the overlay rulers:
      ```bash
      $PY scripts/prepare_references.py anchors --from-px front:base=118,543 front:tip=147,443 front:radius_px=8 side:base=280,560 --id handle
@@ -66,11 +66,11 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
    "$B" -b --factory-startup -P scripts/run_pipeline.py -- --view-spec $W/references/view_spec.json --scene-spec $W/scene_spec.json --out $W/out --stop-after secondary
    "$B" -b --factory-startup -P scripts/run_pipeline.py -- --view-spec $W/references/view_spec.json --scene-spec $W/scene_spec.json --out $W/out
    ```
-   Exit 0 passed, 2 failed, 1 error; read the `===== BBR RESULT` block (`next:` says what to do). Hard-surface: `--stop-after blockout` first.
-8. **Read results.** Open `out/comparison_sheet.png`, `previews/perspective.png`; in `report.json` read `status`, `warnings`, `recommendation`, `excess_error` (fix only the excess), `mean_label_iou` ([validation rules](references/validation-rules.md); occlusion and misattribution warnings are noisy for kits).
+   Exit 0 passed, 2 failed, 1 error; read the `BBR RESULT` block (`next:` says what to do). Hard-surface: `--stop-after blockout` first.
+8. **Read results.** `comparison_sheet.png`, `perspective.png`; `report.json`: `status`, `warnings`, `recommendation`, `excess_error` (fix only the excess) ([validation rules](references/validation-rules.md); occlusion, misattribution are noisy for kits).
 9. **Fix loop.** Status `failed`: read `recommendation` and the failing check, fix the biggest error source (label, anchors, `fit_locked`, size, a `floating_part` WARNING), re-run until it passes or the 6-run budget (runs without `--stop-after`) is spent. Never stop while budget remains; two runs without gain: change approach.
-10. **Detail pass (characters).** After passing, read `previews/face_closeup.png` and the `face detail` line; fix `face_ridge`, `face_texture` or off features ([cheatsheet](references/character-cheatsheet.md) section 9), re-run.
-11. **Finish.** Report per-view error vs floor, pass or fail, every warning, what is inferred, visible defects, `.blend` and preview paths. Never claim success over a defect.
+10. **Review pass.** After passing, judge every part: `review N:` lines (worst first, each with its fix), `previews/review_sheet.png` (reference | model per part), `turntable.png`, `face_closeup.png` (oblique ridges, slabs). Write `$W/plan.md` (issue, cause, spec change), apply, re-run. Faces: [cheatsheet](references/character-cheatsheet.md) section 9.
+11. **Finish.** Report per-view error vs floor, pass/fail, warnings, inferred parts, visible defects, `.blend` and previews. Never claim success over a defect.
 
 ## Hard rules
 
