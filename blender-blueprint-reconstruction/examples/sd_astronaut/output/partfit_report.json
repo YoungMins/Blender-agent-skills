@@ -5,7 +5,7 @@
     "loss_init": 0.21791,
     "loss_fit": 0.02591,
     "evals": 1671,
-    "seconds": 4.03,
+    "seconds": 5.34,
     "free": [
       "base.x",
       "base.y",
@@ -61,7 +61,7 @@
     "loss_init": 0.18236,
     "loss_fit": 0.01923,
     "evals": 1437,
-    "seconds": 0.57,
+    "seconds": 0.55,
     "free": [
       "center.x",
       "center.y",

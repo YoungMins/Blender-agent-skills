@@ -450,12 +450,12 @@
     "type": "disc",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.07315,
+    "clearance_radius": 0.07332,
     "keypoints": {
       "center": [
-        0.00081,
-        0.0875,
-        0.24338
+        0.0007,
+        0.08748,
+        0.24339
       ]
     },
     "sources": {
@@ -469,9 +469,9 @@
       "center": {}
     },
     "location": [
-      0.00081,
-      0.0875,
-      0.24338
+      0.0007,
+      0.08748,
+      0.24339
     ]
   }
 }

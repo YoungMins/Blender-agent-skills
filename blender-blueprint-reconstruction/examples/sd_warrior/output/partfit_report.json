@@ -5,7 +5,7 @@
     "loss_init": 0.45053,
     "loss_fit": 0.17222,
     "evals": 1685,
-    "seconds": 44.36,
+    "seconds": 41.81,
     "free": [
       "base.x",
       "base.y",
@@ -114,7 +114,7 @@
     "loss_init": 0.90803,
     "loss_fit": 0.05475,
     "evals": 1266,
-    "seconds": 1.04,
+    "seconds": 0.82,
     "free": [
       "center.x",
       "center.y",
@@ -165,7 +165,7 @@
     "loss_init": 0.69724,
     "loss_fit": 0.34211,
     "evals": 1273,
-    "seconds": 7.12,
+    "seconds": 6.12,
     "free": [
       "base.x",
       "base.y",
@@ -217,7 +217,7 @@
     "loss_init": 0.36498,
     "loss_fit": 0.19009,
     "evals": 1282,
-    "seconds": 25.39,
+    "seconds": 20.69,
     "free": [
       "base.x",
       "base.y",
@@ -285,7 +285,7 @@
     "loss_init": 0.45334,
     "loss_fit": 0.13736,
     "evals": 955,
-    "seconds": 3.09,
+    "seconds": 2.71,
     "free": [
       "base.x",
       "base.y",
@@ -354,7 +354,7 @@
     "loss_init": 0.70112,
     "loss_fit": 0.38396,
     "evals": 1359,
-    "seconds": 4.48,
+    "seconds": 4.76,
     "free": [
       "base.x",
       "base.y",
@@ -423,7 +423,7 @@
     "loss_init": 0.45752,
     "loss_fit": 0.35112,
     "evals": 1025,
-    "seconds": 1.95,
+    "seconds": 2.0,
     "free": [
       "center.x",
       "center.y",
@@ -598,10 +598,10 @@
   "shield": {
     "type": "disc",
     "fitted": true,
-    "loss_init": 0.09352,
-    "loss_fit": 0.0047,
-    "evals": 1322,
-    "seconds": 27.71,
+    "loss_init": 0.09355,
+    "loss_fit": 0.00476,
+    "evals": 1383,
+    "seconds": 28.77,
     "free": [
       "center.x",
       "center.y",
@@ -627,9 +627,9 @@
     },
     "iou": {
       "back": {
-        "iou": 0.9609,
-        "iou_vis": 0.9619,
-        "covered": 0.9997,
+        "iou": 0.9578,
+        "iou_vis": 0.9589,
+        "covered": 0.9998,
         "spill": 0.0,
         "label_px": 28715
       }

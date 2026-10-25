@@ -93,6 +93,22 @@
 - 남은 한계: relief는 중심선의 특징만 다룬다(볼 돌출 등은 안 됨). 눈 광택(per-texel 재질)은 WI-3 범위. 유리 shell은 ~3만 면(데시메이트 없음).
 - 테스트: `tests/test_shell.py`(shell 닫힘·법선, profile relief, apply_relief, cover 검증), `tests/test_facedetail.py`, 스모크 `check_glass_and_relief`.
 
+## 3-2. 전체 리뷰 → 계획 → 보정 루프, 얼굴 relief 폭 수정: 완료
+
+사용자 피드백(2026-10-25): "1차 완성 후 얼굴뿐 아니라 다른 부분도 평가하고, 부족한 부분을 피드백으로 계획을 다시 세워 보정한다. 우주인 얼굴이 사선에서 보면 코 부분만 가로로 쭉 튀어나와 보인다."
+
+| 문제 | 원인 | 변경 |
+|---|---|---|
+| 사선에서 코가 가로 막대처럼 보임 | relief 좌우 폭이 얼굴 전체 폭의 7%(σ≈16 mm) 하나로 고정 | 특징마다 좌우 폭을 정면 이미지에서 읽음(`core/layers.feature_half_widths`): 행마다 중심선을 지나는 "피부색이 아닌" 구간의 폭. 앞머리는 얼굴 전체, 입은 입 폭, 음영만 있는 코는 피부라 좁은 기본값(σ = 폭의 3%). 폭은 중앙값 필터 후 끝만 테이퍼(앞머리 끝의 턱 제거), 깊이는 행 방향으로 약하게 블러 |
+| 측면에서 얼굴이 헬멧 옆벽에 가려짐(리뷰가 발견: face 측면 색 오차 0.28) | 몸체 hull을 측면 실루엣 전체로 깎아 헬멧 옆벽이 얼굴 앞까지 나옴 | `layer_side_cut`(기본 켬): 측면 carve 마스크에서 layer와 그것을 덮는 유리의 측면 라벨을 뺌. 우주인 측면 색 오차 5.4% → 3.3%, 전사 7.9% → 7.0% |
+| 얼굴만 따로 평가 | - | `report.review`: 부품별 점수표(라벨 영역 색 오차/뷰, label IoU, misattribution, occlusion, inpainted, texels/px, 실루엣 불일치 영역, face_ridge)와 임계값을 넘은 항목의 **심각도순 이슈 목록**(각각 고칠 방법 포함). `previews/review_sheet.png`(부품별 레퍼런스 \| 모델 타일, 나쁜 부품부터). 요약에 `review N:` 줄과 계획을 요구하는 `next:` 줄. 유리 같은 투명 부품은 채점하지 않음 |
+| 에이전트 절차 | - | SKILL.md 10단계 "Review pass": 이슈·리뷰 시트·턴테이블(사선)·얼굴 클로즈업을 보고 `$W/plan.md`(이슈 → 원인 → 스펙 변경)를 쓴 뒤 적용하고 재실행. 1000단어 |
+
+리뷰 결과 (현재 예제):
+- sd_astronaut: 통과 1.6%, 이슈 1개(face 측면 색 0.087, 경계선)
+- sd_warrior: 통과 5.1%, 이슈 24개. 상위는 양 상완(색 오차 0.19~0.21, label IoU 0.49/0.64, occlusion 0.34/0.44, inpainted 70%): 상완 캡슐이 몸체 hull의 견갑(pauldron) 아래 묻혀 있다. 라벨은 사슬갑옷 소매만 덮고 견갑은 body. **다음 보정 계획 후보:** 견갑을 별도 부품(`disc`/`plate`)으로 분리하고 상완 라벨에서 빼기. pommel(inpainted 70%)과 칼집 뒷면도 이슈.
+- 다른 예제(output)는 이번 변경 전 것이라 `review` 블록이 없다. 다시 만들면 생긴다.
+
 ## 4. 다음 할 일 (우선순위 순)
 
 1. ~~WI-1 마무리와 검증~~ (완료, 3절)
@@ -125,6 +141,6 @@
 
 ## 7. 커밋 시점 상태
 
-- pytest(2026-10-25, 클라우드 Linux, Python 3.13, numpy 2.5.3): **484개 전부 통과**, 약 4분
-- Blender 스모크(bpy 5.1.1): `SMOKE OK` (`MATERIALS OK`, `GLASS RELIEF OK` 포함)
+- pytest(2026-10-25, 클라우드 Linux, Python 3.13, numpy 2.5.3): **489개 전부 통과**, 약 4분
+- Blender 스모크(bpy 5.1.1): `SMOKE OK` (`MATERIALS OK`, `GLASS RELIEF OK` 포함, 2026-10-25 리뷰 루프 후 재확인)
 - 벤치(`bench/run_bench.py`)는 WI-1 후 아직 돌리지 않았다.

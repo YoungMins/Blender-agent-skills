@@ -113,8 +113,9 @@ def next_action(report: Mapping[str, Any], failed: list[str]) -> str:
     floating = [g["part"] for g in report.get("floating_parts") or []]
     if floating:
         return f"next: passed, but {', '.join(floating)} float (WARNING floating_part): attach them and re-run before delivering."
-    issues = (report.get("review") or {}).get("issues") or []
-    if report.get("passed") and str(report.get("status", "")) == "passed":
+    review = report.get("review")
+    issues = review.get("issues") or [] if isinstance(review, Mapping) else []
+    if report.get("passed") and str(report.get("status", "")) == "passed" and isinstance(review, Mapping) and "issues" in review:
         return (f"next: passed. Review pass: {len(issues)} review issue(s) above; look at review_sheet and turntable "
                 f"(oblique views: ridges, slabs, wrong depth), write a plan (issue -> cause -> spec change), apply it and re-run "
                 f"while the budget lasts.") if issues else \
