@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.423
+      "duration_s": 0.224
     },
     {
       "n": 2,
@@ -24,20 +24,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.215
+      "duration_s": 0.19
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.027
+      "duration_s": 0.026
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 0.89
+      "duration_s": 0.776
     },
     {
       "n": 6,
@@ -57,7 +57,7 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 40.646
+      "duration_s": 33.643
     },
     {
       "n": 9,
@@ -68,9 +68,9 @@
       "dimension_check": {
         "passed": true,
         "actual": {
-          "width": 0.3850294351577759,
-          "depth": 0.2520984709262848,
-          "height": 0.5998040862832568
+          "width": 0.3715839460492134,
+          "depth": 0.2515728548169136,
+          "height": 0.5998082138612517
         },
         "target": {
           "width": 0.38777292576419214,
@@ -78,15 +78,15 @@
           "height": 0.6
         },
         "relative_error": {
-          "width": -0.007074992667447377,
-          "depth": -0.008066153915477381,
-          "height": -0.00032652286123868723
+          "width": -0.041748607598312226,
+          "depth": -0.010134299775374278,
+          "height": -0.00031964356458047405
         },
         "tolerance": 0.05,
-        "floor_z": -2.2402637114282697e-05,
+        "floor_z": -2.6530215109232813e-05,
         "tolerance_source": "AI-generated references"
       },
-      "duration_s": 39.884
+      "duration_s": 47.903
     },
     {
       "n": 10,
@@ -105,13 +105,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 156.022
+      "duration_s": 170.817
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 2.083
+      "duration_s": 1.052
     },
     {
       "n": 14,
@@ -124,13 +124,13 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 73.001
+      "duration_s": 58.033
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.064
+      "duration_s": 0.061
     }
   ],
   "outputs": {
@@ -254,14 +254,14 @@
       ],
       "m_per_px": 0.0008733624454148472,
       "origin_px": [
-        178.0,
+        169.5,
         725.0
       ]
     }
   },
   "frame_offset_m": {
     "x": -0.0008733624454148472,
-    "y": -0.007423580786026201
+    "y": -0.014847161572052401
   },
   "consistency": {
     "thresholds": {
@@ -373,8 +373,8 @@
           "validate"
         ],
         "verdict": "ok",
-        "error": 0.0143,
-        "excess_error": -0.0075
+        "error": 0.03453,
+        "excess_error": 0.01273
       },
       "back": {
         "axis": "+Y",
@@ -396,8 +396,8 @@
           "validate"
         ],
         "verdict": "ok",
-        "error": 0.01812,
-        "excess_error": -0.00368
+        "error": 0.03631,
+        "excess_error": 0.01451
       },
       "side": {
         "axis": "-X",
@@ -485,9 +485,9 @@
   "dimension_check": {
     "passed": true,
     "actual": {
-      "width": 0.3850294351577759,
-      "depth": 0.2520984709262848,
-      "height": 0.5998040862832568
+      "width": 0.3715839460492134,
+      "depth": 0.2515728548169136,
+      "height": 0.5998082138612517
     },
     "target": {
       "width": 0.38777292576419214,
@@ -495,22 +495,22 @@
       "height": 0.6
     },
     "relative_error": {
-      "width": -0.007074992667447377,
-      "depth": -0.008066153915477381,
-      "height": -0.00032652286123868723
+      "width": -0.041748607598312226,
+      "depth": -0.010134299775374278,
+      "height": -0.00031964356458047405
     },
     "tolerance": 0.05,
-    "floor_z": -2.2402637114282697e-05,
+    "floor_z": -2.6530215109232813e-05,
     "tolerance_source": "AI-generated references"
   },
   "iterations": [
     {
       "iteration": 0,
-      "total_error": 0.015986818859535606,
+      "total_error": 0.030208390823855995,
       "per_view": {
-        "front": 0.0143,
-        "back": 0.01812,
-        "side": 0.01554
+        "front": 0.03453,
+        "back": 0.03631,
+        "side": 0.01978
       },
       "accepted": true
     }
@@ -523,9 +523,9 @@
         "dimensions": {
           "passed": true,
           "actual": {
-            "width": 0.3850294351577759,
-            "depth": 0.2520984709262848,
-            "height": 0.5998040862832568
+            "width": 0.3715839460492134,
+            "depth": 0.2515728548169136,
+            "height": 0.5998082138612517
           },
           "target": {
             "width": 0.38777292576419214,
@@ -533,12 +533,12 @@
             "height": 0.6
           },
           "relative_error": {
-            "width": -0.007074992667447377,
-            "depth": -0.008066153915477381,
-            "height": -0.00032652286123868723
+            "width": -0.041748607598312226,
+            "depth": -0.010134299775374278,
+            "height": -0.00031964356458047405
           },
           "tolerance": 0.05,
-          "floor_z": -2.2402637114282697e-05
+          "floor_z": -2.6530215109232813e-05
         },
         "scale": {
           "passed": true,
@@ -565,7 +565,7 @@
       "symmetry": {
         "passed": true,
         "centre_offset_ratio": {
-          "x": -0.0011237325692963257
+          "x": -1.5038150886510023e-08
         }
       },
       "normals": {
@@ -581,112 +581,112 @@
     "warning_details": [],
     "reference_match": {
       "passed": true,
-      "total_error": 0.015986818859535606,
+      "total_error": 0.030208390823855995,
       "threshold": 0.08,
-      "front_error": 0.01429801787408258,
-      "back_error": 0.018123880952082838,
-      "side_error": 0.015538557752441395,
+      "front_error": 0.03453484930696005,
+      "back_error": 0.03631264162858949,
+      "side_error": 0.019777681536018443,
       "per_view": {
         "front": {
-          "iou": 0.9857019821259174,
-          "error": 0.01429801787408258,
-          "error_pct": 1.43,
-          "edge_px": 0.8300317525863647,
-          "width_ratio": 0.9932432432432432,
+          "iou": 0.96546515069304,
+          "error": 0.03453484930696005,
+          "error_pct": 3.45,
+          "edge_px": 1.9165146350860596,
+          "width_ratio": 0.9594594594594594,
           "height_ratio": 1.0,
-          "line": "Front Error : 1.4%",
+          "line": "Front Error : 3.5%",
           "bbox_delta_m": {
-            "left": -0.0017467248908296944,
-            "right": -0.0008733624454148472,
-            "top": 0.0,
-            "bottom": 0.0
-          },
-          "largest_mismatch_region": {
-            "kind": "missing",
-            "area_px": 445,
-            "bbox_px": [
-              221,
-              83,
-              310,
-              90
-            ],
-            "center_world": [
-              0.0013100436681222707,
-              null,
-              0.5576419213973799
-            ],
-            "world_bbox": {
-              "min": [
-                -0.03755458515283843,
-                null,
-                0.5545851528384279
-              ],
-              "max": [
-                0.04017467248908297,
-                null,
-                0.5606986899563319
-              ]
-            }
-          },
-          "components_in_region": [],
-          "color_error": 0.03239,
-          "floor": 0.0218,
-          "excess_error": -0.0075
-        },
-        "back": {
-          "iou": 0.9818761190479172,
-          "error": 0.018123880952082838,
-          "error_pct": 1.81,
-          "edge_px": 1.0260547399520874,
-          "width_ratio": 0.9954853273137697,
-          "height_ratio": 1.0,
-          "line": "Back Error : 1.8%",
-          "bbox_delta_m": {
-            "left": -0.0017467248908296944,
-            "right": 0.0,
+            "left": -0.008733624454148471,
+            "right": -0.0069868995633187774,
             "top": 0.0,
             "bottom": 0.0
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 627,
+            "area_px": 758,
             "bbox_px": [
-              99,
-              90,
-              225,
-              284
+              69,
+              507,
+              118,
+              550
             ],
             "center_world": [
-              0.08820960698689957,
+              -0.14890829694323143,
               null,
-              0.4698689956331878
+              0.17161572052401747
             ],
             "world_bbox": {
               "min": [
-                0.03318777292576419,
+                -0.1703056768558952,
                 null,
-                0.3851528384279476
+                0.15283842794759825
               ],
               "max": [
-                0.14323144104803492,
+                -0.1275109170305677,
                 null,
-                0.5545851528384279
+                0.1903930131004367
               ]
             }
           },
           "components_in_region": [],
-          "color_error": 0.01771,
+          "color_error": 0.03229,
           "floor": 0.0218,
-          "excess_error": -0.00368
+          "excess_error": 0.01273
+        },
+        "back": {
+          "iou": 0.9636873583714105,
+          "error": 0.03631264162858949,
+          "error_pct": 3.63,
+          "edge_px": 2.000255823135376,
+          "width_ratio": 0.9616252821670429,
+          "height_ratio": 1.0,
+          "line": "Back Error : 3.6%",
+          "bbox_delta_m": {
+            "left": -0.007860262008733625,
+            "right": -0.0069868995633187774,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "excess",
+            "area_px": 1071,
+            "bbox_px": [
+              41,
+              508,
+              116,
+              550
+            ],
+            "center_world": [
+              0.1611353711790393,
+              null,
+              0.17117903930131004
+            ],
+            "world_bbox": {
+              "min": [
+                0.12838427947598255,
+                null,
+                0.15283842794759825
+              ],
+              "max": [
+                0.19388646288209607,
+                null,
+                0.18951965065502183
+              ]
+            }
+          },
+          "components_in_region": [],
+          "color_error": 0.01416,
+          "floor": 0.0218,
+          "excess_error": 0.01451
         },
         "side": {
-          "iou": 0.9844614422475586,
-          "error": 0.015538557752441395,
-          "error_pct": 1.55,
-          "edge_px": 3.578385353088379,
+          "iou": 0.9802223184639816,
+          "error": 0.019777681536018443,
+          "error_pct": 1.98,
+          "edge_px": 3.702995777130127,
           "width_ratio": 0.9896907216494846,
           "height_ratio": 1.0,
-          "line": "Side Error : 1.6%",
+          "line": "Side Error : 2.0%",
           "bbox_delta_m": {
             "left": -0.0017467248908296944,
             "right": -0.0008733624454148472,
@@ -695,37 +695,53 @@
           },
           "largest_mismatch_region": {
             "kind": "missing",
-            "area_px": 263,
+            "area_px": 592,
             "bbox_px": [
-              259,
-              313,
-              282,
-              353
+              231,
+              482,
+              255,
+              556
             ],
             "center_world": [
               null,
-              -0.08078602620087337,
-              0.3423580786026201
+              -0.06419213973799127,
+              0.17991266375545853
             ],
             "world_bbox": {
               "min": [
                 null,
-                -0.09082969432314411,
-                0.32489082969432315
+                -0.07467248908296943,
+                0.14759825327510917
               ],
               "max": [
                 null,
-                -0.07074235807860262,
-                0.35982532751091706
+                -0.053711790393013104,
+                0.21222707423580786
               ]
             }
           },
           "components_in_region": [],
-          "color_error": 0.03275
+          "color_error": 0.04167
         }
       }
     },
     "diagnosis": [
+      {
+        "view": "front",
+        "axis": "X",
+        "dimension": "width",
+        "kind": "size",
+        "delta_m": -0.01572052401746725,
+        "recommendation": "Front view: width too small by 1.6 cm \u2192 X axis"
+      },
+      {
+        "view": "back",
+        "axis": "X",
+        "dimension": "width",
+        "kind": "size",
+        "delta_m": -0.014847161572052403,
+        "recommendation": "Back view: width too small by 1.5 cm \u2192 X axis"
+      },
       {
         "view": "side",
         "axis": "Y",
@@ -739,112 +755,112 @@
   },
   "reference_match": {
     "passed": true,
-    "total_error": 0.015986818859535606,
+    "total_error": 0.030208390823855995,
     "threshold": 0.08,
-    "front_error": 0.01429801787408258,
-    "back_error": 0.018123880952082838,
-    "side_error": 0.015538557752441395,
+    "front_error": 0.03453484930696005,
+    "back_error": 0.03631264162858949,
+    "side_error": 0.019777681536018443,
     "per_view": {
       "front": {
-        "iou": 0.9857019821259174,
-        "error": 0.01429801787408258,
-        "error_pct": 1.43,
-        "edge_px": 0.8300317525863647,
-        "width_ratio": 0.9932432432432432,
+        "iou": 0.96546515069304,
+        "error": 0.03453484930696005,
+        "error_pct": 3.45,
+        "edge_px": 1.9165146350860596,
+        "width_ratio": 0.9594594594594594,
         "height_ratio": 1.0,
-        "line": "Front Error : 1.4%",
+        "line": "Front Error : 3.5%",
         "bbox_delta_m": {
-          "left": -0.0017467248908296944,
-          "right": -0.0008733624454148472,
-          "top": 0.0,
-          "bottom": 0.0
-        },
-        "largest_mismatch_region": {
-          "kind": "missing",
-          "area_px": 445,
-          "bbox_px": [
-            221,
-            83,
-            310,
-            90
-          ],
-          "center_world": [
-            0.0013100436681222707,
-            null,
-            0.5576419213973799
-          ],
-          "world_bbox": {
-            "min": [
-              -0.03755458515283843,
-              null,
-              0.5545851528384279
-            ],
-            "max": [
-              0.04017467248908297,
-              null,
-              0.5606986899563319
-            ]
-          }
-        },
-        "components_in_region": [],
-        "color_error": 0.03239,
-        "floor": 0.0218,
-        "excess_error": -0.0075
-      },
-      "back": {
-        "iou": 0.9818761190479172,
-        "error": 0.018123880952082838,
-        "error_pct": 1.81,
-        "edge_px": 1.0260547399520874,
-        "width_ratio": 0.9954853273137697,
-        "height_ratio": 1.0,
-        "line": "Back Error : 1.8%",
-        "bbox_delta_m": {
-          "left": -0.0017467248908296944,
-          "right": 0.0,
+          "left": -0.008733624454148471,
+          "right": -0.0069868995633187774,
           "top": 0.0,
           "bottom": 0.0
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 627,
+          "area_px": 758,
           "bbox_px": [
-            99,
-            90,
-            225,
-            284
+            69,
+            507,
+            118,
+            550
           ],
           "center_world": [
-            0.08820960698689957,
+            -0.14890829694323143,
             null,
-            0.4698689956331878
+            0.17161572052401747
           ],
           "world_bbox": {
             "min": [
-              0.03318777292576419,
+              -0.1703056768558952,
               null,
-              0.3851528384279476
+              0.15283842794759825
             ],
             "max": [
-              0.14323144104803492,
+              -0.1275109170305677,
               null,
-              0.5545851528384279
+              0.1903930131004367
             ]
           }
         },
         "components_in_region": [],
-        "color_error": 0.01771,
+        "color_error": 0.03229,
         "floor": 0.0218,
-        "excess_error": -0.00368
+        "excess_error": 0.01273
+      },
+      "back": {
+        "iou": 0.9636873583714105,
+        "error": 0.03631264162858949,
+        "error_pct": 3.63,
+        "edge_px": 2.000255823135376,
+        "width_ratio": 0.9616252821670429,
+        "height_ratio": 1.0,
+        "line": "Back Error : 3.6%",
+        "bbox_delta_m": {
+          "left": -0.007860262008733625,
+          "right": -0.0069868995633187774,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "excess",
+          "area_px": 1071,
+          "bbox_px": [
+            41,
+            508,
+            116,
+            550
+          ],
+          "center_world": [
+            0.1611353711790393,
+            null,
+            0.17117903930131004
+          ],
+          "world_bbox": {
+            "min": [
+              0.12838427947598255,
+              null,
+              0.15283842794759825
+            ],
+            "max": [
+              0.19388646288209607,
+              null,
+              0.18951965065502183
+            ]
+          }
+        },
+        "components_in_region": [],
+        "color_error": 0.01416,
+        "floor": 0.0218,
+        "excess_error": 0.01451
       },
       "side": {
-        "iou": 0.9844614422475586,
-        "error": 0.015538557752441395,
-        "error_pct": 1.55,
-        "edge_px": 3.578385353088379,
+        "iou": 0.9802223184639816,
+        "error": 0.019777681536018443,
+        "error_pct": 1.98,
+        "edge_px": 3.702995777130127,
         "width_ratio": 0.9896907216494846,
         "height_ratio": 1.0,
-        "line": "Side Error : 1.6%",
+        "line": "Side Error : 2.0%",
         "bbox_delta_m": {
           "left": -0.0017467248908296944,
           "right": -0.0008733624454148472,
@@ -853,33 +869,33 @@
         },
         "largest_mismatch_region": {
           "kind": "missing",
-          "area_px": 263,
+          "area_px": 592,
           "bbox_px": [
-            259,
-            313,
-            282,
-            353
+            231,
+            482,
+            255,
+            556
           ],
           "center_world": [
             null,
-            -0.08078602620087337,
-            0.3423580786026201
+            -0.06419213973799127,
+            0.17991266375545853
           ],
           "world_bbox": {
             "min": [
               null,
-              -0.09082969432314411,
-              0.32489082969432315
+              -0.07467248908296943,
+              0.14759825327510917
             ],
             "max": [
               null,
-              -0.07074235807860262,
-              0.35982532751091706
+              -0.053711790393013104,
+              0.21222707423580786
             ]
           }
         },
         "components_in_region": [],
-        "color_error": 0.03275
+        "color_error": 0.04167
       }
     }
   },
@@ -887,16 +903,16 @@
     "soft": true,
     "per_view": {
       "front": {
-        "error": 0.032387772786149446,
-        "pixels": 150761
+        "error": 0.03228704076507397,
+        "pixels": 149181
       },
       "back": {
-        "error": 0.017712062822645678,
-        "pixels": 149643
+        "error": 0.01415953840401584,
+        "pixels": 148238
       },
       "side": {
-        "error": 0.032749606818188316,
-        "pixels": 110085
+        "error": 0.041668636621574044,
+        "pixels": 109456
       }
     }
   },
@@ -908,15 +924,15 @@
       ],
       "cleanup": {
         "voxel_size": 0.0024,
-        "faces_before": 193034,
-        "faces_after": 129878,
+        "faces_before": 147868,
+        "faces_after": 99828,
         "island_vertices_removed": 0,
         "non_manifold_edges": 0
       },
       "retopo": {
         "requested": "decimate",
         "target_faces": 20000,
-        "faces_before": 129878,
+        "faces_before": 99828,
         "method": "decimate",
         "faces_after": 20000,
         "non_manifold_edges": 0
@@ -928,87 +944,29 @@
           0.0039
         ],
         "uv_max": [
-          0.9922,
-          0.9916
+          0.987,
+          0.9877
         ]
       },
       "rings": {
         "slice_coherence": 0.03,
-        "ring_pct": 1.755
+        "ring_pct": 1.77
       },
-      "debris": [
-        {
-          "island": 3,
-          "voxels": 231,
-          "volume_pct": 0.0126,
-          "box_m": [
-            [
-              0.13,
-              -0.0298,
-              0.1728
-            ],
-            [
-              0.1439,
-              0.0239,
-              0.1768
-            ]
-          ],
-          "views": {
-            "front": {
-              "separate": false,
-              "label": null
-            },
-            "side": {
-              "separate": false,
-              "label": null
-            }
-          },
-          "dropped": true,
-          "rule": "b",
-          "reason": "0.01% of the hull volume (< 0.3%) and under no labelled part"
-        },
-        {
-          "island": 2,
-          "voxels": 201,
-          "volume_pct": 0.0109,
-          "box_m": [
-            [
-              -0.1443,
-              -0.0278,
-              0.1728
-            ],
-            [
-              -0.1324,
-              0.0219,
-              0.1768
-            ]
-          ],
-          "views": {
-            "front": {
-              "separate": false,
-              "label": null
-            },
-            "side": {
-              "separate": false,
-              "label": null
-            }
-          },
-          "dropped": true,
-          "rule": "b",
-          "reason": "0.01% of the hull volume (< 0.3%) and under no labelled part"
-        }
-      ],
       "exclusion": {
         "components": [
           "antenna_rod",
-          "antenna_ball"
+          "antenna_ball",
+          "arm_r",
+          "hand_r",
+          "arm_l",
+          "hand_l"
         ],
         "dilate_px": 0,
         "views": {
           "front": {
             "mask_px_before": 160079,
-            "mask_px_after": 159084,
-            "part_px": 995,
+            "mask_px_after": 137268,
+            "part_px": 23883,
             "source": "labels",
             "parts": {
               "antenna_rod": {
@@ -1018,13 +976,29 @@
               "antenna_ball": {
                 "removed_px": 590,
                 "restored_px": 0
+              },
+              "arm_r": {
+                "removed_px": 5403,
+                "restored_px": 553
+              },
+              "hand_r": {
+                "removed_px": 5514,
+                "restored_px": 0
+              },
+              "arm_l": {
+                "removed_px": 5446,
+                "restored_px": 519
+              },
+              "hand_l": {
+                "removed_px": 5453,
+                "restored_px": 0
               }
             }
           },
           "side": {
             "mask_px_before": 124570,
-            "mask_px_after": 123682,
-            "part_px": 901,
+            "mask_px_after": 122763,
+            "part_px": 20017,
             "source": "labels",
             "parts": {
               "antenna_rod": {
@@ -1034,6 +1008,14 @@
               "antenna_ball": {
                 "removed_px": 589,
                 "restored_px": 0
+              },
+              "arm_r": {
+                "removed_px": 0,
+                "restored_px": 10714
+              },
+              "hand_r": {
+                "removed_px": 919,
+                "restored_px": 7483
               }
             }
           }
@@ -1057,24 +1039,24 @@
         "size": 2048,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_body_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_body_source_map.png",
-        "covered_texels": 1935674,
-        "coverage_pct": 46.2,
-        "texels_from_visible_samples_pct": 81.0,
+        "covered_texels": 2271637,
+        "coverage_pct": 54.2,
+        "texels_from_visible_samples_pct": 80.4,
         "views": {
-          "front": 0.2084,
-          "side": 0.1605,
-          "back": 0.2837,
-          "mirror_side": 0.1318
+          "front": 0.2015,
+          "side": 0.1534,
+          "back": 0.2962,
+          "mirror_side": 0.1202
         },
-        "blend_share": 0.0252,
-        "inpainted_share": 0.1903,
-        "conflict_ratio": 0.0749,
+        "blend_share": 0.0327,
+        "inpainted_share": 0.196,
+        "conflict_ratio": 0.0399,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0991,
-        "inpainted_3d_share": 0.0911,
-        "label_rejected_ratio": 0.0134,
-        "raster_s": 5.46,
-        "total_s": 43.15
+        "inpainted_uv_share": 0.0902,
+        "inpainted_3d_share": 0.1058,
+        "label_rejected_ratio": 0.0517,
+        "raster_s": 4.94,
+        "total_s": 34.53
       }
     },
     "face": {
@@ -1107,12 +1089,12 @@
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0039,
+          0.004,
           0.0039
         ],
         "uv_max": [
-          0.9961,
-          0.9912
+          0.9914,
+          0.9877
         ]
       },
       "mirror_views": [
@@ -1122,24 +1104,24 @@
         "size": 2048,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_face_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_face_source_map.png",
-        "covered_texels": 2971281,
-        "coverage_pct": 70.8,
-        "texels_from_visible_samples_pct": 78.2,
+        "covered_texels": 2866412,
+        "coverage_pct": 68.3,
+        "texels_from_visible_samples_pct": 78.1,
         "views": {
-          "front": 0.4634,
-          "side": 0.1599,
+          "front": 0.4646,
+          "side": 0.1582,
           "back": 0.0,
           "mirror_side": 0.1512
         },
-        "blend_share": 0.0073,
-        "inpainted_share": 0.2182,
-        "conflict_ratio": 0.1257,
+        "blend_share": 0.0068,
+        "inpainted_share": 0.2192,
+        "conflict_ratio": 0.1254,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0082,
-        "inpainted_3d_share": 0.21,
-        "label_rejected_ratio": 0.0846,
-        "raster_s": 7.82,
-        "total_s": 69.35
+        "inpainted_uv_share": 0.0098,
+        "inpainted_3d_share": 0.2094,
+        "label_rejected_ratio": 0.0835,
+        "raster_s": 5.51,
+        "total_s": 51.79
       },
       "material": {
         "key": "skin",
@@ -1185,9 +1167,9 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.205,
         "inpainted_3d_share": 0.0412,
-        "label_rejected_ratio": 0.1817,
-        "raster_s": 0.13,
-        "total_s": 4.46
+        "label_rejected_ratio": 0.1832,
+        "raster_s": 0.12,
+        "total_s": 3.13
       },
       "material": {
         "key": "metal_steel",
@@ -1230,12 +1212,192 @@
         "inpainted_uv_share": 0.0163,
         "inpainted_3d_share": 0.1808,
         "label_rejected_ratio": 0.0734,
-        "raster_s": 0.1,
-        "total_s": 14.45
+        "raster_s": 0.11,
+        "total_s": 14.15
       },
       "material": {
         "key": "plastic",
         "roughness": 0.45
+      }
+    },
+    "arm_r": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0158,
+          0.0159
+        ],
+        "uv_max": [
+          0.9834,
+          0.8317
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_arm_r_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_arm_r_source_map.png",
+        "covered_texels": 129128,
+        "coverage_pct": 49.3,
+        "texels_from_visible_samples_pct": 71.5,
+        "views": {
+          "front": 0.1953,
+          "side": 0.2369,
+          "back": 0.2661,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.0172,
+        "inpainted_share": 0.2846,
+        "conflict_ratio": 0.0188,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1914,
+        "inpainted_3d_share": 0.0931,
+        "label_rejected_ratio": 0.1125,
+        "raster_s": 0.12,
+        "total_s": 10.76
+      },
+      "material": {
+        "key": "cloth",
+        "roughness": 0.9,
+        "sheen": 0.3,
+        "specular": 0.3
+      }
+    },
+    "hand_r": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0157,
+          0.0163
+        ],
+        "uv_max": [
+          0.9844,
+          0.9699
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_hand_r_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_hand_r_source_map.png",
+        "covered_texels": 141884,
+        "coverage_pct": 54.1,
+        "texels_from_visible_samples_pct": 61.2,
+        "views": {
+          "front": 0.1793,
+          "side": 0.2272,
+          "back": 0.1928,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.0124,
+        "inpainted_share": 0.3883,
+        "conflict_ratio": 0.0466,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2681,
+        "inpainted_3d_share": 0.1202,
+        "label_rejected_ratio": 0.2,
+        "raster_s": 0.14,
+        "total_s": 7.96
+      },
+      "material": {
+        "key": "cloth",
+        "roughness": 0.9,
+        "sheen": 0.3,
+        "specular": 0.3
+      }
+    },
+    "arm_l": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0158,
+          0.0159
+        ],
+        "uv_max": [
+          0.9834,
+          0.8317
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_arm_l_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_arm_l_source_map.png",
+        "covered_texels": 129128,
+        "coverage_pct": 49.3,
+        "texels_from_visible_samples_pct": 73.7,
+        "views": {
+          "front": 0.2198,
+          "side": 0.0,
+          "back": 0.3116,
+          "mirror_side": 0.1883
+        },
+        "blend_share": 0.0176,
+        "inpainted_share": 0.2627,
+        "conflict_ratio": 0.0192,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1902,
+        "inpainted_3d_share": 0.0724,
+        "label_rejected_ratio": 0.1104,
+        "raster_s": 0.11,
+        "total_s": 8.04
+      },
+      "material": {
+        "key": "cloth",
+        "roughness": 0.9,
+        "sheen": 0.3,
+        "specular": 0.3
+      }
+    },
+    "hand_l": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0157,
+          0.0163
+        ],
+        "uv_max": [
+          0.9844,
+          0.9699
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 512,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_hand_l_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/textures/sd_astronaut_hand_l_source_map.png",
+        "covered_texels": 141884,
+        "coverage_pct": 54.1,
+        "texels_from_visible_samples_pct": 61.9,
+        "views": {
+          "front": 0.2116,
+          "side": 0.0,
+          "back": 0.2103,
+          "mirror_side": 0.1758
+        },
+        "blend_share": 0.0211,
+        "inpainted_share": 0.3812,
+        "conflict_ratio": 0.0429,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2572,
+        "inpainted_3d_share": 0.124,
+        "label_rejected_ratio": 0.1937,
+        "raster_s": 0.14,
+        "total_s": 10.12
+      },
+      "material": {
+        "key": "cloth",
+        "roughness": 0.9,
+        "sheen": 0.3,
+        "specular": 0.3
       }
     }
   },
@@ -1245,10 +1407,15 @@
       "face": "observed",
       "visor": "observed",
       "antenna_rod": "observed",
-      "antenna_ball": "observed"
+      "antenna_ball": "observed",
+      "arm_r": "observed",
+      "hand_r": "observed",
+      "arm_l": "inferred",
+      "hand_l": "inferred"
     },
     "counts": {
-      "observed": 5
+      "observed": 7,
+      "inferred": 2
     },
     "views": {
       "front": "observed",
@@ -1256,8 +1423,24 @@
       "side": "observed"
     }
   },
-  "recommendation": "Reconstruction matches the references within tolerance; warnings: misattribution antenna_rod (7% of texels sourced from body), hull_debris body (2 floating fragments dropped, 0.02% of the hull volume; label a real part so it stays)",
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: misattribution antenna_rod (11% of texels sourced from body)",
   "diagnosis": [
+    {
+      "view": "front",
+      "axis": "X",
+      "dimension": "width",
+      "kind": "size",
+      "delta_m": -0.01572052401746725,
+      "recommendation": "Front view: width too small by 1.6 cm \u2192 X axis"
+    },
+    {
+      "view": "back",
+      "axis": "X",
+      "dimension": "width",
+      "kind": "size",
+      "delta_m": -0.014847161572052403,
+      "recommendation": "Back view: width too small by 1.5 cm \u2192 X axis"
+    },
     {
       "view": "side",
       "axis": "Y",
@@ -1268,8 +1451,7 @@
     }
   ],
   "warnings": [
-    "misattribution:antenna_rod",
-    "hull_debris:body"
+    "misattribution:antenna_rod"
   ],
   "attribution": {
     "views": [
@@ -1277,68 +1459,68 @@
       "side",
       "back"
     ],
-    "samples": 150480,
+    "samples": 150433,
     "facing_threshold": 0.3,
     "occlusion_warn": 0.3,
     "misattribution_warn": 0.05,
     "objects": {
       "body": {
-        "samples": 128422,
-        "misattribution": 0.00013758797692755464,
+        "samples": 106145,
+        "misattribution": 0.0016581664698640806,
         "top_confusion": {
-          "object": "face",
-          "share": 0.00013758797692755464
+          "object": "arm_r",
+          "share": 0.0010928824460467803
         },
-        "occlusion_share": 0.02899507439191591,
+        "occlusion_share": 0.028190393581264232,
         "best_view": "back",
-        "pooled_occlusion": 0.21596120974156752,
-        "hidden_share": 0.172933772083959,
+        "pooled_occlusion": 0.19647933213081623,
+        "hidden_share": 0.16452485627324992,
         "occlusion_per_view": {
-          "front": 0.28229244722358593,
-          "side": 0.33562002644248756,
-          "back": 0.02899507439191591
+          "front": 0.3148204294258703,
+          "side": 0.2550128377552268,
+          "back": 0.028190393581264232
         }
       },
       "face": {
-        "samples": 20858,
-        "misattribution": 0.005271519352975159,
+        "samples": 22202,
+        "misattribution": 0.00445855569816929,
         "top_confusion": {
           "object": "body",
-          "share": 0.005271519352975159
+          "share": 0.00445855569816929
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.44716678137187427,
-        "hidden_share": 0.45000748017752956,
+        "pooled_occlusion": 0.4515558240904579,
+        "hidden_share": 0.4558740865654862,
         "occlusion_per_view": {
           "front": 0.0,
-          "side": 0.0009514747859181732,
+          "side": 0.0,
           "back": 1.0
         }
       },
       "antenna_rod": {
         "samples": 600,
-        "misattribution": 0.0670995670995671,
+        "misattribution": 0.1070615034168565,
         "top_confusion": {
           "object": "body",
-          "share": 0.03463203463203463
+          "share": 0.06378132118451026
         },
         "occlusion_share": 0.0,
-        "best_view": "side",
-        "pooled_occlusion": 0.0017391304347826088,
-        "hidden_share": 0.0021929824561403508,
+        "best_view": "front",
+        "pooled_occlusion": 0.0035650623885918,
+        "hidden_share": 0.004555808656036446,
         "occlusion_per_view": {
-          "front": 0.005154639175257732,
+          "front": 0.0,
           "side": 0.0,
-          "back": 0.0
+          "back": 0.010752688172043012
         }
       },
       "antenna_ball": {
         "samples": 600,
-        "misattribution": 0.04,
+        "misattribution": 0.04066985645933014,
         "top_confusion": {
           "object": "antenna_rod",
-          "share": 0.04
+          "share": 0.04066985645933014
         },
         "occlusion_share": 0.0,
         "best_view": "front",
@@ -1349,15 +1531,83 @@
           "side": 0.0,
           "back": 0.0
         }
+      },
+      "arm_r": {
+        "samples": 5389,
+        "misattribution": 0.010187159440890783,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.008765695332859511
+        },
+        "occlusion_share": 0.11298568507157464,
+        "best_view": "side",
+        "pooled_occlusion": 0.13433609958506224,
+        "hidden_share": 0.1465991635483161,
+        "occlusion_per_view": {
+          "front": 0.12350182386659718,
+          "side": 0.11298568507157464,
+          "back": 0.16710319539025667
+        }
+      },
+      "hand_r": {
+        "samples": 5054,
+        "misattribution": 0.012368421052631579,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.007368421052631579
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.0,
+        "hidden_share": 0.0,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 0.0,
+          "back": 0.0
+        }
+      },
+      "arm_l": {
+        "samples": 5389,
+        "misattribution": 0.005189413596263622,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.0041515308770108976
+        },
+        "occlusion_share": 0.09422175950026028,
+        "best_view": "front",
+        "pooled_occlusion": 0.41514943318447267,
+        "hidden_share": 0.2542706964520368,
+        "occlusion_per_view": {
+          "front": 0.09422175950026028,
+          "side": 1.0,
+          "back": 0.13953488372093023
+        }
+      },
+      "hand_l": {
+        "samples": 5054,
+        "misattribution": 0.001794043774668102,
+        "top_confusion": {
+          "object": "arm_l",
+          "share": 0.001794043774668102
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.46204695691816733,
+        "hidden_share": 0.332767882386203,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 1.0,
+          "back": 0.0
+        }
       }
     },
     "misattribution_max": {
       "object": "antenna_rod",
-      "share": 0.0670995670995671
+      "share": 0.1070615034168565
     },
     "occlusion_max": {
-      "object": "body",
-      "share": 0.02899507439191591
+      "object": "arm_r",
+      "share": 0.11298568507157464
     },
     "occluded_objects": [],
     "misattributed_objects": [
@@ -1375,21 +1625,21 @@
             "iou": 0.6633663366336634,
             "precision": 0.9877149877149877,
             "part_px": 407,
-            "model_iou": 0.9719934102141681
+            "model_iou": 0.9752883031301482
           },
           "back": {
             "visible": true,
             "iou": 0.6289517470881864,
             "precision": 0.9287469287469288,
             "part_px": 407,
-            "model_iou": 0.9418604651162791
+            "model_iou": 0.9419568822553898
           },
           "side": {
             "visible": true,
             "iou": 0.6100917431192661,
             "precision": 1.0,
             "part_px": 399,
-            "model_iou": 0.9787234042553191
+            "model_iou": 0.9817073170731707
           }
         },
         "mean_iou": 0.6341366089470386,
@@ -1399,6 +1649,73 @@
           "side": 0.7775
         },
         "mean_label_iou": 0.8802
+      },
+      "arm_r": {
+        "type": "capsule",
+        "stage": "secondary",
+        "views": {
+          "front": {
+            "visible": true,
+            "iou": 0.4828144458281445,
+            "precision": 0.9894092127089448,
+            "part_px": 7837,
+            "model_iou": 0.9544974202772425
+          },
+          "back": {
+            "visible": true,
+            "iou": 0.4841547099189021,
+            "precision": 0.9899234693877551,
+            "part_px": 7840,
+            "model_iou": 0.957196261682243
+          },
+          "side": {
+            "visible": true,
+            "iou": 0.4002165488944609,
+            "precision": 1.0,
+            "part_px": 7023,
+            "model_iou": 0.998235026189934
+          }
+        },
+        "mean_iou": 0.45572856821383584,
+        "min_precision": 0.9894092127089448,
+        "label_iou": {
+          "front": 0.8764,
+          "side": 0.6705
+        },
+        "mean_label_iou": 0.77345
+      },
+      "arm_l": {
+        "type": "capsule",
+        "stage": "secondary",
+        "views": {
+          "front": {
+            "visible": true,
+            "iou": 0.48456693895366965,
+            "precision": 0.9911989795918368,
+            "part_px": 7840,
+            "model_iou": 0.9541295823738096
+          },
+          "back": {
+            "visible": true,
+            "iou": 0.48362138890622075,
+            "precision": 0.9890264131683042,
+            "part_px": 7837,
+            "model_iou": 0.9528196190713307
+          },
+          "side": {
+            "visible": true,
+            "iou": 0.4002165488944609,
+            "precision": 1.0,
+            "part_px": 7023,
+            "model_iou": 0.998235026189934
+          }
+        },
+        "mean_iou": 0.4561349589181171,
+        "min_precision": 0.9890264131683042,
+        "label_iou": {
+          "front": 0.883
+        },
+        "mean_label_iou": 0.883
       }
     },
     "outside_warn": 0.7,
@@ -1413,8 +1730,8 @@
         ],
         "relief_applied": true,
         "profile_relief_m": 0.0158,
-        "texels_per_px": 5.44,
-        "color_error": 0.031
+        "texels_per_px": 5.35,
+        "color_error": 0.0312
       }
     },
     "closeup": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/previews/face_closeup.png"
@@ -1423,24 +1740,24 @@
     "components": {
       "body": {
         "color_error": {
-          "front": 0.0388,
-          "side": 0.0331,
-          "back": 0.024
+          "front": 0.0329,
+          "side": 0.0318,
+          "back": 0.0196
         },
-        "misattribution": 0.0001,
-        "occlusion": 0.029,
-        "inpainted_share": 0.1903,
-        "texels_per_px": 1.84
+        "misattribution": 0.0017,
+        "occlusion": 0.0282,
+        "inpainted_share": 0.196,
+        "texels_per_px": 2.24
       },
       "face": {
         "color_error": {
-          "front": 0.031,
-          "side": 0.0873
+          "front": 0.0312,
+          "side": 0.0876
         },
-        "misattribution": 0.0053,
+        "misattribution": 0.0045,
         "occlusion": 0.0,
-        "inpainted_share": 0.2182,
-        "texels_per_px": 5.44
+        "inpainted_share": 0.2192,
+        "texels_per_px": 5.34
       },
       "antenna_rod": {
         "color_error": {
@@ -1448,7 +1765,7 @@
           "side": 0.0581
         },
         "label_iou": 0.8802,
-        "misattribution": 0.0671,
+        "misattribution": 0.1071,
         "occlusion": 0.0,
         "inpainted_share": 0.2462,
         "texels_per_px": 10.2
@@ -1458,34 +1775,104 @@
           "front": 0.0502,
           "side": 0.0496
         },
-        "misattribution": 0.04,
+        "misattribution": 0.0407,
         "occlusion": 0.0,
         "inpainted_share": 0.1972,
         "texels_per_px": 7.56
+      },
+      "arm_r": {
+        "color_error": {
+          "front": 0.0379,
+          "side": 0.1157
+        },
+        "label_iou": 0.77345,
+        "misattribution": 0.0102,
+        "occlusion": 0.113,
+        "inpainted_share": 0.2846,
+        "texels_per_px": 2.44
+      },
+      "hand_r": {
+        "color_error": {
+          "front": 0.1008,
+          "side": 0.0561
+        },
+        "misattribution": 0.0124,
+        "occlusion": 0.0,
+        "inpainted_share": 0.3883,
+        "texels_per_px": 2.63
+      },
+      "arm_l": {
+        "color_error": {
+          "front": 0.0333
+        },
+        "label_iou": 0.883,
+        "misattribution": 0.0052,
+        "occlusion": 0.0942,
+        "inpainted_share": 0.2627,
+        "texels_per_px": 2.44
+      },
+      "hand_l": {
+        "color_error": {
+          "front": 0.0865
+        },
+        "misattribution": 0.0018,
+        "occlusion": 0.0,
+        "inpainted_share": 0.3812,
+        "texels_per_px": 2.63
       }
     },
     "issues": [
       {
+        "component": "arm_r",
+        "check": "color_error",
+        "view": "side",
+        "value": 0.1157,
+        "threshold": 0.08,
+        "severity": 1.45,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "hand_r",
+        "check": "color_error",
+        "view": "front",
+        "value": 0.1008,
+        "threshold": 0.08,
+        "severity": 1.26,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
         "component": "face",
         "check": "color_error",
         "view": "side",
-        "value": 0.0873,
+        "value": 0.0876,
         "threshold": 0.08,
         "severity": 1.09,
+        "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
+      },
+      {
+        "component": "hand_l",
+        "check": "color_error",
+        "view": "front",
+        "value": 0.0865,
+        "threshold": 0.08,
+        "severity": 1.08,
         "action": "its colour is off in that view: check its label (foreign pixels), its texture (inpainted / misattributed) and its shape (a wrong surface takes the colour)"
       }
     ],
     "sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/output/previews/review_sheet.png",
     "sheet_rows": [
+      "arm_r",
+      "hand_r",
       "face",
+      "hand_l",
       "body",
       "antenna_rod",
-      "antenna_ball"
+      "antenna_ball",
+      "arm_l"
     ]
   },
   "warning_details": [
-    "misattribution antenna_rod (7% of texels sourced from body)",
-    "hull_debris body (2 floating fragments dropped, 0.02% of the hull volume; label a real part so it stays)"
+    "misattribution antenna_rod (11% of texels sourced from body)"
   ],
-  "elapsed_s": 335.5
+  "elapsed_s": 323.64
 }

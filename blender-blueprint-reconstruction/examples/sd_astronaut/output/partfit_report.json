@@ -5,7 +5,7 @@
     "loss_init": 0.21791,
     "loss_fit": 0.02591,
     "evals": 1671,
-    "seconds": 5.34,
+    "seconds": 3.98,
     "free": [
       "base.x",
       "base.y",
@@ -61,7 +61,7 @@
     "loss_init": 0.18236,
     "loss_fit": 0.01923,
     "evals": 1437,
-    "seconds": 0.55,
+    "seconds": 0.57,
     "free": [
       "center.x",
       "center.y",
@@ -103,6 +103,160 @@
         "covered": 0.9864,
         "spill": 0.0099,
         "label_px": 589
+      }
+    }
+  },
+  "arm_r": {
+    "type": "capsule",
+    "fitted": true,
+    "loss_init": 0.58365,
+    "loss_fit": 0.19721,
+    "evals": 1307,
+    "seconds": 3.02,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "r0",
+      "r1"
+    ],
+    "locked": [],
+    "joint_with": [
+      "arm_l"
+    ],
+    "coarse_k": 3,
+    "iou_init": {
+      "front": {
+        "iou": 0.4621,
+        "iou_vis": 0.4951,
+        "covered": 0.4953,
+        "spill": 0.0006,
+        "label_px": 5956
+      },
+      "side": {
+        "iou": 0.2839,
+        "iou_vis": 0.2839,
+        "covered": 0.2839,
+        "spill": 0.0,
+        "label_px": 10714
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.7378,
+        "iou_vis": 0.8764,
+        "covered": 0.9919,
+        "spill": 0.0141,
+        "label_px": 5956
+      },
+      "side": {
+        "iou": 0.6705,
+        "iou_vis": 0.6705,
+        "covered": 0.6705,
+        "spill": 0.0,
+        "label_px": 10714
+      }
+    }
+  },
+  "hand_r": {
+    "type": "sphere",
+    "fitted": true,
+    "loss_init": 0.67344,
+    "loss_fit": 0.56233,
+    "evals": 1272,
+    "seconds": 2.3,
+    "free": [
+      "center.x",
+      "center.y",
+      "center.z",
+      "semi.x",
+      "semi.y",
+      "semi.z"
+    ],
+    "locked": [],
+    "joint_with": [
+      "hand_l"
+    ],
+    "coarse_k": 2,
+    "iou_init": {
+      "front": {
+        "iou": 0.4082,
+        "iou_vis": 0.4082,
+        "covered": 0.4371,
+        "spill": 0.1393,
+        "label_px": 5514
+      },
+      "side": {
+        "iou": 0.2351,
+        "iou_vis": 0.2607,
+        "covered": 0.2608,
+        "spill": 0.0,
+        "label_px": 8402
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.5287,
+        "iou_vis": 0.5287,
+        "covered": 0.6201,
+        "spill": 0.218,
+        "label_px": 5514
+      },
+      "side": {
+        "iou": 0.4687,
+        "iou_vis": 0.5734,
+        "covered": 0.629,
+        "spill": 0.0002,
+        "label_px": 8402
+      }
+    }
+  },
+  "arm_l": {
+    "type": "capsule",
+    "fitted": false,
+    "note": "exact mirror of arm_r",
+    "iou_init": {
+      "front": {
+        "iou": 0.7356,
+        "iou_vis": 0.883,
+        "covered": 0.9894,
+        "spill": 0.0122,
+        "label_px": 5965
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.7356,
+        "iou_vis": 0.883,
+        "covered": 0.9894,
+        "spill": 0.0122,
+        "label_px": 5965
+      }
+    }
+  },
+  "hand_l": {
+    "type": "sphere",
+    "fitted": false,
+    "note": "exact mirror of hand_r",
+    "iou_init": {
+      "front": {
+        "iou": 0.5289,
+        "iou_vis": 0.5289,
+        "covered": 0.6233,
+        "spill": 0.2226,
+        "label_px": 5453
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.5289,
+        "iou_vis": 0.5289,
+        "covered": 0.6233,
+        "spill": 0.2226,
+        "label_px": 5453
       }
     }
   }

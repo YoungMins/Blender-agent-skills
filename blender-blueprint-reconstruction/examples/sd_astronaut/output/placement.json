@@ -7,17 +7,17 @@
     "keypoints": {
       "base": [
         -0.07796,
-        0.02916,
+        0.02174,
         0.54584
       ],
       "tip": [
         -0.07773,
-        0.02961,
+        0.02218,
         0.57743
       ],
       "mid": [
         -0.07736,
-        0.02939,
+        0.02197,
         0.56163
       ]
     },
@@ -43,7 +43,7 @@
     },
     "location": [
       -0.07796,
-      0.02916,
+      0.02174,
       0.54584
     ]
   },
@@ -55,7 +55,7 @@
     "keypoints": {
       "center": [
         -0.0777,
-        0.02946,
+        0.02203,
         0.58762
       ]
     },
@@ -73,8 +73,148 @@
     },
     "location": [
       -0.0777,
-      0.02946,
+      0.02203,
       0.58762
+    ]
+  },
+  "arm_r": {
+    "type": "capsule",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.02777,
+    "keypoints": {
+      "base": [
+        -0.06795,
+        -0.00565,
+        0.31407
+      ],
+      "tip": [
+        -0.13542,
+        0.00372,
+        0.21263
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+front",
+        "y": "fit:front+side+front",
+        "z": "fit:front+side+front"
+      },
+      "tip": {
+        "x": "fit:front+side+front",
+        "y": "fit:front+side+front",
+        "z": "fit:front+side+front"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 0.0
+      },
+      "tip": {
+        "z": 0.0
+      }
+    },
+    "location": [
+      -0.10168,
+      -0.00096,
+      0.26335
+    ]
+  },
+  "hand_r": {
+    "type": "sphere",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.0293,
+    "keypoints": {
+      "center": [
+        -0.15649,
+        -0.00783,
+        0.18883
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:front+side+front",
+        "y": "fit:front+side+front",
+        "z": "fit:front+side+front"
+      }
+    },
+    "view_spread_mm": {
+      "center": {
+        "z": 0.0
+      }
+    },
+    "location": [
+      -0.15649,
+      -0.00783,
+      0.18883
+    ]
+  },
+  "arm_l": {
+    "type": "capsule",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.02777,
+    "keypoints": {
+      "base": [
+        0.06795,
+        -0.00565,
+        0.31407
+      ],
+      "tip": [
+        0.13542,
+        0.00372,
+        0.21263
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "mirror:arm_r",
+        "y": "mirror:arm_r",
+        "z": "mirror:arm_r"
+      },
+      "tip": {
+        "x": "mirror:arm_r",
+        "y": "mirror:arm_r",
+        "z": "mirror:arm_r"
+      }
+    },
+    "view_spread_mm": {
+      "base": {},
+      "tip": {}
+    },
+    "location": [
+      0.10168,
+      -0.00096,
+      0.26335
+    ]
+  },
+  "hand_l": {
+    "type": "sphere",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.0293,
+    "keypoints": {
+      "center": [
+        0.15649,
+        -0.00783,
+        0.18883
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "mirror:hand_r",
+        "y": "mirror:hand_r",
+        "z": "mirror:hand_r"
+      }
+    },
+    "view_spread_mm": {
+      "center": {}
+    },
+    "location": [
+      0.15649,
+      -0.00783,
+      0.18883
     ]
   }
 }

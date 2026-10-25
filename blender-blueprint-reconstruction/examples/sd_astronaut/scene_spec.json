@@ -51,7 +51,11 @@
         ],
         "exclude_components": [
           "antenna_rod",
-          "antenna_ball"
+          "antenna_ball",
+          "arm_r",
+          "hand_r",
+          "arm_l",
+          "hand_l"
         ],
         "color_projection": true
       }
@@ -154,6 +158,93 @@
             ]
           }
         }
+      }
+    },
+    {
+      "id": "arm_r",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "cloth",
+      "params": {
+        "segments": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              160,
+              395
+            ],
+            "tip": [
+              110,
+              465
+            ],
+            "radius_px": 22
+          },
+          "side": {
+            "base": [
+              172,
+              395
+            ],
+            "tip": [
+              165,
+              465
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "hand_r",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "cloth",
+      "params": {
+        "segments": 20,
+        "anchors_px": {
+          "front": {
+            "center": [
+              78,
+              512
+            ],
+            "radius_px": [
+              27,
+              33
+            ]
+          },
+          "side": {
+            "center": [
+              160,
+              512
+            ],
+            "radius_px": [
+              30,
+              33
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "arm_l",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "material": "cloth",
+      "params": {
+        "segments": 16,
+        "mirror_of": "arm_r"
+      }
+    },
+    {
+      "id": "hand_l",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "material": "cloth",
+      "params": {
+        "segments": 20,
+        "mirror_of": "hand_r"
       }
     }
   ],

@@ -43,3 +43,19 @@ def test_summary_review_lines_and_next():
     assert "write a plan" in next_action({"passed": True, "status": "passed", "review": {"issues": issues}}, [])
     assert "no review issue" in next_action({"passed": True, "status": "passed", "review": {"issues": []}}, [])
     assert next_action({"passed": False, "status": "failed_validation"}, ["x"]).startswith("next: FAILED")
+
+
+def test_slab_regions_flags_a_flat_limb_only():
+    inside = np.zeros((60, 40, 50), bool)
+    inside[20:40, 5:35, :] = True               # torso: the largest blob of every slice
+    inside[4:10, 14:20, 10:40] = True            # a round arm (6 x 6 cells)
+    inside[50:54, 5:35, 10:40] = True            # a slab arm: 4 cells across, 30 deep
+    inside[50:54, 5:35, 45:47] = True            # a short flat bit: too short to count
+    slabs = R.slab_regions(inside, np.zeros(3), 0.01, 0.5)
+    assert len(slabs) == 1
+    s = slabs[0]
+    assert s["x"] == pytest.approx(0.52) and s["z"] == [0.105, 0.395]
+    assert s["width_x"] == pytest.approx(0.04) and s["depth_y"] == pytest.approx(0.30) and s["ratio"] == pytest.approx(0.133, abs=1e-3)
+    cards = R.build({"body": "body"}, {"hull": {"body": {"slabs": slabs}}}, {})
+    issues = R.rank(cards)
+    assert issues[0]["check"] == "slab" and issues[0]["view"] == "x +0.52 z 0.10-0.40"

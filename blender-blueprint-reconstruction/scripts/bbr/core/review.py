@@ -31,7 +31,13 @@ CHECKS: dict[str, tuple[float, bool, str]] = {
     "silhouette_excess": (0.02, True, "the silhouette misses the reference here (largest mismatch region): fix the "
                                       "part's size / position, its label, or the hull's carve masks"),
     "face_ridge": (0.002, True, "profile features stretch across the face as ridges: set params.relief on the face layer"),
+    "slab": (0.45, False, "a limb of the hull is a flat slab (thin across, deep along the other axis): the views disagree on "
+                          "it (an AI sheet draws the arm out in front, hanging in the side) and the hull took the torso's "
+                          "depth; make it a part (capsule / sphere) from the view that shows it clearly, exclude it from "
+                          "the hull. Leave it if it is truly flat (cape, wing)"),
 }
+SLAB_MIN_HEIGHT = 0.05            # share of the model height a slab must span
+SLAB_MIN_AREA = 0.02              # cross-section side, share of the model height, below which a blob is ignored
 
 
 def label_color_errors(ref_rgb: np.ndarray, model_rgb: np.ndarray, ref_mask: np.ndarray, model_mask: np.ndarray,
@@ -48,6 +54,61 @@ def label_color_errors(ref_rgb: np.ndarray, model_rgb: np.ndarray, ref_mask: np.
         use = region & model_mask
         if use.sum() >= MIN_LABEL_PX:
             out[name] = {"error": round(float(diff[use].mean()), 4), "px": int(use.sum())}
+    return out
+
+
+def slab_regions(inside: np.ndarray, origin: np.ndarray, cell: float, height: float,
+                 max_ratio: float = 0.45) -> list[dict[str, Any]]:
+    """Flat slabs among the hull's limbs: per horizontal slice (z) of the carved volume ``inside`` ``[nx, ny, nz]``, every
+    cross-section blob except the largest (the torso) gives its x and y extent; blobs of consecutive slices whose centres
+    stay within their own size form a track; a track spanning SLAB_MIN_HEIGHT of the model whose median thin / thick
+    extent ratio is below ``max_ratio`` is a slab. Returns ``[{x, y, z: [lo, hi], width_x, depth_y, ratio}]`` (m)."""
+    from .imageops import label_components
+    inside = np.asarray(inside, dtype=bool)
+    nx, ny, nz = inside.shape
+    min_cells = max(4, int((SLAB_MIN_AREA * height / cell) ** 2))
+    tracks: list[list[tuple[int, float, float, float, float]]] = []
+    open_tracks: list[list[tuple[int, float, float, float, float]]] = []
+    for k in range(nz):
+        comps, n = label_components(inside[:, :, k], full=True)
+        if n < 2:
+            tracks += open_tracks
+            open_tracks = []
+            continue
+        areas = np.bincount(comps.ravel(), minlength=n + 1)
+        areas[0] = 0
+        blobs = []
+        for cid in np.nonzero(areas >= min_cells)[0]:
+            if cid == int(np.argmax(areas)):
+                continue
+            xs, ys = np.nonzero(comps == cid)
+            blobs.append((k, xs.mean(), ys.mean(), (np.ptp(xs) + 1) * cell, (np.ptp(ys) + 1) * cell))
+        nxt = []
+        for b in blobs:
+            for t in open_tracks:
+                last = t[-1]
+                if last[0] == k - 1 and abs(last[1] - b[1]) * cell < max(last[3], b[3]) and abs(last[2] - b[2]) * cell < max(last[4], b[4]):
+                    t.append(b)
+                    nxt.append(t)
+                    open_tracks.remove(t)
+                    break
+            else:
+                nxt.append([b])
+        tracks += open_tracks
+        open_tracks = nxt
+    tracks += open_tracks
+    out = []
+    for t in tracks:
+        if len(t) * cell < SLAB_MIN_HEIGHT * height:
+            continue
+        w = np.median([b[3] for b in t])
+        d = np.median([b[4] for b in t])
+        ratio = float(min(w, d) / max(w, d))
+        if ratio < max_ratio:
+            out.append({"x": round(float(origin[0] + (np.median([b[1] for b in t]) + 0.5) * cell), 3),
+                        "y": round(float(origin[1] + (np.median([b[2] for b in t]) + 0.5) * cell), 3),
+                        "z": [round(float(origin[2] + (t[0][0] + 0.5) * cell), 3), round(float(origin[2] + (t[-1][0] + 0.5) * cell), 3)],
+                        "width_x": round(float(w), 4), "depth_y": round(float(d), 4), "ratio": round(ratio, 3)})
     return out
 
 
@@ -82,6 +143,9 @@ def build(components: Mapping[str, str], report: Mapping[str, Any],
         f = faces.get(cid) or {}
         if f and not f.get("relief_applied") and f.get("profile_relief_m") is not None:
             c["face_ridge"] = f["profile_relief_m"]
+        slabs = (hull.get(cid) or {}).get("slabs") if isinstance(hull.get(cid), Mapping) else None
+        if slabs:
+            c["slab"] = {f"x {s['x']:+.2f} z {s['z'][0]:.2f}-{s['z'][1]:.2f}": s["ratio"] for s in slabs}
         for view, info in per_view.items():
             if cid in (info.get("components_in_region") or []) and info.get("excess_error") is not None:
                 c.setdefault("silhouette_excess", {})[view] = round(float(info["excess_error"]), 4)

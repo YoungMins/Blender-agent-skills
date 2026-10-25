@@ -43,7 +43,7 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
    $PY scripts/prepare_references.py measure --view-spec $W/references/view_spec.json --points-file pts.json --out metres.json
    ```
    `pts.json` = `{view: {name: [x, y] | [x0, y0, x1, y1]}}`.
-4. **Character with parts: propose, label.** Read only `$W/regions/<view>/compact.png` (`--zoom VIEW:x0,y0,x1,y1`), write `$W/labels.json` like `examples/sd_warrior/labels.json` (keep `"_regions": "regions"`). Label every colour view and part. `_l`/`_r` = the CHARACTER's sides: its left is +X, image-RIGHT in the front view, image-left in the back ([diagram](references/coordinate-system.md)); `labels` warns on a mismatch. The side view (camera -X) shows the RIGHT (`_r`) flank; `_l` parts are hidden there: use `mirror_of`. Read `preview_<view>.png`, fix; one-sided parts: `asymmetric_parts`:
+4. **Character with parts: propose, label.** Read `$W/regions/<view>/compact.png` (`--zoom VIEW:x0,y0,x1,y1`), write `$W/labels.json` like `examples/sd_warrior/labels.json`. Label every colour view and part. `_l`/`_r` = the CHARACTER's sides: its left is +X, image-RIGHT in the front view, image-left in the back ([diagram](references/coordinate-system.md)); The side view (camera -X) shows the RIGHT (`_r`) flank; `_l` parts: `mirror_of`. Read `preview_<view>.png`, fix; one-sided parts: `asymmetric_parts`:
    ```bash
    $PY scripts/prepare_references.py propose --view-spec $W/references/view_spec.json --out-dir $W/regions --max-regions 20 --compact
    $PY scripts/prepare_references.py labels --view-spec $W/references/view_spec.json --labels $W/labels.json --out-dir $W/labelcheck
@@ -61,15 +61,15 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
      Copy it into the component. A point hidden in a view: omit it there. An unmeasured coordinate comes from the `_l`/`_r` partner, body contact, else the centre line (`inferred`).
    - Parts that meet: `params.joint: {"part": "head", "at": "base", "self": "base"}` pins keypoints; `part_gap` / `floating_part` warn.
 6. **Scene spec.** Copy a template to `$W/scene_spec.json` and edit ([schema](schemas/scene_spec.schema.json)): `dimensions.height`, `workflow.error_threshold` 0.08 for AI references, `parts_labels: "labels.json"` when labelled.
-7. **Run.** 13 s-5 min; run in background. First `--stop-after secondary` (body plus parts; prints the dimension, floating and gap checks), then without it:
+7. **Run.** 1-9 min, in background. First `--stop-after secondary` (body plus parts; prints the dimension, floating and gap checks), then without it:
    ```bash
    "$B" -b --factory-startup -P scripts/run_pipeline.py -- --view-spec $W/references/view_spec.json --scene-spec $W/scene_spec.json --out $W/out --stop-after secondary
    "$B" -b --factory-startup -P scripts/run_pipeline.py -- --view-spec $W/references/view_spec.json --scene-spec $W/scene_spec.json --out $W/out
    ```
    Exit 0 passed, 2 failed, 1 error; read the `BBR RESULT` block (`next:` says what to do). Hard-surface: `--stop-after blockout` first.
 8. **Read results.** `comparison_sheet.png`, `perspective.png`; `report.json`: `status`, `warnings`, `recommendation`, `excess_error` (fix only the excess) ([validation rules](references/validation-rules.md); occlusion, misattribution are noisy for kits).
-9. **Fix loop.** Status `failed`: read `recommendation` and the failing check, fix the biggest error source (label, anchors, `fit_locked`, size, a `floating_part` WARNING), re-run until it passes or the 6-run budget (runs without `--stop-after`) is spent. Never stop while budget remains; two runs without gain: change approach.
-10. **Review pass.** After passing, judge every part: `review N:` lines (worst first, each with its fix), `previews/review_sheet.png` (reference | model per part), `turntable.png`, `face_closeup.png` (oblique ridges, slabs). Write `$W/plan.md` (issue, cause, spec change), apply, re-run. Faces: [cheatsheet](references/character-cheatsheet.md) section 9.
+9. **Fix loop.** Status `failed`: read `recommendation` and the failing check, fix the biggest error source (label, anchors, `fit_locked`, size, `floating_part`), re-run until it passes or the 6-run budget (runs without `--stop-after`) is spent. Two runs without gain: change approach.
+10. **Review pass.** After passing, judge every part: `review N:` lines (worst first, with fixes), `review_sheet.png`, `turntable.png`, `face_closeup.png` (oblique views). Write `$W/plan.md` (issue, cause, spec change), apply, re-run.
 11. **Finish.** Report per-view error vs floor, pass/fail, warnings, inferred parts, visible defects, `.blend` and previews. Never claim success over a defect.
 
 ## Hard rules
@@ -78,7 +78,7 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
 2. Never type a 3D value a tool can measure (positions, angles, depths): batch `measure --points-file`, no hand conversion or own script. No raw bpy; edit specs.
 3. A wrong profile `camera_axis` mirrors front to back, invisible to IoU: check perspective.
 4. Never carve from back, a generated top view or a single generated view.
-5. Do not chase the floor.
+5. AI views never fully agree: judge the intended shape, build each part from the view showing it clearly (limb pose: front); a believable part beats a lower error (a `slab` issue is a flat limb). Never chase the floor.
 6. Symmetric character, one side view: hull param `mirror_color_views: ["side"]`, one-sided parts in `asymmetric_parts`.
 7. Face behind a visor, glass or helmet rim: `layer_hull` face layer with `relief: true`; clear glass is a separate `shell` layer ([cheatsheet](references/character-cheatsheet.md) section 9).
 8. Set `material` / `class` per part ([classes](references/hard-surface-rules.md)), or defaults look like plastic.

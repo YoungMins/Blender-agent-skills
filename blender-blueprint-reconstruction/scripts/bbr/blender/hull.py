@@ -20,6 +20,7 @@ from ..core.carve import DEFAULT_SLICE_COHERENCE, build_hull_field
 from ..core import labels as labels_core
 from ..core import layers as layers_core
 from ..core import debris as debris_core
+from ..core import review as review_core
 from ..core import partmask
 from ..core import imageio
 from ..core.ringmetric import ring_score
@@ -232,6 +233,10 @@ def build_hull(comp: Component, ctx: BuildContext) -> bpy.types.Object:
             field = debris_core.drop_debris(field, drop)
         for line in debris_core.format_debris_report(islands, comp.id):
             log.warning("hull_debris: %s", line)
+    slabs = review_core.slab_regions(field < 0, origin, cell, height)   # flat limbs: the review asks for a part
+    for sl in slabs:
+        log.warning("hull %s: flat slab at x %+.3f z %.3f-%.3f (%.0f x %.0f mm): a limb the views disagree on? make it a part",
+                    comp.id, sl["x"], sl["z"][0], sl["z"][1], sl["width_x"] * 1000, sl["depth_y"] * 1000)
     verts, quads = surface_nets(field, origin + 0.5 * cell, cell, min_island_frac=float(p.get("island_min_frac", ISLAND_MIN_FRAC)))
     if len(quads) == 0:
         raise BBRError("silhouette hull is empty: the carve views do not intersect (check camera_axis / calibration)")
@@ -243,6 +248,8 @@ def build_hull(comp: Component, ctx: BuildContext) -> bpy.types.Object:
     stats["rings"] = stats_rings
     if islands:
         stats["debris"] = islands
+    if slabs:
+        stats["slabs"] = slabs
     if exclusion:
         stats["exclusion"] = exclusion
     if recess:
