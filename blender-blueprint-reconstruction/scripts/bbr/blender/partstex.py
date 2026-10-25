@@ -41,7 +41,7 @@ from ..core.spec import Component, SceneSpec, is_textured_component, project_tex
 from ..core.texelproj import (DEFAULT_CONFLICT_THRESHOLD, DEFAULT_EDGE_DISTRUST_PX, DEFAULT_PADDING_PX,
                               DEFAULT_SEAM_BLEND_WIDTH, suggest_texture_size)
 from . import hullpost, material, scene
-from .components import HULL_TYPE, BuildContext
+from .components import HULL_TYPE, LAYER_TYPE, BuildContext
 
 log = get_logger(__name__)
 
@@ -210,7 +210,7 @@ def bake_object(comp: Component, ctx: BuildContext, obj: bpy.types.Object, *, un
     if not inputs:
         log.warning("%s: color projection requested but no color view is available", comp.id)
         return stats
-    default_size = hullpost.TEXTURE_SIZE if comp.type == HULL_TYPE else PART_TEXTURE_SIZE
+    default_size = hullpost.TEXTURE_SIZE if comp.type in (HULL_TYPE, LAYER_TYPE) else PART_TEXTURE_SIZE   # a face layer: eyes, mouth need texels
     if comp.type != HULL_TYPE and not is_character_scene(ctx.scene) and "texture_size" not in comp.params:
         area = float(sum(poly.area for poly in obj.data.polygons))
         default_size = suggest_texture_size(area, min(hi.calibs[k].m_per_px for k in usable))   # hard-surface: by surface vs reference resolution
@@ -233,7 +233,7 @@ def bake_object(comp: Component, ctx: BuildContext, obj: bpy.types.Object, *, un
         zb = [zbuffers[k] for k in usable]
         for k, (_, _, calib) in zip(mkeys, inputs[len(usable):]):
             if ("zbuf", k) not in cache:
-                cache[("zbuf", k)] = hullpost.scene_depth_buffers(scene.model_meshes(), [calib])[0]
+                cache[("zbuf", k)] = hullpost.scene_depth_buffers(scene.model_meshes(opaque=True), [calib])[0]
             zb.append(cache[("zbuf", k)])
     projection = projection_params(p)
     gates = label_gates(ctx, comp, usable + mkeys, mlabels)
@@ -279,7 +279,7 @@ def texture_pass(ctx: BuildContext, only: Optional[str] = None) -> dict[str, dic
     if not found:
         return {}
     keys = [k for k in hi.calibs if k in hi.rgba]
-    zbufs = dict(zip(keys, hullpost.scene_depth_buffers(scene.model_meshes(), [hi.calibs[k] for k in keys])))
+    zbufs = dict(zip(keys, hullpost.scene_depth_buffers(scene.model_meshes(opaque=True), [hi.calibs[k] for k in keys])))   # glass occludes nothing
     cache: dict = {}
     results: dict[str, dict[str, Any]] = {}
     for comp, unwrap, obj in found:

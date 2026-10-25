@@ -138,3 +138,7 @@ Open `comparison_sheet.png` and `previews/perspective*.png` and confirm:
 1. The front of the object faces -Y (front preview).
 2. No large red (missing) or blue (excess) areas remain.
 3. The proportions and major parts read the same as the reference.
+
+## Face detail (characters)
+
+`report.face_detail` (face layers only): `texels_per_px`, `profile_relief_m` / `relief_applied`, `color_error` over the front face label, covering glass `shells`, and `previews/face_closeup.png`. Soft warnings `face_ridge` and `face_texture` cue the detail pass (SKILL.md step 10); see reconstruction-workflow.md, "Face detail check".

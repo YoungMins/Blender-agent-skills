@@ -132,7 +132,7 @@ $PY -m pytest -q tests                                          # pure Python, n
 | `scripts/bbr/core/` | Pure Python and numpy: specs, calibration, masks, metrics, consistency, labels, triangulation, part fitting, carving, surface extraction, colour projection |
 | `scripts/bbr/blender/` | bpy SDK: scene, references, primitives, components registry, hull and post-processing, part textures, rendering, validation, attribution, checkpoints |
 | `scripts/bbr/api.py` | Semantic tool interface for MCP |
-| `examples/` | `simple_table`, `simple_chair` (synthetic, with perturbed specs), `treasure_chest` (hard-surface: arch / torus kit, projected colour), `mushroom_house` (hard-surface: measured `lathe` bodies, `attach_at` door and windows, `_chimney` label, `color_views`), `robot_character` (hull only), `sd_warrior` (labels, anchors, parts, face layer) |
+| `examples/` | `simple_table`, `simple_chair` (synthetic, with perturbed specs), `treasure_chest` (hard-surface: arch / torus kit, projected colour), `mushroom_house` (hard-surface: measured `lathe` bodies, `attach_at` door and windows, `_chimney` label, `color_views`), `robot_character` (hull only), `sd_warrior` (labels, anchors, parts, face layer), `sd_astronaut` (face layer with relief, clear glass visor shell, antenna parts) |
 | `bench/` | Benchmark harness and blind-run protocol |
 | `tests/` | pytest suites and the Blender smoke test |
 

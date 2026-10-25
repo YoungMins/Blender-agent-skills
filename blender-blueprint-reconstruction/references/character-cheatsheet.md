@@ -73,22 +73,23 @@ Joints: `params.joint {"part": "tail", "at": "tip", "self": "base"}`. A part res
 
 ## 9. Recipes
 
-**Face behind a visor, glass, mask opening or helmet rim.** Label it `face` in front and side (all that sits inside the opening); the rim stays `body`. Without the layer, the front face and the side profile can land on one surface ("double face").
+**Face behind a visor, glass, mask opening or helmet rim.** Label it `face` in front and side (all that sits inside the opening); the rim stays `body`. Without the layer, the front face and the side profile can land on one surface ("double face"). Give the layer `"relief": true`: a visual hull extrudes the nose, lips and chin seen in profile across the whole face width (horizontal ridges); with `relief` the layer is carved from a smoothed profile and the features go back on the face's midline only (`{"relief": {"width": 0.07, "smooth": 0.08, "center_x": X}}`: across-sigma as a share of the face width, profile smoothing as a share of its height, midline in metres; defaults shown, centre = the front label's centroid).
 
-Labels: `{"front": {"face": [4]}, "side": {"face": [7, 30]}}`. Spec:
+**Clear glass (helmet bubble, visor).** The glass is its own see-through `shell` layer in front of the face, never a coat painted on it. In the side view label the glass bulge in front of the face profile `visor` (the tinted area and its rim); the front view needs no visor label (the shell covers the face's opening via `cover`). The shell gets `glass_clear` (transmission) and no texture; the colour metric, the texture projection and the object-ID renders look through it, the lit previews show it. Leave `base_color` unset: the reference's tint is already in the face texture.
+
+Labels: `{"front": {"face": [4, 5, 6]}, "side": {"face": [7, 10], "visor": [15, 17]}}`. Spec (`examples/sd_astronaut`):
 
 ```json
 {"id": "body", "type": "silhouette_hull", "params": {"layers": ["face"]}},
-{"id": "face", "type": "layer_hull", "stage": "secondary", "params": {"label": "face", "views": ["front", "side"], "color_projection": true}}
+{"id": "face", "type": "layer_hull", "stage": "secondary", "material": "skin", "params": {"label": "face", "views": ["front", "side"], "relief": true, "color_projection": true}},
+{"id": "visor", "type": "layer_hull", "stage": "secondary", "material": "glass_clear", "params": {"label": "visor", "views": ["front", "side"], "shell": true, "cover": ["face"]}}
 ```
 
-Never list `face` in `exclude_components`. Details: workflow, "Layers".
+Never list `face` in `exclude_components`. A visor without a see-through bulge (an opening only): drop the `visor` component. Details: workflow, "Layers".
 
-**Material per part.** Without a class every part renders like plastic. Set `"material"` on the component to a class name (`metal_steel` blade and armour plates, `cloth`, `leather`, `skin`, `hair`, `rubber`, `painted`, `emissive`; armour parts such as horns are not metal unless the reference shows it) or to a `materials` key with `"class"`. The body hull stays the default unless you set one. Table and values: [hard-surface rules](hard-surface-rules.md), "Material classes". Visor recipe: give the face layer `"material": "visor"` (a coat over the face colour; the face stays visible):
+**Detail pass: judge the face.** Once the run passes, read `previews/face_closeup.png` (reference | model, front view) and the summary's `face detail` line (`report.face_detail.layers.<id>`): `profile_relief_m` and whether relief is applied, `texels_per_px` (face layers default to a 2048 texture), `color_error` over the face label, the covering glass `shells`. Warnings: `face_ridge` (set `relief`), `face_texture` (raise `texture_size`). Eyes, nose or mouth in the wrong place: check the `face` labels (all of the opening in front, the skin and hair in side) and the side profile.
 
-```json
-{"id": "face", "type": "layer_hull", "stage": "secondary", "material": "visor", "params": {"label": "face", "views": ["front", "side"], "color_projection": true}}
-```
+**Material per part.** Without a class every part renders like plastic. Set `"material"` on the component to a class name (`metal_steel` blade and armour plates, `cloth`, `leather`, `skin`, `hair`, `rubber`, `painted`, `emissive`; armour parts such as horns are not metal unless the reference shows it) or to a `materials` key with `"class"`. The body hull stays the default unless you set one. Table and values: [hard-surface rules](hard-surface-rules.md), "Material classes". A face seen through clear glass: `skin` on the face layer and a `glass_clear` shell (above); `visor` (a coat over the face colour) only for a tinted lens with no glass of its own.
 
 **Where `size` goes.** `box`, `rounded_box`, `cylinder` and the other size-based types take `size` on the component (`"size": [x, y, z]` next to `type`), never in `params`. Anchored parts need none. Only `cone capsule cylinder blade plate disc sphere gem strand` can have `anchors_px` (`disc` yes, `rounded_box` and `box` no: validation rejects them).
 

@@ -1,0 +1,341 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_astronaut",
+  "category": "character",
+  "object_type": "sd_astronaut",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": true,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "bevel_width": 0.003,
+    "bevel_segments": 2,
+    "weighted_normals": false,
+    "texture": "auto",
+    "pbr": "auto"
+  },
+  "materials": {},
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "mirror_color_views": [
+          "side"
+        ],
+        "layers": [
+          "face"
+        ],
+        "exclude_components": [
+          "antenna_rod",
+          "antenna_ball"
+        ],
+        "color_projection": true
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "face",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "label": "face",
+        "views": [
+          "front",
+          "side"
+        ],
+        "relief": true,
+        "color_projection": true
+      },
+      "material": "skin",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "visor",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "label": "visor",
+        "views": [
+          "front",
+          "side"
+        ],
+        "shell": true,
+        "cover": [
+          "face"
+        ]
+      },
+      "material": "glass_clear",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "antenna_rod",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "anchors_px": {
+          "front": {
+            "base": [
+              174.5,
+              100
+            ],
+            "tip": [
+              174.5,
+              60
+            ],
+            "radius_px": [
+              4.5,
+              4.5
+            ]
+          },
+          "side": {
+            "base": [
+              143.5,
+              100
+            ],
+            "tip": [
+              143.5,
+              60
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.9829,
+              "iou_vis": 0.9829,
+              "covered": 0.9951,
+              "spill": 0.0123,
+              "label_px": 405
+            },
+            "side": {
+              "iou": 0.7775,
+              "iou_vis": 0.7775,
+              "covered": 0.9968,
+              "spill": 0.0,
+              "label_px": 312
+            }
+          },
+          "location": [
+            -0.07795840018368147,
+            0.02916243491303569,
+            0.5458371885007323
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": null,
+          "params": {
+            "base_radius": 0.004997933088173446,
+            "tip_radius": 0.004930155454713345,
+            "length": 0.03161665213545652,
+            "axis": [
+              0.06873233181544705,
+              0.015140774960174123,
+              0.9975202371364787
+            ],
+            "bend": 7.06707031401016,
+            "flatten": 0.9988982055871352,
+            "bend_dir": [
+              -0.9974729704026355,
+              -0.01698481786194884,
+              0.06898687758073584
+            ]
+          }
+        }
+      },
+      "material": "metal_steel",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "antenna_ball",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "anchors_px": {
+          "front": {
+            "center": [
+              174.5,
+              51
+            ],
+            "radius_px": [
+              12.5,
+              12.5
+            ]
+          },
+          "side": {
+            "center": [
+              143.5,
+              51
+            ],
+            "radius_px": [
+              12.5,
+              12.5
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.9623,
+              "iou_vis": 0.9949,
+              "covered": 0.9949,
+              "spill": 0.0,
+              "label_px": 590
+            },
+            "side": {
+              "iou": 0.9432,
+              "iou_vis": 0.9748,
+              "covered": 0.9864,
+              "spill": 0.0099,
+              "label_px": 589
+            }
+          },
+          "location": [
+            -0.07769737973796238,
+            0.029456206543462867,
+            0.5876213810502952
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            0.024021317708299506,
+            0.024185032773588695,
+            0.02432058642228215
+          ],
+          "params": {}
+        }
+      },
+      "material": "plastic",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  },
+  "parts_labels": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_astronaut/labels.json"
+}

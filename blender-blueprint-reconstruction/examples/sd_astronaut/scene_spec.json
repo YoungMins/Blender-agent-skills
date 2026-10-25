@@ -1,0 +1,166 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_astronaut",
+  "category": "character",
+  "object_type": "sd_astronaut",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": true,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "parts_labels": "labels.json",
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "mirror_color_views": [
+          "side"
+        ],
+        "layers": [
+          "face"
+        ],
+        "exclude_components": [
+          "antenna_rod",
+          "antenna_ball"
+        ],
+        "color_projection": true
+      }
+    },
+    {
+      "id": "face",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "skin",
+      "params": {
+        "label": "face",
+        "views": [
+          "front",
+          "side"
+        ],
+        "relief": true,
+        "color_projection": true
+      }
+    },
+    {
+      "id": "visor",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "glass_clear",
+      "params": {
+        "label": "visor",
+        "views": [
+          "front",
+          "side"
+        ],
+        "shell": true,
+        "cover": [
+          "face"
+        ]
+      }
+    },
+    {
+      "id": "antenna_rod",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "metal_steel",
+      "params": {
+        "anchors_px": {
+          "front": {
+            "base": [
+              174.5,
+              100
+            ],
+            "tip": [
+              174.5,
+              60
+            ],
+            "radius_px": [
+              4.5,
+              4.5
+            ]
+          },
+          "side": {
+            "base": [
+              143.5,
+              100
+            ],
+            "tip": [
+              143.5,
+              60
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "antenna_ball",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "material": "plastic",
+      "params": {
+        "anchors_px": {
+          "front": {
+            "center": [
+              174.5,
+              51
+            ],
+            "radius_px": [
+              12.5,
+              12.5
+            ]
+          },
+          "side": {
+            "center": [
+              143.5,
+              51
+            ],
+            "radius_px": [
+              12.5,
+              12.5
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

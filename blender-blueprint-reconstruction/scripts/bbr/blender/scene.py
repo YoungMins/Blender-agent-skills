@@ -20,6 +20,7 @@ PROP_CONFIDENCE = "reconstruction_confidence"
 PROP_TYPE = "bbr_component_type"
 PROP_STAGE = "bbr_stage"
 PROP_CUTTER = "bbr_cutter"
+PROP_TRANSPARENT = "bbr_transparent"   # see-through (glass): out of the colour metric, texture occlusion and object-ID renders
 PROP_CHECKPOINTS = "bbr_checkpoints"
 
 ORIGIN_NAME = "AI_ORIGIN"
@@ -122,10 +123,11 @@ def objects_in(collection_name: str) -> list[bpy.types.Object]:
     return list(coll.objects) if coll else []
 
 
-def model_meshes(include_cutters: bool = False) -> list[bpy.types.Object]:
-    """Mesh objects in AI_MODEL (cutters excluded unless asked)."""
+def model_meshes(include_cutters: bool = False, opaque: bool = False) -> list[bpy.types.Object]:
+    """Mesh objects in AI_MODEL (cutters excluded unless asked). ``opaque``: also leave out see-through objects
+    (``PROP_TRANSPARENT``, a clear glass shell): the reference shows what lies behind them."""
     return [o for o in objects_in(COLL_MODEL)
-            if o.type == "MESH" and (include_cutters or not o.get(PROP_CUTTER))]
+            if o.type == "MESH" and (include_cutters or not o.get(PROP_CUTTER)) and not (opaque and o.get(PROP_TRANSPARENT))]
 
 
 def duplicate_agent_ids() -> dict[str, int]:

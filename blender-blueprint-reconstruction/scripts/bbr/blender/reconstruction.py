@@ -14,6 +14,7 @@ import numpy as np
 
 from .. import BBRError, get_logger
 from ..core import attribution as attribution_core, consistency, dimcheck, gapcheck, imageio, measure
+from ..core import facedetail as facedetail_core
 from ..core import labels as labels_core
 from ..core.calibration import ViewCalibration, calibrate_views
 from ..core.config import PipelineConfig
@@ -23,7 +24,7 @@ from ..core.correction import apply_axis_scale, axis_scale_factors, diagnose
 from ..core.metrics import aggregate, extent_gate
 from ..core.summary import format_summary, merge_label_iou  # noqa: F401  (format_summary re-exported: used by run_pipeline)
 from ..core.spec import SceneSpec, ViewSpec, load_scene_spec, load_view_spec, parse_scene_spec, project_textures
-from . import (attribution, camera, checkpoint, components, material, mesh, partstex, primitive, projection, reference, render,
+from . import (attribution, camera, checkpoint, components, facedetail, material, mesh, partstex, primitive, projection, reference, render,
                scene, validation)
 from .components import HULL_TYPE, BuildContext, HullInputs
 
@@ -711,7 +712,8 @@ def measure_extras(inp: Inputs, cfg: PipelineConfig, cmp: Mapping[str, Any], rep
     ``{"error": ...}`` in its own block and never fails the run. Soft: only adds ``warnings``."""
     steps = (("attribution", lambda: attribution.analyze(inp, cfg)),
              ("part_iou", lambda: projection.compare_parts(inp.view_spec, inp.scene, inp.calibs, inp.masks, cmp["out_masks"])),
-             ("holdout", lambda: projection.compare_holdout(inp.view_spec, cfg, out)))
+             ("holdout", lambda: projection.compare_holdout(inp.view_spec, cfg, out)),
+             ("face_detail", lambda: facedetail.analyze(inp, out)))
     for name, fn in steps:
         try:
             report[name] = fn()
@@ -728,6 +730,9 @@ def measure_extras(inp: Inputs, cfg: PipelineConfig, cmp: Mapping[str, Any], rep
         log.exception("turntable failed")
         outputs["turntable_preview"] = f"error: {type(exc).__name__}: {exc}"
     details = attribution_core.warning_details(report.get("attribution"), report.get("part_iou"))
+    details += facedetail_core.warnings(report.get("face_detail"))
+    if isinstance(report.get("face_detail"), dict) and report["face_detail"].get("closeup"):
+        outputs["face_closeup_preview"] = report["face_detail"]["closeup"]
     details += [f"part_gap {g['a']}~{g['b']} ({g['gap_m'] * 1000:.0f} mm apart, tolerance {g['tol_m'] * 1000:.0f} mm; pin with params.joint)"
                 for g in report.get("part_gaps") or []]
     details += [f"floating_part {g['part']} ({g['gap_m'] * 1000:.0f} mm from {g['nearest']}, tolerance {g['tol_m'] * 1000:.0f} mm; attach it)"

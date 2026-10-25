@@ -1,0 +1,109 @@
+{
+  "antenna_rod": {
+    "type": "cone",
+    "fitted": true,
+    "loss_init": 0.21791,
+    "loss_fit": 0.02591,
+    "evals": 1671,
+    "seconds": 4.03,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "bend.0",
+      "bend.1",
+      "rb",
+      "rt",
+      "flatten"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 1,
+    "iou_init": {
+      "front": {
+        "iou": 0.7347,
+        "iou_vis": 0.8,
+        "covered": 0.8,
+        "spill": 0.0,
+        "label_px": 405
+      },
+      "side": {
+        "iou": 0.6,
+        "iou_vis": 0.6562,
+        "covered": 0.8077,
+        "spill": 0.0,
+        "label_px": 312
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.9829,
+        "iou_vis": 0.9829,
+        "covered": 0.9951,
+        "spill": 0.0123,
+        "label_px": 405
+      },
+      "side": {
+        "iou": 0.7775,
+        "iou_vis": 0.7775,
+        "covered": 0.9968,
+        "spill": 0.0,
+        "label_px": 312
+      }
+    }
+  },
+  "antenna_ball": {
+    "type": "sphere",
+    "fitted": true,
+    "loss_init": 0.18236,
+    "loss_fit": 0.01923,
+    "evals": 1437,
+    "seconds": 0.57,
+    "free": [
+      "center.x",
+      "center.y",
+      "center.z",
+      "semi.x",
+      "semi.y",
+      "semi.z"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 1,
+    "iou_init": {
+      "front": {
+        "iou": 0.8203,
+        "iou_vis": 0.8203,
+        "covered": 0.8203,
+        "spill": 0.0,
+        "label_px": 590
+      },
+      "side": {
+        "iou": 0.8156,
+        "iou_vis": 0.8156,
+        "covered": 0.8183,
+        "spill": 0.0041,
+        "label_px": 589
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.9623,
+        "iou_vis": 0.9949,
+        "covered": 0.9949,
+        "spill": 0.0,
+        "label_px": 590
+      },
+      "side": {
+        "iou": 0.9432,
+        "iou_vis": 0.9748,
+        "covered": 0.9864,
+        "spill": 0.0099,
+        "label_px": 589
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.3
+      "duration_s": 0.33
     },
     {
       "n": 2,
@@ -24,20 +24,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.285
+      "duration_s": 0.281
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.032
+      "duration_s": 0.025
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 0.804
+      "duration_s": 0.868
     },
     {
       "n": 6,
@@ -57,7 +57,7 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 51.514
+      "duration_s": 39.687
     },
     {
       "n": 9,
@@ -70,7 +70,7 @@
         "actual": {
           "width": 0.34444205835461617,
           "depth": 0.24787797778844833,
-          "height": 0.5874787239299621
+          "height": 0.5874747839989141
         },
         "target": {
           "width": 0.35394088669950735,
@@ -80,13 +80,13 @@
         "relative_error": {
           "width": -0.026837329909713437,
           "depth": -0.010184223591582109,
-          "height": -0.020868793450063094
+          "height": -0.020875360001809895
         },
         "tolerance": 0.05,
-        "floor_z": 0.0004624309076461941,
+        "floor_z": 0.0004663708386942744,
         "tolerance_source": "AI-generated references"
       },
-      "duration_s": 164.546
+      "duration_s": 177.528
     },
     {
       "n": 10,
@@ -105,13 +105,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 251.142
+      "duration_s": 312.91
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 1.052
+      "duration_s": 1.05
     },
     {
       "n": 14,
@@ -124,13 +124,13 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 59.827
+      "duration_s": 55.884
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.059
+      "duration_s": 0.068
     }
   ],
   "outputs": {
@@ -149,6 +149,7 @@
     "compare_back": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/compare_back.png",
     "comparison_sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/comparison_sheet.png",
     "turntable_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/turntable.png",
+    "face_closeup_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/face_closeup.png",
     "scene_spec_corrected": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/scene_spec_corrected.json",
     "blend": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/sd_warrior.blend"
   },
@@ -370,8 +371,8 @@
           "validate"
         ],
         "verdict": "demote",
-        "error": 0.03256,
-        "excess_error": -0.02234
+        "error": 0.03261,
+        "excess_error": -0.02229
       },
       "side": {
         "axis": "-X",
@@ -416,8 +417,8 @@
           "validate"
         ],
         "verdict": "ok",
-        "error": 0.0668,
-        "excess_error": 0.0119
+        "error": 0.06679,
+        "excess_error": 0.01189
       }
     },
     "flags": [],
@@ -490,7 +491,7 @@
     "actual": {
       "width": 0.34444205835461617,
       "depth": 0.24787797778844833,
-      "height": 0.5874787239299621
+      "height": 0.5874747839989141
     },
     "target": {
       "width": 0.35394088669950735,
@@ -500,20 +501,20 @@
     "relative_error": {
       "width": -0.026837329909713437,
       "depth": -0.010184223591582109,
-      "height": -0.020868793450063094
+      "height": -0.020875360001809895
     },
     "tolerance": 0.05,
-    "floor_z": 0.0004624309076461941,
+    "floor_z": 0.0004663708386942744,
     "tolerance_source": "AI-generated references"
   },
   "iterations": [
     {
       "iteration": 0,
-      "total_error": 0.04961595442976733,
+      "total_error": 0.04984894880098326,
       "per_view": {
-        "front": 0.03256,
-        "side": 0.04949,
-        "back": 0.0668
+        "front": 0.03261,
+        "side": 0.05014,
+        "back": 0.06679
       },
       "accepted": true
     }
@@ -528,7 +529,7 @@
           "actual": {
             "width": 0.34444205835461617,
             "depth": 0.24787797778844833,
-            "height": 0.5874787239299621
+            "height": 0.5874747839989141
           },
           "target": {
             "width": 0.35394088669950735,
@@ -538,10 +539,10 @@
           "relative_error": {
             "width": -0.026837329909713437,
             "depth": -0.010184223591582109,
-            "height": -0.020868793450063094
+            "height": -0.020875360001809895
           },
           "tolerance": 0.05,
-          "floor_z": 0.0004624309076461941
+          "floor_z": 0.0004663708386942744
         },
         "scale": {
           "passed": true,
@@ -582,17 +583,17 @@
     "warning_details": [],
     "reference_match": {
       "passed": true,
-      "total_error": 0.04961595442976733,
+      "total_error": 0.04984894880098326,
       "threshold": 0.08,
-      "front_error": 0.032562125107112205,
-      "side_error": 0.049485450997793445,
-      "back_error": 0.06680028718439635,
+      "front_error": 0.03261339925707263,
+      "side_error": 0.050138852597485406,
+      "back_error": 0.06679459454839176,
       "per_view": {
         "front": {
-          "iou": 0.9674378748928878,
-          "error": 0.032562125107112205,
+          "iou": 0.9673866007429274,
+          "error": 0.03261339925707263,
           "error_pct": 3.26,
-          "edge_px": 2.1768836975097656,
+          "edge_px": 2.1799354553222656,
           "width_ratio": 0.9749478079331941,
           "height_ratio": 0.979064039408867,
           "line": "Front Error : 3.3%",
@@ -630,18 +631,18 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.04968,
+          "color_error": 0.04958,
           "floor": 0.0549,
-          "excess_error": -0.02234
+          "excess_error": -0.02229
         },
         "side": {
-          "iou": 0.9505145490022066,
-          "error": 0.049485450997793445,
-          "error_pct": 4.95,
-          "edge_px": 2.796481132507324,
+          "iou": 0.9498611474025146,
+          "error": 0.050138852597485406,
+          "error_pct": 5.01,
+          "edge_px": 2.8397419452667236,
           "width_ratio": 0.9882697947214076,
           "height_ratio": 0.9791921664626683,
-          "line": "Side Error : 4.9%",
+          "line": "Side Error : 5.0%",
           "bbox_delta_m": {
             "left": -0.0014687882496940024,
             "right": -0.0014687882496940024,
@@ -676,13 +677,13 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.07841
+          "color_error": 0.07937
         },
         "back": {
-          "iou": 0.9331997128156037,
-          "error": 0.06680028718439635,
+          "iou": 0.9332054054516082,
+          "error": 0.06679459454839176,
           "error_pct": 6.68,
-          "edge_px": 3.6109654903411865,
+          "edge_px": 3.6101932525634766,
           "width_ratio": 0.9748427672955975,
           "height_ratio": 0.9790382244143033,
           "line": "Back Error : 6.7%",
@@ -694,7 +695,7 @@
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 2891,
+            "area_px": 2893,
             "bbox_px": [
               106,
               522,
@@ -720,9 +721,9 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.03116,
+          "color_error": 0.0312,
           "floor": 0.0549,
-          "excess_error": 0.0119
+          "excess_error": 0.01189
         }
       }
     },
@@ -780,17 +781,17 @@
   },
   "reference_match": {
     "passed": true,
-    "total_error": 0.04961595442976733,
+    "total_error": 0.04984894880098326,
     "threshold": 0.08,
-    "front_error": 0.032562125107112205,
-    "side_error": 0.049485450997793445,
-    "back_error": 0.06680028718439635,
+    "front_error": 0.03261339925707263,
+    "side_error": 0.050138852597485406,
+    "back_error": 0.06679459454839176,
     "per_view": {
       "front": {
-        "iou": 0.9674378748928878,
-        "error": 0.032562125107112205,
+        "iou": 0.9673866007429274,
+        "error": 0.03261339925707263,
         "error_pct": 3.26,
-        "edge_px": 2.1768836975097656,
+        "edge_px": 2.1799354553222656,
         "width_ratio": 0.9749478079331941,
         "height_ratio": 0.979064039408867,
         "line": "Front Error : 3.3%",
@@ -828,18 +829,18 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.04968,
+        "color_error": 0.04958,
         "floor": 0.0549,
-        "excess_error": -0.02234
+        "excess_error": -0.02229
       },
       "side": {
-        "iou": 0.9505145490022066,
-        "error": 0.049485450997793445,
-        "error_pct": 4.95,
-        "edge_px": 2.796481132507324,
+        "iou": 0.9498611474025146,
+        "error": 0.050138852597485406,
+        "error_pct": 5.01,
+        "edge_px": 2.8397419452667236,
         "width_ratio": 0.9882697947214076,
         "height_ratio": 0.9791921664626683,
-        "line": "Side Error : 4.9%",
+        "line": "Side Error : 5.0%",
         "bbox_delta_m": {
           "left": -0.0014687882496940024,
           "right": -0.0014687882496940024,
@@ -874,13 +875,13 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.07841
+        "color_error": 0.07937
       },
       "back": {
-        "iou": 0.9331997128156037,
-        "error": 0.06680028718439635,
+        "iou": 0.9332054054516082,
+        "error": 0.06679459454839176,
         "error_pct": 6.68,
-        "edge_px": 3.6109654903411865,
+        "edge_px": 3.6101932525634766,
         "width_ratio": 0.9748427672955975,
         "height_ratio": 0.9790382244143033,
         "line": "Back Error : 6.7%",
@@ -892,7 +893,7 @@
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 2891,
+          "area_px": 2893,
           "bbox_px": [
             106,
             522,
@@ -918,9 +919,9 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.03116,
+        "color_error": 0.0312,
         "floor": 0.0549,
-        "excess_error": 0.0119
+        "excess_error": 0.01189
       }
     }
   },
@@ -928,16 +929,16 @@
     "soft": true,
     "per_view": {
       "front": {
-        "error": 0.04967631237757955,
-        "pixels": 215709
+        "error": 0.04958269173466938,
+        "pixels": 215694
       },
       "side": {
-        "error": 0.07840534652033719,
-        "pixels": 150017
+        "error": 0.07937067545781407,
+        "pixels": 149939
       },
       "back": {
-        "error": 0.03116180181281812,
-        "pixels": 208253
+        "error": 0.031200006996938475,
+        "pixels": 208250
       }
     }
   },
@@ -949,15 +950,15 @@
       ],
       "cleanup": {
         "voxel_size": 0.0024,
-        "faces_before": 164736,
-        "faces_after": 108076,
+        "faces_before": 165062,
+        "faces_after": 108236,
         "island_vertices_removed": 8,
         "non_manifold_edges": 0
       },
       "retopo": {
         "requested": "decimate",
         "target_faces": 20000,
-        "faces_before": 108076,
+        "faces_before": 108236,
         "method": "decimate",
         "faces_after": 20000,
         "non_manifold_edges": 0
@@ -969,8 +970,8 @@
           0.0039
         ],
         "uv_max": [
-          0.9919,
-          0.9923
+          0.9877,
+          0.9873
         ]
       },
       "rings": {
@@ -1238,8 +1239,8 @@
       "layers": {
         "face": {
           "layer_cell_m": 0.001415,
-          "region_columns": 5184,
-          "carved_cells": 85033,
+          "region_columns": 5046,
+          "carved_cells": 85586,
           "max_recess_m": 0.0815
         }
       },
@@ -1250,44 +1251,49 @@
         "size": 2048,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_source_map.png",
-        "covered_texels": 1982323,
-        "coverage_pct": 47.3,
-        "texels_from_visible_samples_pct": 72.8,
+        "covered_texels": 1998905,
+        "coverage_pct": 47.7,
+        "texels_from_visible_samples_pct": 72.6,
         "views": {
-          "front": 0.22,
-          "side": 0.1332,
-          "back": 0.2372,
-          "mirror_side": 0.1115
+          "front": 0.2229,
+          "side": 0.1312,
+          "back": 0.2336,
+          "mirror_side": 0.1129
         },
-        "blend_share": 0.0265,
-        "inpainted_share": 0.2716,
-        "conflict_ratio": 0.0908,
+        "blend_share": 0.0256,
+        "inpainted_share": 0.2738,
+        "conflict_ratio": 0.0897,
         "background_leak_ratio": 5e-05,
-        "inpainted_uv_share": 0.1524,
-        "inpainted_3d_share": 0.1192,
-        "label_rejected_ratio": 0.0874,
-        "raster_s": 4.01,
-        "total_s": 35.67
+        "inpainted_uv_share": 0.1584,
+        "inpainted_3d_share": 0.1154,
+        "label_rejected_ratio": 0.0924,
+        "raster_s": 4.28,
+        "total_s": 39.79
       }
     },
     "face": {
       "cell_m": 0.001415,
       "grid": [
         160,
-        65,
+        55,
         94
       ],
+      "relief": {
+        "amplitude_m": 0.0167,
+        "center_x": 0.0048,
+        "width_m": 0.0152
+      },
       "cleanup": {
         "voxel_size": 0.0014154564647175483,
-        "faces_before": 49272,
-        "faces_after": 47230,
+        "faces_before": 41808,
+        "faces_after": 41268,
         "island_vertices_removed": 0,
         "non_manifold_edges": 0
       },
       "retopo": {
         "requested": "decimate",
         "target_faces": 5000,
-        "faces_before": 47230,
+        "faces_before": 41268,
         "method": "decimate",
         "faces_after": 5000,
         "non_manifold_edges": 0
@@ -1295,39 +1301,39 @@
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0156,
-          0.0156
+          0.0039,
+          0.0039
         ],
         "uv_max": [
-          0.9833,
-          0.9813
+          0.9948,
+          0.9938
         ]
       },
       "mirror_views": [
         "mirror_side"
       ],
       "texture": {
-        "size": 512,
+        "size": 2048,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_face_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_face_source_map.png",
-        "covered_texels": 70702,
-        "coverage_pct": 27.0,
-        "texels_from_visible_samples_pct": 47.4,
+        "covered_texels": 2792319,
+        "coverage_pct": 66.6,
+        "texels_from_visible_samples_pct": 46.2,
         "views": {
-          "front": 0.3659,
-          "side": 0.0469,
+          "front": 0.3828,
+          "side": 0.0378,
           "back": 0.0,
-          "mirror_side": 0.0551
+          "mirror_side": 0.0372
         },
-        "blend_share": 0.0064,
-        "inpainted_share": 0.5257,
-        "conflict_ratio": 0.08,
+        "blend_share": 0.0042,
+        "inpainted_share": 0.5381,
+        "conflict_ratio": 0.1027,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3035,
-        "inpainted_3d_share": 0.2222,
-        "label_rejected_ratio": 0.0344,
-        "raster_s": 0.11,
-        "total_s": 9.52
+        "inpainted_uv_share": 0.0567,
+        "inpainted_3d_share": 0.4814,
+        "label_rejected_ratio": 0.0203,
+        "raster_s": 6.95,
+        "total_s": 55.22
       },
       "material": {
         "key": "skin",
@@ -1369,8 +1375,8 @@
         "inpainted_uv_share": 0.1641,
         "inpainted_3d_share": 0.0559,
         "label_rejected_ratio": 0.1411,
-        "raster_s": 0.14,
-        "total_s": 3.82
+        "raster_s": 0.12,
+        "total_s": 3.84
       },
       "material": {
         "key": "plastic",
@@ -1412,8 +1418,8 @@
         "inpainted_uv_share": 0.1581,
         "inpainted_3d_share": 0.0344,
         "label_rejected_ratio": 0.1073,
-        "raster_s": 0.1,
-        "total_s": 2.29
+        "raster_s": 0.09,
+        "total_s": 3.55
       },
       "material": {
         "key": "plastic",
@@ -1451,8 +1457,8 @@
         "inpainted_uv_share": 0.0015,
         "inpainted_3d_share": 0.6993,
         "label_rejected_ratio": 0.4708,
-        "raster_s": 0.12,
-        "total_s": 4.33
+        "raster_s": 0.11,
+        "total_s": 4.31
       },
       "material": {
         "key": "metal_gold",
@@ -1492,7 +1498,7 @@
         "inpainted_3d_share": 0.4873,
         "label_rejected_ratio": 0.1498,
         "raster_s": 0.12,
-        "total_s": 4.11
+        "total_s": 4.15
       },
       "material": {
         "key": "leather",
@@ -1530,8 +1536,8 @@
         "inpainted_uv_share": 0.2232,
         "inpainted_3d_share": 0.5146,
         "label_rejected_ratio": 0.202,
-        "raster_s": 0.1,
-        "total_s": 1.6
+        "raster_s": 0.09,
+        "total_s": 1.51
       },
       "material": {
         "key": "leather",
@@ -1567,14 +1573,14 @@
           "mirror_side": 0.0
         },
         "blend_share": 0.0039,
-        "inpainted_share": 0.7007,
+        "inpainted_share": 0.7008,
         "conflict_ratio": 0.0036,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3304,
+        "inpainted_uv_share": 0.3305,
         "inpainted_3d_share": 0.3703,
-        "label_rejected_ratio": 0.2282,
-        "raster_s": 0.12,
-        "total_s": 20.8
+        "label_rejected_ratio": 0.2283,
+        "raster_s": 0.13,
+        "total_s": 23.16
       },
       "material": {
         "key": "metal_steel",
@@ -1617,8 +1623,8 @@
         "inpainted_uv_share": 0.2061,
         "inpainted_3d_share": 0.3146,
         "label_rejected_ratio": 0.3348,
-        "raster_s": 0.14,
-        "total_s": 27.34
+        "raster_s": 0.11,
+        "total_s": 28.84
       },
       "material": {
         "key": "metal_steel",
@@ -1662,7 +1668,7 @@
         "inpainted_3d_share": 0.148,
         "label_rejected_ratio": 0.1678,
         "raster_s": 0.13,
-        "total_s": 12.93
+        "total_s": 14.65
       },
       "material": {
         "key": "leather",
@@ -1704,8 +1710,8 @@
         "inpainted_uv_share": 0.3295,
         "inpainted_3d_share": 0.3835,
         "label_rejected_ratio": 0.2056,
-        "raster_s": 0.13,
-        "total_s": 20.35
+        "raster_s": 0.11,
+        "total_s": 21.56
       },
       "material": {
         "key": "metal_steel",
@@ -1748,8 +1754,8 @@
         "inpainted_uv_share": 0.1936,
         "inpainted_3d_share": 0.2948,
         "label_rejected_ratio": 0.3247,
-        "raster_s": 0.1,
-        "total_s": 24.09
+        "raster_s": 0.11,
+        "total_s": 28.06
       },
       "material": {
         "key": "metal_steel",
@@ -1793,7 +1799,7 @@
         "inpainted_3d_share": 0.0814,
         "label_rejected_ratio": 0.1571,
         "raster_s": 0.13,
-        "total_s": 10.83
+        "total_s": 12.62
       },
       "material": {
         "key": "leather",
@@ -1804,12 +1810,12 @@
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0162,
-          0.0164
+          0.0157,
+          0.0163
         ],
         "uv_max": [
-          0.9808,
-          0.9808
+          0.9828,
+          0.9828
         ]
       },
       "mirror_views": [
@@ -1819,24 +1825,24 @@
         "size": 512,
         "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_basecolor.png",
         "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_source_map.png",
-        "covered_texels": 145650,
-        "coverage_pct": 55.6,
-        "texels_from_visible_samples_pct": 43.1,
+        "covered_texels": 145952,
+        "coverage_pct": 55.7,
+        "texels_from_visible_samples_pct": 43.2,
         "views": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.4313,
+          "back": 0.4318,
           "mirror_side": 0.0
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.5687,
+        "inpainted_share": 0.5682,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0243,
-        "inpainted_3d_share": 0.5444,
-        "label_rejected_ratio": 0.0565,
-        "raster_s": 0.23,
-        "total_s": 34.45
+        "inpainted_uv_share": 0.0242,
+        "inpainted_3d_share": 0.544,
+        "label_rejected_ratio": 0.0551,
+        "raster_s": 0.4,
+        "total_s": 33.15
       },
       "material": {
         "key": "wood",
@@ -1871,7 +1877,7 @@
       "back": "observed"
     }
   },
-  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part arm_r_upper (43% of camera-facing samples hidden in its best view front), occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side), misattribution arm_r_upper (9% of texels sourced from body), misattribution arm_l_upper (8% of texels sourced from body), part_outside_reference shield (only 1% of it on the reference silhouette), hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)",
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part arm_r_upper (44% of camera-facing samples hidden in its best view front), occluded_part arm_l_upper (32% of camera-facing samples hidden in its best view side), misattribution arm_l_upper (8% of texels sourced from body), misattribution arm_r_upper (7% of texels sourced from body), part_outside_reference shield (only 1% of it on the reference silhouette), hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)",
   "diagnosis": [
     {
       "view": "back",
@@ -1925,8 +1931,8 @@
   "warnings": [
     "occluded_part:arm_r_upper",
     "occluded_part:arm_l_upper",
-    "misattribution:arm_r_upper",
     "misattribution:arm_l_upper",
+    "misattribution:arm_r_upper",
     "part_outside_reference:shield",
     "hull_debris:body"
   ],
@@ -1936,73 +1942,73 @@
       "side",
       "back"
     ],
-    "samples": 150417,
+    "samples": 150412,
     "facing_threshold": 0.3,
     "occlusion_warn": 0.3,
     "misattribution_warn": 0.05,
     "objects": {
       "body": {
-        "samples": 102163,
-        "misattribution": 0.0034262155245948253,
+        "samples": 103586,
+        "misattribution": 0.004140931082079667,
         "top_confusion": {
           "object": "arm_l_upper",
-          "share": 0.0011373329542223485
+          "share": 0.0010596321960877264
         },
-        "occlusion_share": 0.14179647251348568,
+        "occlusion_share": 0.1410206699078355,
         "best_view": "back",
-        "pooled_occlusion": 0.2005680463558997,
-        "hidden_share": 0.19558735057937277,
+        "pooled_occlusion": 0.19906937050432805,
+        "hidden_share": 0.19257995844981918,
         "occlusion_per_view": {
-          "front": 0.20983448400615032,
-          "side": 0.254421858500528,
-          "back": 0.14179647251348568
+          "front": 0.2052413306273714,
+          "side": 0.2552585593165491,
+          "back": 0.1410206699078355
         }
       },
       "horn_l": {
-        "samples": 3295,
-        "misattribution": 0.0023688663282571912,
+        "samples": 3337,
+        "misattribution": 0.0010046885465505692,
         "top_confusion": {
           "object": "body",
-          "share": 0.0023688663282571912
+          "share": 0.0010046885465505692
         },
         "occlusion_share": 0.0,
         "best_view": "side",
-        "pooled_occlusion": 0.027867628763373974,
-        "hidden_share": 0.035578144853875476,
+        "pooled_occlusion": 0.03263002944062807,
+        "hidden_share": 0.04152357165157665,
         "occlusion_per_view": {
-          "front": 0.06363069245165315,
+          "front": 0.07354758961681088,
           "side": 0.0,
-          "back": 0.008097165991902834
+          "back": 0.011111111111111112
         }
       },
       "horn_r": {
-        "samples": 3140,
-        "misattribution": 0.0015980823012385138,
+        "samples": 3180,
+        "misattribution": 0.002818035426731079,
         "top_confusion": {
           "object": "body",
-          "share": 0.0015980823012385138
+          "share": 0.002818035426731079
         },
-        "occlusion_share": 0.013513513513513514,
+        "occlusion_share": 0.010101010101010102,
         "best_view": "back",
-        "pooled_occlusion": 0.3509639149777558,
-        "hidden_share": 0.08149702693249387,
+        "pooled_occlusion": 0.35542607428987616,
+        "hidden_share": 0.08226754234358798,
         "occlusion_per_view": {
-          "front": 0.06598334401024984,
+          "front": 0.06746532156368222,
           "side": 1.0,
-          "back": 0.013513513513513514
+          "back": 0.010101010101010102
         }
       },
       "sword_pommel": {
         "samples": 600,
-        "misattribution": 0.04176334106728538,
+        "misattribution": 0.04096385542168675,
         "top_confusion": {
-          "object": "sword_grip",
-          "share": 0.025522041763341066
+          "object": "body",
+          "share": 0.021686746987951807
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.36186186186186187,
-        "hidden_share": 0.29158512720156554,
+        "pooled_occlusion": 0.3615023474178404,
+        "hidden_share": 0.31673306772908366,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
@@ -2010,191 +2016,191 @@
         }
       },
       "sword_grip": {
-        "samples": 683,
-        "misattribution": 0.024793388429752067,
+        "samples": 691,
+        "misattribution": 0.04054054054054054,
         "top_confusion": {
           "object": "sword_blade",
-          "share": 0.011019283746556474
+          "share": 0.021621621621621623
         },
-        "occlusion_share": 0.13229571984435798,
+        "occlusion_share": 0.12686567164179105,
         "best_view": "front",
-        "pooled_occlusion": 0.48370273794002605,
-        "hidden_share": 0.4737704918032787,
+        "pooled_occlusion": 0.48280254777070064,
+        "hidden_share": 0.45454545454545453,
         "occlusion_per_view": {
-          "front": 0.13229571984435798,
-          "side": 0.23788546255506607,
+          "front": 0.12686567164179105,
+          "side": 0.25217391304347825,
           "back": 1.0
         }
       },
       "sword_blade": {
-        "samples": 2055,
-        "misattribution": 0.036057692307692304,
+        "samples": 2081,
+        "misattribution": 0.022565320665083134,
         "top_confusion": {
           "object": "sword_grip",
-          "share": 0.026442307692307692
+          "share": 0.0166270783847981
         },
-        "occlusion_share": 0.11414790996784566,
+        "occlusion_share": 0.12727272727272726,
         "best_view": "front",
-        "pooled_occlusion": 0.5056852184320766,
-        "hidden_share": 0.5056852184320766,
+        "pooled_occlusion": 0.4997000599880024,
+        "hidden_share": 0.4997000599880024,
         "occlusion_per_view": {
-          "front": 0.11414790996784566,
-          "side": 0.6187214611872146,
-          "back": 0.823240589198036
+          "front": 0.12727272727272726,
+          "side": 0.5882352941176471,
+          "back": 0.8425324675324676
         }
       },
       "arm_l_upper": {
-        "samples": 2680,
-        "misattribution": 0.07848568790397045,
+        "samples": 2714,
+        "misattribution": 0.08277830637488107,
         "top_confusion": {
           "object": "body",
-          "share": 0.07109879963065559
+          "share": 0.06374881065651761
         },
-        "occlusion_share": 0.3376494023904382,
+        "occlusion_share": 0.32012847965738755,
         "best_view": "side",
-        "pooled_occlusion": 0.46153846153846156,
-        "hidden_share": 0.5237242614145031,
+        "pooled_occlusion": 0.47042640990371387,
+        "hidden_share": 0.539079946404645,
         "occlusion_per_view": {
-          "front": 0.4074427480916031,
-          "side": 0.3376494023904382,
-          "back": 0.6753246753246753
+          "front": 0.44695481335952847,
+          "side": 0.32012847965738755,
+          "back": 0.6422594142259415
         }
       },
       "arm_l_fore": {
-        "samples": 1958,
-        "misattribution": 0.017484868863483525,
+        "samples": 1983,
+        "misattribution": 0.02906208718626156,
         "top_confusion": {
           "object": "arm_l_upper",
-          "share": 0.0121049092131809
+          "share": 0.01915455746367239
         },
-        "occlusion_share": 0.0635593220338983,
+        "occlusion_share": 0.058734939759036146,
         "best_view": "back",
-        "pooled_occlusion": 0.15694372741352608,
-        "hidden_share": 0.14505776636713735,
+        "pooled_occlusion": 0.16380182002022245,
+        "hidden_share": 0.14753046824887747,
         "occlusion_per_view": {
-          "front": 0.1900958466453674,
-          "side": 0.23217247097844113,
-          "back": 0.0635593220338983
+          "front": 0.21076923076923076,
+          "side": 0.22289156626506024,
+          "back": 0.058734939759036146
         }
       },
       "hand_l": {
-        "samples": 1910,
-        "misattribution": 0.02468265162200282,
+        "samples": 1934,
+        "misattribution": 0.027155465037338764,
         "top_confusion": {
           "object": "arm_l_fore",
-          "share": 0.019746121297602257
+          "share": 0.017651052274270197
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.003320420586607637,
-        "hidden_share": 0.004152249134948097,
+        "pooled_occlusion": 0.0021482277121374865,
+        "hidden_share": 0.002702702702702703,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.011299435028248588
+          "back": 0.007259528130671506
         }
       },
       "arm_r_upper": {
-        "samples": 2680,
-        "misattribution": 0.08942065491183879,
+        "samples": 2714,
+        "misattribution": 0.07133592736705577,
         "top_confusion": {
           "object": "body",
-          "share": 0.05919395465994962
+          "share": 0.04798962386511025
         },
-        "occlusion_share": 0.43197616683217477,
+        "occlusion_share": 0.4429268292682927,
         "best_view": "front",
-        "pooled_occlusion": 0.6924480116745714,
-        "hidden_share": 0.6141876430205949,
+        "pooled_occlusion": 0.6994671403197158,
+        "hidden_share": 0.6216457960644007,
         "occlusion_per_view": {
-          "front": 0.43197616683217477,
+          "front": 0.4429268292682927,
           "side": 1.0,
-          "back": 0.6902857142857143
+          "back": 0.7001090512540894
         }
       },
       "arm_r_fore": {
-        "samples": 1958,
-        "misattribution": 0.024354243542435424,
+        "samples": 1983,
+        "misattribution": 0.01989683124539425,
         "top_confusion": {
           "object": "arm_r_upper",
-          "share": 0.014022140221402213
+          "share": 0.016212232866617538
         },
-        "occlusion_share": 0.07112375533428165,
+        "occlusion_share": 0.05405405405405406,
         "best_view": "back",
-        "pooled_occlusion": 0.4197651663405088,
-        "hidden_share": 0.2777101096224117,
+        "pooled_occlusion": 0.41971693509028796,
+        "hidden_share": 0.2793939393939394,
         "occlusion_per_view": {
-          "front": 0.18251533742331288,
+          "front": 0.18885448916408668,
           "side": 1.0,
-          "back": 0.07112375533428165
+          "back": 0.05405405405405406
         }
       },
       "hand_r": {
-        "samples": 1910,
-        "misattribution": 0.016822429906542057,
+        "samples": 1934,
+        "misattribution": 0.020833333333333332,
         "top_confusion": {
           "object": "arm_r_fore",
-          "share": 0.016822429906542057
+          "share": 0.020833333333333332
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.3956164383561644,
-        "hidden_share": 0.2501699524133243,
+        "pooled_occlusion": 0.4045307443365696,
+        "hidden_share": 0.24846834581347857,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 1.0,
-          "back": 0.0036496350364963502
+          "back": 0.0018587360594795538
         }
       },
       "shield": {
-        "samples": 9476,
-        "misattribution": 0.006615670870374199,
+        "samples": 9598,
+        "misattribution": 0.005308289097590854,
         "top_confusion": {
           "object": "body",
-          "share": 0.006615670870374199
+          "share": 0.005308289097590854
         },
         "occlusion_share": 0.0,
         "best_view": "back",
-        "pooled_occlusion": 0.4412426352437065,
-        "hidden_share": 0.45239424042861925,
+        "pooled_occlusion": 0.4396497151297742,
+        "hidden_share": 0.45122892097431944,
         "occlusion_per_view": {
           "front": 1.0,
-          "side": 0.003484320557491289,
+          "side": 0.00228310502283105,
           "back": 0.0
         }
       },
       "face": {
-        "samples": 15909,
-        "misattribution": 0.009511641113003975,
+        "samples": 14077,
+        "misattribution": 0.012131423757371525,
         "top_confusion": {
           "object": "body",
-          "share": 0.009511641113003975
+          "share": 0.012131423757371525
         },
-        "occlusion_share": 0.008333333333333333,
+        "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.5033919323072434,
-        "hidden_share": 0.49531415532556433,
+        "pooled_occlusion": 0.4986112213316403,
+        "hidden_share": 0.5043199429945666,
         "occlusion_per_view": {
-          "front": 0.008333333333333333,
-          "side": 0.5141969831410825,
-          "back": 0.9998244073748902
+          "front": 0.0,
+          "side": 0.4407427635172037,
+          "back": 1.0
         }
       }
     },
     "misattribution_max": {
-      "object": "arm_r_upper",
-      "share": 0.08942065491183879
+      "object": "arm_l_upper",
+      "share": 0.08277830637488107
     },
     "occlusion_max": {
       "object": "arm_r_upper",
-      "share": 0.43197616683217477
+      "share": 0.4429268292682927
     },
     "occluded_objects": [
       "arm_r_upper",
       "arm_l_upper"
     ],
     "misattributed_objects": [
-      "arm_r_upper",
-      "arm_l_upper"
+      "arm_l_upper",
+      "arm_r_upper"
     ]
   },
   "part_iou": {
@@ -2208,7 +2214,7 @@
             "iou": 0.5999691928527419,
             "precision": 0.9550079686159128,
             "part_px": 8157,
-            "model_iou": 0.9267466912896276
+            "model_iou": 0.9267523274601831
           },
           "side": {
             "visible": true,
@@ -2277,7 +2283,7 @@
             "iou": 0.22125382262996943,
             "precision": 0.9735366674142184,
             "part_px": 4459,
-            "model_iou": 0.9698758396092001
+            "model_iou": 0.969774068797069
           },
           "side": {
             "visible": true,
@@ -2291,7 +2297,7 @@
             "iou": 0.25570303970579783,
             "precision": 0.9995507637017071,
             "part_px": 4452,
-            "model_iou": 0.8362012742688005
+            "model_iou": 0.8361009381427783
           }
         },
         "mean_iou": 0.22944367952075817,
@@ -2382,7 +2388,7 @@
             "iou": 0.49601965601965603,
             "precision": 0.9670434949223989,
             "part_px": 5219,
-            "model_iou": 0.9719929245283019
+            "model_iou": 0.9717963836477987
           },
           "side": {
             "visible": true,
@@ -2396,7 +2402,7 @@
             "iou": 0.49591280653950953,
             "precision": 0.942101226993865,
             "part_px": 5216,
-            "model_iou": 0.9363421363815531
+            "model_iou": 0.9362435947970044
           }
         },
         "mean_iou": 0.48664250838611817,
@@ -2416,7 +2422,7 @@
             "iou": 0.5535567151881351,
             "precision": 0.9889597644749755,
             "part_px": 4076,
-            "model_iou": 0.9480021893814997
+            "model_iou": 0.9477285166940339
           },
           "side": {
             "visible": true,
@@ -2430,7 +2436,7 @@
             "iou": 0.6421842567459684,
             "precision": 0.9865096884964435,
             "part_px": 4077,
-            "model_iou": 0.813221550302364
+            "model_iou": 0.8129466739967015
           }
         },
         "mean_iou": 0.5483248961363998,
@@ -2450,14 +2456,14 @@
             "iou": 0.475035685963521,
             "precision": 1.0,
             "part_px": 29951,
-            "model_iou": 0.9968472250827801
+            "model_iou": 0.9968155389027076
           },
           "side": {
             "visible": true,
             "iou": 0.002635689183912534,
             "precision": 0.010982306284319707,
             "part_px": 4917,
-            "model_iou": 0.7418459741018402
+            "model_iou": 0.7417972933502093
           },
           "back": {
             "visible": true,
@@ -2481,13 +2487,25 @@
     ]
   },
   "holdout": {},
+  "face_detail": {
+    "layers": {
+      "face": {
+        "shells": [],
+        "relief_applied": true,
+        "profile_relief_m": 0.0167,
+        "texels_per_px": 5.52,
+        "color_error": 0.0406
+      }
+    },
+    "closeup": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/face_closeup.png"
+  },
   "warning_details": [
-    "occluded_part arm_r_upper (43% of camera-facing samples hidden in its best view front)",
-    "occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side)",
-    "misattribution arm_r_upper (9% of texels sourced from body)",
+    "occluded_part arm_r_upper (44% of camera-facing samples hidden in its best view front)",
+    "occluded_part arm_l_upper (32% of camera-facing samples hidden in its best view side)",
     "misattribution arm_l_upper (8% of texels sourced from body)",
+    "misattribution arm_r_upper (7% of texels sourced from body)",
     "part_outside_reference shield (only 1% of it on the reference silhouette)",
     "hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)"
   ],
-  "elapsed_s": 540.37
+  "elapsed_s": 599.4
 }

@@ -402,6 +402,43 @@ def check_materials(api, tmp: Path) -> None:
     print("MATERIALS OK")
 
 
+def check_glass_and_relief(api, tmp: Path) -> None:
+    """Detail pass on sd_astronaut (small settings): the visor is a closed see-through shell, left out of the colour render
+    and the opaque mesh list; the face layer carries the profile relief and a 2048 texture by default."""
+    import json
+    import bmesh
+    import numpy as np
+    from bbr.blender import hull, render, scene, synthetic
+
+    ex = SK / "examples" / "sd_astronaut"
+    spec = json.loads((ex / "scene_spec.json").read_text(encoding="utf-8"))
+    spec["components"][0]["params"].update(resolution=96, texture_size=512, target_faces=3000)
+    spec["parts_labels"] = str(ex / "labels.json")
+    path = tmp / "astronaut_spec.json"
+    path.write_text(json.dumps(spec), encoding="utf-8")
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    res = api.build_from_scene_spec(str(path), str(ex / "view_spec.json"))
+    assert res["ok"], res
+    visor = scene.find_by_agent_id("sd_astronaut:visor")
+    face = scene.find_by_agent_id("sd_astronaut:face")
+    assert visor.get(scene.PROP_TRANSPARENT) == 1 and not face.get(scene.PROP_TRANSPARENT)
+    assert visor not in scene.model_meshes(opaque=True) and visor in scene.model_meshes()
+    bsdf = next(n for n in visor.data.materials[0].node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+    assert bsdf.inputs["Transmission Weight"].default_value == 1.0
+    bm = bmesh.new()
+    bm.from_mesh(visor.data)
+    assert not any(not e.is_manifold for e in bm.edges), "the visor shell is not closed"
+    bm.free()
+    assert face.data.materials[0].node_tree.nodes["bbr_basecolor"].image.size[0] == 2048
+    dims, _ = synthetic.model_dimensions()
+    cal = synthetic.synthetic_calibration("front", "-Y", dims)
+    with_glass = render.render_color("front", cal)
+    visor.hide_render = True
+    assert np.array_equal(with_glass, render.render_color("front", cal)), "the glass must not reach the colour render"
+    visor.hide_render = False
+    print("GLASS RELIEF OK")
+
+
 def check_update_component(api, tmp: Path) -> None:
     """update_component: merge + rebuild of one object; a failing rebuild restores the spec file."""
     import json
@@ -492,6 +529,7 @@ def main() -> None:
     check_lathe_attach(api, tmp)
     check_plate(api, tmp)
     check_materials(api, tmp)
+    check_glass_and_relief(api, tmp)
     check_update_component(api, tmp)
     print("SMOKE OK", {k: v for k, v in counts2.items()})
 

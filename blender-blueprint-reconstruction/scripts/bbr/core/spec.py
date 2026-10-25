@@ -470,6 +470,12 @@ def _semantic_scene_errors(data: dict) -> list[str]:
             ref = joint.get("part") if isinstance(joint, dict) else None
             if ref not in ids or ref == c["id"]:
                 errors.append(f"{where}: params.joint must be {{\"part\": <another component id>, \"at\": ..., \"self\": ...}}, got {joint!r}")
+        for ref in params.get("cover") or []:
+            target = next((o for o in comps if o["id"] == ref), None)
+            if target is None or ref == c["id"] or target["type"] != "layer_hull":
+                errors.append(f"{where}: params.cover '{ref}' is not another layer_hull component")
+        if params.get("cover") and not (c["type"] == "layer_hull" and params.get("shell")):
+            errors.append(f"{where}: params.cover needs a layer_hull with params.shell true")
         for ref in params.get("adjacent_to") or []:
             if ref not in ids or ref == c["id"]:
                 errors.append(f"{where}: params.adjacent_to '{ref}' is not another component id")
@@ -551,6 +557,8 @@ def is_textured_component(comp: Component, character: bool = False, project: boo
     if comp.type == HULL_TYPE or comp.boolean:
         return False
     contour_plate = comp.type == "plate" and bool(comp.params.get("anchors_px") or comp.params.get("mirror_of"))   # a hard-surface plate is a box
+    if comp.params.get("shell"):    # a glass shell over a layer: see-through, the face layer behind it takes the pixels
+        return bool(comp.params.get("color_projection", False))
     return bool(comp.params.get("color_projection", character or project or contour_plate or comp.type in PART_TEXTURE_TYPES))
 
 

@@ -69,7 +69,7 @@ def analyze(inp: Any, config: Any, total: int = TOTAL_SAMPLES) -> dict[str, Any]
     occlusion_max, occluded_objects, misattributed_objects}``; ``{"skipped": reason}`` without colour views.
     """
     hi = inp.hull
-    objs = scene.model_meshes()
+    objs = scene.model_meshes(opaque=True)   # glass: the reference shows the face behind it
     if hi is None or not objs:
         return {"skipped": "no ViewSpec or no model meshes"}
     hull = partstex.hull_component(inp.scene)

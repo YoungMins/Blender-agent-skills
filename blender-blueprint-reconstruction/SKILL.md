@@ -20,7 +20,7 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
 ## Choose a track
 
 - **Hard-surface**: furniture, props, machines. One component per visible part. Templates `examples/simple_table`, `examples/treasure_chest`, [hard-surface rules](references/hard-surface-rules.md) (type table; `lathe` for caps, vases).
-- **Character/organic**: soft outlines, colour texture. A `silhouette_hull` body; templates `examples/robot_character` (hull only), `examples/sd_warrior` (with parts).
+- **Character/organic**: soft outlines, colour texture. A `silhouette_hull` body; templates `examples/robot_character` (hull only), `examples/sd_warrior` (with parts), `examples/sd_astronaut` (glass visor, face detail).
   - Hull-only for props disconnected in EVERY carve view; else parts.
   - Labelled parts (thin parts, limbs, wings, accessories): read the [character cheatsheet](references/character-cheatsheet.md) first; details in the [workflow](references/reconstruction-workflow.md).
 
@@ -67,12 +67,10 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
    "$B" -b --factory-startup -P scripts/run_pipeline.py -- --view-spec $W/references/view_spec.json --scene-spec $W/scene_spec.json --out $W/out
    ```
    Exit 0 passed, 2 failed, 1 error; read the `===== BBR RESULT` block (`next:` says what to do). Hard-surface: `--stop-after blockout` first.
-8. **Read results** ([validation rules](references/validation-rules.md); occlusion and misattribution warnings are noisy for kits). Open `out/comparison_sheet.png`, `previews/perspective.png`, `turntable.png`. In `out/report.json` read `status`, `warnings`, `recommendation`, and:
-   - `consistency.views.<view>`: `error`, `floor`, `excess_error` (fix only the excess).
-   - `part_iou.parts.<id>.mean_label_iou` (vs its own label; `mean_iou` is low for thin parts), `attribution.occluded_objects`, `attribution.misattributed_objects`.
-   - `hull.<id>.texture`: `inpainted_share`, `background_leak_ratio`.
+8. **Read results.** Open `out/comparison_sheet.png`, `previews/perspective.png`; in `report.json` read `status`, `warnings`, `recommendation`, `excess_error` (fix only the excess), `mean_label_iou` ([validation rules](references/validation-rules.md); occlusion and misattribution warnings are noisy for kits).
 9. **Fix loop.** Status `failed`: read `recommendation` and the failing check, fix the biggest error source (label, anchors, `fit_locked`, size, a `floating_part` WARNING), re-run until it passes or the 6-run budget (runs without `--stop-after`) is spent. Never stop while budget remains; two runs without gain: change approach.
-10. **Finish.** Report per-view error vs floor, pass or fail, every warning, what is inferred, visible defects, `.blend` and preview paths. Never claim success over a defect.
+10. **Detail pass (characters).** After passing, read `previews/face_closeup.png` and the `face detail` line; fix `face_ridge`, `face_texture` or off features ([cheatsheet](references/character-cheatsheet.md) section 9), re-run.
+11. **Finish.** Report per-view error vs floor, pass or fail, every warning, what is inferred, visible defects, `.blend` and preview paths. Never claim success over a defect.
 
 ## Hard rules
 
@@ -82,7 +80,7 @@ You decide semantics (parts, labels, relations); tools do the metric work. "Done
 4. Never carve from back, a generated top view or a single generated view.
 5. Do not chase the floor.
 6. Symmetric character, one side view: hull param `mirror_color_views: ["side"]`, one-sided parts in `asymmetric_parts`.
-7. A face behind a visor, glass, mask opening or helmet rim needs a `layer_hull` face layer, else front face and side profile project onto one surface: [cheatsheet](references/character-cheatsheet.md) section 9.
+7. Face behind a visor, glass or helmet rim: `layer_hull` face layer with `relief: true`; clear glass is a separate `shell` layer ([cheatsheet](references/character-cheatsheet.md) section 9).
 8. Set `material` / `class` per part ([classes](references/hard-surface-rules.md)), or defaults look like plastic.
 
 ## Missing or inconsistent data

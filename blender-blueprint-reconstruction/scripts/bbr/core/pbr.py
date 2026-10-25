@@ -14,9 +14,10 @@ from typing import Any, Mapping, Optional, Union
 
 from .. import SpecError
 
-PBR_KEYS = ("metallic", "roughness", "coat", "coat_roughness", "sheen", "specular", "emission_strength", "ior")
+PBR_KEYS = ("metallic", "roughness", "coat", "coat_roughness", "sheen", "specular", "emission_strength", "ior", "transmission")
 PBR_MODES = ("auto", "stylized", "physical")
 DEFAULT_CLASS = "default"
+TRANSPARENT_TRANSMISSION = 0.5   # a material at or above this transmission is see-through (see is_transparent)
 
 _METAL = {"metallic": 1.0}
 _COAT = {"coat": 1.0, "coat_roughness": 0.03}
@@ -36,6 +37,9 @@ CLASSES: dict[str, tuple[dict[str, float], dict[str, float]]] = {
     "painted": ({"roughness": 0.4, **_COAT}, {"roughness": 0.45, "coat": 0.3, "coat_roughness": 0.03}),
     # opaque glossy glass: no transmission, so it keeps the projected colour
     "glass": ({"roughness": 0.05, "coat": 1.0, "coat_roughness": 0.02},) * 2,
+    # clear glass (helmet bubble, separate visor shell): see-through, so the colour metric and the texture projection look
+    # through it (is_transparent); only the lit preview shows it
+    "glass_clear": ({"transmission": 1.0, "roughness": 0.03, "ior": 1.45, "specular": 0.5},) * 2,
     # visor / lens: a coat over a rougher layer
     "visor": ({"roughness": 0.45, **_COAT},) * 2,
     "emissive": ({"emission_strength": 1.0}, {"emission_strength": 0.6}),
@@ -87,6 +91,11 @@ def resolve(entry: Optional[Union[Mapping[str, Any], str]], column: str) -> dict
         out.update(CLASSES[canonical(entry["class"])][column == "stylized"])
     out.update({k: float(entry[k]) for k in PBR_KEYS if entry.get(k) is not None})
     return out
+
+
+def is_transparent(values: Mapping[str, float]) -> bool:
+    """True when resolved PBR ``values`` (:func:`resolve`) are see-through (transmission >= TRANSPARENT_TRANSMISSION)."""
+    return float(values.get("transmission", 0.0)) >= TRANSPARENT_TRANSMISSION
 
 
 def entry_for(key: Optional[str], materials: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:

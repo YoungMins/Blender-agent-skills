@@ -425,7 +425,8 @@
         ],
         "resolution": 160,
         "exponent": 2.0,
-        "color_projection": true
+        "color_projection": true,
+        "relief": true
       },
       "notes": "Face recessed inside the helmet opening: its own hull from the face label (front + side), the body is recessed behind it (body.params.layers). Not in exclude_components: the body keeps the face pixels in its carve masks and is cut by the layer region instead."
     }

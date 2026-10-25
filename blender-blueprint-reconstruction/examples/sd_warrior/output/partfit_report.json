@@ -5,7 +5,7 @@
     "loss_init": 0.45053,
     "loss_fit": 0.17222,
     "evals": 1685,
-    "seconds": 40.32,
+    "seconds": 44.36,
     "free": [
       "base.x",
       "base.y",
@@ -114,7 +114,7 @@
     "loss_init": 0.90803,
     "loss_fit": 0.05475,
     "evals": 1266,
-    "seconds": 0.72,
+    "seconds": 1.04,
     "free": [
       "center.x",
       "center.y",
@@ -165,7 +165,7 @@
     "loss_init": 0.69724,
     "loss_fit": 0.34211,
     "evals": 1273,
-    "seconds": 5.67,
+    "seconds": 7.12,
     "free": [
       "base.x",
       "base.y",
@@ -217,7 +217,7 @@
     "loss_init": 0.36498,
     "loss_fit": 0.19009,
     "evals": 1282,
-    "seconds": 20.76,
+    "seconds": 25.39,
     "free": [
       "base.x",
       "base.y",
@@ -285,7 +285,7 @@
     "loss_init": 0.45334,
     "loss_fit": 0.13736,
     "evals": 955,
-    "seconds": 3.04,
+    "seconds": 3.09,
     "free": [
       "base.x",
       "base.y",
@@ -354,7 +354,7 @@
     "loss_init": 0.70112,
     "loss_fit": 0.38396,
     "evals": 1359,
-    "seconds": 4.55,
+    "seconds": 4.48,
     "free": [
       "base.x",
       "base.y",
@@ -423,7 +423,7 @@
     "loss_init": 0.45752,
     "loss_fit": 0.35112,
     "evals": 1025,
-    "seconds": 1.96,
+    "seconds": 1.95,
     "free": [
       "center.x",
       "center.y",
@@ -601,7 +601,7 @@
     "loss_init": 0.09352,
     "loss_fit": 0.0047,
     "evals": 1322,
-    "seconds": 27.12,
+    "seconds": 27.71,
     "free": [
       "center.x",
       "center.y",

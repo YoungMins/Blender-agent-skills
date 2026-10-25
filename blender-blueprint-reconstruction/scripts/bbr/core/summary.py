@@ -1,7 +1,7 @@
 """Human-readable result block of a report (pure python: unit-testable without Blender)."""
 from __future__ import annotations
 
-from typing import Any, Mapping
+from typing import Any, Mapping, Optional
 
 from .colormetric import format_color_error_line
 from .config import DIMENSION_TOLERANCE
@@ -116,6 +116,21 @@ def next_action(report: Mapping[str, Any], failed: list[str]) -> str:
     return ""
 
 
+def format_face_detail(block: Optional[Mapping[str, Any]]) -> list[str]:
+    """``face detail <id>: ...`` lines of a ``face_detail`` report block (see :mod:`bbr.core.facedetail`)."""
+    out = []
+    for lid, f in ((block or {}).get("layers") or {}).items():
+        if "error" in f:
+            out.append(f"face detail {lid}: error {f['error']}")
+            continue
+        relief = f"profile relief {f.get('profile_relief_m', 0) * 1000:.0f} mm " + ("on the midline" if f.get("relief_applied") else "NOT applied")
+        parts = [relief, f"{f['texels_per_px']:.1f} texels/px" if "texels_per_px" in f else None,
+                 f"colour error {f['color_error'] * 100:.1f}%" if "color_error" in f else None,
+                 f"glass {', '.join(f['shells'])}" if f.get("shells") else None]
+        out.append(f"face detail {lid}: " + ", ".join(p for p in parts if p))
+    return out
+
+
 def format_summary(report: Mapping[str, Any]) -> str:
     """Human-readable result block with per-view error percentages."""
     lines = [f"===== BBR RESULT: {report.get('name')} =====", f"status: {report.get('status')}"]
@@ -153,7 +168,7 @@ def format_summary(report: Mapping[str, Any]) -> str:
     if report.get("error"):
         lines.append(f"error: {report['error']}")
     for key in ("blend", "report", "perspective_preview", "perspective_back_preview", "front_lit_preview", "side_lit_preview",
-                "top_preview", "turntable_preview", "comparison_sheet"):
+                "top_preview", "turntable_preview", "comparison_sheet", "face_closeup_preview"):
         if key in (report.get("outputs") or {}):
             lines.append(f"{key}: {report['outputs'][key]}")
     for cid, st in (report.get("hull") or {}).items():
@@ -164,6 +179,7 @@ def format_summary(report: Mapping[str, Any]) -> str:
             lines.append(f"texture {cid}: {views} blend {100 * tex['blend_share']:.0f}% "
                          f"inpainted {100 * tex['inpainted_share']:.0f}% {tail} "
                          f"bg-leak {100 * tex.get('background_leak_ratio', 0.0):.2f}%")
+    lines.extend(format_face_detail(report.get("face_detail")))
     lines.append(f"elapsed: {report.get('elapsed_s')} s")
     nxt = next_action(report, failed if report.get("passed") is False else [])
     if nxt:

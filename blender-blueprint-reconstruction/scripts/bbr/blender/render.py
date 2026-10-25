@@ -140,7 +140,7 @@ def _view_distance() -> float:
 
 def _color_type() -> str:
     """TEXTURE display when a model mesh carries the projected texture material, else MATERIAL."""
-    for obj in scene.model_meshes():
+    for obj in scene.model_meshes(opaque=True):
         if any(m is not None and m.name.startswith(REF_TEXTURE_MATERIAL) for m in obj.data.materials):
             return "TEXTURE"
     return "MATERIAL"
@@ -164,11 +164,12 @@ def render_mask(view: str, calib: ViewCalibration, out_path: Optional[Path | str
 def render_color(view: str, calib: ViewCalibration, out_path: Optional[Path | str] = None,
                  render_scale: float = 1.0, bg: Sequence[float] = SYNTHETIC_BG, aa: str = CRISP_AA,
                  flat: bool = True, transparent: bool = False) -> np.ndarray:
-    """Color render from ``view`` on a solid ``bg`` (or transparent); the material / projected color attribute is the color."""
+    """Color render from ``view`` on a solid ``bg`` (or transparent); the material / projected color attribute is the color.
+    See-through objects (clear glass) are left out: the reference shows what lies behind them."""
     w, h = calib.image_size
     size = (max(1, round(w * render_scale)), max(1, round(h * render_scale)))
     cam = camera.ensure_ortho_camera(view, calib, _view_distance())
-    with render_session(scene.model_meshes()) as sc, _scratch_path(out_path) as path:
+    with render_session(scene.model_meshes(opaque=True)) as sc, _scratch_path(out_path) as path:
         _configure(sc, cam, size, transparent=transparent, aa=aa, filter_size=MASK_FILTER_SIZE,
                    light="FLAT" if flat else "STUDIO", color_type=_color_type(), bg=bg)
         return _render_file(sc, path)
@@ -231,7 +232,7 @@ def render_color_dir(azimuth: float, elevation: float, size: tuple[int, int], m_
                      transparent: bool = False) -> np.ndarray:
     """Flat colour render from an arbitrary orthographic direction (framing as :func:`render_mask_dir`)."""
     cam = camera.ensure_ortho_camera_dir("dir", azimuth, elevation, size, m_per_px, centre, _view_distance())
-    with render_session(scene.model_meshes()) as sc, _scratch_path(out_path) as path:
+    with render_session(scene.model_meshes(opaque=True)) as sc, _scratch_path(out_path) as path:
         _configure(sc, cam, size, transparent=transparent, aa=aa, filter_size=MASK_FILTER_SIZE, light="FLAT",
                    color_type=_color_type(), bg=bg)
         return _render_file(sc, path)
@@ -348,7 +349,7 @@ def render_preview(out_path: Optional[Path | str] = None, size: tuple[int, int] 
             return _render_lit_preview(cam, size, box, direction, out_path)
         except Exception as exc:  # noqa: BLE001 - any Cycles/device problem must not break the workflow
             log.warning("lit preview failed (%s); falling back to the Workbench studio light", exc)
-    with render_session(scene.model_meshes()) as sc, _scratch_path(out_path) as path:
+    with render_session(scene.model_meshes(opaque=True)) as sc, _scratch_path(out_path) as path:
         _configure(sc, cam, size, transparent=False, aa=PREVIEW_AA, filter_size=MASK_FILTER_SIZE,
                    light="STUDIO", color_type=_color_type(), bg=PREVIEW_BG)
         return _render_file(sc, path)

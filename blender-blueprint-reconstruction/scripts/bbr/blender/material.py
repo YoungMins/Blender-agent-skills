@@ -18,7 +18,7 @@ NODE_SPACING = 300
 # pbr key (see bbr.core.pbr) -> Principled BSDF input (Blender 5.x names)
 PBR_SOCKETS = {"metallic": "Metallic", "roughness": "Roughness", "coat": "Coat Weight", "coat_roughness": "Coat Roughness",
                "sheen": "Sheen Weight", "specular": "Specular IOR Level", "emission_strength": "Emission Strength",
-               "ior": "IOR"}
+               "ior": "IOR", "transmission": "Transmission Weight"}
 
 
 def _rgba(color: Optional[Sequence[float]]) -> tuple[float, float, float, float]:

@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
+
+import numpy as np
 
 import bpy
 
@@ -110,15 +112,40 @@ def _layer_field(comp: Component, ctx: BuildContext) -> layers_core.LayerField:
             raise BBRError(f"{comp.id}: a layer needs reference views: pass a ViewSpec (HullInputs) to the build")
         label = str(p.get("label", comp.id))
         masks = labels_core.part_masks(partstex.label_masks(ctx), label)
+        for other in p.get("cover") or []:        # a shell's footprint: its own label plus those of the layers it covers
+            other_comp = ctx.scene.get_component(str(other))
+            other_label = str(other_comp.params.get("label", other_comp.id))
+            for view, mask in labels_core.part_masks(partstex.label_masks(ctx), other_label).items():
+                masks[view] = mask | masks[view] if view in masks else mask
         views = [str(v) for v in p.get("views") or ("front", "side")]
         if len(views) != 2 or any(v not in masks or v not in hi.calibs for v in views):
             raise BBRError(f"{comp.id}: a layer is carved from the label {label!r} in two views {views} "
                            f"(front-type, side-type); labelled views: {sorted(masks)} (needs parts_labels)")
+        relief = _relief_params(comp)
+        if relief is not None:     # face detail: carve a featureless profile, the features go back on the midline later
+            rel = layers_core.profile_relief(masks[views[1]], hi.calibs[views[1]],
+                                             float(relief.get("smooth", layers_core.DEFAULT_RELIEF_SMOOTH)))
+            masks = {**masks, views[1]: rel.mask}
+            front = masks[views[0]]
+            cols = np.nonzero(front.any(axis=0))[0]
+            xs = hi.calibs[views[0]].px_to_plane(np.stack([cols + 0.5, np.zeros(len(cols))], axis=1))[:, 0]
+            weights = front[:, cols].sum(axis=0)
+            ctx.extra.setdefault("_layer_reliefs", {})[comp.id] = (
+                rel, float(relief.get("center_x", np.average(xs, weights=weights))),
+                float(relief.get("width", layers_core.DEFAULT_RELIEF_WIDTH)) * float(xs.max() - xs.min()))
         cache[comp.id] = layers_core.build_layer_field(
             masks, hi.calibs, views[0], views[1], int(p.get("resolution", layers_core.DEFAULT_LAYER_RESOLUTION)),
             float(p.get("exponent", 2.0)), str(p.get("cross_section", "superellipse")),
             pair_max_aspect=float(p.get("pair_max_aspect", 4.0)))
     return cache[comp.id]
+
+
+def _relief_params(comp: Component) -> Optional[dict[str, Any]]:
+    """``params.relief`` of a layer as a dict (``true`` = defaults), None when off."""
+    relief = comp.params.get("relief")
+    if not relief:
+        return None
+    return dict(relief) if isinstance(relief, dict) else {}
 
 
 def _recess_layers(comp: Component, ctx: BuildContext, field: Any, origin: Any, cell: float) -> dict[str, Any]:
@@ -224,9 +251,24 @@ def _post_process(comp: Component, ctx: BuildContext, obj: bpy.types.Object, car
         stats["texture_deferred"] = True
         material.assign_material(obj, material_for(comp, ctx))
         return stats
-    zbufs = dict(zip(usable, hullpost.scene_depth_buffers(scene.model_meshes(), [hi.calibs[k] for k in usable])))
+    zbufs = dict(zip(usable, hullpost.scene_depth_buffers(scene.model_meshes(opaque=True), [hi.calibs[k] for k in usable])))
     stats.update(partstex.bake_object(comp, ctx, obj, unwrap=False, zbuffers=zbufs))
     return stats
+
+
+def _build_shell(comp: Component, ctx: BuildContext, lf: layers_core.LayerField, t0: float) -> bpy.types.Object:
+    """``params.shell``: a thin closed sheet over the layer's front surface (glass visor, helmet bubble; see
+    :func:`bbr.core.layers.shell_mesh`), lightly smoothed; no voxel cleanup or retopo (they would close up the sheet)."""
+    p = comp.params
+    verts, quads = layers_core.shell_mesh(lf, float(p.get("thickness", layers_core.DEFAULT_SHELL_THICKNESS_M)))
+    verts = taubin_smooth(verts, quads, int(p.get("smooth_iterations", LAYER_SMOOTH_ITERATIONS)))
+    obj, data = object_for(comp, ctx)
+    mesh.mesh_from_arrays(data, verts, quads)
+    mesh.set_smooth(data, True)
+    ctx.extra.setdefault("hull_stats", {})[comp.id] = {"shell": True, "cell_m": round(float(lf.cell), 6),
+                                                       "faces": len(data.polygons)}
+    log.info("shell %s: %d faces in %.1fs", comp.id, len(data.polygons), time.perf_counter() - t0)
+    return obj
 
 
 @register_component(LAYER_TYPE)
@@ -238,14 +280,21 @@ def build_layer(comp: Component, ctx: BuildContext) -> bpy.types.Object:
     p, cfg = comp.params, ctx.config
     t0 = time.perf_counter()
     lf = _layer_field(comp, ctx)
+    if p.get("shell"):
+        return _build_shell(comp, ctx, lf, t0)
     verts, quads = surface_nets(lf.field, lf.origin + 0.5 * lf.cell, lf.cell)
     if len(quads) == 0:
         raise BBRError(f"{comp.id}: the layer hull is empty")
     verts = taubin_smooth(verts, quads, int(p.get("smooth_iterations", LAYER_SMOOTH_ITERATIONS)))
+    stats: dict[str, Any] = {"cell_m": round(float(lf.cell), 6), "grid": list(lf.field.shape)}
+    relief = ctx.extra.get("_layer_reliefs", {}).get(comp.id)
+    if relief is not None:
+        rel, x0, width = relief
+        verts = layers_core.apply_relief(verts, lf, rel, x0, width)
+        stats["relief"] = {"amplitude_m": round(rel.amplitude, 4), "center_x": round(x0, 4), "width_m": round(width, 4)}
     obj, data = object_for(comp, ctx)
     mesh.mesh_from_arrays(data, verts, quads)
     mesh.set_smooth(data, True)
-    stats: dict[str, Any] = {"cell_m": round(float(lf.cell), 6), "grid": list(lf.field.shape)}
     voxel = float(p.get("remesh_voxel", lf.cell))
     if voxel > 0:
         stats["cleanup"] = hullpost.voxel_cleanup(obj, voxel, float(p.get("remove_islands_ratio", hullpost.ISLAND_RATIO)),

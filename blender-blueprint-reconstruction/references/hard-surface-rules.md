@@ -90,7 +90,7 @@ Every component also takes `stage`, `confidence`, `material`, `rotation_deg`, `m
 
 ## Material classes
 
-`material` on a component is a key of `materials` or a class name; `materials.<key>.class` plus explicit keys (`roughness`, `metallic`, `coat`, `coat_roughness`, `sheen`, `specular`, `emission_strength`, `ior`; explicit wins) tunes one. Projected textures use the stylized column, flat materials the physical one (`style.pbr`: `auto` | `stylized` | `physical`). Colour always comes from the texture / `base_color`. No class = roughness 0.6, metallic 0 (plastic look).
+`material` on a component is a key of `materials` or a class name; `materials.<key>.class` plus explicit keys (`roughness`, `metallic`, `coat`, `coat_roughness`, `sheen`, `specular`, `emission_strength`, `ior`, `transmission`; explicit wins) tunes one. Projected textures use the stylized column, flat materials the physical one (`style.pbr`: `auto` | `stylized` | `physical`). Colour always comes from the texture / `base_color`. No class = roughness 0.6, metallic 0 (plastic look).
 
 | class (aliases) | physical | stylized |
 |---|---|---|
@@ -100,6 +100,7 @@ Every component also takes `stage`, `confidence`, `material`, `rotation_deg`, `m
 | `hair` / `leather` / `wood` / `stone` | R 0.45 / 0.55 / 0.7 / 0.88 | R 0.5 / 0.6 / 0.7 / 0.9 |
 | `plastic` / `painted` (paint) | R 0.4 / R 0.4 + coat 1 | R 0.45 / R 0.45 + coat 0.3 |
 | `glass` (opaque glossy, no transmission) | R 0.05 + coat 1 (coat R 0.02) | same |
+| `glass_clear` (see-through: transmission 1, R 0.03, IOR 1.45) | transmission >= 0.5 makes a part see-through: the colour metric, the texture projection and the object-ID renders look through it, the lit previews show it | same |
 | `visor` | R 0.45 + coat 1 (coat R 0.03) | same |
 | `emissive` | emission 1.0 x colour | 0.6 |
 | `rubber` | R 0.88, specular 0.3 | R 0.9, specular 0.3 |

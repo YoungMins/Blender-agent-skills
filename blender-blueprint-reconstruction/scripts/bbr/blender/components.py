@@ -27,6 +27,7 @@ log = get_logger(__name__)
 HULL_TYPE = "silhouette_hull"
 LAYER_TYPE = "layer_hull"   # a hull of its own that sits in a recess of the body hull (see core/layers.py)
 DEFAULT_MATERIAL_KEY = "default"
+SHELL_MATERIAL = "glass_clear"   # default class of a layer shell (a visor / helmet glass over a face layer)
 DEFAULT_BEVEL_WIDTH = 0.003
 DEFAULT_BEVEL_SEGMENTS = 2
 DEFAULT_FRAME_THICKNESS = 0.02
@@ -327,13 +328,23 @@ def _build_disc(comp: Component, ctx: BuildContext) -> bpy.types.Object:
 
 
 # --------------------------------------------------------------------------- common handling
+def material_key(comp: Component) -> Optional[str]:
+    """The component's ``material`` value; a layer ``shell`` (glass over a face) defaults to ``SHELL_MATERIAL``."""
+    return comp.material or (SHELL_MATERIAL if comp.type == LAYER_TYPE and comp.params.get("shell") else None)
+
+
+def material_values(comp: Component, spec: Any) -> tuple[dict[str, Any], dict[str, float]]:
+    """``(material entry, resolved flat-material PBR values)`` of a component (see :func:`material_for`)."""
+    key = material_key(comp)
+    params = pbr.entry_for(key, spec.materials) if key else dict(spec.materials.get(DEFAULT_MATERIAL_KEY, {}))
+    return params, pbr.resolve(params, pbr.column_for(False, spec.style))
+
+
 def material_for(comp: Component, ctx: BuildContext) -> bpy.types.Material:
     """Principled material of a component (``materials[key]`` of the SceneSpec or a material class name, else a neutral
     default); a class contributes its :mod:`bbr.core.pbr` values, explicit keys win."""
-    key = comp.material or DEFAULT_MATERIAL_KEY
-    params = pbr.entry_for(comp.material, ctx.scene.materials) if comp.material else dict(ctx.scene.materials.get(key, {}))
-    values = pbr.resolve(params, pbr.column_for(False, ctx.scene.style))
-    return material.ensure_material(f"{ctx.scene.name}:{key}", params.get("base_color"),
+    params, values = material_values(comp, ctx.scene)
+    return material.ensure_material(f"{ctx.scene.name}:{material_key(comp) or DEFAULT_MATERIAL_KEY}", params.get("base_color"),
                                     values.get("roughness", material.DEFAULT_ROUGHNESS), values.get("metallic", 0.0), values)
 
 
@@ -348,6 +359,10 @@ def finalize_object(obj: bpy.types.Object, comp: Component, ctx: BuildContext) -
     obj[scene.PROP_STAGE] = comp.stage
     if comp.type != HULL_TYPE:
         material.assign_material(obj, material_for(comp, ctx))
+    if pbr.is_transparent(material_values(comp, ctx.scene)[1]):
+        obj[scene.PROP_TRANSPARENT] = 1
+    elif scene.PROP_TRANSPARENT in obj.keys():
+        del obj[scene.PROP_TRANSPARENT]
     if comp.boolean:
         obj[scene.PROP_CUTTER] = 1
         obj.display_type = "WIRE"

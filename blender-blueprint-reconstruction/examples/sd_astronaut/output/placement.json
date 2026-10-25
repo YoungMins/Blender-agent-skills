@@ -1,0 +1,80 @@
+{
+  "antenna_rod": {
+    "type": "cone",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.005,
+    "keypoints": {
+      "base": [
+        -0.07796,
+        0.02916,
+        0.54584
+      ],
+      "tip": [
+        -0.07773,
+        0.02961,
+        0.57743
+      ],
+      "mid": [
+        -0.07736,
+        0.02939,
+        0.56163
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      },
+      "tip": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 0.0
+      },
+      "tip": {
+        "z": 0.0
+      }
+    },
+    "location": [
+      -0.07796,
+      0.02916,
+      0.54584
+    ]
+  },
+  "antenna_ball": {
+    "type": "sphere",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.01201,
+    "keypoints": {
+      "center": [
+        -0.0777,
+        0.02946,
+        0.58762
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      }
+    },
+    "view_spread_mm": {
+      "center": {
+        "z": 0.0
+      }
+    },
+    "location": [
+      -0.0777,
+      0.02946,
+      0.58762
+    ]
+  }
+}

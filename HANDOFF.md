@@ -73,13 +73,33 @@
 
 예제 output(상자, 전사, 로봇, 테이블, 의자)을 Linux에서 다시 만들었다. 버섯 집은 원래 output을 커밋하지 않았다.
 
+## 3-1. WI-5 (얼굴 디테일 패스 + 유리 분리): 완료
+
+사용자 요청(2026-10-25): "1차로 정면·측면 이미지로 모델링을 완성하고, 2차로 에이전트가 캐릭터라고 판단하면 얼굴 이목구비를 더 디테일하게 완성한다. 유리(우주인 헬멧 등)는 제대로 표현하고, 얼굴과 유리를 분리해서 표현한다. 검증에도 이 로직을 넣는다."
+
+테스트베드로 `examples/sd_astronaut`(generated-images/sd_astronaut_turnaround.png)를 새로 만들었다. 최종 실행: 통과, 전체 오차 1.5%.
+
+| 문제 (기준선) | 원인 | 변경 |
+|---|---|---|
+| 유리가 얼굴에 칠한 coat였다 (`material: visor`) | 유리 개체가 없음 | `layer_hull`의 `shell: true` + `cover: ["face"]`: 얼굴 레이어 앞에 닫힌 얇은 유리 메시(`core/layers.shell_mesh`). 측면 뷰의 유리 볼록 부분은 `visor` 라벨. 새 재질 클래스 `glass_clear`(transmission 1, IOR 1.45). 깊이 오차 -11.2% → 통과 |
+| 유리가 색 지표와 텍스처 투영을 가릴 것 | - | transmission ≥ 0.5인 부품에 `bbr_transparent` 속성. `scene.model_meshes(opaque=True)`가 이를 빼고, 색 렌더(지표, holdout), 텍스처 투영 깊이 버퍼, 객체 ID 렌더(attribution)에 쓰임. 실루엣과 Cycles 미리보기에는 포함 |
+| 측면 프로필의 코·입·턱이 얼굴 폭 전체에 가로 능선으로 돌출 | visual hull은 프로필을 폭 전체로 압출 | `layer_hull`의 `relief: true`: 프로필을 매끈한 기저(돌출을 잘라내며 반복한 가우시안)와 특징으로 나누고, 기저로 깎은 뒤 특징을 얼굴 중심선 주변(가우시안 σ = 폭의 7%)에만 되돌림(`core/layers.profile_relief`, `apply_relief`) |
+| 눈·입이 흐림 | 얼굴 레이어 텍스처가 부품 기본값 512 (약 1 texel/px) | 레이어 기본 텍스처 2048 (5.1 texel/px) |
+| 검증이 얼굴을 따로 보지 않음 | - | `report.face_detail.layers.<id>`: `texels_per_px`, `profile_relief_m`/`relief_applied`, 얼굴 라벨 영역 `color_error`, 덮는 유리 `shells`, `previews/face_closeup.png`(레퍼런스 \| 모델). 소프트 경고 `face_ridge`, `face_texture`. 요약에 `face detail ...` 줄 |
+| 에이전트 절차 | - | SKILL.md 10단계 "Detail pass (characters)", 하드 규칙 7 갱신(999단어). 치트시트 9절(relief, 유리 shell, 디테일 패스), workflow "Relief / Shell / Face detail check", 재질 표에 `glass_clear` |
+
+- sd_warrior 얼굴 레이어에도 `relief: true`를 넣고 output을 다시 만들었다(통과, 전체 5.0%).
+- 시도했다가 뺀 것: 반사 줄무늬(`_glare`) 검출 도구. 우주인 레퍼런스에는 칠해진 반사가 없었고(렌더의 흰 줄은 유리에 비친 스튜디오 조명), 후보가 눈 흰자를 잡아서 제거했다.
+- 남은 한계: relief는 중심선의 특징만 다룬다(볼 돌출 등은 안 됨). 눈 광택(per-texel 재질)은 WI-3 범위. 유리 shell은 ~3만 면(데시메이트 없음).
+- 테스트: `tests/test_shell.py`(shell 닫힘·법선, profile relief, apply_relief, cover 검증), `tests/test_facedetail.py`, 스모크 `check_glass_and_relief`.
+
 ## 4. 다음 할 일 (우선순위 순)
 
 1. ~~WI-1 마무리와 검증~~ (완료, 3절)
 2. **WI-2**: UV 통계(`core/uvstats.py`)를 리포트에 넣고, 하드서피스 텍셀 예산(`core/uvbudget.py`, `uv_budget` 플래그)을 만든다. 벤치 A/B 후 하드서피스 기본값을 켠다.
-3. **WI-3**: 텍셀 단위 재질 클래스. `materials.json` 라벨, `prepare_references.py materials --suggest`, `core/matclass.py`. 전사 갑옷·망토·피부, 우주인 헬멧·슈트를 구분한다.
+3. **WI-3**: 텍셀 단위 재질 클래스. `materials.json` 라벨, `prepare_references.py materials --suggest`, `core/matclass.py`. 전사 갑옷·망토·피부, 우주인 헬멧·슈트를 구분한다. 눈 광택(eye shine)도 여기서 다룬다.
 4. **WI-4**(보류): 뷰 정렬 UV 차트. WI-2 수치에서 p05 < 1.0일 때만 진행한다.
-5. 그 다음: 9차 블라인드 테스트로 재질 개선을 확인한다. 범위 밖이지만 효과가 있을 후보는 hull의 안 보이는 면 채움, 비스듬한 뷰 줄무늬, 유령 팔뚝 라벨 게이팅이다.
+5. 그 다음: 9차 블라인드 테스트로 재질·얼굴 디테일·유리 개선을 확인한다(SKILL.md 10단계를 새 에이전트가 따르는지). 범위 밖이지만 효과가 있을 후보는 hull의 안 보이는 면 채움, 비스듬한 뷰 줄무늬, 유령 팔뚝 라벨 게이팅이다.
 
 ## 5. 환경 메모 (클라우드에서 이어갈 때)
 
@@ -105,6 +125,6 @@
 
 ## 7. 커밋 시점 상태
 
-- pytest(2026-10-25, 클라우드 Linux, Python 3.13, numpy 2.5.3): **473개 전부 통과**, 약 4분
-- Blender 스모크(bpy 5.1.1): `SMOKE OK` (`MATERIALS OK` 포함)
+- pytest(2026-10-25, 클라우드 Linux, Python 3.13, numpy 2.5.3): **484개 전부 통과**, 약 4분
+- Blender 스모크(bpy 5.1.1): `SMOKE OK` (`MATERIALS OK`, `GLASS RELIEF OK` 포함)
 - 벤치(`bench/run_bench.py`)는 WI-1 후 아직 돌리지 않았다.

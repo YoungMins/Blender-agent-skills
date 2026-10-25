@@ -170,3 +170,142 @@ def recess_field(field: np.ndarray, origin: Sequence[float], cell: float, layer:
     stats = {"layer_cell_m": round(float(layer.cell), 6), "region_columns": int((sd_tab < 0).sum()),
              "carved_cells": int(carved.sum()), "max_recess_m": round(float(per_col.max()), 4)}
     return new, stats
+
+
+DEFAULT_SHELL_THICKNESS_M = 0.0015   # glass of a visor / helmet bubble
+
+
+def shell_mesh(layer: LayerField, thickness: float = DEFAULT_SHELL_THICKNESS_M) -> tuple[np.ndarray, np.ndarray]:
+    """Closed thin shell over the layer's front surface: a glass visor in front of a face layer.
+
+    Every (x, z) column with material gets a front vertex at ``y_front`` and a back vertex ``thickness`` behind it
+    (+y); each 2x2 block of such columns is a front quad (facing -Y) and a back quad (facing +Y), and every boundary
+    edge of the front sheet is closed by a wall quad. Returns ``(verts [n, 3], quads [m, 4])`` (outward winding)."""
+    if thickness <= 0:
+        raise ValueError(f"shell thickness must be > 0, got {thickness}")
+    valid = np.isfinite(layer.y_front)                     # [nz, nx]
+    if not valid.any():
+        raise CalibrationError("the shell has no front surface (empty layer)")
+    nz, nx = valid.shape
+    xc, zc = layer.centers(0), layer.centers(2)
+    index = -np.ones((nz, nx), dtype=np.int64)
+    rows, cols = np.nonzero(valid)
+    index[rows, cols] = np.arange(len(rows))
+    n = len(rows)
+    yf = layer.y_front[rows, cols].astype(float)
+    front = np.stack([xc[cols], yf, zc[rows]], axis=1)
+    back = front + np.array([0.0, thickness, 0.0])
+    verts = np.concatenate([front, back])
+    a, b = index[:-1, :-1], index[:-1, 1:]                 # (z, x), (z, x+1)
+    c, d = index[1:, 1:], index[1:, :-1]                   # (z+1, x+1), (z+1, x)
+    ok = (a >= 0) & (b >= 0) & (c >= 0) & (d >= 0)
+    # seen from -Y (x right, z up) a -> b -> c -> d is counter-clockwise: the front quad faces -Y
+    fq = np.stack([a[ok], b[ok], c[ok], d[ok]], axis=1)
+    if len(fq) == 0:
+        raise CalibrationError("the shell footprint is too thin for one grid cell: raise the layer resolution")
+    bq = fq[:, ::-1] + n
+    edges = np.stack([fq, np.roll(fq, -1, axis=1)], axis=2).reshape(-1, 2)    # directed edges of the front quads
+    key = np.sort(edges, axis=1)
+    _, inv, counts = np.unique(key, axis=0, return_inverse=True, return_counts=True)
+    boundary = edges[counts[inv.ravel()] == 1]
+    # a front boundary edge u -> v runs counter-clockwise around the sheet seen from -Y; the wall u, u', v', v faces out
+    walls = np.stack([boundary[:, 1], boundary[:, 0], boundary[:, 0] + n, boundary[:, 1] + n], axis=1)
+    return verts, np.concatenate([fq, bq, walls]).astype(np.int64)
+
+
+# --------------------------------------------------------------------------- face detail: localised profile relief
+DEFAULT_RELIEF_SMOOTH = 0.08   # profile smoothing sigma, share of the label's height: nose, lips, chin are finer than this
+RELIEF_BASE_ITERATIONS = 12    # asymmetric baseline: smoothing with the protrusions clipped, repeated
+DEFAULT_RELIEF_WIDTH = 0.07    # relief sigma across the face, share of the layer's width (nose / lips sit on the midline)
+
+
+@dataclass
+class ProfileRelief:
+    """The side profile of a layer split into a smooth base and its features.
+
+    ``mask``: the side label mask cut back / filled out to the smoothed profile (no features: carving it gives no ridge);
+    ``z`` (ascending) and ``dy`` (m, world y): per height, the profile's front minus the base front (< 0: a feature such
+    as the nose sticks out toward -Y; > 0: a hollow)."""
+    mask: np.ndarray
+    z: np.ndarray
+    dy: np.ndarray
+
+    @property
+    def amplitude(self) -> float:
+        """Largest feature depth (m)."""
+        return float(np.abs(self.dy).max()) if len(self.dy) else 0.0
+
+
+def _gaussian_1d(values: np.ndarray, sigma: float) -> np.ndarray:
+    if sigma <= 0:
+        return values.astype(float)
+    r = max(1, int(round(3 * sigma)))
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma) ** 2)
+    k /= k.sum()
+    padded = np.pad(values.astype(float), r, mode="reflect" if len(values) > r else "edge")
+    return np.convolve(padded, k, mode="valid")
+
+
+def profile_relief(mask: np.ndarray, calib: ViewCalibration, smooth: float = DEFAULT_RELIEF_SMOOTH) -> ProfileRelief:
+    """Split the front contour of a side-view layer mask (camera ``+-X``) into a smooth base and its features.
+
+    Per image row the contour is the mask pixel nearest the front (-Y); the base is a Gaussian smoothing over the rows
+    (sigma ``smooth`` times the mask's height) repeated with the protrusions clipped to it, so it runs behind the nose,
+    lips and chin instead of through them. The returned mask ends at the smoothed contour, so the layer carved from it has
+    a featureless front; :func:`apply_relief` puts the features back on the face's midline only (a visual hull would
+    extrude a nose seen in profile across the whole face width: a horizontal ridge)."""
+    mask = np.asarray(mask, dtype=bool)
+    f = view_frame(calib.camera_axis)
+    if abs(float(f.right[1])) < 0.99:
+        raise CalibrationError(f"relief needs a side view (camera +-X), got {calib.camera_axis}")
+    front_is_left = float(f.right[1]) > 0          # image right = +y: the front (-y) is the leftmost pixel
+    rows = np.nonzero(mask.any(axis=1))[0]
+    if len(rows) < 3:
+        raise CalibrationError("the layer's side label is too small for a profile relief")
+    rows = np.arange(rows[0], rows[-1] + 1)
+    present = mask[rows].any(axis=1)
+    cols = np.arange(mask.shape[1])
+    edge = np.where(mask[rows], cols[None, :], np.inf if front_is_left else -np.inf)
+    front = edge.min(axis=1) if front_is_left else edge.max(axis=1)
+    front = np.interp(rows, rows[present], front[present])            # rows without pixels (a gap) take their neighbours
+    forward = -front if front_is_left else front                     # larger = further toward -Y
+    clipped = forward.copy()
+    for _ in range(RELIEF_BASE_ITERATIONS):    # baseline under the features: a protrusion must not pull the base forward
+        base_f = _gaussian_1d(clipped, smooth * len(rows))
+        clipped = np.minimum(forward, base_f)
+    base = -base_f if front_is_left else base_f
+    out = mask.copy()
+    for r, fu, bu in zip(rows, front, base):
+        lo, hi = (int(np.ceil(bu)), mask.shape[1]) if front_is_left else (0, int(np.floor(bu)) + 1)
+        line = np.zeros(mask.shape[1], dtype=bool)
+        line[max(lo, 0):min(hi, mask.shape[1])] = True
+        if mask[r].any():   # cut a feature back to the base; fill a hollow from the old front out to the base
+            out[r] = line & (mask[r] | _between(cols, fu, bu))
+    z = calib.px_to_plane(np.stack([np.zeros(len(rows)), rows + 0.5], axis=1).astype(float))[:, 2]
+    y_front = calib.px_to_plane(np.stack([front + 0.5, rows + 0.5], axis=1))[:, 1]
+    y_base = calib.px_to_plane(np.stack([base + 0.5, rows + 0.5], axis=1))[:, 1]
+    order = np.argsort(z)
+    return ProfileRelief(out, z[order], (y_front - y_base)[order])
+
+
+def _between(cols: np.ndarray, a: float, b: float) -> np.ndarray:
+    lo, hi = min(a, b), max(a, b)
+    return (cols >= np.floor(lo)) & (cols <= np.ceil(hi))
+
+
+def apply_relief(verts: np.ndarray, layer: LayerField, relief: ProfileRelief, x0: float,
+                 width: float) -> np.ndarray:
+    """Put the profile features of ``relief`` back onto a layer carved from ``relief.mask``: every vertex in the front
+    half of its (x, z) column moves along y by ``dy(z) * exp(-((x - x0) / width)^2 / 2)``, fading to 0 at the column's
+    middle (the back of the layer, where the body is recessed, does not move). Returns new vertices."""
+    v = np.asarray(verts, dtype=float).copy()
+    dy = np.interp(v[:, 2], relief.z, relief.dy, left=0.0, right=0.0)
+    across = np.exp(-0.5 * ((v[:, 0] - x0) / max(width, 1e-9)) ** 2)
+    nz, nx = layer.y_front.shape
+    ix = np.clip(np.round((v[:, 0] - layer.origin[0]) / layer.cell - 0.5).astype(int), 0, nx - 1)
+    iz = np.clip(np.round((v[:, 2] - layer.origin[2]) / layer.cell - 0.5).astype(int), 0, nz - 1)
+    yf, yb = layer.y_front[iz, ix].astype(float), layer.y_back[iz, ix].astype(float)
+    half = np.where(np.isfinite(yf) & np.isfinite(yb), 0.5 * (yb - yf), np.nan)
+    front_ness = np.where(np.isfinite(half) & (half > 0), np.clip(1.0 - (v[:, 1] - yf) / np.where(half > 0, half, 1.0), 0.0, 1.0), 0.0)
+    v[:, 1] += dy * across * front_ness
+    return v
