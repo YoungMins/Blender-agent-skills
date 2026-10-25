@@ -1,0 +1,8 @@
+{
+  "name": "treasure_chest",
+  "kind": "regression",
+  "view_spec": "../../../examples/treasure_chest/view_spec.json",
+  "scene_spec": "../../../examples/treasure_chest/scene_spec.json",
+  "perturbation": null,
+  "notes": "hard-surface regression case (arch / torus kit, projected colour): the example references and spec are used in place (no ground truth)"
+}

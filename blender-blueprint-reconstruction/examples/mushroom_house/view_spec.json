@@ -1,0 +1,64 @@
+{
+  "spec_version": "0.1",
+  "name": "mushroom_house",
+  "views": {
+    "front": {
+      "path": "references/front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    },
+    "back": {
+      "path": "references/back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "references/side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    }
+  },
+  "known_dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 1.2
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "reference_quality": {
+    "orthographic": true,
+    "notes": "drafted by prepare_references.py; chroma backdrop: front green, back green, side green"
+  }
+}

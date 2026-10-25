@@ -1,0 +1,333 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_twintail",
+  "category": "character",
+  "object_type": "sd_girl",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "parts_labels": "labels.json",
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "exclude_components": [
+          "tail_l",
+          "tail_r",
+          "bear_head",
+          "bear_body"
+        ],
+        "exclude_dilate_px": 1,
+        "mirror_color_views": [
+          "side"
+        ]
+      }
+    },
+    {
+      "id": "tail_r",
+      "type": "strand",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.9,
+        "sides": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "p0": [
+              217.5,
+              55.5
+            ],
+            "p1": [
+              158.2,
+              145.7
+            ],
+            "p2": [
+              150.5,
+              235.9
+            ],
+            "p3": [
+              136.3,
+              326.1
+            ],
+            "p4": [
+              98.9,
+              416.3
+            ],
+            "p5": [
+              107.1,
+              506.5
+            ],
+            "radius_px": [
+              43.5,
+              37.5,
+              50.3,
+              46.9,
+              43.1,
+              46.8
+            ]
+          },
+          "side": {
+            "p0": [
+              205.5,
+              71.5
+            ],
+            "p1": [
+              141.2,
+              158.9
+            ],
+            "p2": [
+              135.1,
+              246.3
+            ],
+            "p3": [
+              124.1,
+              333.7
+            ],
+            "p4": [
+              98.8,
+              421.1
+            ],
+            "p5": [
+              104.3,
+              508.5
+            ],
+            "radius_px": [
+              58.2,
+              52.4,
+              46.9,
+              49.6,
+              43.8,
+              38.1
+            ]
+          },
+          "back": {
+            "p0": [
+              409.5,
+              51.5
+            ],
+            "p1": [
+              445.3,
+              142.5
+            ],
+            "p2": [
+              459.7,
+              233.5
+            ],
+            "p3": [
+              471.6,
+              324.5
+            ],
+            "p4": [
+              506.6,
+              415.5
+            ],
+            "p5": [
+              498.9,
+              506.5
+            ],
+            "radius_px": [
+              48.9,
+              43.7,
+              48.3,
+              48.2,
+              43.1,
+              43.0
+            ]
+          }
+        }
+      },
+      "notes": "Character-right (-X) twin tail incl. ribbon; the side view shows this one in front of the other."
+    },
+    {
+      "id": "tail_l",
+      "type": "strand",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.9,
+        "sides": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "p0": [
+              403.5,
+              54.5
+            ],
+            "p1": [
+              459.0,
+              144.9
+            ],
+            "p2": [
+              468.5,
+              235.3
+            ],
+            "p3": [
+              479.9,
+              325.7
+            ],
+            "p4": [
+              517.9,
+              416.1
+            ],
+            "p5": [
+              513.6,
+              506.5
+            ],
+            "radius_px": [
+              41.6,
+              37.2,
+              47.0,
+              45.6,
+              43.5,
+              47.7
+            ]
+          },
+          "back": {
+            "p0": [
+              196.5,
+              51.5
+            ],
+            "p1": [
+              160.1,
+              142.7
+            ],
+            "p2": [
+              145.2,
+              233.9
+            ],
+            "p3": [
+              132.6,
+              325.1
+            ],
+            "p4": [
+              98.5,
+              416.3
+            ],
+            "p5": [
+              102.0,
+              507.5
+            ],
+            "radius_px": [
+              49.1,
+              44.2,
+              48.3,
+              48.6,
+              41.9,
+              42.4
+            ]
+          }
+        }
+      },
+      "notes": "+X tail: depth y is hidden in the side view; the automatic _l/_r pairing takes it from tail_r."
+    },
+    {
+      "id": "bear_head",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 24,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              305,
+              340
+            ],
+            "radius_px": [
+              62,
+              50
+            ]
+          },
+          "side": {
+            "center": [
+              326,
+              337
+            ],
+            "radius_px": [
+              43,
+              47
+            ]
+          }
+        }
+      },
+      "notes": "Teddy head incl. ears; pixels typed from the overlay (auto anchors were junk)."
+    },
+    {
+      "id": "bear_body",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "segments": 24,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              305,
+              462
+            ],
+            "radius_px": [
+              48,
+              25
+            ]
+          },
+          "side": {
+            "center": [
+              335,
+              447
+            ],
+            "radius_px": [
+              27,
+              28
+            ]
+          }
+        }
+      },
+      "notes": "Visible lower teddy body below the hands; upper body hidden behind the arms."
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

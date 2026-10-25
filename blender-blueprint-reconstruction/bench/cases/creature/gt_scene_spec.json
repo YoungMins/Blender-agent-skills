@@ -1,0 +1,285 @@
+{
+  "spec_version": "0.1",
+  "name": "creature_gt",
+  "category": "character",
+  "object_type": "character",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": null
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {
+    "fur": {
+      "base_color": [
+        0.75,
+        0.5,
+        0.25
+      ],
+      "roughness": 0.6
+    },
+    "stripe": {
+      "base_color": [
+        0.35,
+        0.22,
+        0.1
+      ],
+      "roughness": 0.6
+    },
+    "nose": {
+      "base_color": [
+        0.15,
+        0.1,
+        0.1
+      ],
+      "roughness": 0.6
+    }
+  },
+  "components": [
+    {
+      "id": "body",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        -0.04554,
+        0.17
+      ],
+      "size": [
+        0.14,
+        0.34,
+        0.14
+      ],
+      "material": "fur",
+      "params": {
+        "axis": "Y"
+      }
+    },
+    {
+      "id": "head",
+      "type": "sphere",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        -0.24554,
+        0.24
+      ],
+      "size": [
+        0.13,
+        0.13,
+        0.13
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "snout",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        -0.32054,
+        0.225
+      ],
+      "size": [
+        0.06,
+        0.05,
+        0.05
+      ],
+      "material": "nose",
+      "params": {
+        "radius": 0.01
+      }
+    },
+    {
+      "id": "tail_1",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.20446,
+        0.2
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.14
+      ],
+      "rotation_deg": [
+        -60,
+        0,
+        0
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "tail_2",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.28446,
+        0.3
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.12
+      ],
+      "rotation_deg": [
+        -30,
+        0,
+        0
+      ],
+      "material": "stripe"
+    },
+    {
+      "id": "tail_3",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.32446,
+        0.4
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.1
+      ],
+      "rotation_deg": [
+        -10,
+        0,
+        0
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "ear_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        -0.04,
+        -0.23554,
+        0.29
+      ],
+      "material": "stripe",
+      "params": {
+        "base_radius": 0.022,
+        "tip_radius": 0.003,
+        "length": 0.07,
+        "axis": [
+          -0.25,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "leg_fl",
+      "type": "cylinder",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.05,
+        -0.15554,
+        0.05
+      ],
+      "size": [
+        0.045,
+        0.045,
+        0.1
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "leg_bl",
+      "type": "cylinder",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.05,
+        0.06446,
+        0.05
+      ],
+      "size": [
+        0.045,
+        0.045,
+        0.1
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "ear_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.04,
+        -0.23554,
+        0.29
+      ],
+      "material": "stripe",
+      "params": {
+        "base_radius": 0.022,
+        "tip_radius": 0.003,
+        "length": 0.07,
+        "axis": [
+          0.25,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "leg_fr",
+      "type": "cylinder",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.05,
+        -0.15554,
+        0.05
+      ],
+      "size": [
+        0.045,
+        0.045,
+        0.1
+      ],
+      "material": "fur"
+    },
+    {
+      "id": "leg_br",
+      "type": "cylinder",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.05,
+        0.06446,
+        0.05
+      ],
+      "size": [
+        0.045,
+        0.045,
+        0.1
+      ],
+      "material": "fur"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_regions": "regions",
+  "front": {
+    "tail_l": [3, 5, 13],
+    "tail_r": [2, 8, 15],
+    "bear_head": [4],
+    "bear_body": [18],
+    "body": []
+  },
+  "side": {
+    "tail_r": [17, 11, 5, 2, 20, 18],
+    "bear_head": [7],
+    "bear_body": [19],
+    "body": []
+  },
+  "back": {
+    "tail_l": [5, 6, 7],
+    "tail_r": [4, 13, 20, 10],
+    "body": []
+  }
+}

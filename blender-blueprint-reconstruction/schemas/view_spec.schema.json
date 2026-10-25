@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbr/view_spec.schema.json",
+  "title": "BBR ViewSpec",
+  "description": "Reference views of an object: which image is which orthographic view, how to read its silhouette and how to calibrate it. Coordinates: Blender world, meters, Z up, object front faces -Y. camera_axis is the world direction from the origin TO the camera.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "views"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "spec_version": {"type": "string", "enum": ["0.1"], "description": "Spec format version."},
+    "name": {"type": "string", "minLength": 1, "description": "Object / project name."},
+    "base_dir": {"type": ["string", "null"], "description": "Directory that relative image paths resolve against. null = the directory of the spec file."},
+    "views": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "View key -> view definition. Standard keys: front, back, right, left, side, top, bottom. 'side' requires camera_axis. Other keys need camera_axis or roles ['preview'].",
+      "additionalProperties": {"$ref": "#/$defs/view"}
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Default calibration mode of every view that does not set its own, e.g. {\"mode\": \"sheet\"} when all views come from one turnaround sheet.",
+      "properties": {"mode": {"type": "string", "enum": ["silhouette_bbox", "sheet"]}}
+    },
+    "dimension_provenance": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "description": "{width|depth|height: how that known_dimensions value was obtained}, written by prepare_references.py draft-view-spec when it derives a dimension from another one; shown next to the pipeline's provenance."
+    },
+    "known_dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Known overall bounding-box extents in meters (X width, Y depth, Z height). null = unknown (derived from the views).",
+      "properties": {
+        "width": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "depth": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "height": {"type": ["number", "null"], "exclusiveMinimum": 0}
+      }
+    },
+    "symmetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Mirror symmetry of the object about the world planes X=0, Y=0, Z=0.",
+      "properties": {"x": {"type": "boolean"}, "y": {"type": "boolean"}, "z": {"type": "boolean"}}
+    },
+    "consistency": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Reference-consistency flags / role changes you judged false alarms (after checking the XOR overlay). Written by `prepare_references.py check --write`; read by `check` and by the pipeline (merged with the SceneSpec's workflow.consistency and --ignore-flag).",
+      "properties": {
+        "ignore_flags": {"type": "array", "items": {"type": "string"}, "description": "Flag types to ignore: 'scale_drift' (any view) or 'scale_drift:side'."},
+        "roles_override": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}}, "description": "{view: roles} kept instead of the recommended roles."}
+      }
+    },
+    "reference_quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "orthographic": {"type": "boolean", "description": "True when the references are true orthographic projections."},
+        "ai_generated": {"type": "boolean", "description": "True when the references are AI-generated (a turnaround sheet): the dimension check then allows 5% instead of 3% (override: workflow.dimension_tolerance). Also implied by orthographic false and by views cut from one sheet (calibration mode sheet)."},
+        "synthetic": {"type": "boolean", "description": "True when the references are renders of the SceneSpec itself (examples, tests): hard-surface texture projection stays off in auto mode (style.texture)."},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "view": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "description": "Image path, relative to base_dir / the spec directory unless absolute."},
+        "enabled": {"type": "boolean", "description": "Disabled views are stored but ignored. Default true."},
+        "camera_axis": {
+          "description": "World direction from the origin to the camera: one of +X -X +Y -Y +Z -Z, or (holdout / preview views only) an object {\"azimuth\": degrees, \"elevation\": degrees} for a view that is not on an axis; azimuth 0 = front (-Y), 90 = +X, 180 = back (+Y), 270 = -X, elevation above the horizon (default 0). Defaults from the view key (front -Y, back +Y, right +X, left -X, top +Z, bottom -Z).",
+          "oneOf": [
+            {"type": "string", "enum": ["+X", "-X", "+Y", "-Y", "+Z", "-Z"]},
+            {"type": "object", "additionalProperties": false, "required": ["azimuth"],
+             "properties": {"azimuth": {"type": "number"}, "elevation": {"type": "number", "minimum": -90, "maximum": 90}}}
+          ]
+        },
+        "flip_horizontal": {"type": "boolean", "description": "Mirror the image left-right before use (reference known to be mirrored)."},
+        "crop_px": {"type": ["array", "null"], "minItems": 4, "maxItems": 4, "items": {"type": "integer", "minimum": 0}, "description": "Optional crop [x0, y0, x1, y1] in pixels (x1/y1 exclusive), applied before flipping."},
+        "roles": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["carve", "color", "validate", "preview", "holdout"]},
+          "description": "How the view is used. Defaults: front/side/left/right [carve,color,validate]; back [color,validate]; top/bottom [validate]; a view with an azimuth/elevation camera_axis [holdout]. holdout = never used for carving, colour, calibration or correction: it is scored separately (report.holdout: silhouette IoU after a small pose search, colour error) and cannot be combined with other roles except preview."
+        },
+        "background": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {"type": "string", "enum": ["auto", "alpha", "color"], "description": "auto = alpha if meaningful else border colour."},
+            "color": {"type": ["array", "null"], "minItems": 3, "maxItems": 4, "items": {"type": "number", "minimum": 0, "maximum": 1}, "description": "Background RGB(A) 0..1 for mode 'color'. null = median of border pixels."},
+            "tolerance": {"type": "number", "minimum": 0, "maximum": 2, "description": "RGB distance below which a pixel counts as background."},
+            "remove_enclosed": {"type": ["boolean", "null"], "description": "Also remove flat background-coloured regions enclosed by the object (gap between a staff and hair, a hand on a hip), not only the border-connected backdrop. null/omitted = on for a chroma backdrop, off for white/grey/black. false keeps them."}
+          }
+        },
+        "calibration": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {"type": "string", "enum": ["silhouette_bbox", "manual", "sheet"], "description": "silhouette_bbox = per-view scale/origin from the silhouette bbox. manual = px_per_meter + origin_px. sheet = the upright views were cut from ONE turnaround sheet: all 'sheet' views share one m/px and one baseline (soles), and the horizontal origin is the body core, not the bbox centre."},
+            "px_per_meter": {"type": ["number", "null"], "exclusiveMinimum": 0},
+            "origin_px": {"type": ["array", "null"], "minItems": 2, "maxItems": 2, "items": {"type": "number"}, "description": "Pixel [u, v] where the world origin projects (manual mode)."}
+          }
+        },
+        "camera_type": {"type": "string", "enum": ["orthographic", "perspective"]},
+        "confidence": {"type": "string", "enum": ["observed", "inferred", "unknown"]},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "spec_version": "0.1",
+  "name": "simple_table",
+  "category": "furniture",
+  "object_type": "table",
+  "dimensions": {"width": 1.2, "depth": 0.6, "height": 0.72},
+  "symmetry": {"x": true, "y": true, "z": false},
+  "materials": {"wood": {"base_color": [0.55, 0.38, 0.22, 1.0], "roughness": 0.6}},
+  "components": [
+    {"id": "top", "type": "rounded_box", "stage": "primary", "location": [0, 0, 0.7025], "size": [1.2, 0.6, 0.035],
+     "params": {"radius": 0.01, "segments": 3}, "material": "wood"},
+    {"id": "leg_fl", "type": "box", "stage": "primary", "location": [0.555, -0.255, 0.3425], "size": [0.05, 0.05, 0.685],
+     "mirror": {"x": true, "y": true}, "material": "wood"},
+    {"id": "shelf", "type": "plate", "stage": "secondary", "location": [0, 0, 0.2], "size": [1.0, 0.5, 0.02],
+     "rotation_deg": [0, 0, 90], "material": "wood"}
+  ]
+}

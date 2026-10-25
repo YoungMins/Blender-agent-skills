@@ -1,0 +1,47 @@
+{
+  "name": "creature__noacc",
+  "kind": "synthetic",
+  "view_spec": "view_spec.json",
+  "scene_spec": "recon_scene_spec.json",
+  "gt_obj": "../creature/gt.obj",
+  "holdout_dir": "../creature/holdout",
+  "holdout_camera": {
+    "px_per_m": 500.0,
+    "size": [
+      524,
+      524
+    ],
+    "centre": [
+      0.0,
+      -1.1632589062005039e-06,
+      0.22462019659012844
+    ],
+    "elevation": 0.0,
+    "azimuths": [
+      0.0,
+      45.0,
+      90.0,
+      135.0,
+      180.0,
+      225.0,
+      270.0,
+      315.0
+    ]
+  },
+  "height_m": 0.44924,
+  "dimensions_m": {
+    "width": 0.145,
+    "depth": 0.69108,
+    "height": 0.44924
+  },
+  "perturbation": "tail_1, tail_2, tail_3 missing from the side view",
+  "mesh": {
+    "vertices": 1446,
+    "triangles": 2844
+  },
+  "accessory": [
+    "tail_1",
+    "tail_2",
+    "tail_3"
+  ]
+}

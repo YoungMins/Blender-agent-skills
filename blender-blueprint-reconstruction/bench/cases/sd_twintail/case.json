@@ -1,0 +1,8 @@
+{
+  "name": "sd_twintail",
+  "kind": "regression",
+  "view_spec": "view_spec.json",
+  "scene_spec": "scene_spec.json",
+  "perturbation": null,
+  "notes": "regression case from blind run 6 (SD twin-tail girl with a teddy, FAILED 10.4 % with fitted cones: front 10.2, back 11.9, side 9.0): twin tails as `strand` parts (anchors from `anchors --kind strand`), tail_l hidden in the side view takes its depth from tail_r by the automatic _l/_r pairing, no `floating_part` warning, wavy tails attached to the head. Unfitted strands: front 12.0, back 13.2, side 9.6, total 11.6 FAILED. With strands fitted to their label masks (partfit: points + radii + flatten, p0 anchored, smoothness, soft tail_l/tail_r symmetry; ~40 s per tail): front 7.7, back 9.0, side 6.8, total 7.8 PASSED (threshold 8.0; excess over the 8.0 floor: front -0.4, back +1.0), tail label IoU 76 / 80 % (was 68 / 69), turntable: tails attached and curved, no floating_part. No ground truth."
+}

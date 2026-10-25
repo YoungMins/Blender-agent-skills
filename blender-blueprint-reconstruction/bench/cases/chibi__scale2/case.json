@@ -1,0 +1,46 @@
+{
+  "name": "chibi__scale2",
+  "kind": "synthetic",
+  "view_spec": "view_spec.json",
+  "scene_spec": "recon_scene_spec.json",
+  "gt_obj": "../chibi/gt.obj",
+  "holdout_dir": "../chibi/holdout",
+  "holdout_camera": {
+    "px_per_m": 500.0,
+    "size": [
+      436,
+      436
+    ],
+    "centre": [
+      1.7991770295822107e-09,
+      2.0954757928848267e-08,
+      0.28097641468048096
+    ],
+    "elevation": 0.0,
+    "azimuths": [
+      0.0,
+      45.0,
+      90.0,
+      135.0,
+      180.0,
+      225.0,
+      270.0,
+      315.0
+    ]
+  },
+  "height_m": 0.56195,
+  "dimensions_m": {
+    "width": 0.32828,
+    "depth": 0.25,
+    "height": 0.56195
+  },
+  "perturbation": "side view 2 % too short (derived depth drifts)",
+  "mesh": {
+    "vertices": 1698,
+    "triangles": 3352
+  },
+  "accessory": [
+    "horn_l",
+    "horn_r"
+  ]
+}

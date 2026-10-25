@@ -1,0 +1,8 @@
+{
+  "name": "mushroom_house",
+  "kind": "regression",
+  "view_spec": "../../../examples/mushroom_house/view_spec.json",
+  "scene_spec": "../../../examples/mushroom_house/scene_spec.json",
+  "perturbation": null,
+  "notes": "hard-surface lathe showcase (measured lathe profiles, attach_at door and windows, _chimney label, color_views): the example references and spec are used in place (no ground truth)"
+}

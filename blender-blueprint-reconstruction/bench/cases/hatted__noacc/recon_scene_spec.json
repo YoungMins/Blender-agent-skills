@@ -1,0 +1,59 @@
+{
+  "spec_version": "0.1",
+  "name": "hatted_noacc",
+  "category": "character",
+  "object_type": "character",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6775
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  },
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 224,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "texture_size": 1024
+      }
+    }
+  ]
+}

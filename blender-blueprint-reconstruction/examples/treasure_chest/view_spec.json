@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1",
+  "name": "treasure_chest",
+  "views": {
+    "front": {
+      "path": "references/front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    },
+    "back": {
+      "path": "references/back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "references/side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12,
+        "remove_enclosed": true
+      },
+      "confidence": "observed"
+    }
+  },
+  "known_dimensions": {
+    "width": 0.8486,
+    "depth": null,
+    "height": 0.567
+  },
+  "symmetry": {
+    "x": true,
+    "y": false,
+    "z": false
+  },
+  "reference_quality": {
+    "orthographic": true,
+    "notes": "AI-generated turnaround (green screen), three near-orthographic views; width 0.8486 m is the whole silhouette incl. side rings"
+  },
+  "dimension_provenance": {
+    "height": "derived from width 0.8486 m of the silhouette in view front (1.2572 mm/px), silhouette height of that view"
+  }
+}

@@ -1,0 +1,949 @@
+{
+  "name": "robot_character",
+  "status": "passed",
+  "passed": true,
+  "steps": [
+    {
+      "n": 1,
+      "name": "import reference views",
+      "status": "ok",
+      "duration_s": 0.144
+    },
+    {
+      "n": 2,
+      "name": "alignment (axis conventions)",
+      "status": "ok",
+      "views": {
+        "front": "-Y",
+        "side": "-X",
+        "back": "+Y"
+      },
+      "duration_s": 0.0
+    },
+    {
+      "n": 3,
+      "name": "scale calibration",
+      "status": "ok",
+      "duration_s": 0.127
+    },
+    {
+      "n": 4,
+      "name": "bounding volume + reference planes",
+      "status": "ok",
+      "duration_s": 0.007
+    },
+    {
+      "n": 5,
+      "name": "blockout",
+      "status": "ok",
+      "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
+      "duration_s": 2.525
+    },
+    {
+      "n": 6,
+      "name": "major proportions (axis scale)",
+      "status": "skipped",
+      "reason": "bbox blockout: proportions come from the calibrated dimensions",
+      "duration_s": 0.0
+    },
+    {
+      "n": 7,
+      "name": "symmetry (mirror modifiers)",
+      "status": "ok",
+      "mirrored": [],
+      "duration_s": 0.0
+    },
+    {
+      "n": 8,
+      "name": "primary components",
+      "status": "ok",
+      "duration_s": 40.359
+    },
+    {
+      "n": 9,
+      "name": "secondary + detail components",
+      "status": "ok",
+      "duration_s": 0.019
+    },
+    {
+      "n": 10,
+      "name": "boolean / cut",
+      "status": "ok",
+      "booleans": 0,
+      "duration_s": 0.0
+    },
+    {
+      "n": 11,
+      "name": "bevel",
+      "status": "ok",
+      "duration_s": 0.0
+    },
+    {
+      "n": 12,
+      "name": "normal cleanup + part textures",
+      "status": "ok",
+      "duration_s": 0.0
+    },
+    {
+      "n": 13,
+      "name": "reference comparison",
+      "status": "ok",
+      "duration_s": 0.239
+    },
+    {
+      "n": 14,
+      "name": "correction loop",
+      "status": "ok",
+      "note": "silhouette hull scenes: the hull and its parts are not axis-scaled",
+      "duration_s": 0.0
+    },
+    {
+      "n": 15,
+      "name": "validation",
+      "status": "ok",
+      "duration_s": 12.947
+    },
+    {
+      "n": 16,
+      "name": "save outputs",
+      "status": "ok",
+      "duration_s": 0.028
+    }
+  ],
+  "outputs": {
+    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\report.json",
+    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\stage_A_blockout.png",
+    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\stage_B_primary.png",
+    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\perspective.png",
+    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\stage_C_final.png",
+    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\perspective_back.png",
+    "front_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\front_lit.png",
+    "side_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\side_lit.png",
+    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\top.png",
+    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\compare_front.png",
+    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\compare_side.png",
+    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\compare_back.png",
+    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\comparison_sheet.png",
+    "turntable_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\previews\\turntable.png",
+    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\scene_spec_corrected.json",
+    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\robot_character.blend"
+  },
+  "config": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true,
+    "consistency_gate": "warn",
+    "hull_resolution": 320,
+    "hull_margin": 0.03,
+    "top_consistency_tol": 0.15,
+    "smooth_iterations": 14,
+    "hull_min_iou": 0.95,
+    "render_scale": 1.0,
+    "bg_tolerance": 0.12,
+    "max_hole_frac": 0.002,
+    "min_component_frac": 0.0005,
+    "edge_distance_cap_px": 32,
+    "ref_plane_offset_factor": 0.75,
+    "ref_plane_offset_base": 0.1,
+    "view_weights": {}
+  },
+  "views": {
+    "front": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\references\\front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\references\\side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "back": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\references\\back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    }
+  },
+  "dimensions": {
+    "width": 0.5938382541720154,
+    "depth": 0.4201530612244898,
+    "height": 0.9
+  },
+  "provenance": {
+    "height": "known",
+    "width": "derived:front",
+    "depth": "derived:side"
+  },
+  "calibrations": {
+    "front": {
+      "view": "front",
+      "camera_axis": "-Y",
+      "image_size": [
+        584,
+        887
+      ],
+      "m_per_px": 0.0011479591836734695,
+      "origin_px": [
+        291.5,
+        835.0
+      ]
+    },
+    "side": {
+      "view": "side",
+      "camera_axis": "-X",
+      "image_size": [
+        436,
+        887
+      ],
+      "m_per_px": 0.0011479591836734695,
+      "origin_px": [
+        230.0,
+        835.0
+      ]
+    },
+    "back": {
+      "view": "back",
+      "camera_axis": "+Y",
+      "image_size": [
+        566,
+        887
+      ],
+      "m_per_px": 0.0011479591836734695,
+      "origin_px": [
+        283.5,
+        835.0
+      ]
+    }
+  },
+  "consistency": {
+    "thresholds": {
+      "carve_min_iou": 0.95,
+      "color_validate_min_iou": 0.92,
+      "scale_drift_tol": 0.02,
+      "shift_tol": 0.01,
+      "accessory_blob_frac": 0.01,
+      "mirrored_margin": 0.03,
+      "core_open_frac": 0.03,
+      "accessory_open_frac": 0.015
+    },
+    "pairs": [
+      {
+        "a": "front",
+        "b": "back",
+        "iou_raw": 0.9368,
+        "iou_aligned": 0.9408,
+        "align": {
+          "scale": 1.0075,
+          "dh_m": 0.0,
+          "dz_m": -0.00336
+        },
+        "iou_unmirrored": 0.937,
+        "floor": 0.0632,
+        "bands": [
+          {
+            "z0": 0.0,
+            "z1": 0.125,
+            "width_a": 0.35816,
+            "width_b": 0.3375,
+            "rel_diff": 0.0577
+          },
+          {
+            "z0": 0.125,
+            "z1": 0.25,
+            "width_a": 0.2801,
+            "width_b": 0.26633,
+            "rel_diff": 0.0492
+          },
+          {
+            "z0": 0.25,
+            "z1": 0.375,
+            "width_a": 0.25485,
+            "width_b": 0.24337,
+            "rel_diff": 0.045
+          },
+          {
+            "z0": 0.375,
+            "z1": 0.5,
+            "width_a": 0.43622,
+            "width_b": 0.32143,
+            "rel_diff": 0.2632
+          },
+          {
+            "z0": 0.5,
+            "z1": 0.625,
+            "width_a": 0.30077,
+            "width_b": 0.28125,
+            "rel_diff": 0.0649
+          },
+          {
+            "z0": 0.625,
+            "z1": 0.75,
+            "width_a": 0.49821,
+            "width_b": 0.48099,
+            "rel_diff": 0.0346
+          },
+          {
+            "z0": 0.75,
+            "z1": 0.875,
+            "width_a": 0.49592,
+            "width_b": 0.48673,
+            "rel_diff": 0.0185
+          },
+          {
+            "z0": 0.875,
+            "z1": 1.0,
+            "width_a": 0.30077,
+            "width_b": 0.30651,
+            "rel_diff": -0.0187
+          }
+        ],
+        "blobs": {}
+      }
+    ],
+    "views": {
+      "front": {
+        "axis": "-Y",
+        "m_per_px": 0.001148,
+        "core_top_z": 0.8919642857142858,
+        "core_bottom_z": -0.0011479591836734695,
+        "core_height": 0.8931122448979593,
+        "pair": "back",
+        "pair_iou": 0.9368,
+        "floor": 0.0632,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "color",
+          "validate"
+        ],
+        "verdict": "demote",
+        "error": 0.01226,
+        "excess_error": -0.05094
+      },
+      "side": {
+        "axis": "-X",
+        "m_per_px": 0.001148,
+        "core_top_z": 0.8988520408163266,
+        "core_bottom_z": -0.0011479591836734695,
+        "core_height": 0.9000000000000001,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "verdict": "unpaired",
+        "floor": null,
+        "pair": null,
+        "pair_iou": null
+      },
+      "back": {
+        "axis": "+Y",
+        "m_per_px": 0.001148,
+        "core_top_z": 0.8988520408163266,
+        "core_bottom_z": -0.0011479591836734695,
+        "core_height": 0.9000000000000001,
+        "pair": "front",
+        "pair_iou": 0.9368,
+        "floor": 0.0632,
+        "current_roles": [
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "color",
+          "validate"
+        ],
+        "verdict": "ok",
+        "error": 0.06107,
+        "excess_error": -0.00213
+      }
+    },
+    "flags": [],
+    "symmetry": [
+      {
+        "view": "front",
+        "iou": 0.9906,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0
+      },
+      {
+        "view": "back",
+        "iou": 0.9831,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0
+      }
+    ],
+    "roles_to_change": [
+      "front"
+    ],
+    "passed": false
+  },
+  "blockout": {
+    "gate": "passed",
+    "mode": "bbox_fallback",
+    "error": 0.04024144869215296,
+    "threshold": 0.12,
+    "ratios": {
+      "front": {
+        "width_ratio": 1.0058365758754864,
+        "height_ratio": 1.006418485237484
+      },
+      "side": {
+        "width_ratio": 1.0,
+        "height_ratio": 1.0
+      },
+      "back": {
+        "width_ratio": 1.040241448692153,
+        "height_ratio": 1.0
+      }
+    }
+  },
+  "iterations": [
+    {
+      "iteration": 0,
+      "total_error": 0.027986621252825954,
+      "per_view": {
+        "front": 0.01226,
+        "side": 0.01064,
+        "back": 0.06107
+      },
+      "accepted": true
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "geometry": {
+      "passed": true,
+      "checks": {
+        "dimensions": {
+          "passed": true,
+          "actual": {
+            "width": 0.5870736241340637,
+            "depth": 0.4170985072851181,
+            "height": 0.8941257420819966
+          },
+          "target": {
+            "width": 0.5938382541720154,
+            "depth": 0.4201530612244898,
+            "height": 0.9
+          },
+          "relative_error": {
+            "width": -0.0113913679195079,
+            "depth": -0.007270098022062577,
+            "height": -0.0065269532422260745
+          },
+          "floor_z": 1.2057657841069158e-05
+        },
+        "scale": {
+          "passed": true,
+          "non_unit_scale": {}
+        },
+        "modifiers": {
+          "passed": true,
+          "wrong_order": {}
+        },
+        "materials": {
+          "passed": true,
+          "without_material": []
+        },
+        "scene_structure": {
+          "passed": true,
+          "missing_collections": [],
+          "without_agent_id": [],
+          "duplicate_agent_ids": {},
+          "origin_empty": true
+        }
+      }
+    },
+    "soft_checks": {
+      "symmetry": {
+        "passed": true,
+        "centre_offset_ratio": {
+          "x": 0.0016186672549898923
+        }
+      },
+      "normals": {
+        "passed": true,
+        "inverted": []
+      },
+      "non_manifold": {
+        "passed": true,
+        "non_manifold_edges": {}
+      }
+    },
+    "warnings": [],
+    "warning_details": [],
+    "reference_match": {
+      "passed": true,
+      "total_error": 0.027986621252825954,
+      "threshold": 0.08,
+      "front_error": 0.012255302320383077,
+      "side_error": 0.010639074863055376,
+      "back_error": 0.06106548657503941,
+      "per_view": {
+        "front": {
+          "iou": 0.9877446976796169,
+          "error": 0.012255302320383077,
+          "error_pct": 1.23,
+          "edge_px": 0.7856118679046631,
+          "width_ratio": 0.9941634241245136,
+          "height_ratio": 1.0,
+          "line": "Front Error : 1.2%",
+          "bbox_delta_m": {
+            "left": -0.002295918367346939,
+            "right": -0.0011479591836734695,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 126,
+            "bbox_px": [
+              39,
+              617,
+              73,
+              637
+            ],
+            "center_world": [
+              -0.27034438775510206,
+              null,
+              0.23877551020408166
+            ],
+            "world_bbox": {
+              "min": [
+                -0.28985969387755106,
+                null,
+                0.22729591836734697
+              ],
+              "max": [
+                -0.2508290816326531,
+                null,
+                0.25025510204081636
+              ]
+            }
+          },
+          "components_in_region": [],
+          "color_error": 0.02586,
+          "floor": 0.0632,
+          "excess_error": -0.05094
+        },
+        "side": {
+          "iou": 0.9893609251369446,
+          "error": 0.010639074863055376,
+          "error_pct": 1.06,
+          "edge_px": 0.8253290057182312,
+          "width_ratio": 0.994535519125683,
+          "height_ratio": 0.9936224489795918,
+          "line": "Side Error : 1.1%",
+          "bbox_delta_m": {
+            "left": 0.0,
+            "right": -0.002295918367346939,
+            "top": -0.005739795918367347,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 289,
+            "bbox_px": [
+              182,
+              51,
+              263,
+              56
+            ],
+            "center_world": [
+              null,
+              0.008609693877551021,
+              0.8971301020408164
+            ],
+            "world_bbox": {
+              "min": [
+                null,
+                -0.03788265306122449,
+                0.8942602040816328
+              ],
+              "max": [
+                null,
+                0.05510204081632654,
+                0.9000000000000001
+              ]
+            }
+          },
+          "components_in_region": [],
+          "color_error": 0.05553
+        },
+        "back": {
+          "iou": 0.9389345134249606,
+          "error": 0.06106548657503941,
+          "error_pct": 6.11,
+          "edge_px": 3.5238711833953857,
+          "width_ratio": 1.028169014084507,
+          "height_ratio": 0.9936224489795918,
+          "line": "Back Error : 6.1%",
+          "bbox_delta_m": {
+            "left": 0.009183673469387756,
+            "right": 0.006887755102040817,
+            "top": -0.005739795918367347,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "excess",
+            "area_px": 2164,
+            "bbox_px": [
+              120,
+              486,
+              213,
+              835
+            ],
+            "center_world": [
+              0.13431122448979593,
+              null,
+              0.20031887755102043
+            ],
+            "world_bbox": {
+              "min": [
+                0.0809311224489796,
+                null,
+                -0.0
+              ],
+              "max": [
+                0.18769132653061227,
+                null,
+                0.40063775510204086
+              ]
+            }
+          },
+          "components_in_region": [],
+          "color_error": 0.0151,
+          "floor": 0.0632,
+          "excess_error": -0.00213
+        }
+      }
+    },
+    "diagnosis": [
+      {
+        "view": "back",
+        "axis": "X",
+        "dimension": "width",
+        "kind": "size",
+        "delta_m": 0.016071428571428573,
+        "recommendation": "Back view: width too large by 1.6 cm \u2192 X axis"
+      }
+    ],
+    "recommendation": "Reconstruction matches the references within tolerance."
+  },
+  "reference_match": {
+    "passed": true,
+    "total_error": 0.027986621252825954,
+    "threshold": 0.08,
+    "front_error": 0.012255302320383077,
+    "side_error": 0.010639074863055376,
+    "back_error": 0.06106548657503941,
+    "per_view": {
+      "front": {
+        "iou": 0.9877446976796169,
+        "error": 0.012255302320383077,
+        "error_pct": 1.23,
+        "edge_px": 0.7856118679046631,
+        "width_ratio": 0.9941634241245136,
+        "height_ratio": 1.0,
+        "line": "Front Error : 1.2%",
+        "bbox_delta_m": {
+          "left": -0.002295918367346939,
+          "right": -0.0011479591836734695,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 126,
+          "bbox_px": [
+            39,
+            617,
+            73,
+            637
+          ],
+          "center_world": [
+            -0.27034438775510206,
+            null,
+            0.23877551020408166
+          ],
+          "world_bbox": {
+            "min": [
+              -0.28985969387755106,
+              null,
+              0.22729591836734697
+            ],
+            "max": [
+              -0.2508290816326531,
+              null,
+              0.25025510204081636
+            ]
+          }
+        },
+        "components_in_region": [],
+        "color_error": 0.02586,
+        "floor": 0.0632,
+        "excess_error": -0.05094
+      },
+      "side": {
+        "iou": 0.9893609251369446,
+        "error": 0.010639074863055376,
+        "error_pct": 1.06,
+        "edge_px": 0.8253290057182312,
+        "width_ratio": 0.994535519125683,
+        "height_ratio": 0.9936224489795918,
+        "line": "Side Error : 1.1%",
+        "bbox_delta_m": {
+          "left": 0.0,
+          "right": -0.002295918367346939,
+          "top": -0.005739795918367347,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 289,
+          "bbox_px": [
+            182,
+            51,
+            263,
+            56
+          ],
+          "center_world": [
+            null,
+            0.008609693877551021,
+            0.8971301020408164
+          ],
+          "world_bbox": {
+            "min": [
+              null,
+              -0.03788265306122449,
+              0.8942602040816328
+            ],
+            "max": [
+              null,
+              0.05510204081632654,
+              0.9000000000000001
+            ]
+          }
+        },
+        "components_in_region": [],
+        "color_error": 0.05553
+      },
+      "back": {
+        "iou": 0.9389345134249606,
+        "error": 0.06106548657503941,
+        "error_pct": 6.11,
+        "edge_px": 3.5238711833953857,
+        "width_ratio": 1.028169014084507,
+        "height_ratio": 0.9936224489795918,
+        "line": "Back Error : 6.1%",
+        "bbox_delta_m": {
+          "left": 0.009183673469387756,
+          "right": 0.006887755102040817,
+          "top": -0.005739795918367347,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "excess",
+          "area_px": 2164,
+          "bbox_px": [
+            120,
+            486,
+            213,
+            835
+          ],
+          "center_world": [
+            0.13431122448979593,
+            null,
+            0.20031887755102043
+          ],
+          "world_bbox": {
+            "min": [
+              0.0809311224489796,
+              null,
+              -0.0
+            ],
+            "max": [
+              0.18769132653061227,
+              null,
+              0.40063775510204086
+            ]
+          }
+        },
+        "components_in_region": [],
+        "color_error": 0.0151,
+        "floor": 0.0632,
+        "excess_error": -0.00213
+      }
+    }
+  },
+  "color_match": {
+    "soft": true,
+    "per_view": {
+      "front": {
+        "error": 0.025863156245933803,
+        "pixels": 219995
+      },
+      "side": {
+        "error": 0.05553076103157265,
+        "pixels": 156955
+      },
+      "back": {
+        "error": 0.015096425560551815,
+        "pixels": 210921
+      }
+    }
+  },
+  "hull": {
+    "body": {
+      "carve_views": [
+        "front",
+        "side"
+      ],
+      "cleanup": {
+        "voxel_size": 0.0036,
+        "faces_before": 220762,
+        "faces_after": 148898,
+        "island_vertices_removed": 0,
+        "non_manifold_edges": 0
+      },
+      "retopo": {
+        "requested": "decimate",
+        "target_faces": 20000,
+        "faces_before": 148898,
+        "method": "decimate",
+        "faces_after": 20000,
+        "non_manifold_edges": 0
+      },
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0039,
+          0.0039
+        ],
+        "uv_max": [
+          0.981,
+          0.9945
+        ]
+      },
+      "texture": {
+        "size": 2048,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\textures\\robot_character_body_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\robot_character\\output\\textures\\robot_character_body_source_map.png",
+        "covered_texels": 2044500,
+        "coverage_pct": 48.7,
+        "texels_from_visible_samples_pct": 79.5,
+        "views": {
+          "front": 0.3227,
+          "side": 0.1581,
+          "back": 0.2948
+        },
+        "blend_share": 0.0194,
+        "inpainted_share": 0.2051,
+        "conflict_ratio": 0.0548,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.183,
+        "inpainted_3d_share": 0.0221,
+        "raster_s": 1.74,
+        "total_s": 11.71
+      }
+    }
+  },
+  "confidence": {
+    "components": {
+      "body": "observed"
+    },
+    "counts": {
+      "observed": 1
+    },
+    "views": {
+      "front": "observed",
+      "side": "observed",
+      "back": "observed",
+      "top_generated": "unknown"
+    }
+  },
+  "recommendation": "Reconstruction matches the references within tolerance.",
+  "diagnosis": [
+    {
+      "view": "back",
+      "axis": "X",
+      "dimension": "width",
+      "kind": "size",
+      "delta_m": 0.016071428571428573,
+      "recommendation": "Back view: width too large by 1.6 cm \u2192 X axis"
+    }
+  ],
+  "warnings": [],
+  "attribution": {
+    "views": [
+      "front",
+      "side",
+      "back"
+    ],
+    "samples": 150000,
+    "facing_threshold": 0.3,
+    "occlusion_warn": 0.3,
+    "misattribution_warn": 0.05,
+    "objects": {
+      "body": {
+        "samples": 150000,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0006997307096965713,
+        "best_view": "back",
+        "pooled_occlusion": 0.10115671072523266,
+        "hidden_share": 0.05559884774671441,
+        "occlusion_per_view": {
+          "front": 0.0007593655079311508,
+          "side": 0.2925070013902041,
+          "back": 0.0006997307096965713
+        }
+      }
+    },
+    "misattribution_max": {
+      "object": "body",
+      "share": 0.0
+    },
+    "occlusion_max": {
+      "object": "body",
+      "share": 0.0006997307096965713
+    },
+    "occluded_objects": [],
+    "misattributed_objects": []
+  },
+  "part_iou": {
+    "parts": {},
+    "outside_warn": 0.7,
+    "parts_outside_reference": []
+  },
+  "holdout": {},
+  "elapsed_s": 62.71
+}

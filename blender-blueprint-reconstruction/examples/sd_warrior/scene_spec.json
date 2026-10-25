@@ -1,0 +1,422 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_warrior",
+  "category": "character",
+  "object_type": "sd_warrior",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "parts_labels": "labels.json",
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "exclude_components": [
+          "horn_l",
+          "horn_r",
+          "sword_pommel",
+          "sword_grip",
+          "sword_blade",
+          "arm_l_upper",
+          "arm_l_fore",
+          "hand_l",
+          "arm_r_upper",
+          "arm_r_fore",
+          "hand_r"
+        ],
+        "exclude_dilate_px": 1,
+        "layers": [
+          "face"
+        ],
+        "mirror_color_views": [
+          "side"
+        ],
+        "asymmetric_parts": [
+          "sword_*"
+        ]
+      }
+    },
+    {
+      "id": "horn_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.6,
+        "segments": 20,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              92,
+              172
+            ],
+            "mid": [
+              97,
+              100
+            ],
+            "tip": [
+              125,
+              42
+            ],
+            "radius_px": [
+              31,
+              3
+            ]
+          },
+          "side": {
+            "base": [
+              178,
+              170
+            ],
+            "mid": [
+              165,
+              100
+            ],
+            "tip": [
+              156,
+              37
+            ]
+          }
+        }
+      },
+      "notes": "Anchors from prepare_references.py anchors + the overlay (front: radius at the helmet ring and at the tip). x from front, y from side, z from both."
+    },
+    {
+      "id": "horn_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "flatten": 0.6,
+        "segments": 20,
+        "sides": 16,
+        "mirror_of": "horn_l"
+      },
+      "notes": "The +X horn is hidden in the -X side view: mirror of horn_l across X=0."
+    },
+    {
+      "id": "sword_pommel",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              350,
+              520
+            ],
+            "radius_px": 19
+          },
+          "side": {
+            "center": [
+              310,
+              520
+            ],
+            "radius_px": 19
+          }
+        }
+      },
+      "notes": "Gold knob."
+    },
+    {
+      "id": "sword_grip",
+      "type": "cylinder",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "vertices": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              352,
+              534
+            ],
+            "tip": [
+              364,
+              568
+            ],
+            "radius_px": 15
+          },
+          "side": {
+            "base": [
+              310,
+              538
+            ],
+            "tip": [
+              300,
+              568
+            ]
+          }
+        }
+      },
+      "notes": "Grip between pommel and guard."
+    },
+    {
+      "id": "sword_blade",
+      "type": "blade",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "thickness": 0.016,
+        "tip_width": 0.02,
+        "tip_thickness": 0.012,
+        "tip_length": 0.014,
+        "depth_m": {
+          "tip": -0.0257
+        },
+        "anchors_px": {
+          "front": {
+            "base": [
+              366,
+              578
+            ],
+            "tip": [
+              423,
+              733
+            ],
+            "width_px": 34
+          },
+          "side": {
+            "base": [
+              290,
+              578
+            ]
+          },
+          "back": {
+            "tip": [
+              124,
+              733
+            ]
+          }
+        }
+      },
+      "notes": "Scabbard from the guard to the chape. The chape's y is not visible in any carve view: depth_m (inferred)."
+    },
+    {
+      "id": "arm_l_upper",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "joint": {"part": "arm_l_fore", "at": "base", "self": "tip"},
+        "segments": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              152,
+              466
+            ],
+            "tip": [
+              112,
+              525
+            ],
+            "radius_px": 27
+          },
+          "side": {
+            "base": [
+              212,
+              458
+            ],
+            "tip": [
+              186,
+              525
+            ]
+          }
+        }
+      },
+      "notes": "Shoulder to elbow of the -X arm."
+    },
+    {
+      "id": "arm_l_fore",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              110,
+              522
+            ],
+            "tip": [
+              78,
+              580
+            ],
+            "radius_px": 24
+          },
+          "side": {
+            "base": [
+              186,
+              522
+            ],
+            "tip": [
+              190,
+              580
+            ]
+          }
+        }
+      },
+      "notes": "Elbow to wrist of the -X arm."
+    },
+    {
+      "id": "hand_l",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 20,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              68,
+              590
+            ],
+            "radius_px": [
+              27,
+              33
+            ]
+          },
+          "side": {
+            "center": [
+              194,
+              598
+            ],
+            "radius_px": [
+              34,
+              40
+            ]
+          }
+        }
+      },
+      "notes": "Glove."
+    },
+    {
+      "id": "arm_r_upper",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "mirror_of": "arm_l_upper"
+      },
+      "notes": "+X arm hidden in the -X side view: mirror of arm_l_upper."
+    },
+    {
+      "id": "arm_r_fore",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "mirror_of": "arm_l_fore"
+      },
+      "notes": "Mirror of arm_l_fore."
+    },
+    {
+      "id": "hand_r",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "segments": 20,
+        "color_projection": true,
+        "mirror_of": "hand_l"
+      },
+      "notes": "Mirror of hand_l."
+    },
+    {
+      "id": "shield",
+      "type": "disc",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "thickness": 0.012,
+        "dome_height": 0.02,
+        "dome_radius": 0.03,
+        "segments": 48,
+        "attach_to": "body",
+        "attach_side": "back",
+        "standoff": 0.0,
+        "anchors_px": {
+          "back": {
+            "center": [
+              273,
+              520
+            ],
+            "radius_px": 94
+          }
+        }
+      },
+      "notes": "Round shield on the back, seen only in the back view (the -X side view lacks it). Disc facing the back camera, its inner face resting on the body's back surface (contact solve against the hull's depth buffer). Built after the hull; not part of the hull exclusion."
+    },
+    {
+      "id": "face",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "label": "face",
+        "views": [
+          "front",
+          "side"
+        ],
+        "resolution": 160,
+        "exponent": 2.0,
+        "color_projection": true
+      },
+      "notes": "Face recessed inside the helmet opening: its own hull from the face label (front + side), the body is recessed behind it (body.params.layers). Not in exclude_components: the body keeps the face pixels in its carve masks and is cut by the layer region instead."
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

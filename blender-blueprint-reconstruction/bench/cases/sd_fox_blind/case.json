@@ -1,0 +1,8 @@
+{
+  "name": "sd_fox_blind",
+  "kind": "regression",
+  "view_spec": "view_spec.json",
+  "scene_spec": "scene_spec.json",
+  "perturbation": null,
+  "notes": "regression case from a fresh-agent blind run (SD fox boy, spiky anime hair): the hull used to come out as stacked horizontal rings (a lampshade); run-4 hull settings (resolution 320, smooth 40, post-smooth 12), no ground truth. Watch ring_pct."
+}

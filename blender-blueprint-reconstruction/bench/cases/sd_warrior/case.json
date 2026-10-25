@@ -1,0 +1,8 @@
+{
+  "name": "sd_warrior",
+  "kind": "regression",
+  "view_spec": "../../../examples/sd_warrior/view_spec.json",
+  "scene_spec": "../../../examples/sd_warrior/scene_spec.json",
+  "perturbation": null,
+  "notes": "regression case: the example references and spec are used in place (no ground truth)"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sd_warrior_v6",
+  "kind": "regression",
+  "view_spec": "../../../examples/sd_warrior/view_spec.json",
+  "scene_spec": "scene_spec.json",
+  "perturbation": null,
+  "notes": "Frozen copy of the hand-placed v6 parts spec of examples/sd_warrior (before anchor-based placement): the stable baseline for the shield-embedded-in-hull finding. Uses the example references in place."
+}

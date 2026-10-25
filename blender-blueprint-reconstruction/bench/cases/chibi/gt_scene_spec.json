@@ -1,0 +1,279 @@
+{
+  "spec_version": "0.1",
+  "name": "chibi_gt",
+  "category": "character",
+  "object_type": "character",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": null
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {
+    "skin": {
+      "base_color": [
+        0.95,
+        0.75,
+        0.6
+      ],
+      "roughness": 0.6
+    },
+    "cloth": {
+      "base_color": [
+        0.2,
+        0.4,
+        0.85
+      ],
+      "roughness": 0.6
+    },
+    "dark": {
+      "base_color": [
+        0.3,
+        0.2,
+        0.18
+      ],
+      "roughness": 0.6
+    },
+    "horn": {
+      "base_color": [
+        0.95,
+        0.8,
+        0.1
+      ],
+      "roughness": 0.6
+    },
+    "red": {
+      "base_color": [
+        0.85,
+        0.2,
+        0.2
+      ],
+      "roughness": 0.6
+    }
+  },
+  "components": [
+    {
+      "id": "head",
+      "type": "sphere",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0,
+        -0.005,
+        0.36
+      ],
+      "size": [
+        0.26,
+        0.24,
+        0.26
+      ],
+      "material": "skin"
+    },
+    {
+      "id": "torso",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0,
+        -0.005,
+        0.17
+      ],
+      "size": [
+        0.17,
+        0.13,
+        0.22
+      ],
+      "material": "cloth"
+    },
+    {
+      "id": "hair",
+      "type": "sphere",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0,
+        0.025,
+        0.4
+      ],
+      "size": [
+        0.24,
+        0.2,
+        0.2
+      ],
+      "material": "dark"
+    },
+    {
+      "id": "horn_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        -0.075,
+        -0.005,
+        0.46
+      ],
+      "material": "horn",
+      "params": {
+        "base_radius": 0.024,
+        "tip_radius": 0.004,
+        "length": 0.11,
+        "axis": [
+          -0.45,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "arm_l",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.125,
+        -0.005,
+        0.19
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.16
+      ],
+      "rotation_deg": [
+        0,
+        15,
+        0
+      ],
+      "material": "skin"
+    },
+    {
+      "id": "leg_l",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.045,
+        -0.005,
+        0.065
+      ],
+      "size": [
+        0.065,
+        0.075,
+        0.13
+      ],
+      "material": "dark"
+    },
+    {
+      "id": "foot_l",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.045,
+        -0.025,
+        0.018
+      ],
+      "size": [
+        0.075,
+        0.12,
+        0.036
+      ],
+      "material": "red",
+      "params": {
+        "radius": 0.012
+      }
+    },
+    {
+      "id": "horn_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.075,
+        -0.005,
+        0.46
+      ],
+      "material": "horn",
+      "params": {
+        "base_radius": 0.024,
+        "tip_radius": 0.004,
+        "length": 0.11,
+        "axis": [
+          0.45,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "arm_r",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.125,
+        -0.005,
+        0.19
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.16
+      ],
+      "rotation_deg": [
+        0,
+        -15,
+        0
+      ],
+      "material": "skin"
+    },
+    {
+      "id": "leg_r",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.045,
+        -0.005,
+        0.065
+      ],
+      "size": [
+        0.065,
+        0.075,
+        0.13
+      ],
+      "material": "dark"
+    },
+    {
+      "id": "foot_r",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.045,
+        -0.025,
+        0.018
+      ],
+      "size": [
+        0.075,
+        0.12,
+        0.036
+      ],
+      "material": "red",
+      "params": {
+        "radius": 0.012
+      }
+    }
+  ]
+}

@@ -1,0 +1,1038 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_warrior",
+  "category": "character",
+  "object_type": "sd_warrior",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "bevel_width": 0.003,
+    "bevel_segments": 2,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "exclude_components": [
+          "horn_l",
+          "horn_r",
+          "sword_pommel",
+          "sword_grip",
+          "sword_blade",
+          "arm_l_upper",
+          "arm_l_fore",
+          "hand_l",
+          "arm_r_upper",
+          "arm_r_fore",
+          "hand_r"
+        ],
+        "exclude_dilate_px": 1,
+        "layers": [
+          "face"
+        ],
+        "mirror_color_views": [
+          "side"
+        ],
+        "asymmetric_parts": [
+          "sword_*"
+        ]
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "horn_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "flatten": 0.6,
+        "segments": 20,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              92,
+              172
+            ],
+            "mid": [
+              97,
+              100
+            ],
+            "tip": [
+              125,
+              42
+            ],
+            "radius_px": [
+              31,
+              3
+            ]
+          },
+          "side": {
+            "base": [
+              178,
+              170
+            ],
+            "mid": [
+              165,
+              100
+            ],
+            "tip": [
+              156,
+              37
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.8331,
+              "iou_vis": 0.8331,
+              "covered": 0.9335,
+              "spill": 0.0436,
+              "label_px": 7720
+            },
+            "side": {
+              "iou": 0.6944,
+              "iou_vis": 0.6944,
+              "covered": 0.7637,
+              "spill": 0.0063,
+              "label_px": 8107
+            },
+            "back": {
+              "iou": 0.7874,
+              "iou_vis": 0.7874,
+              "covered": 0.9314,
+              "spill": 0.0328,
+              "label_px": 7274
+            }
+          },
+          "location": [
+            -0.12606031167876594,
+            0.012878156964180596,
+            0.49571585250227995
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": null,
+          "params": {
+            "base_radius": 0.03376761397619381,
+            "tip_radius": 0.005708156404973701,
+            "length": 0.10930917427714495,
+            "axis": [
+              -0.6444105894719173,
+              0.5180771072905794,
+              0.562433198769313
+            ],
+            "bend": 120.49123265174293,
+            "flatten": 0.6675165397315488,
+            "bend_dir": [
+              0.5977678094335562,
+              -0.11739039025028199,
+              0.7930278319718006
+            ]
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Anchors from prepare_references.py anchors + the overlay (front: radius at the helmet ring and at the tip). x from front, y from side, z from both."
+    },
+    {
+      "id": "horn_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "flatten": 0.6,
+        "segments": 20,
+        "sides": 16,
+        "mirror_of": "horn_l",
+        "fitted": {
+          "mirror_of": "horn_l"
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "The +X horn is hidden in the -X side view: mirror of horn_l across X=0."
+    },
+    {
+      "id": "sword_pommel",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              350,
+              520
+            ],
+            "radius_px": 19
+          },
+          "side": {
+            "center": [
+              310,
+              520
+            ],
+            "radius_px": 19
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.7015,
+              "iou_vis": 0.8648,
+              "covered": 0.9892,
+              "spill": 0.0,
+              "label_px": 278
+            },
+            "side": {
+              "iou": 0.951,
+              "iou_vis": 0.951,
+              "covered": 0.994,
+              "spill": 0.0,
+              "label_px": 332
+            }
+          },
+          "location": [
+            0.05396507157229077,
+            -0.07945735223601406,
+            0.24563780196834079
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            0.017566481820851382,
+            0.015238585027005397,
+            0.015573031105267282
+          ],
+          "params": {}
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Gold knob."
+    },
+    {
+      "id": "sword_grip",
+      "type": "cylinder",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "vertices": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              352,
+              534
+            ],
+            "tip": [
+              364,
+              568
+            ],
+            "radius_px": 15
+          },
+          "side": {
+            "base": [
+              310,
+              538
+            ],
+            "tip": [
+              300,
+              568
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6982,
+              "iou_vis": 0.7003,
+              "covered": 0.7322,
+              "spill": 0.0,
+              "label_px": 1934
+            },
+            "side": {
+              "iou": 0.5571,
+              "iou_vis": 0.5752,
+              "covered": 0.9275,
+              "spill": 0.1478,
+              "label_px": 952
+            }
+          },
+          "location": [
+            0.06247696938813864,
+            -0.06769793048802922,
+            0.2180515997894603
+          ],
+          "rotation_deg": [
+            162.16976446630548,
+            -15.567204195805717,
+            94.93353869544606
+          ],
+          "size": [
+            0.016591110337093123,
+            0.016591110337093123,
+            0.047904861683208774
+          ],
+          "params": {
+            "axis": "Z"
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Grip between pommel and guard."
+    },
+    {
+      "id": "sword_blade",
+      "type": "blade",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "thickness": 0.016,
+        "tip_width": 0.02,
+        "tip_thickness": 0.012,
+        "tip_length": 0.014,
+        "depth_m": {
+          "tip": -0.0257
+        },
+        "anchors_px": {
+          "front": {
+            "base": [
+              366,
+              578
+            ],
+            "tip": [
+              423,
+              733
+            ],
+            "width_px": 34
+          },
+          "side": {
+            "base": [
+              290,
+              578
+            ]
+          },
+          "back": {
+            "tip": [
+              124,
+              733
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6523,
+              "iou_vis": 0.6941,
+              "covered": 0.926,
+              "spill": 0.0239,
+              "label_px": 3298
+            },
+            "side": {
+              "iou": 0.345,
+              "iou_vis": 0.3634,
+              "covered": 0.7917,
+              "spill": 0.0045,
+              "label_px": 1709
+            },
+            "back": {
+              "iou": 0.8256,
+              "iou_vis": 0.8256,
+              "covered": 0.889,
+              "spill": 0.0002,
+              "label_px": 4584
+            }
+          },
+          "location": [
+            0.07195399914500439,
+            -0.06287663520086138,
+            0.2058759972119772
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": null,
+          "params": {
+            "length": 0.1311087895813269,
+            "width": 0.020131916914189217,
+            "thickness": 0.015830599810306194,
+            "axis": [
+              0.2828358737496116,
+              0.3597433819801415,
+              -0.8891504752525209
+            ],
+            "width_dir": [
+              0.9543667829068976,
+              -0.012909682626879679,
+              0.29835781165977865
+            ]
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Scabbard from the guard to the chape. The chape's y is not visible in any carve view: depth_m (inferred)."
+    },
+    {
+      "id": "arm_l_upper",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "joint": {
+          "part": "arm_l_fore",
+          "at": "base",
+          "self": "tip"
+        },
+        "segments": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              152,
+              466
+            ],
+            "tip": [
+              112,
+              525
+            ],
+            "radius_px": 27
+          },
+          "side": {
+            "base": [
+              212,
+              458
+            ],
+            "tip": [
+              186,
+              525
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6073,
+              "iou_vis": 0.6073,
+              "covered": 0.7985,
+              "spill": 0.0433,
+              "label_px": 4650
+            },
+            "side": {
+              "iou": 0.2373,
+              "iou_vis": 0.2731,
+              "covered": 0.3719,
+              "spill": 0.0,
+              "label_px": 5582
+            },
+            "back": {
+              "iou": 0.505,
+              "iou_vis": 0.53,
+              "covered": 0.7826,
+              "spill": 0.0521,
+              "label_px": 3873
+            }
+          },
+          "location": [
+            -0.09119101330959653,
+            -0.00176168057082398,
+            0.2637904982765894
+          ],
+          "rotation_deg": [
+            -133.3756185555652,
+            21.864253149701632,
+            21.511737303808832
+          ],
+          "size": [
+            0.03990753514662,
+            0.03990753514662,
+            0.059977213614381665
+          ],
+          "params": {
+            "axis": "Z",
+            "tip_radius": 0.029983356142026865
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Shoulder to elbow of the -X arm."
+    },
+    {
+      "id": "arm_l_fore",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              110,
+              522
+            ],
+            "tip": [
+              78,
+              580
+            ],
+            "radius_px": 24
+          },
+          "side": {
+            "base": [
+              186,
+              522
+            ],
+            "tip": [
+              190,
+              580
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6699,
+              "iou_vis": 0.9446,
+              "covered": 0.9512,
+              "spill": 0.0051,
+              "label_px": 3013
+            },
+            "side": {
+              "iou": 0.6697,
+              "iou_vis": 0.8371,
+              "covered": 0.9308,
+              "spill": 0.0,
+              "label_px": 2892
+            },
+            "back": {
+              "iou": 0.5916,
+              "iou_vis": 0.9619,
+              "covered": 0.9771,
+              "spill": 0.0097,
+              "label_px": 2531
+            }
+          },
+          "location": [
+            -0.1251983675539366,
+            0.011865734518274329,
+            0.23113110625646854
+          ],
+          "rotation_deg": [
+            -135.68362614436967,
+            0.22998764901701563,
+            90.22456214464307
+          ],
+          "size": [
+            0.04838597493112544,
+            0.04838597493112544,
+            0.06034007009873098
+          ],
+          "params": {
+            "axis": "Z",
+            "tip_radius": 0.01885384884392944
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Elbow to wrist of the -X arm."
+    },
+    {
+      "id": "hand_l",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 20,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "center": [
+              68,
+              590
+            ],
+            "radius_px": [
+              27,
+              33
+            ]
+          },
+          "side": {
+            "center": [
+              194,
+              598
+            ],
+            "radius_px": [
+              34,
+              40
+            ]
+          }
+        },
+        "fitted": {
+          "iou": {
+            "front": {
+              "iou": 0.6854,
+              "iou_vis": 0.6903,
+              "covered": 0.801,
+              "spill": 0.1653,
+              "label_px": 3131
+            },
+            "side": {
+              "iou": 0.6758,
+              "iou_vis": 0.677,
+              "covered": 0.7893,
+              "spill": 0.0,
+              "label_px": 4989
+            },
+            "back": {
+              "iou": 0.6807,
+              "iou_vis": 0.695,
+              "covered": 0.8122,
+              "spill": 0.1677,
+              "label_px": 3008
+            }
+          },
+          "location": [
+            -0.15229707722395625,
+            0.00518046164354389,
+            0.19668609483502783
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            0.040161752781297244,
+            0.06241179183103464,
+            0.05253392009280016
+          ],
+          "params": {}
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Glove."
+    },
+    {
+      "id": "arm_r_upper",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "mirror_of": "arm_l_upper",
+        "fitted": {
+          "mirror_of": "arm_l_upper"
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "+X arm hidden in the -X side view: mirror of arm_l_upper."
+    },
+    {
+      "id": "arm_r_fore",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "mirror_of": "arm_l_fore",
+        "fitted": {
+          "mirror_of": "arm_l_fore"
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Mirror of arm_l_fore."
+    },
+    {
+      "id": "hand_r",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "segments": 20,
+        "color_projection": true,
+        "mirror_of": "hand_l",
+        "fitted": {
+          "mirror_of": "hand_l"
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Mirror of hand_l."
+    },
+    {
+      "id": "shield",
+      "type": "disc",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "thickness": 0.012,
+        "dome_height": 0.02,
+        "dome_radius": 0.03,
+        "segments": 48,
+        "attach_to": "body",
+        "attach_side": "back",
+        "standoff": 0.0,
+        "anchors_px": {
+          "back": {
+            "center": [
+              273,
+              520
+            ],
+            "radius_px": 94
+          }
+        },
+        "fitted": {
+          "iou": {
+            "back": {
+              "iou": 0.9585,
+              "iou_vis": 0.9598,
+              "covered": 0.9998,
+              "spill": 0.0,
+              "label_px": 28715
+            }
+          },
+          "location": [
+            0.0009538743825598017,
+            0.0874565119354809,
+            0.24344500316159834
+          ],
+          "rotation_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": null,
+          "params": {
+            "radius": 0.07326882035231504,
+            "axis": [
+              -0.0006702045309260631,
+              0.9380757423333631,
+              0.34642957793986995
+            ],
+            "thickness": 0.012067760259912503,
+            "dome_height": 0.019981730596028306,
+            "dome_radius": 0.03
+          }
+        }
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Round shield on the back, seen only in the back view (the -X side view lacks it). Disc facing the back camera, its inner face resting on the body's back surface (contact solve against the hull's depth buffer). Built after the hull; not part of the hull exclusion."
+    },
+    {
+      "id": "face",
+      "type": "layer_hull",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "label": "face",
+        "views": [
+          "front",
+          "side"
+        ],
+        "resolution": 160,
+        "exponent": 2.0,
+        "color_projection": true
+      },
+      "material": null,
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Face recessed inside the helmet opening: its own hull from the face label (front + side), the body is recessed behind it (body.params.layers). Not in exclude_components: the body keeps the face pixels in its carve masks and is cut by the layer region instead."
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  },
+  "parts_labels": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\labels.json"
+}

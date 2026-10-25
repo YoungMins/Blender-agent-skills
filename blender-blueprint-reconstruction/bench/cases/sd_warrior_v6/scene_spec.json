@@ -1,0 +1,385 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_warrior",
+  "category": "character",
+  "object_type": "sd_warrior",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back",
+          "right"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "exclude_components": [
+          "horn_l",
+          "horn_r",
+          "sword_pommel",
+          "sword_grip",
+          "sword_blade",
+          "arm_l_upper",
+          "arm_l_fore",
+          "hand_l",
+          "arm_r_upper",
+          "arm_r_fore",
+          "hand_r"
+        ],
+        "exclude_dilate_px": 1
+      }
+    },
+    {
+      "id": "horn_l",
+      "type": "cone",
+      "location": [
+        -0.1104,
+        0.0182,
+        0.4826
+      ],
+      "params": {
+        "base_radius": 0.031,
+        "tip_radius": 0.003,
+        "length": 0.14,
+        "axis": [
+          -0.8297,
+          0.0995,
+          0.5492
+        ],
+        "bend": 121,
+        "flatten": 0.6,
+        "bend_dir": [
+          1,
+          0,
+          0
+        ],
+        "segments": 20,
+        "sides": 16
+      },
+      "notes": "Horn from front (base ring ~px 118,190, tip ~px 125,45) and side (base px 180,200, tip px 157,38) via prepare_references.py measure; bend fitted so the outer bulge and tip match.",
+      "stage": "secondary",
+      "confidence": "observed"
+    },
+    {
+      "id": "horn_r",
+      "type": "cone",
+      "location": [
+        0.1134,
+        0.0182,
+        0.4826
+      ],
+      "params": {
+        "base_radius": 0.031,
+        "tip_radius": 0.003,
+        "length": 0.14,
+        "axis": [
+          0.8297,
+          0.0995,
+          0.5492
+        ],
+        "bend": 121,
+        "flatten": 0.6,
+        "bend_dir": [
+          -1,
+          0,
+          0
+        ],
+        "segments": 20,
+        "sides": 16
+      },
+      "notes": "Horn from front (base ring ~px 118,190, tip ~px 125,45) and side (base px 180,200, tip px 157,38) via prepare_references.py measure; bend fitted so the outer bulge and tip match.",
+      "stage": "secondary",
+      "confidence": "observed"
+    },
+    {
+      "id": "sword_pommel",
+      "type": "sphere",
+      "location": [
+        0.0582,
+        -0.0744,
+        0.2373
+      ],
+      "size": [
+        0.017,
+        0.017,
+        0.017
+      ],
+      "notes": "Gold knob: x,z front px 350,520; y side px 310,520 (hilt peeks out past the belt).",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "color_projection": true
+      }
+    },
+    {
+      "id": "sword_grip",
+      "type": "cylinder",
+      "location": [
+        0.0643,
+        -0.0686,
+        0.2186
+      ],
+      "rotation_deg": [
+        0.0,
+        155.76,
+        43.68
+      ],
+      "size": [
+        0.011,
+        0.011,
+        0.026
+      ],
+      "params": {
+        "axis": "Z",
+        "vertices": 16,
+        "color_projection": true
+      },
+      "stage": "secondary",
+      "confidence": "observed"
+    },
+    {
+      "id": "sword_blade",
+      "type": "blade",
+      "location": [
+        0.0686,
+        -0.0645,
+        0.2054
+      ],
+      "confidence": "inferred",
+      "params": {
+        "axis": [
+          0.297,
+          0.2836,
+          -0.9118
+        ],
+        "width_dir": [
+          1,
+          0,
+          0
+        ],
+        "length": 0.1367,
+        "width": 0.03,
+        "thickness": 0.016,
+        "tip_width": 0.02,
+        "tip_thickness": 0.012,
+        "tip_length": 0.014
+      },
+      "notes": "Scabbard: x,z from front/back (chape px 420,725 / 125,725); y of the chape from the +X view (scale-corrected, drifts) -> inferred; thickness inferred.",
+      "stage": "secondary"
+    },
+    {
+      "id": "arm_l_upper",
+      "type": "capsule",
+      "location": [
+        -0.1053,
+        0.006,
+        0.2607
+      ],
+      "rotation_deg": [
+        0.0,
+        38.01,
+        -15.77
+      ],
+      "size": [
+        0.0392,
+        0.0392,
+        0.1109
+      ],
+      "params": {
+        "axis": "Z",
+        "segments": 16,
+        "color_projection": true
+      },
+      "confidence": "observed",
+      "notes": "Arm from front (pauldron px 150,455; bracer px 95,520) and side (px 210,440 / 180,520).",
+      "stage": "secondary"
+    },
+    {
+      "id": "arm_l_fore",
+      "type": "capsule",
+      "location": [
+        -0.143,
+        0.012,
+        0.2102
+      ],
+      "rotation_deg": [
+        0.0,
+        36.56,
+        0.0
+      ],
+      "size": [
+        0.0348,
+        0.0348,
+        0.0902
+      ],
+      "params": {
+        "axis": "Z",
+        "segments": 16,
+        "color_projection": true
+      },
+      "confidence": "observed",
+      "notes": "Arm from front (pauldron px 150,455; bracer px 95,520) and side (px 210,440 / 180,520).",
+      "stage": "secondary"
+    },
+    {
+      "id": "hand_l",
+      "type": "sphere",
+      "location": [
+        -0.1555,
+        0.011,
+        0.193
+      ],
+      "size": [
+        0.037,
+        0.058,
+        0.048
+      ],
+      "confidence": "observed",
+      "params": {
+        "segments": 20,
+        "color_projection": true
+      },
+      "notes": "Glove: front px 70,590; side px 190,595.",
+      "stage": "secondary"
+    },
+    {
+      "id": "arm_r_upper",
+      "type": "capsule",
+      "location": [
+        0.1053,
+        0.006,
+        0.2607
+      ],
+      "rotation_deg": [
+        0.0,
+        38.01,
+        -164.23
+      ],
+      "size": [
+        0.0392,
+        0.0392,
+        0.1109
+      ],
+      "params": {
+        "axis": "Z",
+        "segments": 16,
+        "color_projection": true
+      },
+      "confidence": "inferred",
+      "notes": "Arm from front (pauldron px 150,455; bracer px 95,520) and side (px 210,440 / 180,520). +X arm: y mirrored from the -X arm (hidden in the -X side view).",
+      "stage": "secondary"
+    },
+    {
+      "id": "arm_r_fore",
+      "type": "capsule",
+      "location": [
+        0.143,
+        0.012,
+        0.2102
+      ],
+      "rotation_deg": [
+        0.0,
+        36.56,
+        180.0
+      ],
+      "size": [
+        0.0348,
+        0.0348,
+        0.0902
+      ],
+      "params": {
+        "axis": "Z",
+        "segments": 16,
+        "color_projection": true
+      },
+      "confidence": "inferred",
+      "notes": "Arm from front (pauldron px 150,455; bracer px 95,520) and side (px 210,440 / 180,520). +X arm: y mirrored from the -X arm (hidden in the -X side view).",
+      "stage": "secondary"
+    },
+    {
+      "id": "hand_r",
+      "type": "sphere",
+      "location": [
+        0.1555,
+        0.011,
+        0.193
+      ],
+      "size": [
+        0.037,
+        0.058,
+        0.048
+      ],
+      "confidence": "inferred",
+      "params": {
+        "segments": 20,
+        "color_projection": true
+      },
+      "notes": "Glove: front px 70,590; side px 190,595.",
+      "stage": "secondary"
+    },
+    {
+      "id": "shield",
+      "type": "disc",
+      "location": [
+        0.0,
+        0.066,
+        0.245
+      ],
+      "confidence": "inferred",
+      "params": {
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.0695,
+        "thickness": 0.012,
+        "dome_height": 0.02,
+        "dome_radius": 0.03,
+        "segments": 48
+      },
+      "notes": "Back view: centre px 273,520, rim px 180..368 -> radius 0.0695, boss radius ~0.03. Depth (y) and thickness are INFERRED: the -X side view lacks the shield; the +X view only shows the dome protruding behind the cape. Not carved (not in the carve views).",
+      "stage": "secondary"
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+bench/runs/
+examples/*/output_*/
+/report.json
+/checkpoints/
+*.blend1

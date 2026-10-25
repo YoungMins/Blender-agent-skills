@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbr/scene_spec.schema.json",
+  "title": "BBR SceneSpec",
+  "description": "Declarative description of the 3D reconstruction: overall dimensions, materials and a list of components built in stage order. Blender world, meters, Z up, object front faces -Y, origin = footprint centre at floor.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "name", "components"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "spec_version": {"type": "string", "enum": ["0.1"]},
+    "name": {"type": "string", "minLength": 1, "description": "Scene / object name; prefix of every component agent_id."},
+    "category": {"type": "string", "enum": ["furniture", "product", "mechanical", "prop", "hard_surface", "character", "other"]},
+    "object_type": {"type": "string"},
+    "units": {"type": "string", "enum": ["meters"]},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Target overall bounding box in meters (X width, Y depth, Z height). null = take from the views.",
+      "properties": {
+        "width": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "depth": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "height": {"type": ["number", "null"], "exclusiveMinimum": 0}
+      }
+    },
+    "symmetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {"x": {"type": "boolean"}, "y": {"type": "boolean"}, "z": {"type": "boolean"}}
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hard_surface": {"type": "boolean"},
+        "bevel": {"type": "boolean"},
+        "bevel_width": {"type": "number", "minimum": 0},
+        "bevel_segments": {"type": "integer", "minimum": 1},
+        "weighted_normals": {"type": "boolean"},
+        "texture": {"type": "string", "enum": ["auto", "project", "flat"], "description": "Reference colour on hard-surface components: project = every non-cutter component gets a per-texel colour projected from the colour views (UV smart project, all meshes occlude, label gating when labelled); flat = material colours only; auto (default) = project when the view spec has a colour view and its references are not synthetic (reference_quality.synthetic). params.color_projection overrides it per component."},
+        "pbr": {"type": "string", "enum": ["auto", "stylized", "physical"], "description": "Which column of the material class presets applies: auto (default) = stylized for projected textures, physical for flat materials."}
+      }
+    },
+    "materials": {
+      "type": "object",
+      "description": "Material name -> principled parameters. `class` picks a preset (physical or stylized column, see style.pbr); explicit keys override it.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "class": {"type": "string", "enum": ["brass", "cloth", "default", "emissive", "fabric", "glass", "gold", "hair", "iron", "leather", "metal_brass", "metal_gold", "metal_steel", "paint", "painted", "plastic", "rubber", "skin", "steel", "stone", "visor", "wood"], "description": "Material class preset: metal_steel / metal_gold / metal_brass (aliases iron, steel, gold, brass), cloth (fabric), skin, hair, leather, wood, stone, plastic, painted (paint), glass, visor, emissive, rubber, default."},
+          "base_color": {"type": "array", "minItems": 3, "maxItems": 4, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+          "roughness": {"type": "number", "minimum": 0, "maximum": 1},
+          "metallic": {"type": "number", "minimum": 0, "maximum": 1},
+          "coat": {"type": "number", "minimum": 0, "maximum": 1, "description": "Clear-coat weight."},
+          "coat_roughness": {"type": "number", "minimum": 0, "maximum": 1},
+          "sheen": {"type": "number", "minimum": 0, "maximum": 1},
+          "specular": {"type": "number", "minimum": 0, "maximum": 1, "description": "Specular IOR level (Blender default 0.5)."},
+          "emission_strength": {"type": "number", "minimum": 0, "description": "Emission of the base colour / projected texture."},
+          "ior": {"type": "number", "minimum": 1, "maximum": 4}
+        }
+      }
+    },
+    "parts_labels": {"type": "string", "minLength": 1, "description": "Path (relative to this file) of labels.json: per view, which numbered reference regions belong to which part (prepare_references.py propose / labels). With it the hull exclusion and the texture projection use the label masks instead of the fitted part meshes."},
+    "components": {"type": "array", "items": {"$ref": "#/$defs/component"}},
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_iterations": {"type": "integer", "minimum": 0},
+        "error_threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "blockout_threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "auto_correct": {"type": "boolean"},
+        "consistency_gate": {"type": "string", "enum": ["warn", "strict"]},
+        "dimension_tolerance": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.5, "description": "Relative error accepted on each overall model dimension (validation 'dimensions'). Default by reference_quality: 0.03 for synthetic / blueprint references, 0.05 for AI-generated ones (reference_quality.ai_generated, orthographic false, or views cut from one sheet)."},
+        "consistency": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Record reference-consistency flags / role changes you judged false alarms (after checking the XOR overlay).",
+          "properties": {
+            "ignore_flags": {"type": "array", "items": {"type": "string"}, "description": "Flag types to ignore: 'scale_drift' (any view) or 'scale_drift:side'."},
+            "roles_override": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}}, "description": "{view: roles} kept instead of the recommended roles."}
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "description": "Unique within the scene; agent_id = '<scene name>:<id>'."},
+        "type": {"type": "string", "enum": ["box", "rounded_box", "cylinder", "sphere", "capsule", "leg", "panel", "plate", "frame", "silhouette_hull", "layer_hull", "cone", "blade", "disc", "strand", "gem", "arch", "half_cylinder", "torus", "lathe"]},
+        "stage": {"type": "string", "enum": ["blockout", "primary", "secondary", "detail"], "description": "Build order; blockout first."},
+        "confidence": {"type": "string", "enum": ["observed", "inferred", "unknown"]},
+        "location": {"$ref": "#/$defs/vec3", "description": "ADVANCED (explicit pose; prefer params.anchors_px): component centre in world meters. Ignored for anchored parts."},
+        "rotation_deg": {"$ref": "#/$defs/vec3", "description": "ADVANCED (explicit pose; prefer params.anchors_px): Euler XYZ rotation in degrees. Anchored parts get their rotation from the anchors."},
+        "size": {
+          "type": ["array", "null"], "minItems": 3, "maxItems": 3,
+          "items": {"type": "number", "exclusiveMinimum": 0},
+          "description": "Full extents [x, y, z] in local axes before rotation. May be null only for silhouette_hull, the true-size part types cone / blade / disc / torus / lathe (sized by params) and parts placed with params.anchors_px / mirror_of. ADVANCED for everything else."
+        },
+        "params": {
+          "type": "object",
+          "description": "Type-specific parameters. Image-anchored placement (preferred for parts): anchors_px, attach_to (+ attach_at for hard-surface parts), attach_side, standoff, mirror_of, depth_m, thickness, roll (below). Explicit-pose parameters (ADVANCED, kept for compatibility: axis, bend, bend_dir, length, base_radius, tip_radius, radius, width, width_dir with location / rotation_deg / size): radius, segments, axis, vertices, profile, taper, thickness, resolution). silhouette_hull: carve_views, color_views, cross_section superellipse|rectangle, exponent, pair_max_aspect, slice_coherence (share of the height, default 0.02, 0 = off: a silhouette bulge thinner than this in Z, e.g. a hair spike, no longer inflates a whole ring of the hull), smooth_iterations, color_projection, plus exclude_components / exclude_dilate_px and the post-processing params below (all optional). cone (horn): base_radius, length (required), tip_radius (0 = point), axis [x,y,z], bend (total turn in degrees) + bend_dir [x,y,z], flatten (cross-section scale perpendicular to the bend plane), segments, sides. blade: length, width, thickness (required), tip_width, tip_thickness, tip_length (pointed tip), axis, width_dir. disc (shield, hat brim): radius, thickness (required), radius_ratio (elliptical: extent along local Y = radius * ratio, default 1), dome_height, dome_radius, axis (+axis face carries the dome), segments, dome_rings. arch / half_cylinder (lid, vault: needs size [x, y, z] = full bounding extents; axis = long axis, default X; bulge; thickness > 0 = half-ring band; segments): half-ellipse cross-section, half the extent across and the full extent along bulge. lathe (body of revolution about Z, no size: mushroom cap, vase, lamp, column; profile [[z, r], ...] meters bottom to top or profile_from {view, bbox_px | part} measured from the masks, depth_ratio (Y over X, auto from the side view), segments (48), cap_top / cap_bottom (true); with profile_from location is derived: the axis position). torus (ring handle, no size; major_radius, minor_radius required; axis = ring-plane normal, default Z; major_segments, minor_segments; origin = ring centre). rounded_box: radius number or [rx, ry, rz], segments. gem (crystal, flat shaded bipyramid): size [2r, 2r, length] or anchors_px base / tip + radius_px (like a capsule), facets (default 6, 4 = octahedron), waist (0..1, default 0.5, widest ring toward the tip). strand (twin tail, braid, long hair lock, cable; no size): anchors_px p0 (base) ... pN-1 (tip), N >= 3, plus radius_px (number, [base, tip] or one per point), flatten (< 1 thinner in depth), segments, sides; a Catmull-Rom tube. Origin: cone/blade = centre of the base end, disc = centre. Part types are textured by default (color_projection false opts out; any component may opt in with true); texture_size defaults to 512 for parts. layer_hull (a face recessed in a helmet; sized by its labels, no size): params label (default the id), views [front, side], resolution, exponent, embed, color_projection true; the silhouette_hull lists it in params.layers to recess its body behind it (see reconstruction-workflow.md, Layers).",
+          "properties": {
+            "anchors_px": {
+              "type": "object",
+              "description": "Image-anchored part placement (replaces typed location / rotation / size). {view: {name: [x, y], ..., radius_px | width_px}} in pixels of that reference view. cone (horn, limb): base, tip, optional mid (the arc goes through it) + radius_px [base, tip]. capsule / cylinder: base, tip (the two ends) + radius_px. blade: base, tip + width_px (measured where the blade is seen flat; params.thickness in meters, params.roll in degrees). plate (wing, fin, ear fin, leaf): base (root edge) and tip only, in two views; the outline is the part's label mask in params.face_view; params.thickness. disc: center + radius_px (in the face-on view; its camera is the disc's facing direction; params.thickness). sphere: center + radius_px (number, or [horizontal, vertical]). Use the same physical point in every view: x comes from front/back, y from side/right, z from both (mean, disagreement reported in placement.json). strand: points p0, p1, ... + radius_px (one number, [base, tip] or one per point). A coordinate no view measures comes from params.depth_m, params.mirror_of, params.attach_to (in that priority), then the _l/_r partner part, contact with the body surface, the body centre line (inferred, warned). A point hidden in a view is omitted from that view (never guessed): the other views triangulate it, an axis none measures is taken from the part's other measured keypoints and the part is marked inferred. Generate pixel anchors with `prepare_references.py anchors` (or `anchors --from-px VIEW:name=x,y ...` for typed pixels).",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {"type": ["array", "number"], "items": {"type": "number"}}
+              }
+            },
+            "attach_to": {"type": "string", "description": "Hard-surface part: with attach_at, the component (body, lathe, cylinder) whose own mesh the part is seated on, along the surface normal. Anchored part: id of the component whose surface the part rests on (contact constraint). The missing depth coordinate is solved by ray-casting the target's depth buffer in the view named by attach_side, under the part's footprint (the highest surface point, so the part never sinks in); the part's inner face sits there plus standoff. The target must be built first (a silhouette_hull is: stage primary); the part is then placed after the hull and is NOT part of the hull exclusion (do not list it in exclude_components)."},
+            "attach_side": {"type": "string", "description": "With attach_to: the side the part is seen from and sits on: back, front, left, right, top, bottom, or a view key. Anchors for the part must exist in that view."},
+            "standoff": {"type": "number", "description": "With attach_to: gap in meters between the target surface and the part's inner face (default 0)."},
+            "attach_at": {"type": "object", "description": "Hard-surface part (box, arch, torus, ...) without anchors_px, with attach_to: where on the target's surface it sits. {\"view\": \"front\", \"px\": [x, y]} casts along that view's camera axis through the reference pixel; {\"azimuth_deg\": a, \"height\": z} casts horizontally at height z toward the target's axis from azimuth a (0 = front -Y, 90 = +X, 180 = back). The part's local `face` axis turns along the outward surface normal (local Z stays upright), its back face rests `standoff` meters off the surface. Result in surface_attach.json."},
+            "face": {"enum": ["-Y", "+Y"], "description": "With attach_at: the part's local axis that points out of the surface (default -Y: a window or door built facing the front)."},
+            "profile_from": {"type": "object", "description": "lathe: measure the profile from the reference masks. {\"view\": \"front\", \"bbox_px\": [x0, y0, x1, y1]} (the silhouette inside the box) or {\"part\": label_id} (that part's label mask, the way to leave a chimney out), optional side_view, side_bbox_px, tol_px (1), max_points (40), bottom_z (extend the lowest point straight down to this height, 0 = ground: a round base seen from slightly above curls in at the bottom). Sets profile, depth_ratio and the axis position (location is derived)."},
+            "profile": {"type": ["string", "array"], "items": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}, "description": "leg: square | round. lathe: [[z, r], ...] meters, bottom to top, z in the component's local frame (explicit; wins over profile_from)."},
+            "depth_ratio": {"type": "number", "exclusiveMinimum": 0, "description": "lathe: extent along Y over extent along X (elliptic section). Default: measured from the side view with profile_from, else 1."},
+            "cap_top": {"type": "boolean", "description": "lathe: close the top end with a flat disc (default true; false = open)."},
+            "cap_bottom": {"type": "boolean", "description": "lathe: close the bottom end with a flat disc (default true)."},
+            "mirror_of": {"type": "string", "description": "Anchored part: id of a sibling of the same type. Every coordinate the part's own anchors do not measure (all of them without anchors_px) is the sibling's mirrored across X = 0; radii / width come from the sibling unless given."},
+            "joint": {"type": "object", "required": ["part"], "additionalProperties": false, "properties": {"part": {"type": "string"}, "at": {"enum": ["base", "tip", "center"]}, "self": {"enum": ["base", "tip", "center"]}}, "description": "Anchored part: pin this part's keypoint `self` (default base) to the keypoint `at` (default tip) of component `part`, e.g. a spatula handle's base on the head's base: {\"part\": \"spatula_head\", \"at\": \"base\", \"self\": \"base\"}. The pinned keypoint needs no anchor (anchors that disagree by more than 10 mm are reported; the joint wins) and may move at most 9 mm in the label fit."},
+            "adjacent_to": {"type": "array", "items": {"type": "string"}, "description": "Component ids this part touches. The pipeline warns (part_gap) when the 3D surface gap to one of them exceeds gap_tol_m. Parts whose labels touch in every view they share are checked too."},
+            "gap_tol_m": {"type": "number", "exclusiveMinimum": 0, "description": "Largest accepted surface gap in meters to an adjacent part (default 0.01; the larger of the two parts' values is used)."},
+            "depth_m": {"type": ["number", "object"], "description": "Anchored part: explicit coordinate (meters) of the axis no view measures, as a number or {keypoint: value}. Marks the part inferred. Last resort."},
+            "thickness": {"type": "number", "exclusiveMinimum": 0, "description": "Anchored blade / disc / plate: thickness in meters (not visible in the face-on view)."},
+            "face_view": {"type": "string", "description": "plate: the view key where the part is seen face-on; its label mask there is the outline (default: the view where the label is largest). The lifted outline matches that label exactly; the other views fit the plane's tilt."},
+            "edge_on_views": {"type": "object", "description": "plate: {view: [[x0, y0], [x1, y1]]}: a line along the plate in a view where it is seen edge-on (pixels). The plane contains that view's viewing direction and the line, which gives its tilt directly (else the plane contains base -> tip and faces face_view).", "additionalProperties": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}}},
+            "bend": {"type": "number", "description": "cone: total bend of the centre line in degrees (explicit pose). plate: curvature in degrees along root -> tip, toward the face side (default 0 = flat)."},
+            "outline_eps_px": {"type": "number", "exclusiveMinimum": 0, "description": "plate: simplification tolerance of the outline polygon in view pixels (default 1.5; grows until the polygon has at most 64 vertices)."},
+            "roll": {"type": "number", "description": "Anchored blade: extra rotation in degrees about its own axis (default 0: the width lies in the image plane of the view that gave width_px)."},
+            "agree_tol_m": {"type": "number", "exclusiveMinimum": 0, "description": "Anchored part: report views disagreeing by more than this many meters on a coordinate (default 0.005)."},
+            "flatten": {"type": "number", "exclusiveMinimum": 0, "description": "cone: cross-section thickness perpendicular to the bend plane relative to its width; 1 = round (default), 0.3-0.6 = a flat ear / horn; must be > 0 (the part fit searches 0.2-1.5)."},
+            "radius_ratio": {"type": "number", "exclusiveMinimum": 0, "description": "disc: extent along local Y = radius * radius_ratio (default 1; an oval hat brim: side depth / front width)."},
+            "dome_height": {"type": "number", "minimum": 0, "description": "disc: height of the spherical-cap dome on the +axis face in meters (default 0 = flat)."},
+            "dome_radius": {"type": "number", "exclusiveMinimum": 0, "description": "disc: base radius of the dome in meters, at most the disc radius (default: the whole face)."},
+            "tip_length": {"type": "number", "minimum": 0, "description": "blade: length of the pyramid tip in meters, less than the blade length (default 0 = flat end)."},
+            "facets": {"type": "integer", "minimum": 3, "description": "gem: sides of the bipyramid (default 6; 4 = octahedron)."},
+            "waist": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1, "description": "gem: where the widest ring sits, 0..1 from the base apex, both ends excluded (default 0.5)."},
+            "radius": {"type": ["number", "array"], "items": {"type": "number", "minimum": 0}, "minItems": 3, "maxItems": 3, "description": "rounded_box: edge rounding in meters, a number (all edges) or [rx, ry, rz] (how far the rounding reaches along each axis, 0 = sharp that way; elliptic edge profiles). Clamped below half the extent."},
+            "bulge": {"type": "string", "pattern": "^[+-][XYZ]$", "description": "arch / half_cylinder: signed axis the dome rises along, perpendicular to params.axis (default +Z; +X when axis is Z)."},
+            "major_radius": {"type": ["number", "array"], "items": {"type": "number", "exclusiveMinimum": 0}, "minItems": 2, "maxItems": 2, "exclusiveMinimum": 0, "description": "torus: ring radius in meters, a number or [r1, r2] (elliptic, along the two axes other than params.axis in X, Y, Z order). Required."},
+            "minor_radius": {"type": "number", "exclusiveMinimum": 0, "description": "torus: tube radius in meters, below the ring's tightest curvature radius min(r)^2 / max(r). Required."},
+            "major_segments": {"type": "integer", "minimum": 3, "description": "torus: segments around the ring (default 48)."},
+            "minor_segments": {"type": "integer", "minimum": 3, "description": "torus: segments around the tube (default 16)."},
+            "remesh_voxel": {"type": "number", "anyOf": [{"const": 0}, {"minimum": 0.0005}], "description": "silhouette_hull cleanup: voxel size in meters of the Remesh modifier (default height/250; 0 disables the cleanup; values below 0.0005 are rejected and anything finer than height/1000 is clamped to it)."},
+            "remove_islands_ratio": {"type": "number", "minimum": 0, "description": "silhouette_hull cleanup: drop disconnected islands below this share of the total surface area (default 0.002)."},
+            "island_min_frac": {"type": "number", "minimum": 0, "maximum": 1, "description": "silhouette_hull: parts of the carved surface smaller than this share of the largest connected part are dropped (default 0.01), so a silhouette that is really disconnected (staff, tail, a hat over a skin-coloured head) keeps its pieces; 1 keeps only the largest."},
+            "post_smooth_iterations": {"type": "integer", "minimum": 0, "description": "silhouette_hull cleanup: Taubin smoothing iterations after the remesh (default 4)."},
+            "retopo": {"type": "string", "enum": ["none", "decimate", "quadriflow"], "description": "silhouette_hull retopo (default decimate); quadriflow falls back to decimate on failure."},
+            "target_faces": {"type": "integer", "minimum": 4, "description": "silhouette_hull retopo target face count (default 20000)."},
+            "uv_angle_deg": {"type": "number", "exclusiveMinimum": 0, "maximum": 89, "description": "silhouette_hull smart-project angle limit (default 66)."},
+            "exclude_components": {"type": "array", "items": {"type": "string"}, "description": "silhouette_hull: ids of other components (horns, sword, arms...) whose silhouette is rasterized in every carve view and removed from the carve masks before the hull is built. Only pixels connected to the outside of the body are removed; pixels the part overlaps inside the body are restored (no holes)."},
+            "exclude_dilate_px": {"type": "integer", "minimum": 0, "description": "silhouette_hull: dilation of the excluded part silhouettes in px (default 3)."},
+            "texture_size": {"type": "integer", "minimum": 64, "maximum": 8192, "description": "silhouette_hull texture resolution in px (default 2048)."},
+            "texture_padding_px": {"type": "integer", "minimum": 0, "description": "silhouette_hull UV island margin and seam dilation in px (default 8)."},
+            "seam_blend_width": {"type": "number", "minimum": 0, "description": "silhouette_hull texture: views scoring within this of the primary view blend in with smoothstep weights (default 0.1); 0 = hard seams."},
+            "conflict_threshold": {"type": "number", "minimum": 0, "description": "silhouette_hull texture: mean abs RGB difference above which two views disagree: no blending, counted in conflict_ratio (default 0.25)."},
+            "edge_distrust_px": {"type": "integer", "minimum": 0, "description": "silhouette_hull texture: samples closer than this many reference px to a view's silhouette lose confidence (default 8)."},
+            "spill_suppression": {"type": "boolean", "description": "silhouette_hull colour: for a chroma-colour backdrop (green screen) drop enclosed backdrop pockets from the colour mask and un-mix the backdrop from pixels near the silhouette edge, then clamp the spill channel (default true; no effect on gray/white backdrops)."},
+            "spill_edge_px": {"type": "integer", "minimum": 0, "description": "silhouette_hull colour: reference px from the silhouette edge treated by spill_suppression (default 6; 0 = off)."},
+            "mirror_color_views": {"type": "array", "items": {"type": "string"}, "description": "silhouette_hull colour (inherited by parts): colour views looking along X (e.g. [\"side\"]) that are also used reflected through X = 0 as a virtual view from the opposite axis, so the flank no real view sees takes the mirrored colours (symmetric characters). Lowest priority (mirror_penalty); parts in asymmetric_parts are never sampled from it."},
+            "mirror_penalty": {"type": "number", "minimum": 0, "description": "Score penalty of a mirror_color_views virtual view against real views (default 0.5): a real view wins unless the mirrored one faces the texel better by more than this."},
+            "mirror_pairs": {"type": "object", "additionalProperties": {"type": "string"}, "description": "Part-id pairs {\"horn_l\": \"horn_r\"} swapped in the mirrored view's labels, in addition to the _l/_r (left/right) naming convention and mirror_of."},
+            "asymmetric_parts": {"type": "array", "items": {"type": "string"}, "description": "Labelled parts that are not symmetric (ids or globs such as \"sword_*\"): their pixels are cut out of the mirrored view and they never sample from it; also blanked when measuring the front symmetry."},
+            "symmetric_pairs": {"type": "array", "items": {"anyOf": [{"type": "array", "items": {"type": ["string", "number"]}, "minItems": 2, "maxItems": 3}, {"type": "object"}]}, "description": "Anchored parts fitted toward each other's mirror image across X = 0 with a tolerance: [a, b] or [a, b, tol_m] (or {a, b, tol_m}); b's fit is pulled to a's mirror, with a dead zone of tol_m meters (default 0). Use when the two references disagree a little, instead of exact mirror_of."}
+          }
+        },
+        "material": {"type": ["string", "null"], "description": "Key into 'materials', or a material class name (e.g. metal_steel, visor)."},
+        "mirror": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Mirror modifier axes, about the world origin or about mirror_center.",
+          "properties": {"x": {"type": "boolean"}, "y": {"type": "boolean"}, "z": {"type": "boolean"}}
+        },
+        "mirror_center": {"$ref": "#/$defs/vec3", "description": "World point [x, y, z] (metres) the mirror planes pass through (default: the world origin). Only the mirrored axes matter: an off-centre object mirrored about its own body axis. Needs mirror. The Mirror modifier runs BEFORE the Boolean, so a cutter must cover both instances or be mirrored itself."},
+        "bevel": {"type": ["null", "boolean", "number", "object"], "description": "null = scene style, true = scene style width, false = no bevel, number = width in meters, object = {width, segments}."},
+        "boolean": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["target"],
+          "properties": {
+            "target": {"type": "string", "description": "Component id that is cut/joined."},
+            "operation": {"type": "string", "enum": ["DIFFERENCE", "UNION", "INTERSECT"]}
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

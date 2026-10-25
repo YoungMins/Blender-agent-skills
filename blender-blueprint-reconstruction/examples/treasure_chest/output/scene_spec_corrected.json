@@ -1,0 +1,825 @@
+{
+  "spec_version": "0.1",
+  "name": "treasure_chest",
+  "category": "prop",
+  "object_type": "treasure_chest",
+  "units": "meters",
+  "dimensions": {
+    "width": 0.8486,
+    "depth": 0.4746,
+    "height": 0.567
+  },
+  "symmetry": {
+    "x": true,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": true,
+    "bevel": true,
+    "bevel_width": 0.002,
+    "bevel_segments": 2,
+    "weighted_normals": true,
+    "texture": "project"
+  },
+  "materials": {
+    "wood": {
+      "base_color": [
+        0.22,
+        0.1,
+        0.05,
+        1.0
+      ],
+      "roughness": 0.7
+    },
+    "iron": {
+      "base_color": [
+        0.1,
+        0.1,
+        0.11,
+        1.0
+      ],
+      "roughness": 0.45,
+      "metallic": 0.9
+    },
+    "brass": {
+      "base_color": [
+        0.7,
+        0.5,
+        0.15,
+        1.0
+      ],
+      "roughness": 0.35,
+      "metallic": 0.9
+    }
+  },
+  "components": [
+    {
+      "id": "body",
+      "type": "box",
+      "stage": "blockout",
+      "confidence": "observed",
+      "location": [
+        0.00063,
+        0.00562,
+        0.17915
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.77695,
+        0.43337,
+        0.27281
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "rim_band",
+      "type": "box",
+      "stage": "blockout",
+      "confidence": "observed",
+      "location": [
+        0.00063,
+        0.00624,
+        0.33756
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.79455,
+        0.4546,
+        0.044
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "lid",
+      "type": "arch",
+      "stage": "blockout",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.00624,
+        0.45699
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.79455,
+        0.42962,
+        0.19487
+      ],
+      "params": {
+        "axis": "X",
+        "bulge": "+Z"
+      },
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "foot_front",
+      "type": "box",
+      "stage": "blockout",
+      "confidence": "observed",
+      "location": [
+        -0.34825,
+        -0.17172,
+        0.02074
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.06663,
+        0.06869,
+        0.04149
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "foot_back",
+      "type": "box",
+      "stage": "blockout",
+      "confidence": "observed",
+      "location": [
+        -0.34825,
+        0.18796,
+        0.02074
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.06663,
+        0.06869,
+        0.04149
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "band_centre",
+      "type": "arch",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.00251,
+        0.00624,
+        0.46328
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.05657,
+        0.4496,
+        0.20744
+      ],
+      "params": {
+        "axis": "X",
+        "bulge": "+Z",
+        "thickness": 0.0113
+      },
+      "material": "iron",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "band_side",
+      "type": "arch",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.30236,
+        0.00624,
+        0.46328
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.06286,
+        0.4496,
+        0.20744
+      ],
+      "params": {
+        "axis": "X",
+        "bulge": "+Z",
+        "thickness": 0.0113
+      },
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_front_f_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.37611,
+        -0.21506,
+        0.08172
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.042,
+        0.008,
+        0.07795
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_front_f_h",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.35413,
+        -0.21506,
+        0.05975
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.08595,
+        0.008,
+        0.034
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_front_s_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        -0.20206,
+        0.08172
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.034,
+        0.07795
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_front_s_h",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        -0.16323,
+        0.05975
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.11166,
+        0.034
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_up_front_f_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.37611,
+        -0.21506,
+        0.29481
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.042,
+        0.008,
+        0.04149
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_up_front_s_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        -0.20206,
+        0.29481
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.034,
+        0.04149
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_back_f_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.37611,
+        0.2263,
+        0.08172
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.042,
+        0.008,
+        0.07795
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_back_f_h",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.35413,
+        0.2263,
+        0.05975
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.08595,
+        0.008,
+        0.034
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_back_s_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        0.2133,
+        0.08172
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.034,
+        0.07795
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_low_back_s_h",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        0.17447,
+        0.05975
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.11166,
+        0.034
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_up_back_f_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.37611,
+        0.2263,
+        0.29481
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.042,
+        0.008,
+        0.04149
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "brk_up_back_s_v",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        0.2133,
+        0.29481
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.034,
+        0.04149
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "hasp",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.00251,
+        -0.21406,
+        0.29859
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.05657,
+        0.006,
+        0.03394
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": false,
+      "boolean": null,
+      "notes": "thin strap: bevel false keeps its 6 mm edge crisp"
+    },
+    {
+      "id": "ring_plate",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.39311,
+        0.00687,
+        0.24478
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.008,
+        0.13613,
+        0.06994
+      ],
+      "params": {},
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "ring",
+      "type": "torus",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.41,
+        0.00562,
+        0.215
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "axis": "X",
+        "major_radius": [
+          0.0589,
+          0.0515
+        ],
+        "minor_radius": 0.011
+      },
+      "material": "iron",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "padlock_body",
+      "type": "box",
+      "stage": "detail",
+      "confidence": "observed",
+      "location": [
+        0.00126,
+        -0.22418,
+        0.19927
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.08172,
+        0.02623,
+        0.08172
+      ],
+      "params": {},
+      "material": "brass",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "padlock_shackle",
+      "type": "torus",
+      "stage": "detail",
+      "confidence": "observed",
+      "location": [
+        -0.00063,
+        -0.22418,
+        0.24013
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": null,
+      "params": {
+        "axis": "Y",
+        "major_radius": [
+          0.0272,
+          0.0536
+        ],
+        "minor_radius": 0.008
+      },
+      "material": "iron",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": false
+  }
+}

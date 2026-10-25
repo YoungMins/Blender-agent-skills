@@ -1,0 +1,19 @@
+{
+  "spec_version": "0.1",
+  "name": "robot_character",
+  "views": {
+    "front": {"path": "references/front.png", "camera_axis": "-Y", "roles": ["carve", "color", "validate"],
+              "background": {"mode": "auto", "tolerance": 0.12}, "calibration": {"mode": "sheet"}, "confidence": "observed"},
+    "side": {"path": "references/side.png", "camera_axis": "-X", "roles": ["carve", "color", "validate"],
+             "background": {"mode": "auto", "tolerance": 0.12}, "calibration": {"mode": "sheet"}, "confidence": "observed",
+             "notes": "The face/visor points to image-RIGHT, so camera_axis is -X (see references/coordinate-system.md)."},
+    "back": {"path": "references/back.png", "camera_axis": "+Y", "roles": ["color", "validate"],
+             "background": {"mode": "auto", "tolerance": 0.12}, "calibration": {"mode": "sheet"}, "confidence": "observed",
+             "notes": "Generated image: only approximately a mirror of the front silhouette (generator noise)."},
+    "top_generated": {"path": "references/top_generated.png", "roles": ["preview"], "confidence": "unknown",
+                      "notes": "High-angle PERSPECTIVE image, NOT a true orthographic top view: stored for reference only, never carved or validated."}
+  },
+  "known_dimensions": {"width": null, "depth": null, "height": 0.9},
+  "symmetry": {"x": true, "y": false, "z": false},
+  "reference_quality": {"orthographic": false, "notes": "AI-generated turnaround sheet (green screen). Views are near-orthographic but not exact; silhouettes disagree slightly between views (front/back mirror IoU 0.937 = 6.3% validation floor). calibration.mode sheet: one shared scale + baseline."}
+}

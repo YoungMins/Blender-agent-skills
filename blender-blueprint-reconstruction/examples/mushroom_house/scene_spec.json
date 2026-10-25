@@ -1,0 +1,627 @@
+{
+ "spec_version": "0.1",
+ "name": "mushroom_house",
+ "category": "prop",
+ "object_type": "mushroom_house",
+ "units": "meters",
+ "dimensions": {
+  "width": 1.3024,
+  "depth": 1.2087,
+  "height": 1.2
+ },
+ "symmetry": {
+  "x": false,
+  "y": false,
+  "z": false
+ },
+ "style": {
+  "hard_surface": true,
+  "bevel": true,
+  "bevel_width": 0.003,
+  "bevel_segments": 2,
+  "weighted_normals": true,
+  "texture": "project"
+ },
+ "parts_labels": "labels.json",
+ "materials": {
+  "stone": {
+   "class": "stone",
+   "base_color": [
+    0.5,
+    0.47,
+    0.42,
+    1
+   ],
+   "roughness": 0.8
+  },
+  "cream": {
+   "base_color": [
+    0.93,
+    0.87,
+    0.72,
+    1
+   ],
+   "roughness": 0.7
+  },
+  "red": {
+   "base_color": [
+    0.8,
+    0.1,
+    0.08,
+    1
+   ],
+   "roughness": 0.5
+  },
+  "wood": {
+   "class": "wood",
+   "base_color": [
+    0.4,
+    0.22,
+    0.1,
+    1
+   ],
+   "roughness": 0.7
+  },
+  "brass": {
+   "class": "metal_brass",
+   "base_color": [
+    0.7,
+    0.5,
+    0.15,
+    1
+   ],
+   "roughness": 0.35,
+   "metallic": 0.9
+  },
+  "glass": {
+   "class": "glass",
+   "base_color": [
+    0.55,
+    0.72,
+    0.85,
+    1
+   ],
+   "roughness": 0.2
+  }
+ },
+ "components": [
+  {
+   "id": "base_slab",
+   "type": "lathe",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "stone",
+   "params": {
+    "profile_from": {
+     "view": "front",
+     "bbox_px": [
+      60,
+      568,
+      625,
+      616
+     ],
+     "bottom_z": 0
+    },
+    "segments": 64
+   }
+  },
+  {
+   "id": "body",
+   "type": "lathe",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "cream",
+   "params": {
+    "profile_from": {
+     "part": "body"
+    },
+    "segments": 64
+   }
+  },
+  {
+   "id": "cap",
+   "type": "lathe",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "red",
+   "params": {
+    "profile_from": {
+     "part": "cap"
+    },
+    "segments": 64
+   }
+  },
+  {
+   "id": "chim_cap",
+   "type": "box",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "stone",
+   "location": [
+    0.50091,
+    -0.18953,
+    1.16101
+   ],
+   "size": [
+    0.20036,
+    0.21444,
+    0.07364
+   ]
+  },
+  {
+   "id": "chim_shaft",
+   "type": "box",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "stone",
+   "location": [
+    0.50091,
+    -0.18845,
+    1.0408
+   ],
+   "size": [
+    0.15245,
+    0.16895,
+    0.16679
+   ],
+   "params": {
+    "color_views": [
+     "front",
+     "back"
+    ]
+   }
+  },
+  {
+   "id": "chim_base",
+   "type": "box",
+   "stage": "blockout",
+   "confidence": "observed",
+   "material": "stone",
+   "location": [
+    0.50091,
+    -0.18845,
+    0.90325
+   ],
+   "size": [
+    0.18294,
+    0.22094,
+    0.1083
+   ],
+   "params": {
+    "color_views": [
+     "front",
+     "back"
+    ]
+   }
+  },
+  {
+   "id": "door_frame_lo",
+   "type": "box",
+   "stage": "primary",
+   "confidence": "observed",
+   "material": "stone",
+   "size": [
+    0.43557,
+    0.14,
+    0.22214
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      340.0,
+      527.0
+     ]
+    },
+    "standoff": -0.11000000000000001
+   }
+  },
+  {
+   "id": "door_frame_arch",
+   "type": "arch",
+   "stage": "primary",
+   "confidence": "observed",
+   "material": "stone",
+   "size": [
+    0.43557,
+    0.14,
+    0.21343
+   ],
+   "params": {
+    "axis": "Y",
+    "bulge": "+Z",
+    "segments": 32,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      340.0,
+      427.0
+     ]
+    },
+    "standoff": -0.11000000000000001
+   }
+  },
+  {
+   "id": "door_lo",
+   "type": "box",
+   "stage": "primary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.3049,
+    0.147,
+    0.22214
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      340.0,
+      527.0
+     ]
+    },
+    "standoff": -0.11199999999999999
+   }
+  },
+  {
+   "id": "door_arch",
+   "type": "arch",
+   "stage": "primary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.3049,
+    0.147,
+    0.15463
+   ],
+   "params": {
+    "axis": "Y",
+    "bulge": "+Z",
+    "segments": 32,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      340.0,
+      440.5
+     ]
+    },
+    "standoff": -0.11199999999999999
+   }
+  },
+  {
+   "id": "door_knob",
+   "type": "sphere",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "brass",
+   "size": [
+    0.06,
+    0.06,
+    0.06
+   ],
+   "params": {
+    "segments": 16,
+    "attach_to": "door_lo",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      382,
+      515
+     ]
+    },
+    "standoff": -0.012
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_f_ring",
+   "type": "torus",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "params": {
+    "axis": "Y",
+    "major_radius": 0.108,
+    "minor_radius": 0.017,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      498,
+      461.5
+     ]
+    },
+    "standoff": -0.017
+   },
+   "bevel": false,
+   "mirror": {
+    "x": true
+   }
+  },
+  {
+   "id": "win_f_glass",
+   "type": "cylinder",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "glass",
+   "size": [
+    0.2,
+    0.012,
+    0.2
+   ],
+   "params": {
+    "axis": "Y",
+    "vertices": 32,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      498,
+      461.5
+     ]
+    },
+    "standoff": -0.006
+   },
+   "bevel": false,
+   "mirror": {
+    "x": true
+   }
+  },
+  {
+   "id": "win_f_barh",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.2,
+    0.02,
+    0.014
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      498,
+      461.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false,
+   "mirror": {
+    "x": true
+   }
+  },
+  {
+   "id": "win_f_barv",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.014,
+    0.02,
+    0.2
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "front",
+     "px": [
+      498,
+      461.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false,
+   "mirror": {
+    "x": true
+   }
+  },
+  {
+   "id": "win_s_ring",
+   "type": "torus",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "params": {
+    "axis": "Y",
+    "major_radius": 0.108,
+    "minor_radius": 0.017,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "side",
+     "px": [
+      321.5,
+      461.5
+     ]
+    },
+    "standoff": -0.017
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_s_glass",
+   "type": "cylinder",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "glass",
+   "size": [
+    0.2,
+    0.012,
+    0.2
+   ],
+   "params": {
+    "axis": "Y",
+    "vertices": 32,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "side",
+     "px": [
+      321.5,
+      461.5
+     ]
+    },
+    "standoff": -0.006
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_s_barh",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.2,
+    0.02,
+    0.014
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "side",
+     "px": [
+      321.5,
+      461.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_s_barv",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.014,
+    0.02,
+    0.2
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "side",
+     "px": [
+      321.5,
+      461.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_b_ring",
+   "type": "torus",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "params": {
+    "axis": "Y",
+    "major_radius": 0.108,
+    "minor_radius": 0.017,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "back",
+     "px": [
+      338.5,
+      432.5
+     ]
+    },
+    "standoff": -0.017
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_b_glass",
+   "type": "cylinder",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "glass",
+   "size": [
+    0.2,
+    0.012,
+    0.2
+   ],
+   "params": {
+    "axis": "Y",
+    "vertices": 32,
+    "attach_to": "body",
+    "attach_at": {
+     "view": "back",
+     "px": [
+      338.5,
+      432.5
+     ]
+    },
+    "standoff": -0.006
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_b_barh",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.2,
+    0.02,
+    0.014
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "back",
+     "px": [
+      338.5,
+      432.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false
+  },
+  {
+   "id": "win_b_barv",
+   "type": "box",
+   "stage": "secondary",
+   "confidence": "observed",
+   "material": "wood",
+   "size": [
+    0.014,
+    0.02,
+    0.2
+   ],
+   "params": {
+    "attach_to": "body",
+    "attach_at": {
+     "view": "back",
+     "px": [
+      338.5,
+      432.5
+     ]
+    },
+    "standoff": -0.01
+   },
+   "bevel": false
+  }
+ ],
+ "workflow": {
+  "max_iterations": 3,
+  "error_threshold": 0.08,
+  "blockout_threshold": 0.12,
+  "auto_correct": false
+ }
+}

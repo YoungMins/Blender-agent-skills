@@ -1,0 +1,47 @@
+{
+  "spec_version": "0.1",
+  "views": {
+    "front": {
+      "path": "references/front.png"
+    },
+    "side": {
+      "path": "references/side.png",
+      "camera_axis": "-X"
+    },
+    "back": {
+      "path": "references/back.png"
+    },
+    "h45": {
+      "path": "holdout/az_045.png",
+      "camera_axis": {
+        "azimuth": 45,
+        "elevation": 0
+      },
+      "roles": [
+        "holdout"
+      ]
+    },
+    "h225": {
+      "path": "holdout/az_225.png",
+      "camera_axis": {
+        "azimuth": 225,
+        "elevation": 0
+      },
+      "roles": [
+        "holdout"
+      ]
+    }
+  },
+  "known_dimensions": {
+    "height": 0.4492
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "reference_quality": {
+    "orthographic": true,
+    "notes": "synthetic, rendered from the ground-truth scene"
+  }
+}

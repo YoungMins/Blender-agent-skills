@@ -1,0 +1,63 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_warrior",
+  "views": {
+    "front": {
+      "path": "references/front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12
+      },
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "references/side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12
+      },
+      "confidence": "observed",
+      "notes": "Face points to image-RIGHT -> camera_axis -X. Generator omitted the back shield in this view."
+    },
+    "back": {
+      "path": "references/back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "background": {
+        "mode": "auto",
+        "tolerance": 0.12
+      },
+      "confidence": "observed",
+      "notes": "Shows the round shield on the back; its depth is not visible in the side view, so it is not carved."
+    }
+  },
+  "known_dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "reference_quality": {
+    "orthographic": false,
+    "notes": "AI-generated SD warrior turnaround (gpt-image, chroma green). Near-orthographic; views not perfectly consistent (side view lacks the back shield). references/right.png (a separately generated +X view) is no longer used: it was only 85% consistent with the side view; the +X flank is coloured by the mirrored side view (mirror_color_views)."
+  }
+}

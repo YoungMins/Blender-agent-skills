@@ -1,0 +1,110 @@
+{
+  "spec_version": "0.1",
+  "name": "simple_table",
+  "category": "furniture",
+  "object_type": "table",
+  "units": "meters",
+  "dimensions": {
+    "width": 1.2,
+    "depth": 0.6,
+    "height": 0.72
+  },
+  "symmetry": {
+    "x": true,
+    "y": true,
+    "z": false
+  },
+  "style": {
+    "hard_surface": true,
+    "bevel": true,
+    "bevel_width": 0.003,
+    "bevel_segments": 2,
+    "weighted_normals": true
+  },
+  "materials": {
+    "wood": {
+      "base_color": [
+        0.55,
+        0.38,
+        0.22,
+        1.0
+      ],
+      "roughness": 0.6
+    }
+  },
+  "components": [
+    {
+      "id": "top",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.7025
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        1.2,
+        0.6,
+        0.035
+      ],
+      "params": {
+        "radius": 0.01,
+        "segments": 3
+      },
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "leg_fl",
+      "type": "leg",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.575,
+        -0.275,
+        0.3425
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.685
+      ],
+      "params": {
+        "profile": "square"
+      },
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": true,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.05,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

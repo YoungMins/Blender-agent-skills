@@ -1,0 +1,773 @@
+{
+  "name": "simple_chair",
+  "status": "passed",
+  "passed": true,
+  "steps": [
+    {
+      "n": 1,
+      "name": "import reference views",
+      "status": "ok",
+      "duration_s": 0.116
+    },
+    {
+      "n": 2,
+      "name": "alignment (axis conventions)",
+      "status": "ok",
+      "views": {
+        "front": "-Y",
+        "side": "-X",
+        "top": "+Z",
+        "back": "+Y"
+      },
+      "duration_s": 0.0
+    },
+    {
+      "n": 3,
+      "name": "scale calibration",
+      "status": "ok",
+      "duration_s": 0.0
+    },
+    {
+      "n": 4,
+      "name": "bounding volume + reference planes",
+      "status": "ok",
+      "duration_s": 0.028
+    },
+    {
+      "n": 5,
+      "name": "blockout",
+      "status": "ok",
+      "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
+      "duration_s": 1.835
+    },
+    {
+      "n": 6,
+      "name": "major proportions (axis scale)",
+      "status": "skipped",
+      "reason": "bbox blockout: proportions come from the calibrated dimensions",
+      "duration_s": 0.0
+    },
+    {
+      "n": 7,
+      "name": "symmetry (mirror modifiers)",
+      "status": "ok",
+      "mirrored": [
+        "leg_front",
+        "leg_rear",
+        "back_post"
+      ],
+      "duration_s": 0.0
+    },
+    {
+      "n": 8,
+      "name": "primary components",
+      "status": "ok",
+      "duration_s": 0.159
+    },
+    {
+      "n": 9,
+      "name": "secondary + detail components",
+      "status": "ok",
+      "duration_s": 0.021
+    },
+    {
+      "n": 10,
+      "name": "boolean / cut",
+      "status": "ok",
+      "booleans": 0,
+      "duration_s": 0.0
+    },
+    {
+      "n": 11,
+      "name": "bevel",
+      "status": "ok",
+      "duration_s": 0.0
+    },
+    {
+      "n": 12,
+      "name": "normal cleanup",
+      "status": "ok",
+      "duration_s": 0.001
+    },
+    {
+      "n": 13,
+      "name": "reference comparison",
+      "status": "ok",
+      "duration_s": 0.371
+    },
+    {
+      "n": 14,
+      "name": "correction loop",
+      "status": "ok",
+      "note": "error 0.0002 <= threshold 0.05",
+      "duration_s": 0.0
+    },
+    {
+      "n": 15,
+      "name": "validation",
+      "status": "ok",
+      "duration_s": 0.937
+    },
+    {
+      "n": 16,
+      "name": "save outputs",
+      "status": "ok",
+      "duration_s": 0.034
+    }
+  ],
+  "outputs": {
+    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\report.json",
+    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_A_blockout.png",
+    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_B_primary.png",
+    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\perspective.png",
+    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_C_final.png",
+    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\perspective_back.png",
+    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\top.png",
+    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_front.png",
+    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_side.png",
+    "compare_top": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_top.png",
+    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_back.png",
+    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\comparison_sheet.png",
+    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\scene_spec_corrected.json",
+    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\simple_chair.blend"
+  },
+  "config": {
+    "max_iterations": 3,
+    "error_threshold": 0.05,
+    "blockout_threshold": 0.12,
+    "auto_correct": true,
+    "hull_resolution": 192,
+    "hull_margin": 0.03,
+    "top_consistency_tol": 0.15,
+    "smooth_iterations": 2,
+    "hull_min_iou": 0.95,
+    "render_scale": 1.0,
+    "bg_tolerance": 0.12,
+    "max_hole_frac": 0.002,
+    "min_component_frac": 0.0005,
+    "edge_distance_cap_px": 32,
+    "ref_plane_offset_factor": 0.75,
+    "ref_plane_offset_base": 0.1,
+    "view_weights": {}
+  },
+  "views": {
+    "front": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "top": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\top.png",
+      "camera_axis": "+Z",
+      "roles": [
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "back": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    }
+  },
+  "dimensions": {
+    "width": 0.45,
+    "depth": 0.45,
+    "height": 0.85
+  },
+  "provenance": {
+    "width": "known",
+    "depth": "known",
+    "height": "known"
+  },
+  "calibrations": {
+    "front": {
+      "view": "front",
+      "camera_axis": "-Y",
+      "image_size": [
+        395,
+        595
+      ],
+      "m_per_px": 0.002,
+      "origin_px": [
+        197.5,
+        510.0
+      ]
+    },
+    "side": {
+      "view": "side",
+      "camera_axis": "-X",
+      "image_size": [
+        395,
+        595
+      ],
+      "m_per_px": 0.002,
+      "origin_px": [
+        197.5,
+        510.0
+      ]
+    },
+    "top": {
+      "view": "top",
+      "camera_axis": "+Z",
+      "image_size": [
+        315,
+        315
+      ],
+      "m_per_px": 0.002,
+      "origin_px": [
+        157.5,
+        157.5
+      ]
+    },
+    "back": {
+      "view": "back",
+      "camera_axis": "+Y",
+      "image_size": [
+        395,
+        595
+      ],
+      "m_per_px": 0.002,
+      "origin_px": [
+        197.5,
+        510.0
+      ]
+    }
+  },
+  "blockout": {
+    "gate": "passed",
+    "mode": "bbox_fallback",
+    "error": 0.0,
+    "threshold": 0.12,
+    "ratios": {
+      "front": {
+        "width_ratio": 1.0,
+        "height_ratio": 1.0
+      },
+      "side": {
+        "width_ratio": 1.0,
+        "height_ratio": 1.0
+      },
+      "top": {
+        "width_ratio": 1.0,
+        "height_ratio": 1.0
+      },
+      "back": {
+        "width_ratio": 1.0,
+        "height_ratio": 1.0
+      }
+    }
+  },
+  "iterations": [
+    {
+      "iteration": 0,
+      "total_error": 0.0001975706288153689,
+      "per_view": {
+        "front": 0.00015,
+        "side": 0.00044,
+        "top": 4e-05,
+        "back": 0.00015
+      },
+      "accepted": true
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "geometry": {
+      "passed": true,
+      "checks": {
+        "dimensions": {
+          "passed": true,
+          "actual": {
+            "width": 0.45000000670552254,
+            "depth": 0.4500000039115548,
+            "height": 0.8499999791383743
+          },
+          "target": {
+            "width": 0.45,
+            "depth": 0.45,
+            "height": 0.85
+          },
+          "relative_error": {
+            "width": 1.4901161193847656e-08,
+            "depth": 8.692343955729598e-09,
+            "height": -2.4543089005568675e-08
+          },
+          "floor_z": 0.0
+        },
+        "scale": {
+          "passed": true,
+          "non_unit_scale": {}
+        },
+        "modifiers": {
+          "passed": true,
+          "wrong_order": {}
+        },
+        "materials": {
+          "passed": true,
+          "without_material": []
+        },
+        "scene_structure": {
+          "passed": true,
+          "missing_collections": [],
+          "without_agent_id": [],
+          "duplicate_agent_ids": {},
+          "origin_empty": true
+        }
+      }
+    },
+    "soft_checks": {
+      "symmetry": {
+        "passed": true,
+        "centre_offset_ratio": {
+          "x": -1.2417634143169213e-08
+        }
+      },
+      "normals": {
+        "passed": true,
+        "inverted": []
+      },
+      "non_manifold": {
+        "passed": true,
+        "non_manifold_edges": {}
+      }
+    },
+    "warnings": [],
+    "warning_details": [],
+    "reference_match": {
+      "passed": true,
+      "total_error": 0.0001975706288153689,
+      "threshold": 0.05,
+      "front_error": 0.00015351812366737327,
+      "side_error": 0.00044374009508718615,
+      "top_error": 3.950617283954294e-05,
+      "back_error": 0.00015351812366737327,
+      "per_view": {
+        "front": {
+          "iou": 0.9998464818763326,
+          "error": 0.00015351812366737327,
+          "error_pct": 0.02,
+          "edge_px": 0.0036358367651700974,
+          "width_ratio": 1.0,
+          "height_ratio": 1.0,
+          "line": "Front Error : 0.0%",
+          "bbox_delta_m": {
+            "left": 0.0,
+            "right": 0.0,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1,
+            "bbox_px": [
+              104,
+              85,
+              105,
+              86
+            ],
+            "center_world": [
+              -0.186,
+              null,
+              0.849
+            ],
+            "world_bbox": {
+              "min": [
+                -0.187,
+                null,
+                0.848
+              ],
+              "max": [
+                -0.185,
+                null,
+                0.85
+              ]
+            }
+          },
+          "components_in_region": [
+            "backrest",
+            "back_post"
+          ]
+        },
+        "side": {
+          "iou": 0.9995562599049128,
+          "error": 0.00044374009508718615,
+          "error_pct": 0.04,
+          "edge_px": 0.0029209053609520197,
+          "width_ratio": 1.0,
+          "height_ratio": 1.0,
+          "line": "Side Error : 0.0%",
+          "bbox_delta_m": {
+            "left": 0.0,
+            "right": 0.0,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1,
+            "bbox_px": [
+              104,
+              85,
+              105,
+              86
+            ],
+            "center_world": [
+              null,
+              0.186,
+              0.849
+            ],
+            "world_bbox": {
+              "min": [
+                null,
+                0.185,
+                0.848
+              ],
+              "max": [
+                null,
+                0.187,
+                0.85
+              ]
+            }
+          },
+          "components_in_region": [
+            "back_post"
+          ]
+        },
+        "top": {
+          "iou": 0.9999604938271605,
+          "error": 3.950617283954294e-05,
+          "error_pct": 0.0,
+          "edge_px": 0.0011160714784637094,
+          "width_ratio": 1.0,
+          "height_ratio": 1.0,
+          "line": "Top Error : 0.0%",
+          "bbox_delta_m": {
+            "left": 0.0,
+            "right": 0.0,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1,
+            "bbox_px": [
+              269,
+              45,
+              270,
+              46
+            ],
+            "center_world": [
+              0.224,
+              0.224,
+              null
+            ],
+            "world_bbox": {
+              "min": [
+                0.223,
+                0.223,
+                null
+              ],
+              "max": [
+                0.225,
+                0.225,
+                null
+              ]
+            }
+          },
+          "components_in_region": [
+            "seat",
+            "leg_rear",
+            "back_post"
+          ]
+        },
+        "back": {
+          "iou": 0.9998464818763326,
+          "error": 0.00015351812366737327,
+          "error_pct": 0.02,
+          "edge_px": 0.0036358367651700974,
+          "width_ratio": 1.0,
+          "height_ratio": 1.0,
+          "line": "Back Error : 0.0%",
+          "bbox_delta_m": {
+            "left": 0.0,
+            "right": 0.0,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1,
+            "bbox_px": [
+              104,
+              85,
+              105,
+              86
+            ],
+            "center_world": [
+              0.186,
+              null,
+              0.849
+            ],
+            "world_bbox": {
+              "min": [
+                0.185,
+                null,
+                0.848
+              ],
+              "max": [
+                0.187,
+                null,
+                0.85
+              ]
+            }
+          },
+          "components_in_region": [
+            "backrest",
+            "back_post"
+          ]
+        }
+      }
+    },
+    "diagnosis": [],
+    "recommendation": "Reconstruction matches the references within tolerance."
+  },
+  "reference_match": {
+    "passed": true,
+    "total_error": 0.0001975706288153689,
+    "threshold": 0.05,
+    "front_error": 0.00015351812366737327,
+    "side_error": 0.00044374009508718615,
+    "top_error": 3.950617283954294e-05,
+    "back_error": 0.00015351812366737327,
+    "per_view": {
+      "front": {
+        "iou": 0.9998464818763326,
+        "error": 0.00015351812366737327,
+        "error_pct": 0.02,
+        "edge_px": 0.0036358367651700974,
+        "width_ratio": 1.0,
+        "height_ratio": 1.0,
+        "line": "Front Error : 0.0%",
+        "bbox_delta_m": {
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1,
+          "bbox_px": [
+            104,
+            85,
+            105,
+            86
+          ],
+          "center_world": [
+            -0.186,
+            null,
+            0.849
+          ],
+          "world_bbox": {
+            "min": [
+              -0.187,
+              null,
+              0.848
+            ],
+            "max": [
+              -0.185,
+              null,
+              0.85
+            ]
+          }
+        },
+        "components_in_region": [
+          "backrest",
+          "back_post"
+        ]
+      },
+      "side": {
+        "iou": 0.9995562599049128,
+        "error": 0.00044374009508718615,
+        "error_pct": 0.04,
+        "edge_px": 0.0029209053609520197,
+        "width_ratio": 1.0,
+        "height_ratio": 1.0,
+        "line": "Side Error : 0.0%",
+        "bbox_delta_m": {
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1,
+          "bbox_px": [
+            104,
+            85,
+            105,
+            86
+          ],
+          "center_world": [
+            null,
+            0.186,
+            0.849
+          ],
+          "world_bbox": {
+            "min": [
+              null,
+              0.185,
+              0.848
+            ],
+            "max": [
+              null,
+              0.187,
+              0.85
+            ]
+          }
+        },
+        "components_in_region": [
+          "back_post"
+        ]
+      },
+      "top": {
+        "iou": 0.9999604938271605,
+        "error": 3.950617283954294e-05,
+        "error_pct": 0.0,
+        "edge_px": 0.0011160714784637094,
+        "width_ratio": 1.0,
+        "height_ratio": 1.0,
+        "line": "Top Error : 0.0%",
+        "bbox_delta_m": {
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1,
+          "bbox_px": [
+            269,
+            45,
+            270,
+            46
+          ],
+          "center_world": [
+            0.224,
+            0.224,
+            null
+          ],
+          "world_bbox": {
+            "min": [
+              0.223,
+              0.223,
+              null
+            ],
+            "max": [
+              0.225,
+              0.225,
+              null
+            ]
+          }
+        },
+        "components_in_region": [
+          "seat",
+          "leg_rear",
+          "back_post"
+        ]
+      },
+      "back": {
+        "iou": 0.9998464818763326,
+        "error": 0.00015351812366737327,
+        "error_pct": 0.02,
+        "edge_px": 0.0036358367651700974,
+        "width_ratio": 1.0,
+        "height_ratio": 1.0,
+        "line": "Back Error : 0.0%",
+        "bbox_delta_m": {
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1,
+          "bbox_px": [
+            104,
+            85,
+            105,
+            86
+          ],
+          "center_world": [
+            0.186,
+            null,
+            0.849
+          ],
+          "world_bbox": {
+            "min": [
+              0.185,
+              null,
+              0.848
+            ],
+            "max": [
+              0.187,
+              null,
+              0.85
+            ]
+          }
+        },
+        "components_in_region": [
+          "backrest",
+          "back_post"
+        ]
+      }
+    }
+  },
+  "confidence": {
+    "components": {
+      "seat": "observed",
+      "leg_front": "observed",
+      "leg_rear": "observed",
+      "backrest": "observed",
+      "back_post": "observed",
+      "rear_support": "inferred"
+    },
+    "counts": {
+      "observed": 5,
+      "inferred": 1
+    },
+    "views": {
+      "front": "observed",
+      "side": "observed",
+      "top": "observed",
+      "back": "observed"
+    }
+  },
+  "recommendation": "Reconstruction matches the references within tolerance.",
+  "diagnosis": [],
+  "warnings": [],
+  "elapsed_s": 3.76
+}

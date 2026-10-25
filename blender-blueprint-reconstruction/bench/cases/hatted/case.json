@@ -1,0 +1,46 @@
+{
+  "name": "hatted",
+  "kind": "synthetic",
+  "view_spec": "view_spec.json",
+  "scene_spec": "recon_scene_spec.json",
+  "gt_obj": "gt.obj",
+  "holdout_dir": "holdout",
+  "holdout_camera": {
+    "px_per_m": 500.0,
+    "size": [
+      593,
+      593
+    ],
+    "centre": [
+      0.0,
+      0.0,
+      0.338749997317791
+    ],
+    "elevation": 0.0,
+    "azimuths": [
+      0.0,
+      45.0,
+      90.0,
+      135.0,
+      180.0,
+      225.0,
+      270.0,
+      315.0
+    ]
+  },
+  "height_m": 0.6775,
+  "dimensions_m": {
+    "width": 0.495,
+    "depth": 0.44,
+    "height": 0.6775
+  },
+  "perturbation": null,
+  "mesh": {
+    "vertices": 1324,
+    "triangles": 2608
+  },
+  "accessory": [
+    "staff",
+    "orb"
+  ]
+}

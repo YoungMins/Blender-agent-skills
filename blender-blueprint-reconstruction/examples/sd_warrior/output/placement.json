@@ -1,0 +1,477 @@
+{
+  "horn_l": {
+    "type": "cone",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.03377,
+    "keypoints": {
+      "base": [
+        -0.12606,
+        0.01288,
+        0.49572
+      ],
+      "tip": [
+        -0.10809,
+        0.02689,
+        0.58304
+      ],
+      "mid": [
+        -0.1393,
+        0.03332,
+        0.54273
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      },
+      "tip": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      },
+      "mid": {
+        "x": "views:front",
+        "y": "views:side",
+        "z": "views:front+side"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 1.6
+      },
+      "tip": {
+        "z": 0.01
+      },
+      "mid": {
+        "z": 3.4
+      }
+    },
+    "location": [
+      -0.12606,
+      0.01288,
+      0.49572
+    ]
+  },
+  "horn_r": {
+    "type": "cone",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.03377,
+    "keypoints": {
+      "base": [
+        0.12606,
+        0.01288,
+        0.49572
+      ],
+      "tip": [
+        0.10809,
+        0.02689,
+        0.58304
+      ],
+      "mid": [
+        0.1393,
+        0.03332,
+        0.54273
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "mirror:horn_l",
+        "y": "mirror:horn_l",
+        "z": "mirror:horn_l"
+      },
+      "tip": {
+        "x": "mirror:horn_l",
+        "y": "mirror:horn_l",
+        "z": "mirror:horn_l"
+      },
+      "mid": {
+        "x": "mirror:horn_l",
+        "y": "mirror:horn_l",
+        "z": "mirror:horn_l"
+      }
+    },
+    "view_spread_mm": {
+      "base": {},
+      "tip": {},
+      "mid": {}
+    },
+    "location": [
+      0.12606,
+      0.01288,
+      0.49572
+    ]
+  },
+  "sword_pommel": {
+    "type": "sphere",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.00762,
+    "keypoints": {
+      "center": [
+        0.05397,
+        -0.07946,
+        0.24564
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      }
+    },
+    "view_spread_mm": {
+      "center": {
+        "z": 1.5
+      }
+    },
+    "location": [
+      0.05397,
+      -0.07946,
+      0.24564
+    ]
+  },
+  "sword_grip": {
+    "type": "cylinder",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.0083,
+    "keypoints": {
+      "base": [
+        0.0557,
+        -0.07443,
+        0.24002
+      ],
+      "tip": [
+        0.06926,
+        -0.06097,
+        0.19609
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      },
+      "tip": {
+        "x": "fit:front+side",
+        "y": "fit:front+side",
+        "z": "fit:front+side"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 4.37
+      },
+      "tip": {
+        "z": 1.28
+      }
+    },
+    "location": [
+      0.06248,
+      -0.0677,
+      0.21805
+    ]
+  },
+  "sword_blade": {
+    "type": "blade",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.00792,
+    "keypoints": {
+      "base": [
+        0.07195,
+        -0.06288,
+        0.20588
+      ],
+      "tip": [
+        0.10904,
+        -0.01571,
+        0.0893
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+back",
+        "y": "fit:front+side+back",
+        "z": "fit:front+side+back"
+      },
+      "tip": {
+        "x": "fit:front+side+back",
+        "z": "fit:front+side+back",
+        "y": "fit:front+side+back"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 1.23
+      },
+      "tip": {
+        "x": 0.88,
+        "z": 0.11
+      }
+    },
+    "location": [
+      0.07195,
+      -0.06288,
+      0.20588
+    ]
+  },
+  "arm_l_upper": {
+    "type": "capsule",
+    "inferred": false,
+    "warnings": [
+      "arm_l_upper.tip: its anchors are 16 mm from the joint with arm_l_fore.base; the joint wins"
+    ],
+    "clearance_radius": 0.02998,
+    "keypoints": {
+      "base": [
+        -0.07606,
+        -0.01923,
+        0.2829
+      ],
+      "tip": [
+        -0.10632,
+        0.01571,
+        0.24468
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      },
+      "tip": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 4.13
+      },
+      "tip": {}
+    },
+    "location": [
+      -0.09119,
+      -0.00176,
+      0.26379
+    ]
+  },
+  "arm_l_fore": {
+    "type": "capsule",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.02419,
+    "keypoints": {
+      "base": [
+        -0.10412,
+        0.01203,
+        0.25272
+      ],
+      "tip": [
+        -0.14628,
+        0.0117,
+        0.20954
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      },
+      "tip": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 1.49
+      },
+      "tip": {
+        "z": 1.23
+      }
+    },
+    "location": [
+      -0.1252,
+      0.01187,
+      0.23113
+    ]
+  },
+  "hand_l": {
+    "type": "sphere",
+    "inferred": false,
+    "warnings": [
+      "hand_l.center: views disagree on z by 7.1 mm (views:front+side); mean used"
+    ],
+    "clearance_radius": 0.02008,
+    "keypoints": {
+      "center": [
+        -0.1523,
+        0.00518,
+        0.19669
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      }
+    },
+    "view_spread_mm": {
+      "center": {
+        "z": 7.06
+      }
+    },
+    "location": [
+      -0.1523,
+      0.00518,
+      0.19669
+    ]
+  },
+  "arm_r_upper": {
+    "type": "capsule",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.02998,
+    "keypoints": {
+      "base": [
+        0.07606,
+        -0.01923,
+        0.2829
+      ],
+      "tip": [
+        0.10632,
+        0.01571,
+        0.24468
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "mirror:arm_l_upper",
+        "y": "mirror:arm_l_upper",
+        "z": "mirror:arm_l_upper"
+      },
+      "tip": {
+        "x": "mirror:arm_l_upper",
+        "y": "mirror:arm_l_upper",
+        "z": "mirror:arm_l_upper"
+      }
+    },
+    "view_spread_mm": {
+      "base": {},
+      "tip": {}
+    },
+    "location": [
+      0.09119,
+      -0.00176,
+      0.26379
+    ]
+  },
+  "arm_r_fore": {
+    "type": "capsule",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.02419,
+    "keypoints": {
+      "base": [
+        0.10412,
+        0.01203,
+        0.25272
+      ],
+      "tip": [
+        0.14628,
+        0.0117,
+        0.20954
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "mirror:arm_l_fore",
+        "y": "mirror:arm_l_fore",
+        "z": "mirror:arm_l_fore"
+      },
+      "tip": {
+        "x": "mirror:arm_l_fore",
+        "y": "mirror:arm_l_fore",
+        "z": "mirror:arm_l_fore"
+      }
+    },
+    "view_spread_mm": {
+      "base": {},
+      "tip": {}
+    },
+    "location": [
+      0.1252,
+      0.01187,
+      0.23113
+    ]
+  },
+  "hand_r": {
+    "type": "sphere",
+    "inferred": true,
+    "warnings": [],
+    "clearance_radius": 0.02008,
+    "keypoints": {
+      "center": [
+        0.1523,
+        0.00518,
+        0.19669
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "mirror:hand_l",
+        "y": "mirror:hand_l",
+        "z": "mirror:hand_l"
+      }
+    },
+    "view_spread_mm": {
+      "center": {}
+    },
+    "location": [
+      0.1523,
+      0.00518,
+      0.19669
+    ]
+  },
+  "shield": {
+    "type": "disc",
+    "inferred": false,
+    "warnings": [],
+    "clearance_radius": 0.07327,
+    "keypoints": {
+      "center": [
+        0.00095,
+        0.08746,
+        0.24345
+      ]
+    },
+    "sources": {
+      "center": {
+        "x": "fit:back",
+        "z": "fit:back",
+        "y": "fit:back"
+      }
+    },
+    "view_spread_mm": {
+      "center": {}
+    },
+    "location": [
+      0.00095,
+      0.08746,
+      0.24345
+    ]
+  }
+}

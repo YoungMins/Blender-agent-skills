@@ -1,0 +1,294 @@
+# Reconstruction Workflow (16 steps)
+
+Implemented in `scripts/bbr/blender/reconstruction.py::run_reconstruction`. Every step is logged as `STEP n` and recorded in `report.json` (`steps[]`).
+
+| # | Step | What happens | Gate / output |
+|---|---|---|---|
+| 1 | Reference import | Load images (crop and flip applied) and extract masks | Fails if a mask is empty |
+| 2 | Alignment | Per-view frame from `camera_axis` (`core/conventions.py`) | — |
+| 3 | Scale calibration | `resolve_dimensions` and `calibrate_views` produce m/px and origin pixel. The horizontal origin of front / back views is the body axis, not the bbox centre (see Body axis) | Dimension provenance recorded |
+| 4 | Bounding volume | Wire box of the resolved dims in `AI_DEBUG` | — |
+| 5 | Blockout | Components with `stage: blockout`. If there are none, a temporary bbox object (`<name>:__bbox_blockout`, `inferred`) is built from the resolved dims, used for the gate, and deleted before step 7. | `stage_A_blockout.png`, `checkpoint_01_blockout` |
+| 6 | Major proportions | Axis scale correction from the blockout comparison. Skipped in bbox mode. | **Blockout gate** (always runs; `report.blockout.mode`): `components` mode needs IoU error ≤ `blockout_threshold`; `bbox_fallback` needs every view's width and height ratio within ±`blockout_threshold`. On failure, stop (unless `--force`). |
+| 7 | Symmetry | Records mirrored components. The Mirror modifiers about `AI_ORIGIN` are attached by the builders. | — |
+| 8 | Primary forms | `stage: primary` components, and silhouette hulls | `stage_B_primary.png`, `checkpoint_02_primary` |
+| 9 | Secondary forms | `stage: secondary` and `stage: detail` (parts), then the part-gap check (`report.part_gaps`, see Joints) | `stage_B2_secondary.png`, `checkpoint_03_secondary` |
+| 10 | Boolean / cut | Components that have a `boolean` field become cutters | — |
+| 11 | Bevel | From `style` or a per-component override | — |
+| 12 | Normal cleanup | Weighted normals and consistent winding | — |
+| 13 | Reference comparison | Orthographic mask renders (same calibration) compared with the reference masks | `compare_<view>.png` |
+| 14 | Correction loop | Not applicable to `silhouette_hull` scenes (skipped: the hull is rebuilt from the masks, there is no axis or size to correct). Largest mismatch → axis or component → modify → re-render. At most `max_iterations`; stops early when there is no improvement. | Per-iteration errors |
+| 15 | Validation | `validate_reconstruction()` | `validation` in the report |
+| 16 | Save | `.blend`, `report.json`, `comparison_sheet.png`, previews | `checkpoint_04_final` |
+
+## Approval stages
+
+| Stage | Flag | Preview |
+|---|---|---|
+| A, Blockout | `--stop-after blockout` (stops, exit 0) | `previews/stage_A_blockout.png` |
+| B, Primary | `--stop-after primary` (stops, exit 0) | `previews/stage_A_blockout.png`, `previews/stage_B_primary.png` |
+| B2, Secondary | `--stop-after secondary` (stops, exit 0): body plus every part, the view to judge part placement; also runs the `part_gap` check | `previews/stage_B2_secondary.png` |
+| C, Final | `--stop-after final` or no flag (runs steps 13–16; exit 0 or 2 depending on validation) | `stage_A/B/C_*.png`, `perspective*.png`, `top.png`, comparison sheet |
+
+`primary` builds the hull body only (parts are `secondary`), so use `secondary` to see a scene with parts. Every full run writes all the stage previews, and their paths are under `report.outputs.stage_*_preview`. An MCP agent shows a stage preview to the user. It then either continues by re-running without `--stop-after` (pass `--blend <checkpoint>` to start from the saved scene), or applies the user's feedback through `update_component`.
+
+## Silhouette hull (characters, organic shapes)
+
+1. Masks from the carve views (front and one side) are turned into 2D signed distance fields.
+2. A continuous 3D field is built: max(silhouette SDFs, superellipse cross-section). Each Z slice gets an inscribed superellipse per (front-run × side-run) pair. It touches the run rectangle at the side midpoints, so the front and side projections are preserved, and the cross-sections are round instead of box-shaped.
+3. Surface Nets extracts the isosurface, giving a smooth mesh without voxel banding. It keeps every connected group of surface cells with at least `island_min_frac` (default 0.01) of the largest group's cell count, so silhouettes that are really disconnected (staff, tail, a hat floating over the head) survive; `1` keeps only the largest group.
+4. **Cleanup** (`hullpost.voxel_cleanup`): a VOXEL Remesh modifier (`remesh_voxel`, default height/250, clamped to >= height/1000) is collapsed into the mesh, islands below `remove_islands_ratio` (0.002) of the total area are dropped, then light Taubin smoothing (`post_smooth_iterations`, 4). Result: watertight mesh without spikes or flaps (the `non_manifold` warning disappears). `remesh_voxel: 0` skips it.
+5. **Retopo** (`retopo`): `decimate` (default), `quadriflow` or `none`, to about `target_faces` (20000). The result is shrinkwrapped back onto the cleaned mesh. Quadriflow gets a pre-decimated manifold input and falls back to decimate (noted in `report.hull.<id>.retopo.note`) when it refuses.
+6. **UV unwrap**: smart project (`uv_angle_deg` 66) and island packing, margin = `texture_padding_px`.
+7. **Texel color projection**: the UV layout is rasterized (`core/uvraster.py`) to per-texel world positions, normals, triangle ids and barycentrics. Per texel the primary view maximizes `facing - 0.5 * (1 - dist_to_silhouette / edge_distrust_px)` among the views that see it (orthographic depth buffer, `core/zbuffer.py`; ties go to front, back, side); views within `seam_blend_width` (0.1) blend unless their colors differ by more than `conflict_threshold` (0.25). Texels with no candidate are inpainted: nearest valid texel of the same UV island, else the nearest valid surface point in 3D, then lightly diffused. Stats and a source map are written (see `validation-rules.md`). Empty texels around islands are padded by `texture_padding_px` (8). The image (`texture_size`, 2048) is saved to `<out>/textures/<name>_basecolor.png`, packed into the .blend and wired as Image Texture -> Base Color (material `M_ref_texture`). Before sampling, each colour view with a chroma backdrop is decontaminated (`core/despill.py`, `spill_suppression` true, `spill_edge_px` 6): backdrop-coloured pockets inside the mask are dropped, edge pixels are un-mixed (`c = (c_obs - (1-a)*bg)/a`) and the dominant backdrop channel is clamped; bilinear taps outside the eroded mask fall back to the nearest pixel; `texture.background_leak_ratio` reports what is left. Color runs after steps 4-6 because remesh destroys UVs and attributes.
+8. Validation runs **after** all of this. Previews use a studio 3-point light rig (Cycles, temporary lights); silhouette and color-metric renders stay unlit Workbench.
+
+All hull `params` are optional: `remesh_voxel`, `remove_islands_ratio`, `island_min_frac`, `post_smooth_iterations`, `retopo`, `target_faces`, `uv_angle_deg`, `texture_size`, `texture_padding_px`, `seam_blend_width`, `conflict_threshold`, `edge_distrust_px`, `spill_suppression`, `spill_edge_px`, plus the carve params (`resolution`, `carve_views`, `color_views`, `cross_section`, `exponent`, `smooth_iterations`, `color_projection`) and the symmetry params below (`mirror_color_views`, `mirror_penalty`, `mirror_pairs`, `asymmetric_parts`). Stats of each stage are in `report.json -> hull.<component id>`.
+
+- `slice_coherence` (share of the height, default 0.03, 0 = off): hair, fur or other spiky silhouettes would otherwise become stacked horizontal rings (a lampshade). Bulges thinner than this in Z no longer widen the whole cross-section. Spike tips stay as thin fins at the carve planes, so the outline is unchanged. Raise to 0.04-0.05 for stepped hair tiers; set 0 for the old hull.
+
+### Thin parts as explicit primitives (`exclude_components`)
+
+A hull carved from front + side silhouettes cannot represent parts that stick out of the body: horns become wide flat fans, a sword at the hip and a back shield become blobs or vanish, an arm and its fist merge with the torso (and the fist is painted on the torso from the front, side and right views). Model them as primitives and take them out of the hull:
+
+1. **Measure** (`prepare_references.py measure --view-spec VS --view front --px x,y ... [--bbox x0,y0,x1,y1]`, `api.measure_reference`): world coordinates of pixels on the view plane, using the pipeline's calibration (silhouette bbox + known height; `core/measure.py`, unit-tested against `core/calibration.py`). Front/back give x and z, side/right give y and z.
+2. **Part types** (placed from anchors, see below; the explicit-pose parameters are the advanced path) (`blender/components.py`, geometry in `core/partgeom.py`, closed meshes at true size, object scale 1): `cone` (tapered tube along `axis`, `bend` = total turn in degrees toward `bend_dir`, built as a swept tube with `segments` rings, `flatten` thins the cross-section perpendicular to the bend plane, smooth shaded with sharp edges at the caps), `blade` (tapered box, optional pyramid tip `tip_length`, flat shaded), `disc` (cylinder, optional spherical-cap dome `dome_height` / `dome_radius` on the +`axis` face, `radius_ratio` for an elliptical outline: extent along local Y = `radius * radius_ratio`; without dome and ratio it is the plain `cylinder` builder), `gem` (crystal: flat shaded bipyramid, `facets` 3+ default 6, 4 = octahedron, `waist` 0..1 default 0.5; sized like a capsule by `size` [2r, 2r, length] or `base` / `tip` + `radius_px`, apexes at base and tip). Limbs and hands use `capsule` / `sphere` / `rounded_box` / `cylinder` with `rotation_deg`.
+3. **Hull exclusion**: `silhouette_hull.params.exclude_components: [ids]`, `exclude_dilate_px` (default 3). The hull builder first builds every other component, rasterizes the listed parts (modifier-evaluated world triangles) in each carve view at the reference calibration (`partmask.triangles_mask`), and removes them from the carve masks (`partmask.exclude_part_pixels`) before the field is built. Rule, with `cut = dilate(part)` and `rest = mask & ~cut`: (a) thin leftovers (< 2 * 4 + 1 px) that touch the cut are dropped, so an imperfect part model leaves no fin; (b) only the connected body components >= 5% of the largest stay; (c) removed pixels ENCLOSED by the kept body are restored (a sword in front of the torso leaves no hole); (d) removed pixels in concavities narrower than the part (morphological closing of `rest` with the part's inscribed radius) are restored, so the wedge where a horn overlaps the helmet outline is kept and the hull gets no slot through its depth. Pixels outside the body stay removed. The original masks (used for calibration, validation and colour sampling) are never modified; the carve masks used are written to `output/hull_carve_masks/`, and `report.hull.<id>.exclusion` has per-view pixel counts. A part that does not appear in a carve view (the shield, seen only from the back) needs no exclusion. The hull keeps a small notch where a part meets the body silhouette tangentially; the part covers it, so a part must sit tightly on its reference silhouette (fit it: the silhouette error of the part is now yours, not the hull's).
+4. **Textures for every character component**: when the scene has textured parts, the hull's bake is deferred to a pass after the normal cleanup (`partstex.texture_pass`, called by `rebuild_all` and step 12). Every textured object (the hull and, in a character scene, i.e. one with a `silhouette_hull`, or `parts_labels` with `style.hard_surface` false, EVERY other part: `capsule`, `sphere`, `cylinder`, `gem`, boxes as well as `cone` / `blade` / `disc`; in a scene without either only `cone` / `blade` / `disc`; `color_projection: false` opts a part out, `true` opts one in; mirrored parts are skipped) gets its own UV unwrap and image `<scene>_<id>_basecolor.png` (parts `texture_size` 512, hull 2048) with the same per-texel selection, inpainting, despill and padding. Texel positions are world coordinates (`matrix_world`) and the depth buffers of ALL model meshes together are the visibility test, so parts occlude the body and the body occludes the back of parts. Material `M_ref_texture:<id>` per part (the hull keeps `M_ref_texture`); parts inherit the hull's colour / projection params. Stats per object are in `report.hull.<id>.texture` (and `texture <id>: ...` lines).
+
+### Image-anchored part placement (no hand-typed 3D values)
+
+Do not type locations, Euler angles, `bend` or depths for parts. Give pixel anchors per view; the tool triangulates (`core/triangulate.py`, numpy only) and writes the pose / primitive parameters. Explicit `location` / `rotation_deg` / `size` / `axis` / `bend` still work (advanced, backward compatible) but are not needed.
+
+**Spec format** (all under the component's `params`; types `cone`, `capsule`, `cylinder`, `blade`, `plate`, `disc`, `sphere`, `gem`, `strand`):
+
+```json
+{"id": "horn_l", "type": "cone", "params": {"flatten": 0.6, "anchors_px": {
+   "front": {"base": [92, 172], "mid": [97, 100], "tip": [125, 42], "radius_px": [31, 3]},
+   "side":  {"base": [178, 170], "mid": [165, 100], "tip": [156, 37]}}}}
+```
+
+| type | anchors per view | also |
+|---|---|---|
+| cone (horn, limb) | `base`, optional `mid`, `tip`, `radius_px` `[base, tip]` | the arc goes through base-mid-tip; `flatten` thins it out of the bend plane |
+| strand (twin tail, braid, long hair lock, cable) | `p0` (base), `p1`, ... `pN-1` (tip), N >= 3, plus `radius_px`: one number, `[base, tip]`, or one per point | Catmull-Rom tube through the points, the radius per point is the taper; `flatten` < 1 thins it in depth; `segments` rings per span |
+| capsule / cylinder / gem | `base`, `tip` (the two ends), `radius_px` | gem: `facets`, `waist` |
+| blade | `base`, `tip`, `width_px` (in a view where it is seen flat) | `thickness` (m), `roll` (deg about its axis) |
+| plate | `base` (root edge), `tip`, in two or more views | `thickness` (m), `face_view`, `bend` (deg), `edge_on_views` |
+| disc | `center`, `radius_px` in the face-on view | `thickness` (m); the face-on view's camera is the facing direction |
+| sphere / ellipsoid | `center`, `radius_px` (number or `[horizontal, vertical]`) | per-axis radii averaged over views |
+
+**Triangulation.** Mark the same physical point in each view. x comes from front/back (back is mirrored automatically), y from side/right, z from every view (mean; a spread above 5 mm is a warning). A point seen in only one view lacks one coordinate; supply it, in priority order, with:
+
+1. `depth_m`: number or `{keypoint: value}` (meters, last resort, marks the part `inferred`);
+2. `mirror_of: "<id>"`: the sibling's coordinate mirrored across X = 0. With no `anchors_px` the part is the exact mirror (radii included); with own anchors only the unmeasured axis is taken from the sibling (arm in front view, depth from the other arm);
+3. `attach_to: "<id>"` + `attach_side: "back"` (+ `standoff` in m): contact constraint. The target's depth buffer in the view where the part is seen is read under the part's footprint; the part's inner face rests on the surface (a disc is tilted to the fitted surface plane; other types sit on the highest point so they never sink in) plus `standoff`. The shield's `attach_to: "body"`, `attach_side: "back"` puts it on the cape instead of inside the hull.
+
+Ordering: parts with full anchors are triangulated before the hull is built (they can be in `exclude_components`); parts with `attach_to` (and mirrors of them) are placed after the hull, because they need its surface, and are NOT excluded from the hull (they are normally not in the carve views). The attach target must be built first (the hull is stage `primary`; others `secondary`).
+
+`placement.json` in the output directory lists per part the 3D keypoints, the source of each coordinate (`views:front+side`, `mirror:..`, `contact:..`, `depth_m`), the per-view disagreement in mm and warnings (also logged).
+
+**Hidden points.** A point hidden in a view (a spatula tip behind a flipper) is omitted in that view, never guessed: leave it out of that view's `anchors_px` and the others triangulate it. An axis that no view measures for a keypoint is taken from the part's other measured keypoints (the part is assumed to lie in that plane), with a warning in `placement.json`, and the part is marked `inferred` (source `inferred:base`). `depth_m`, `mirror_of` and `attach_to` take precedence and measure it properly.
+
+**Joints.** `params.joint: {"part": "<id>", "at": "tip"|"base", "self": "base"|"tip"}` (defaults: the partner's `tip`, own `base`) pins this part's `self` keypoint to the partner's `at` keypoint after the partner is placed and fitted, whatever the pixels say (a handle's base on the spatula head's base). The pinned keypoint needs no anchor and starts on the partner's keypoint; the label fit may then move it at most 9 mm (`JOINT_SLACK_M`, inside the 10 mm gap tolerance) so the rest of the part still follows its labels; own anchors more than 10 mm away are reported, the joint wins (source `joint:<id>`, not counted as inferred). Caveat: a joint is a trade-off when the two labels disagree about the joint by more than 9 mm (the sd_warrior elbow: 24 mm): the label IoU of the pinned part drops where its pin is far from its label (upper arm side view 0.36 to 0.24), so pin the part whose labels matter less, and compare `partfit_report.json` IoUs before and after. Gap check, step 9 (`report.part_gaps`, a `part_gap` warning, `--stop-after secondary` shows it): parts end up farther apart than `gap_tol_m` (default 0.01 m, per part) when they (a) put a keypoint on the same pixel in every view where both give it, at least two (the usual cause: the fit moved one of them; the check compares the two 3D keypoints), (b) are listed in `adjacent_to`, or (c) have labels that touch in every view where both are labelled, at least two (the check uses the surface distance of the keypoint polylines minus their radii). The fix is a `joint`, or better anchors.
+
+**Typed pixels to anchors.** `prepare_references.py anchors --from-px front:base=118,543 front:tip=147,443 front:radius_px=8 side:base=280,560 --id handle` prints `{"handle": {"params": {"anchors_px": {"front": {...}, "side": {...}}}}}`: copy `params.anchors_px` into the component (and set its `type`). The pixels are view pixels, the same numbers `measure --px X,Y --view V` takes (it prints them as metres on that view plane) and the rulers of every overlay show (`propose`, `labels`, `anchors --overlay`); the `anchors` auto output has the same shape, merge its `anchors_px` the same way.
+
+**How to get anchors.** (1) Look at each view and write a rough pixel box per part. (2) `prepare_references.py anchors --view-spec VS --view front --bbox x0,y0,x1,y1 --kind tube --id horn_l --overlay ov.png` prints an `anchors_px` snippet (medial axis ends, a mid point and radii from the distance transform); read `ov.png` (zoomed, base red / mid orange / tip blue) to check it. Put the box edge at the junction where a part merges into the body (it is treated as continuing past the edge); `--base-hint x,y` picks the base end (one view); `--kind capsule|blade|disc|sphere` (a `gem` takes `capsule`). (3) Repeat per view and merge the snippets, or pass `--view front --view side --view back --labels labels.json --part ID` for one snippet with a cross-view check.
+
+**`anchors` picks the primitive (`--kind auto`, the default).** The part's label mask is explained by a sphere, a capsule, a cylinder and a straight or curved cone (a tube along the centre line, flat caps); each is drawn back to pixels and scored by its IoU with the mask. The simplest shape wins unless a more complex one is clearly better (a cone beats a sphere on a tie; a centre line bending 12% of its length is a cone: a J-curled tail). The output carries `suggested_type` (the component's `type`) and `confidence` = the IoU of the chosen shape, then lowered by cross-view disagreement; a sphere gives `center` + `radius_px`, a capsule / cylinder `base`, `tip`, `radius_px`, a cone `base`, `mid`, `tip`, `radius_px` [base, tip]. All views get the same type (a curled view decides alone: seen end-on a curled tail looks like a ball). Spikes thinner than 5 px (fur, outline strokes) are opened away first.
+
+Base / tip: `--base-hint` wins (several `--view`: `--base-hint front:X,Y --base-hint side:X,Y`, or plain `X,Y` values one per view in order), else the end whose neighbourhood (the larger of 1.5 half-widths and a quarter of the length) touches the most other foreground (body / hair: a tail that HANGS from the head has its base at the top), else a cone's wider end, else the lower end. Then every view is flipped to run the same way (higher / lower end) as the weighted majority, and the flip is reported. A curled part's endpoints are its two geodesically farthest pixels (or the body contact and the pixel farthest from it, whichever fits better), its path hugs the medial axis, `mid` is the half-length point. `--kind tube|capsule|blade|disc|sphere` forces a primitive (old behaviour, with the body-contact base for `tube`). Low `confidence` or a swapped-base WARNING on a part that sits inside the body outline, is hidden, or has a sloppy label: skip the tool and place it with `prepare_references.py measure --px X,Y` (the part's end and middle points per view) and `mirror_of` for the other side; the tool only proposes.
+
+**Thin rods (staff, spear).** A label mask that is a rod (principal-axis ratio >= 4) is not skeletonised: the ends are the extreme pixels along its principal axis (a twisted wood head cannot move them), the radius is the median distance transform along the medial axis clipped to the mask thickness, and base = the LOWER end (larger image y) of a vertical-ish rod, so base / tip agree in every view (`--base-hint` overrides; a nearly horizontal rod takes the wider end). The output carries `confidence` (0-1) and `WARNING` lines: base / tip swapped or at different heights between views (z spread > 8% of the length), strongly different end radii (the label may include the head), a bent rod. Below ~0.6 read the overlay. Limits: it works on the silhouette, so a part lying inside the body outline in that view (a scabbard over the torso, a hand over the leg, a horn seen against the helmet in the side view) cannot be separated: read its pixels off the image (`measure`) instead. Anchors are proposals; the overlay is the check.
+
+Limits: concavities that no silhouette can see (the inside of a cup, eye sockets) cannot be carved. A part hidden behind the body in the side view (an arm) inherits the body's depth range: model it as a primitive (see above) and mark hidden dimensions `inferred`.
+
+### Part types: parameters and valid ranges
+
+Anchors (above) place a part; these `params` shape it. "must" = rejected by the schema or the builder; "clamped" = silently raised to the minimum. Sizes come from the anchors, so a part needs no `size`.
+
+| type | params (range, default) |
+|---|---|
+| `cone` | `flatten` must be > 0, 1 = round (default), 0.3-0.6 = a flat ear / horn, the part fit searches 0.2-1.5; `segments` >= 1 (12, clamped), `sides` >= 3 (16, clamped). Explicit pose only: `base_radius` > 0 (required), `tip_radius` >= 0 (0 = point), `length` > 0 (required), `axis`, `bend` degrees (0 = straight) toward `bend_dir` |
+| `capsule` | `segments` (16); `tip_radius` > 0 m makes it tapered (set by the fit; `fit_taper: false` keeps it plain) |
+| `cylinder` | `vertices` >= 3 (24) |
+| `sphere` | `segments` (24); `radius_px` `[horizontal, vertical]` in an anchor makes an ellipsoid |
+| `blade` | `thickness` > 0 m (required); `roll` degrees (0); `tip_width`, `tip_thickness` > 0 (default: the base values); `tip_length` in [0, length), 0 = flat end |
+| `disc` | `thickness` > 0 m (required); `radius_ratio` must be > 0 (1; extent along local Y = radius * ratio, the oval brim); `dome_height` >= 0 m (0 = flat); `dome_radius` in (0, radius] (default the whole face); `segments` (48), `dome_rings` >= 2 (8, clamped) |
+| `gem` | `facets` integer >= 3 (6; 4 = octahedron, clamped); `waist` in (0, 1), both ends excluded (0.5; the widest ring, measured from the base apex) |
+| `rounded_box` | `radius` >= 0 m (0.005), `segments` (3); always needs `size` (cannot be anchored) |
+| `plate` (anchored) | wing, ear fin, leaf, flat accessory: the outline is the part's label mask in `face_view` (default: the view where the label is largest), extruded `thickness` > 0 m (required) along the plane normal. Anchors: `base` (root edge middle) and `tip` in two views, no radius (`anchors --kind plate`). `bend` degrees curves it along root -> tip toward the face side (0 = flat); `edge_on_views` `{view: [[x0, y0], [x1, y1]]}` draws the plate's line in a view where it is edge-on and sets the plane directly; `outline_eps_px` (1.5) simplifies the polygon. The face-on view matches the label exactly; the fit moves the plane (offset, normal), the outline scale (0.6-1.5) and `thickness` from the other views. Without anchors, `plate` stays the hard-surface box of `size`. |
+| `box`, `panel`, `plate` (no anchors) | `size` only |
+| `leg` | `profile` `square` or `round`; `taper` > 0 (1; foot / top footprint ratio) |
+| `frame` | `thickness` > 0 m (0.02), `axis` |
+| every anchored part | `joint`, `adjacent_to`, `gap_tol_m`, `anchors_px`, `mirror_of`, `attach_to` + `attach_side` + `standoff`, `depth_m`, `agree_tol_m` > 0 m (0.005), `fit` (true), `fit_locked`, `fit_taper`, `fit_seed`, `color_projection` |
+
+### Which part type for which shape
+
+| shape | type | how |
+|---|---|---|
+| twin tails, braids, long or wavy hair locks, cables, long tails | `strand` | `anchors --kind strand --points 6` proposes N points along the medial axis from the attachment end; split a long curly lock into a strand (or two), not a cone; `flatten` 0.7-0.9 for a ribbon |
+| ears, horns, fangs, cat whiskers | `cone` | `flatten` 0.3-0.6 for a flat ear; base = the end on the head |
+| J-curled or S-curved tail, curved horn | `cone` | base, `mid`, tip anchors; `mid` on the curve makes the bend (no typed `bend`); `flatten` 1 for a round tail |
+| mitten hands, fists, paws | `capsule` | a ball-like fist: `sphere` |
+| sleeves, arms, legs, tapered limbs | `capsule` | the fit tapers it; a strongly pointed taper: `cone` |
+| lantern, box, crate, book, can | `box` / `rounded_box` (measured size) or `cylinder` | a `cylinder` anchored by its two end centres |
+| crystals, gems | `gem` | `facets`, `waist` |
+| hat brims, plates, shields, coins | `disc` | `radius_ratio` = depth / width for an oval brim, `dome_height` for a dome |
+| swords, flat straight blades | `blade` | `thickness`, `tip_length` |
+| bat wings, ear fins, leaves, fins, flat accessories with a curved outline | `plate` | label it in the view where it is seen face-on (`face_view`), `base` = root edge, `tip`; `thickness`; read the turntable for the tilt |
+| ridge spikes, a row of back plates | row of small `cone`s | see the recipe below |
+| round blobs (pom-pom, ball, head ornament) | `sphere` | |
+
+`anchors` prints a `suggested_type` from the mask; the table says what the part is, and wins when a sloppy label disagrees.
+
+### Unmeasured coordinates, floating parts, previews
+
+A coordinate no view measures (a tail hidden in the side view) is never left at a raw default. In order: `depth_m`, `mirror_of`, `attach_to`, then automatically the `_l` / `_r` partner of the same type (name pairing, same keypoint mirrored across X = 0), contact with the nearest body / hull surface when at least half of the footprint lies over it, the part's other measured keypoints, finally the body centre line (x = y = 0). Every fallback is a placement warning and marks the part `inferred` (`placement.json` sources `mirror:auto`, `contact:auto:<id>@<view>`, `default:body_centre`). `anchors` skips a `--view` where the part has no label pixels (note on stderr) and aborts only when no view is left.
+
+`floating_part` (WARNING in the result block and the recommendation): the minimum distance of each part's mesh to the union of the other meshes exceeds max(1 % of the height, 25 % of the part's minor dimension, the smallest extent of its oriented box) (`params.gap_tol_m` per part, `floating_ok: true` for a part meant to hover; the tolerance used is printed). Detached islands of the hull count as parts (`body#1`). It names the part and the gap. `previews/stage_B2_secondary.png` shows the parts in flat colours (mean reference colour of each label) from the front 3/4 and the back 3/4.
+
+A failed run ends with a `next:` line: fix the biggest error source and re-run until it passes or the budget is spent.
+
+### Recipes: staff with a crystal head, wide-brim hat, held prop
+
+Both need parts, not hull-only, when the prop touches the body silhouette in any carve view (see the track rule in SKILL.md).
+
+**Held prop (teddy, book, cup).** Label it in every view where it shows (`bear_head`, `bear_body`; the rest stays `body`). Build it as an `ellipsoid` / `sphere` (a book or cup: a `rounded_box` with a measured `size`, or an anchored `cylinder`) from `center` + `radius_px` in front and side, with `attach_to: "body"` and `attach_side: "front"` so it rests on the body surface instead of floating (an `attach_to` part is built after the hull, so it is NOT in `exclude_components`; without `attach_to`, list it there and give `depth_m`). A half hidden by an arm or the body: omit the hidden anchor and give `depth_m` (the visible half measures x and z), never a guess; the hands that hold it stay body or limb parts.
+
+**Staff with crystal head.** Label three things per view: `staff` (the shaft up to the wood twist), `staff_head` (twist, optional) and `crystal`; the rest is `body`. `anchors --view front --view side --view back --labels labels.json --part staff` gives `base` (ground end) and `tip`; put the shaft as a `capsule` (or a `cone` when it tapers) with those anchors. The twist is a second `capsule`/`cone` or stays in the shaft when it is thin. The crystal is a `gem`: `--part crystal --kind capsule` gives `base` / `tip` / `radius_px` along its long axis; set `facets` 6 (a cut crystal; 4 for a diamond) and a `waist` of 0.5, or 0.6-0.7 when the widest part sits above the middle. Give the crystal an emissive-looking `materials` entry if the reference glows (colour only: no unseen detail). The `exclude_components` list names the shaft, head and crystal so the hull carves only the body.
+
+**Wide-brim hat.** Label `hat_brim` (the flat disc seen edge-on in the side view) and `hat_crown` apart from `body`. Brim = a `disc` part with `thickness` (the brim's visible edge thickness in the side view, a few mm) and `axis` [0, 0, 1], `radius` from half the front-view brim width (`measure --bbox` on the brim); a brim that is wider than deep takes `radius_ratio` = side-view depth / front-view width (ellipse along local Y = depth). Place it with `measure`d `location` (x from the front view centre, y from the side view centre, z from the brim line in both): a brim seen face-on in no view has no `center` anchor to triangulate. Crown = a `cone` (`base` at the brim, `tip` at the hat point, `bend` for a floppy tip, `anchors_px` from the crown label) or part of the hull when the crown is a plain silhouette; keep it a separate label so the brim does not fatten it. If the whole hat is disconnected from the body in every carve view, hull-only is enough; the head under the brim is the usual connection, so a brim normally needs the `disc`.
+
+### Hull debris: floating fragments at the feet
+
+The hull is carved from two silhouettes, so a detached piece in ONE view (a tail tip beside a foot in the front view) meets whatever the other view has at that height and leaves a speck floating there. With `parts_labels`, islands of the carved hull are dropped (hull param `drop_debris`, default true) when (a) the island is a blob of its own in one carve view but part of the main silhouette in another, and the labelled part under it differs between the two views, or (b) it is smaller than 0.3 % of the hull volume and under no labelled part. A labelled part that is the same in both views (a staff) and any island of a scene without labels (a creature's legs, a hat over a head) stay. The result block prints `WARNING hull_debris: ...` with position, size and rule; label the piece as a part if it should stay. Islands that stay are checked as `floating_part` (`body#1`).
+
+### Recipe: the views disagree on one part
+
+`check` says `a single part may differ (e.g. tail pose)` when the front / back (or side) silhouettes differ in one place only. Do not drop the whole view: label that part `_x` (an ignored label: no colour, no carving gate) in the disagreeing view only, keep that view's other roles, and record the decision once: `check --ignore-flag missing_accessory --roles-override back=color,validate --write` (the flags and roles go into `view_spec.json`, `--roles-override` only if the roles changed). Model the part from the views that agree (anchors in those, `mirror_of`, or `depth_m`) and put it in the hull's `exclude_components`.
+
+### Recipe: ridge spikes and central fins
+
+A row of spikes or a dorsal fin along the spine is not hull: label each spike (`spike_1` ... in the view that shows them, usually back / side), list them in `exclude_components` and build each as a small `cone` (`anchors --kind tube`, `flatten` 0.4-0.6, `attach_to: "body"` with `attach_side` the camera side if their depth is not measured); for a continuous fin build ONE `plate` seen edge-on along the spine (`face_view` = the side view, anchors `base` at the neck, `tip` at the tail end, `edge_on_views` = a line along the spine in the back view). Without labels the carve fills the gaps between spikes with a ridge.
+
+### Part labels (set of marks): label masks drive the hull exclusion and the projection
+
+Fitted part meshes are only as good as their fit, so they must not decide which reference pixels are "the hand" or "the shield". The agent labels the reference pixels once; tools use those masks.
+
+1. `prepare_references.py propose --view-spec VS --out-dir regions` writes per view `<view>/overlay.png` (2x, at most 40 numbered regions, a colour outline each, yellow pixel rulers in view pixels on the top / left edge), `crop_*.png` (x4 crops of busy areas), `id_map.npy` and `regions.json` (id, area, centroid, bbox, kind). Regions are colour regions (k-means in Lab, merged down) plus thin protrusions (mask minus an opening of 3% of the height: horns, arms, a sword; one region per piece, so a glove and its gauntlet come as one). Region numbers are stable for the same image: do not re-run with other `--k` / `--max-regions` after labelling. `--zoom VIEW:x0,y0,x1,y1` writes an extra x4 crop with a faint 25 px grid to read polygon / split coordinates.
+2. Look at the overlays (Read the PNG) and write `labels.json` beside the SceneSpec: `{"_regions": "regions", "front": {"horn_l": [20, 32], "hand_l": [{"split": 9, "line": [[65, 545], [109, 574]], "side": "right"}], "body": []}, "side": {...}}`. Parts are component ids; `body` is the hull and takes every pixel nobody labelled; parts named `_...` hold pixels nobody samples. List items: `N` / `"+N"` add a region, `"-N"` removes it, `{"polygon": [[x, y], ...], "within": N}` adds a polygon (view pixels, optionally only its pixels inside region N), `{"split": N, "line": [[x0, y0], [x1, y1]], "side": "left"|"right"}` adds the part of region N on that side of the line (walking from the first point to the second as seen in the image). A later part wins a shared region; polygons and splits override whole regions. Label EVERY colour view (a view without labels is not gated), and every part that must not take foreign pixels.
+3. `prepare_references.py labels --view-spec VS --labels labels.json --out-dir D [--scene-spec S]` writes the per-part masks `D/<view>/<part>.png`, a colour-coded `D/preview_<view>.png` (Read it: every part must be on the right pixels, nothing foreign) and the cross-view z-range check (`labels_report.json`): each part's lower / upper z in every view, flagged when they differ by more than 4% of the height. Front / side / back / right share Z, so a flag means a mislabel or inconsistent references (or a part that is only partly visible in one view, e.g. a scabbard tip behind a leg: judge it). Iterate: fix, re-run, look.
+4. `"parts_labels": "labels.json"` in the SceneSpec switches the pipeline over: (a) the hull exclusion cuts the label pixels of `exclude_components` from the carve masks of the labelled views (hole-free: pixels the body encloses are restored; slot-free: a horn seen against the helmet dome keeps its wedge; no fitted mesh involved, the old mesh-silhouette path is only the fallback for a view without labels); (b) the texel projection of an object only samples pixels with its own label (the hull is `body`, a part its id): a texel whose pixel carries another label is rejected in that view, takes another view, else is inpainted. A part that has no label in any view is not gated (a warning is logged); the report's per-texture stats gain `label_rejected_ratio`.
+5. `prepare_references.py anchors --view-spec VS --view V --labels labels.json --part ID [--bbox ...]` proposes anchors from the part's label mask instead of the silhouette, so a hand over the torso or the scabbard in front of the leg get anchors; `--bbox` crops the mask (split an arm into upper / fore).
+
+### Layers (concavities: faces in helmets, visors, recessed panels)
+
+A visual hull cannot carve a concavity: a face sitting inside a helmet opening comes out flush with the helmet front, so the side reference's profile (eye, ear, cheek) has no surface to land on and the front photo is smeared across the side of the face. A **layer** is a second, small hull for the recessed region; the body is cut back behind it.
+
+**When to use.** The side (or front) silhouette shows a feature whose surface lies clearly behind its neighbours' front edge (face behind the helmet rim and cheek guards, a recessed panel, a visor slot) and both a front-type (`-Y`) and a side-type (`+-X`) view see it. It does not help for concavities no carve view can see (inside of a cup) or when the region is not a distinct label.
+
+**How to label.** Label the region as a part in `labels.json` in every view that shows it, named like the layer component: `"face": [1, 4]` in front, `"face": [7, 30, 32]` in side, `"face": [7]` in a colour-only view such as `right`. Include everything inside the opening that is part of the recessed surface (skin, eyes, hair under the rim). The rim, cheek guards and the rest of the helmet stay `body` (or their own part): their pixels keep the full depth, so they protrude in front of the face exactly as the side silhouette says. The opening edge of the front label is the wall of the recess; the side label's front / back contour sets the layer's depth profile per z (front = face front, back = where the face meets the cheek guard). Check `prepare_references.py labels` (z-ranges per view, previews).
+
+**Spec.**
+
+```json
+{"id": "body", "type": "silhouette_hull", "params": {"layers": ["face"], "...": "..."}},
+{"id": "face", "type": "layer_hull", "stage": "secondary", "params": {"label": "face", "views": ["front", "side"], "resolution": 160, "exponent": 2.0, "color_projection": true}}
+```
+
+* `layer_hull` needs no `size`. `views` = `[front-type view (camera -Y), side-type view]`; `label` defaults to the id; `resolution` = cells along the longest side of the layer's own bounding box (default 160, a finer grid than the body); `exponent` / `cross_section` / `pair_max_aspect` as for the hull; `embed` (m, default 0.002) = how far the layer's back sinks into the recessed body; `smooth_iterations` (8), `remesh_voxel` (default one layer cell), `retopo` / `target_faces` (5000).
+* The body lists it in `params.layers`. Do NOT put the layer in `exclude_components`: that would cut its pixels out of the carve masks and leave a hole; the body is cut by the layer region instead.
+* `color_projection: true` gives the layer its own texture (`<scene>_<id>_basecolor.png`), gated by its label: only face-labelled pixels of each colour view are sampled, so the side profile projects onto its side surface and the front face onto its front; the body no longer takes those pixels.
+
+**What the tool does** (`core/layers.py`). The layer's field is carved from its two label masks like the body (silhouette distance + superellipse cross-section, `carve.build_hull_field(..., bounds=...)`), then per (x, z) column its front / back surface and the footprint are read off. The body field loses the volume `{(x, z) inside the layer footprint} x {y < layer back - embed}` (`recess_field`): outside the footprint nothing changes, inside it the body front moves back to the layer's back surface. The layer stays a separate mesh (texture gating, no boolean). `report.hull.body.layers.<id>` has `region_columns`, `carved_cells`, `max_recess_m`; `report.hull.<layer id>` the mesh stats. Limits: the layer faces `-Y` (front camera), its cross-section is a superellipse (no undercuts), and a layer whose front label is wider than its side depth looks like a lens; a hand-built layer is only as good as the labels and the reference consistency.
+
+### Automatic part fitting (`core/partfit.py`)
+
+With `parts_labels` set, every anchored part that has a label mask in some view is refined after triangulation: the triangulated pose is the starting point, a deterministic CMA-ES (coarse crop of at most 128 px, then full resolution, then a pattern-search polish) moves the part's parameters so that its silhouette covers its label and stays inside the reference silhouette. No Euler angles: cone = base / mid / tip + radii + `flatten`; capsule = two ends + end radii (tapered when they differ, `tip_radius` in the built params); blade = base, tip, width, thickness, `roll`; disc = centre, normal, radius, thickness, dome; sphere = centre + three semi-axes; strand = its N points p0 ... pN-1 + a radius per point + `flatten` (about 40 s per strand, hard cap 60 s: `STRAND_BUDGET_S`). A strand adds two terms: p0 (the attachment end) is held near its triangulated place (stiff prior, at most 2 scale units away) so the strand stays attached to its parent, and the second differences of the points are penalised so it does not kink; an inner point sliding ALONG the strand is not seen by any silhouette, so it is held near its start while free across the strand. Loss per view (normalised by the label area): part pixels outside the full silhouette, label pixels not covered, a small tie-breaker for part pixels inside the body but outside the label (they may be occluded), a contact term for `attach_to` parts (this frees the depth coordinate no label measures), a pull toward the mirrored sibling for a `mirror_of` part with own anchors, and a regulariser toward the triangulation. A `mirror_of` part without anchors is fitted jointly with its sibling (exact mirror, its labels are extra terms). A coordinate no labelled view measures stays at its triangulated value.
+
+Component params: `fit` (default true when the part is labelled), `fit_locked` (parameter names, e.g. `["flatten", "tip.z"]`), `fit_taper` (capsule end radii, default true), `fit_seed`. Outputs: `fitted_parts.json` (pose + primitive params per part), `partfit_report.json` (loss and per-view IoU before / after: `iou` strict against the label, `iou_vis` ignoring the part's pixels over other parts' labels, `covered`, `spill`; evaluations, seconds), one log line per part. IoU is the part as built against its own label, so references that disagree between views (side vs right) cap it.
+
+**When to lock which parameter (`fit_locked`).** Names are the parameter blocks of `core/partfit.py` `layout()`; a coordinate is `name.x|y|z`. A locked parameter keeps its triangulated value; an unknown name raises an error listing the valid ones.
+
+| type | names | lock it when |
+|---|---|---|
+| cone | `base`, `tip`, `bend`, `rb`, `rt`, `flatten` | `flatten` / `bend`: the only view that shows the cross-section or curvature is unreliable. `base.z`, `tip.x`: that view is flagged inconsistent in `check`. |
+| capsule, cylinder | `base`, `tip`, `r0`, `r1` (capsule, with `fit_taper`) | a radius is only seen end-on or in a flagged view; lock the anchor coordinate that view gave |
+| blade | `base`, `tip`, `width`, `thickness`, `roll` | `thickness` / `roll`: no view sees the blade edge-on (thickness is then a guess, set `params.thickness`) |
+| disc | `center`, `normal`, `radius`, `thickness`, `dome` | `thickness` / `dome`: the only view that sees them is unreliable |
+| sphere | `center`, `semi` | `semi`: only one view measures it |
+| plate | `center`, `normal`, `scale`, `thickness` | `thickness`: no view sees the plate edge-on; `normal`: a view that constrains the tilt is flagged inconsistent; `scale`: the label is trusted |
+| extremity parts (fin, wing tip, horn, tail end, ear) | its `base` / `tip` / `center` | the result says `model extreme set by <part>, N mm short of the reference edge` and the width / depth / height check fails: the auto-fit shrinks outer parts toward the inside of the silhouette, so lock that part's outer position (`fit_locked: ["tip"]` or `["center.x"]`) or fix its anchors |
+
+Rules of thumb: lock `flatten` / `thickness` / `dome` when the only view that sees them is unreliable; lock an anchor coordinate (`tip.z`, `base.x`) when its view is flagged inconsistent (the fit would otherwise bend the part toward the bad view); lock nothing else, the fit is there to correct anchors. A `dome` of 0 is frozen automatically, and a coordinate no labelled view measures stays at its triangulated value without a lock.
+
+### Body axis: the X origin ignores held props (`core/calibration.py::body_core_centre`)
+
+The horizontal origin of an upright front / back view (world X = 0, the mirror axis of `symmetry.x` and of every mirrored part) is the body axis, not the silhouette bbox centre that a held spatula, a wide sword or a tail drags sideways (blind-run penguin: 35 px off, so `symmetry.x` never reached 0.95).
+- **With labels** (`parts_labels`): the median row centre of the `body` label alone (labelled parts removed, thin protrusions opened away at 3% of the height). The pipeline, `labels`, `anchors`, `check` and `draft-view-spec` pass the labels to `calibrate_views`, so they all see the same origin; without `--labels` a tool uses the unlabelled value below.
+- **Without labels**: the median row centre over the lower 60% of the rows after the same opening (thin props, horns and hair spikes do not count).
+- In `silhouette_bbox` mode the body axis replaces the bbox centre only when it is more than 3% of the silhouette width off it (`BODY_AXIS_MIN_SHIFT`). A few px are noise, and the bbox centre registers front and back extents against each other: switching on every 2-3 px raised the `sd_warrior` front / back errors by 0.4 pt (axis 3 px off, 0.6% of the width). The penguin's is 33 px off (9%). The decision is joint: when front or back needs the body axis, both take it, so they stay registered.
+- `sheet` mode uses the same function over its lower-body rows (5-40% above the soles), now also with labels. Side views keep the bbox centre (their horizontal is world Y; a snout or tail would move the centre of the depth, which has no mirror to protect). `manual` mode is untouched.
+- A symmetric body then reaches `symmetry.x` >= 0.95 with the props blanked at the calibrated origin: penguin 0.905 raw, 0.965 with `spatula_*` blanked, 0.974 with `spatula_*` and `flipper_r` blanked.
+
+**Frame offset.** The body axis moves the model origin along X away from the silhouette bbox centre (hatted: its staff, 2.8 cm). The model is the same shape translated, internally consistent (front and back move together, the side view is unaffected), but a ground-truth frame centred on the bbox sees it shifted. `report.frame_offset_m` = `{x, y}` (bbox centre minus origin); `bench/score.py` and `bench/render_holdout.py` subtract it, `tests/test_calibration_frame.py` guards the world-space agreement of the views (benchmark regression of 2026-10-23: hatted held-out IoU 87 -> 71 by this offset alone).
+
+### Automatic part proposals: `suggest-parts` (`core/suggest.py`)
+
+Silhouette hulls turn spiky hair into a drum, and thin parts (ears, horns, tail, hair locks) were found by eye. `prepare_references.py suggest-parts --view-spec VS [--labels L] [--regions-dir R] [--out-dir D] [--open-frac 0.03]` (api: `suggest_parts`) proposes them:
+
+1. **Pieces.** Per upright view, `mask - opening(mask, r)` with r = `--open-frac` (default 3%) of the silhouette height, crumbs dropped, each piece above a minimum area. A second opening at 1.6 x r finds the wide protrusions an ear is (the small opening would only cut its tip); a fine piece inside a wide one belongs to it, and a wide piece on the head that holds >= 3 fine spikes is a hair lock by itself.
+2. **Fit.** Each piece goes through `measure.propose_anchors(..., kind="auto")` (the `--kind auto` shape scoring of `partshape.py`): cone for spikes, ears and horns, curved cone for tails (`mid` follows the centre line), capsule for limbs, one type for all views of a part (confidence-weighted vote, a curled view decides). The tip is moved on to the farthest piece pixel along the axis, because the shape fit opens thin spikes away.
+3. **Hair.** Small head pieces (shorter than 12% of the height, under 1% of the silhouette, in the top 30%) are merged when there are >= 5: single-linkage groups (link 12% of the height, widened until at most 8 remain, a lone group split until 3), each group one cone "lock" (gaps between its spikes closed) with `flatten` 0.5 in its component, instead of dozens of parts.
+4. **Match.** Pieces of different views are one part when their z-ranges overlap (front / back must overlap in x too, one-to-one; the side view may serve two mirrored parts). Two parts at mirrored x with the same z and size get `mirror_of`; the second one drops the side anchors. A part seen in one view stays, `inferred`, confidence x 0.7.
+5. **Output** (`suggestions.json` and the terminal): per suggestion `type`, `curved`, `hair_lock`, `views`, `confidence` (shape-fit IoU), `z_range_m`, warnings; `labels` (`{view: {prot_N: [region ids | polygons]}}`: region ids when a regions dir exists and its regions cover the piece, else one polygon per component), `components` (type, `anchors_px`, `flatten`, `mirror_of`), `exclude_components` (parts seen in >= 2 views with confidence >= 0.5, not spheres) and `suggest_<view>.png`: the view with every suggestion tinted, outlined and numbered, rulers in view pixels. With `--labels`, the body label is what pieces attach to and pieces inside an already labelled part are skipped (`already_labelled`).
+
+Use it right after `propose`: Read the overlays, keep the numbers that are real parts, rename the ids (`prot_N` -> `ear_l`; `_l`/`_r` are the character's sides), paste their `labels` entries into `labels.json` and their `components` into the SceneSpec, add the ids to the hull's `exclude_components`, then `labels` and the pipeline as usual. Limits: pieces end where the opening cuts (a straight edge across an ear base or a sleeve; the hull keeps the rest), limbs and boots come out as protrusions too, side-view-only spikes (the nape) are low-confidence singles, and a wide hair tuft can merge with an ear when they touch. It saves the labelling time; it does not replace looking at the overlays. See the fox experiment in `bench/BASELINE.md`.
+
+### Symmetry: mirrored colour view, `symmetry.x` suggestion, paired fitting (`core/symmetry.py`)
+
+**Suggestion.** `consistency.analyze` adds `symmetry` (also printed by `prepare_references.py consistency`): per front / back view the left / right mirror IoU about X = 0, and `suggest_x` when it is >= 0.95. With `labels` it prints an explanation line (`0.553 raw; 0.577 with spatula_* blanked; 0.986 with spatula_*, flipper_r blanked -> suggest symmetry.x = true`): the labelled parts whose blanking lifts the IoU are searched greedily, and when no set reaches 0.95 at the calibrated origin the mirror axis is searched too ("axis moved 35 px"; a `manual` origin or an offset under 3% of the width can still be off the body axis, see Body axis; symmetry.x stays false until it is fixed). `draft-view-spec`, `check` and `labels` accept `--labels` (+ `--asymmetric NAME_OR_GLOB`, `labels` reads the SceneSpec's hull `asymmetric_parts` with `--scene-spec`). Pass `labels` + `asymmetric_parts` to blank labelled asymmetric parts first (sd_warrior front: 0.946 raw, 0.971 with the sword blanked). It is a hint and never changes `passed`.
+
+**Mirrored virtual colour view.** A separately generated opposite view (`right.png`) is only about 85% consistent with the side view and made the texture worse. A side view reflected through X = 0 is registered with the model by construction, so for a symmetric character it can colour the flank no real view sees. Hull params (inherited by every textured part):
+
+| param | meaning |
+|---|---|
+| `mirror_color_views: ["side"]` | colour views looking along X that are also used reflected through X = 0 (a virtual view `mirror_side` from the opposite axis: flipped image, flipped mask, flipped labels) |
+| `asymmetric_parts: ["sword_*"]` | ids / globs never sampled from it: their pixels (dilated 2 px) are cut out of the virtual mask, and those components do not use it |
+| `mirror_pairs: {"cape_a": "cape_b"}` | extra pairs for the label swap; `_l` / `_r` / `left` / `right` name tokens (`horn_l` <-> `horn_r`, `arm_l_upper` <-> `arm_r_upper`) and `mirror_of` are paired automatically |
+| `mirror_penalty` (0.5) | score penalty against real views: a real view wins unless the virtual one faces the texel better by more than this (a tie-break; it blends only inside the seam band) |
+
+A body texel samples a virtual pixel only if that pixel's (swapped) label is its own, so the mirrored left arm never paints the body and unlabelled-for-this-part pixels are refused as with real views. The depth buffer is that of the real model seen from the opposite axis, so the virtual view never colours a surface the real mesh hides. `report.hull.<id>.texture.views.mirror_side` is its share. Drop `right` from `color_views` when you use it (or keep it for a view that really is consistent).
+
+**Paired fitting.** A `mirror_of` partner with its own anchors is pulled toward its sibling's mirror image (`partfit` term (e)). `symmetric_pairs` (hull params) does the same for two anchored parts of one type without `mirror_of`, with a tolerance: `[["arm_l_upper", "arm_r_upper", 0.01]]` (or `{"a", "b", "tol_m"}`) pulls b toward a's mirror with a dead zone of `tol_m` meters (parameter units; default 0), so references that disagree a little are not forced to an exact mirror. `partfit_report.json` records `mirror_dev_max` and `mirror_tol`.
+
+### Worked example: mirrored colour view for a symmetric character (`examples/sd_warrior`)
+
+The character is symmetric except for the sword; only one side view exists (`side`, camera `-X`), and the separately generated opposite view (`right`) is inconsistent. `view_spec.json` roles: `front` carve+color+validate, `side` carve+color+validate, `back` color+validate; `right` is not used for colour. Hull params in `examples/sd_warrior/scene_spec.json`:
+
+```json
+"color_views": ["front", "side", "back"],
+"mirror_color_views": ["side"],
+"asymmetric_parts": ["sword_*"]
+```
+
+- `mirror_color_views: ["side"]` adds the virtual view `mirror_side` (side image, mask and labels flipped, camera from `+X`) at lowest priority, so the flank the real side view cannot see takes the mirrored colours instead of the back view's guess.
+- `asymmetric_parts: ["sword_*"]` cuts the sword (`sword_pommel`, `sword_grip`, `sword_blade`) out of the virtual view, so the sword is never painted onto the wrong flank; it also blanks the sword when the front symmetry is measured.
+- `mirror_pairs` is not needed here: the label swap pairs `horn_l` <-> `horn_r`, `arm_l_upper` <-> `arm_r_upper`, `hand_l` <-> `hand_r` by their `_l` / `_r` names (and `mirror_of`). Add it only for parts without such names, e.g. `"mirror_pairs": {"cape_a": "cape_b"}`.
+- Check `report.hull.body.texture.views.mirror_side` (its share) and the `front_lit.png` / `side_lit.png` previews. Never add a separately generated opposite view for colour; use `mirror_color_views`.
+
+## Correction details
+
+- `core/correction.py::diagnose` produces lines such as `Front view: width too large by 4.1 cm → X axis`.
+- `axis_scale_factors` gives ref/model extent per world axis, averaged over the views that see that axis.
+- `apply_axis_scale` scales component locations and sizes about the origin. Z is scaled about the floor.
+- For local errors, `report.json → validation.reference_match.per_view.<view>` contains `bbox_delta_m`, `largest_mismatch_region` (with `world_bbox`), and `components_in_region` (the component ids to edit). This list is empty for hull-only specs, since hulls have no `size`.
+- The full `diagnose()` output is the top-level `diagnosis` list in `report.json`.
+- After **every** modification, all validate views are re-rendered and re-compared.
+
+## Troubleshooting
+
+- Hull looks like stacked horizontal rings: check `report.hull.<id>.rings.ring_pct` (flagged above 2.4%), then raise `slice_coherence`. `smooth_iterations`, `post_smooth_iterations` and `resolution` do not fix it.
+- Spiky anime hair reads as a drum: a silhouette hull cannot make 3D hair locks. For a better head, label the main hair spikes and add `cone` parts (flatten 0.4-0.6), or accept the drum and rely on the texture.

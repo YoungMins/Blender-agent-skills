@@ -1,0 +1,8 @@
+{
+  "name": "robot_character",
+  "kind": "regression",
+  "view_spec": "../../../examples/robot_character/view_spec.json",
+  "scene_spec": "../../../examples/robot_character/scene_spec.json",
+  "perturbation": null,
+  "notes": "regression case: the example references and spec are used in place (no ground truth)"
+}

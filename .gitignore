@@ -1,0 +1,13 @@
+# oh-my-claudecode working state: scratch runs, blind-run work dirs, archived bench runs (~GBs).
+# Only the plan / research notes are versioned.
+.omc/*
+!.omc/plans/
+!.omc/research/
+
+# Python / Blender caches
+__pycache__/
+.pytest_cache/
+*.blend1
+
+# Example checkpoints duplicate the final .blend; regenerate with scripts/run_pipeline.py
+blender-blueprint-reconstruction/examples/*/output/checkpoints/

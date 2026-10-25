@@ -1,0 +1,233 @@
+{
+  "spec_version": "0.1",
+  "name": "simple_chair",
+  "category": "furniture",
+  "object_type": "chair",
+  "units": "meters",
+  "dimensions": {
+    "width": 0.45,
+    "depth": 0.45,
+    "height": 0.85
+  },
+  "symmetry": {
+    "x": true,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": true,
+    "bevel": true,
+    "bevel_width": 0.003,
+    "bevel_segments": 2,
+    "weighted_normals": true
+  },
+  "materials": {
+    "wood": {
+      "base_color": [
+        0.45,
+        0.3,
+        0.18,
+        1.0
+      ],
+      "roughness": 0.55
+    }
+  },
+  "components": [
+    {
+      "id": "seat",
+      "type": "plate",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.0,
+        0.435
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.45,
+        0.45,
+        0.03
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "leg_front",
+      "type": "leg",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.205,
+        -0.205,
+        0.21
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.42
+      ],
+      "params": {
+        "profile": "square"
+      },
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "leg_rear",
+      "type": "leg",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.205,
+        0.205,
+        0.21
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.42
+      ],
+      "params": {
+        "profile": "square"
+      },
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "backrest",
+      "type": "panel",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0,
+        0.2125,
+        0.65
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.37,
+        0.025,
+        0.4
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "back_post",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.205,
+        0.205,
+        0.65
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.4
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": true,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": ""
+    },
+    {
+      "id": "rear_support",
+      "type": "box",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "location": [
+        0.0,
+        0.205,
+        0.15
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size": [
+        0.37,
+        0.02,
+        0.02
+      ],
+      "params": {},
+      "material": "wood",
+      "mirror": {
+        "x": false,
+        "y": false,
+        "z": false
+      },
+      "bevel": null,
+      "boolean": null,
+      "notes": "Stretcher between the rear legs; not directly visible in the side/top views, inferred for stability."
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.05,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

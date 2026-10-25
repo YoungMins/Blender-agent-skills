@@ -1,0 +1,12 @@
+{
+  "spec_version": "0.1",
+  "name": "simple_table",
+  "views": {
+    "front": {"path": "references/front.png"},
+    "side": {"path": "references/side.png", "camera_axis": "-X"},
+    "top": {"path": "references/top.png", "roles": ["validate"]},
+    "three_quarter_front": {"path": "references/tq.png", "roles": ["preview"]}
+  },
+  "known_dimensions": {"width": 1.2, "depth": 0.6, "height": 0.72},
+  "symmetry": {"x": true, "y": true, "z": false}
+}

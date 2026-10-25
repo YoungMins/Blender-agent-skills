@@ -1,0 +1,638 @@
+{
+  "horn_l": {
+    "type": "cone",
+    "fitted": true,
+    "loss_init": 0.45053,
+    "loss_fit": 0.17257,
+    "evals": 1429,
+    "seconds": 15.28,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "bend.0",
+      "bend.1",
+      "rb",
+      "rt",
+      "flatten"
+    ],
+    "locked": [],
+    "joint_with": [
+      "horn_r"
+    ],
+    "coarse_k": 3,
+    "iou_init": {
+      "front": {
+        "iou": 0.5838,
+        "iou_vis": 0.5838,
+        "covered": 0.599,
+        "spill": 0.0356,
+        "label_px": 7720
+      },
+      "side": {
+        "iou": 0.3606,
+        "iou_vis": 0.3606,
+        "covered": 0.3606,
+        "spill": 0.0,
+        "label_px": 8107
+      },
+      "back": {
+        "iou": 0.6275,
+        "iou_vis": 0.6275,
+        "covered": 0.6408,
+        "spill": 0.0272,
+        "label_px": 7274
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.8331,
+        "iou_vis": 0.8331,
+        "covered": 0.9335,
+        "spill": 0.0436,
+        "label_px": 7720
+      },
+      "side": {
+        "iou": 0.6944,
+        "iou_vis": 0.6944,
+        "covered": 0.7637,
+        "spill": 0.0063,
+        "label_px": 8107
+      },
+      "back": {
+        "iou": 0.7874,
+        "iou_vis": 0.7874,
+        "covered": 0.9314,
+        "spill": 0.0328,
+        "label_px": 7274
+      }
+    }
+  },
+  "horn_r": {
+    "type": "cone",
+    "fitted": false,
+    "note": "exact mirror of horn_l",
+    "iou_init": {
+      "front": {
+        "iou": 0.8417,
+        "iou_vis": 0.8417,
+        "covered": 0.9264,
+        "spill": 0.0385,
+        "label_px": 7741
+      },
+      "back": {
+        "iou": 0.8315,
+        "iou_vis": 0.8315,
+        "covered": 0.9292,
+        "spill": 0.0447,
+        "label_px": 7566
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.8417,
+        "iou_vis": 0.8417,
+        "covered": 0.9264,
+        "spill": 0.0385,
+        "label_px": 7741
+      },
+      "back": {
+        "iou": 0.8315,
+        "iou_vis": 0.8315,
+        "covered": 0.9292,
+        "spill": 0.0447,
+        "label_px": 7566
+      }
+    }
+  },
+  "sword_pommel": {
+    "type": "sphere",
+    "fitted": true,
+    "loss_init": 0.90803,
+    "loss_fit": 0.05145,
+    "evals": 1554,
+    "seconds": 0.59,
+    "free": [
+      "center.x",
+      "center.y",
+      "center.z",
+      "semi.x",
+      "semi.y",
+      "semi.z"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 1,
+    "iou_init": {
+      "front": {
+        "iou": 0.2473,
+        "iou_vis": 0.5158,
+        "covered": 1.0,
+        "spill": 0.0,
+        "label_px": 278
+      },
+      "side": {
+        "iou": 0.2938,
+        "iou_vis": 0.3513,
+        "covered": 1.0,
+        "spill": 0.415,
+        "label_px": 332
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.7015,
+        "iou_vis": 0.8648,
+        "covered": 0.9892,
+        "spill": 0.0,
+        "label_px": 278
+      },
+      "side": {
+        "iou": 0.951,
+        "iou_vis": 0.951,
+        "covered": 0.994,
+        "spill": 0.0,
+        "label_px": 332
+      }
+    }
+  },
+  "sword_grip": {
+    "type": "cylinder",
+    "fitted": true,
+    "loss_init": 0.69724,
+    "loss_fit": 0.3452,
+    "evals": 1030,
+    "seconds": 2.96,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "r0"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 2,
+    "iou_init": {
+      "front": {
+        "iou": 0.4988,
+        "iou_vis": 0.5005,
+        "covered": 0.5419,
+        "spill": 0.0,
+        "label_px": 1934
+      },
+      "side": {
+        "iou": 0.405,
+        "iou_vis": 0.405,
+        "covered": 0.6649,
+        "spill": 0.4494,
+        "label_px": 952
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6982,
+        "iou_vis": 0.7003,
+        "covered": 0.7322,
+        "spill": 0.0,
+        "label_px": 1934
+      },
+      "side": {
+        "iou": 0.5571,
+        "iou_vis": 0.5752,
+        "covered": 0.9275,
+        "spill": 0.1478,
+        "label_px": 952
+      }
+    }
+  },
+  "sword_blade": {
+    "type": "blade",
+    "fitted": true,
+    "loss_init": 0.36498,
+    "loss_fit": 0.19007,
+    "evals": 1323,
+    "seconds": 10.24,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "width",
+      "thickness",
+      "roll"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 3,
+    "iou_init": {
+      "front": {
+        "iou": 0.6159,
+        "iou_vis": 0.6545,
+        "covered": 0.9436,
+        "spill": 0.0064,
+        "label_px": 3298
+      },
+      "side": {
+        "iou": 0.397,
+        "iou_vis": 0.41,
+        "covered": 0.8701,
+        "spill": 0.1302,
+        "label_px": 1709
+      },
+      "back": {
+        "iou": 0.6683,
+        "iou_vis": 0.6683,
+        "covered": 0.8248,
+        "spill": 0.0041,
+        "label_px": 4584
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6523,
+        "iou_vis": 0.6941,
+        "covered": 0.926,
+        "spill": 0.0239,
+        "label_px": 3298
+      },
+      "side": {
+        "iou": 0.345,
+        "iou_vis": 0.3634,
+        "covered": 0.7917,
+        "spill": 0.0045,
+        "label_px": 1709
+      },
+      "back": {
+        "iou": 0.8256,
+        "iou_vis": 0.8256,
+        "covered": 0.889,
+        "spill": 0.0002,
+        "label_px": 4584
+      }
+    }
+  },
+  "arm_l_upper": {
+    "type": "capsule",
+    "fitted": true,
+    "loss_init": 0.72177,
+    "loss_fit": 0.41426,
+    "evals": 1435,
+    "seconds": 2.74,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "r0",
+      "r1"
+    ],
+    "locked": [],
+    "joint_with": [
+      "arm_r_upper"
+    ],
+    "coarse_k": 2,
+    "iou_init": {
+      "front": {
+        "iou": 0.2637,
+        "iou_vis": 0.2637,
+        "covered": 0.3123,
+        "spill": 0.0589,
+        "label_px": 4650
+      },
+      "side": {
+        "iou": 0.1743,
+        "iou_vis": 0.1791,
+        "covered": 0.2105,
+        "spill": 0.0,
+        "label_px": 5582
+      },
+      "back": {
+        "iou": 0.3038,
+        "iou_vis": 0.3038,
+        "covered": 0.3713,
+        "spill": 0.0587,
+        "label_px": 3873
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6073,
+        "iou_vis": 0.6073,
+        "covered": 0.7985,
+        "spill": 0.0433,
+        "label_px": 4650
+      },
+      "side": {
+        "iou": 0.2373,
+        "iou_vis": 0.2731,
+        "covered": 0.3719,
+        "spill": 0.0,
+        "label_px": 5582
+      },
+      "back": {
+        "iou": 0.505,
+        "iou_vis": 0.53,
+        "covered": 0.7826,
+        "spill": 0.0521,
+        "label_px": 3873
+      }
+    }
+  },
+  "arm_l_fore": {
+    "type": "capsule",
+    "fitted": true,
+    "loss_init": 0.45334,
+    "loss_fit": 0.13611,
+    "evals": 1353,
+    "seconds": 2.41,
+    "free": [
+      "base.x",
+      "base.y",
+      "base.z",
+      "tip.x",
+      "tip.y",
+      "tip.z",
+      "r0",
+      "r1"
+    ],
+    "locked": [],
+    "joint_with": [
+      "arm_r_fore"
+    ],
+    "coarse_k": 2,
+    "iou_init": {
+      "front": {
+        "iou": 0.4718,
+        "iou_vis": 0.5982,
+        "covered": 0.6057,
+        "spill": 0.0142,
+        "label_px": 3013
+      },
+      "side": {
+        "iou": 0.2956,
+        "iou_vis": 0.3949,
+        "covered": 0.434,
+        "spill": 0.0,
+        "label_px": 2892
+      },
+      "back": {
+        "iou": 0.5746,
+        "iou_vis": 0.7424,
+        "covered": 0.7503,
+        "spill": 0.0101,
+        "label_px": 2531
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6699,
+        "iou_vis": 0.9446,
+        "covered": 0.9512,
+        "spill": 0.0051,
+        "label_px": 3013
+      },
+      "side": {
+        "iou": 0.6697,
+        "iou_vis": 0.8371,
+        "covered": 0.9308,
+        "spill": 0.0,
+        "label_px": 2892
+      },
+      "back": {
+        "iou": 0.5916,
+        "iou_vis": 0.9619,
+        "covered": 0.9771,
+        "spill": 0.0097,
+        "label_px": 2531
+      }
+    }
+  },
+  "hand_l": {
+    "type": "sphere",
+    "fitted": true,
+    "loss_init": 0.45752,
+    "loss_fit": 0.35114,
+    "evals": 1119,
+    "seconds": 1.29,
+    "free": [
+      "center.x",
+      "center.y",
+      "center.z",
+      "semi.x",
+      "semi.y",
+      "semi.z"
+    ],
+    "locked": [],
+    "joint_with": [
+      "hand_r"
+    ],
+    "coarse_k": 2,
+    "iou_init": {
+      "front": {
+        "iou": 0.5784,
+        "iou_vis": 0.5784,
+        "covered": 0.7279,
+        "spill": 0.262,
+        "label_px": 3131
+      },
+      "side": {
+        "iou": 0.7696,
+        "iou_vis": 0.7696,
+        "covered": 0.7759,
+        "spill": 0.0,
+        "label_px": 4989
+      },
+      "back": {
+        "iou": 0.6192,
+        "iou_vis": 0.6192,
+        "covered": 0.7736,
+        "spill": 0.2437,
+        "label_px": 3008
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6854,
+        "iou_vis": 0.6903,
+        "covered": 0.801,
+        "spill": 0.1653,
+        "label_px": 3131
+      },
+      "side": {
+        "iou": 0.6758,
+        "iou_vis": 0.677,
+        "covered": 0.7893,
+        "spill": 0.0,
+        "label_px": 4989
+      },
+      "back": {
+        "iou": 0.6807,
+        "iou_vis": 0.695,
+        "covered": 0.8122,
+        "spill": 0.1677,
+        "label_px": 3008
+      }
+    }
+  },
+  "arm_r_upper": {
+    "type": "capsule",
+    "fitted": false,
+    "note": "exact mirror of arm_l_upper",
+    "iou_init": {
+      "front": {
+        "iou": 0.6061,
+        "iou_vis": 0.6061,
+        "covered": 0.7939,
+        "spill": 0.0435,
+        "label_px": 4691
+      },
+      "back": {
+        "iou": 0.5721,
+        "iou_vis": 0.6088,
+        "covered": 0.9162,
+        "spill": 0.0601,
+        "label_px": 3400
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6061,
+        "iou_vis": 0.6061,
+        "covered": 0.7939,
+        "spill": 0.0435,
+        "label_px": 4691
+      },
+      "back": {
+        "iou": 0.5721,
+        "iou_vis": 0.6088,
+        "covered": 0.9162,
+        "spill": 0.0601,
+        "label_px": 3400
+      }
+    }
+  },
+  "arm_r_fore": {
+    "type": "capsule",
+    "fitted": false,
+    "note": "exact mirror of arm_l_fore",
+    "iou_init": {
+      "front": {
+        "iou": 0.6412,
+        "iou_vis": 0.952,
+        "covered": 0.9719,
+        "spill": 0.0133,
+        "label_px": 2777
+      },
+      "back": {
+        "iou": 0.6313,
+        "iou_vis": 0.9505,
+        "covered": 0.9711,
+        "spill": 0.0143,
+        "label_px": 2731
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6412,
+        "iou_vis": 0.952,
+        "covered": 0.9719,
+        "spill": 0.0133,
+        "label_px": 2777
+      },
+      "back": {
+        "iou": 0.6313,
+        "iou_vis": 0.9505,
+        "covered": 0.9711,
+        "spill": 0.0143,
+        "label_px": 2731
+      }
+    }
+  },
+  "hand_r": {
+    "type": "sphere",
+    "fitted": false,
+    "note": "exact mirror of hand_l",
+    "iou_init": {
+      "front": {
+        "iou": 0.6543,
+        "iou_vis": 0.6543,
+        "covered": 0.7589,
+        "spill": 0.1739,
+        "label_px": 3305
+      },
+      "back": {
+        "iou": 0.6634,
+        "iou_vis": 0.6634,
+        "covered": 0.7525,
+        "spill": 0.1515,
+        "label_px": 3410
+      }
+    },
+    "iou": {
+      "front": {
+        "iou": 0.6543,
+        "iou_vis": 0.6543,
+        "covered": 0.7589,
+        "spill": 0.1739,
+        "label_px": 3305
+      },
+      "back": {
+        "iou": 0.6634,
+        "iou_vis": 0.6634,
+        "covered": 0.7525,
+        "spill": 0.1515,
+        "label_px": 3410
+      }
+    }
+  },
+  "shield": {
+    "type": "disc",
+    "fitted": true,
+    "loss_init": 0.09352,
+    "loss_fit": 0.00473,
+    "evals": 1425,
+    "seconds": 13.26,
+    "free": [
+      "center.x",
+      "center.y",
+      "center.z",
+      "normal.x",
+      "normal.y",
+      "normal.z",
+      "radius",
+      "thickness",
+      "dome"
+    ],
+    "locked": [],
+    "joint_with": [],
+    "coarse_k": 3,
+    "iou_init": {
+      "back": {
+        "iou": 0.9407,
+        "iou_vis": 0.9407,
+        "covered": 0.9407,
+        "spill": 0.0,
+        "label_px": 28715
+      }
+    },
+    "iou": {
+      "back": {
+        "iou": 0.9585,
+        "iou_vis": 0.9598,
+        "covered": 0.9998,
+        "spill": 0.0,
+        "label_px": 28715
+      }
+    }
+  }
+}

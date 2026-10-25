@@ -1,0 +1,257 @@
+{
+  "spec_version": "0.1",
+  "name": "hatted_gt",
+  "category": "character",
+  "object_type": "character",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": null
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {
+    "robe": {
+      "base_color": [
+        0.4,
+        0.2,
+        0.6
+      ],
+      "roughness": 0.6
+    },
+    "skin": {
+      "base_color": [
+        0.8,
+        0.55,
+        0.35
+      ],
+      "roughness": 0.6
+    },
+    "hat": {
+      "base_color": [
+        0.25,
+        0.15,
+        0.45
+      ],
+      "roughness": 0.6
+    },
+    "wood": {
+      "base_color": [
+        0.5,
+        0.33,
+        0.18
+      ],
+      "roughness": 0.6
+    },
+    "glow": {
+      "base_color": [
+        0.3,
+        0.9,
+        0.9
+      ],
+      "roughness": 0.6
+    }
+  },
+  "components": [
+    {
+      "id": "robe",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0275,
+        0.0,
+        0.2
+      ],
+      "size": [
+        0.2,
+        0.16,
+        0.3
+      ],
+      "material": "robe"
+    },
+    {
+      "id": "head",
+      "type": "sphere",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0275,
+        0.0,
+        0.42
+      ],
+      "size": [
+        0.15,
+        0.14,
+        0.15
+      ],
+      "material": "skin"
+    },
+    {
+      "id": "brim",
+      "type": "cylinder",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0275,
+        0.0,
+        0.47
+      ],
+      "size": [
+        0.44,
+        0.44,
+        0.015
+      ],
+      "material": "hat"
+    },
+    {
+      "id": "hat",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        -0.0275,
+        0.0,
+        0.4775
+      ],
+      "material": "hat",
+      "params": {
+        "base_radius": 0.1,
+        "tip_radius": 0.01,
+        "length": 0.2,
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "staff",
+      "type": "cylinder",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.2125,
+        -0.02,
+        0.3
+      ],
+      "size": [
+        0.022,
+        0.022,
+        0.6
+      ],
+      "material": "wood"
+    },
+    {
+      "id": "orb",
+      "type": "sphere",
+      "stage": "secondary",
+      "confidence": "observed",
+      "location": [
+        0.2125,
+        -0.02,
+        0.62
+      ],
+      "size": [
+        0.07,
+        0.07,
+        0.07
+      ],
+      "material": "glow"
+    },
+    {
+      "id": "arm_l",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.1575,
+        0.0,
+        0.24
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.2
+      ],
+      "rotation_deg": [
+        0,
+        10,
+        0
+      ],
+      "material": "robe"
+    },
+    {
+      "id": "foot_l",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        -0.0725,
+        -0.015,
+        0.012
+      ],
+      "size": [
+        0.07,
+        0.11,
+        0.024
+      ],
+      "material": "wood",
+      "params": {
+        "radius": 0.01
+      }
+    },
+    {
+      "id": "arm_r",
+      "type": "capsule",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.1025,
+        0.0,
+        0.24
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.2
+      ],
+      "rotation_deg": [
+        0,
+        -10,
+        0
+      ],
+      "material": "robe"
+    },
+    {
+      "id": "foot_r",
+      "type": "rounded_box",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0.0175,
+        -0.015,
+        0.012
+      ],
+      "size": [
+        0.07,
+        0.11,
+        0.024
+      ],
+      "material": "wood",
+      "params": {
+        "radius": 0.01
+      }
+    }
+  ]
+}

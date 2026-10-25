@@ -1,0 +1,476 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_dragon",
+  "category": "character",
+  "object_type": "sd_dragon",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "parts_labels": "labels.json",
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 14,
+        "color_projection": true,
+        "exclude_components": [
+          "horn_l",
+          "horn_r",
+          "fin_l",
+          "fin_r",
+          "wing_l",
+          "wing_r",
+          "arm_l",
+          "arm_r",
+          "tail",
+          "tail_spade"
+        ],
+        "exclude_dilate_px": 2,
+        "mirror_color_views": [
+          "side"
+        ],
+        "asymmetric_parts": [
+          "tail*"
+        ],
+        "slice_coherence": 0.05
+      }
+    },
+    {
+      "id": "horn_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.7,
+        "segments": 20,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              127.5,
+              142.5
+            ],
+            "mid": [
+              108.5,
+              103.0
+            ],
+            "tip": [
+              115.5,
+              58.5
+            ],
+            "radius_px": [
+              25.6,
+              13.1
+            ]
+          },
+          "side": {
+            "base": [
+              328.8,
+              162.2
+            ],
+            "mid": [
+              274.6,
+              111.8
+            ],
+            "tip": [
+              220.5,
+              61.5
+            ],
+            "radius_px": [
+              40.3,
+              20.7
+            ]
+          },
+          "back": {
+            "base": [
+              303.5,
+              147.5
+            ],
+            "mid": [
+              327.4,
+              106.3
+            ],
+            "tip": [
+              320.5,
+              58.5
+            ],
+            "radius_px": [
+              30.3,
+              10.5
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "horn_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.7,
+        "segments": 20,
+        "sides": 16,
+        "mirror_of": "horn_r",
+        "anchors_px": {
+          "front": {
+            "base": [
+              310.5,
+              142.5
+            ],
+            "mid": [
+              328.5,
+              102.8
+            ],
+            "tip": [
+              321.5,
+              58.5
+            ],
+            "radius_px": [
+              25.8,
+              12.8
+            ]
+          },
+          "back": {
+            "base": [
+              133.5,
+              147.5
+            ],
+            "mid": [
+              109.6,
+              106.3
+            ],
+            "tip": [
+              116.5,
+              58.5
+            ],
+            "radius_px": [
+              30.0,
+              10.5
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "fin_r",
+      "type": "plate",
+      "stage": "detail",
+      "confidence": "observed",
+      "params": {
+        "thickness": 0.006,
+        "face_view": "side",
+        "gap_tol_m": 0.012,
+        "anchors_px": {
+          "front": {
+            "base": [
+              80,
+              300
+            ],
+            "tip": [
+              58,
+              200
+            ]
+          },
+          "side": {
+            "base": [
+              275,
+              320
+            ],
+            "tip": [
+              272,
+              208
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "fin_l",
+      "type": "plate",
+      "stage": "detail",
+      "confidence": "observed",
+      "params": {
+        "thickness": 0.006,
+        "face_view": "side",
+        "mirror_of": "fin_r",
+        "gap_tol_m": 0.012,
+        "anchors_px": {
+          "front": {
+            "base": [
+              360,
+              300
+            ],
+            "tip": [
+              382,
+              200
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "wing_r",
+      "type": "plate",
+      "stage": "detail",
+      "confidence": "observed",
+      "params": {
+        "thickness": 0.004,
+        "face_view": "back",
+        "anchors_px": {
+          "front": {
+            "base": [
+              150,
+              385
+            ],
+            "tip": [
+              52,
+              418
+            ]
+          },
+          "side": {
+            "base": [
+              272,
+              352
+            ],
+            "tip": [
+              212,
+              445
+            ]
+          },
+          "back": {
+            "base": [
+              270,
+              392
+            ],
+            "tip": [
+              392,
+              425
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "wing_l",
+      "type": "plate",
+      "stage": "detail",
+      "confidence": "observed",
+      "params": {
+        "thickness": 0.004,
+        "face_view": "back",
+        "mirror_of": "wing_r",
+        "anchors_px": {
+          "front": {
+            "base": [
+              290,
+              385
+            ],
+            "tip": [
+              385,
+              418
+            ]
+          },
+          "back": {
+            "base": [
+              170,
+              392
+            ],
+            "tip": [
+              50,
+              428
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "arm_r",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              160,
+              415
+            ],
+            "tip": [
+              65,
+              505
+            ],
+            "radius_px": 24
+          },
+          "side": {
+            "base": [
+              320,
+              395
+            ],
+            "tip": [
+              338,
+              500
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "arm_l",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 16,
+        "mirror_of": "arm_r",
+        "anchors_px": {
+          "front": {
+            "base": [
+              280,
+              415
+            ],
+            "tip": [
+              375,
+              505
+            ],
+            "radius_px": 24
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "tail",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 1.0,
+        "segments": 20,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              290,
+              602
+            ],
+            "mid": [
+              350,
+              608
+            ],
+            "tip": [
+              390,
+              597
+            ],
+            "radius_px": [
+              26,
+              9
+            ]
+          },
+          "side": {
+            "base": [
+              285,
+              572
+            ],
+            "mid": [
+              190,
+              622
+            ],
+            "tip": [
+              108,
+              590
+            ],
+            "radius_px": [
+              40,
+              9
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "tail_spade",
+      "type": "blade",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "thickness": 0.01,
+        "tip_length": 0.02,
+        "joint": {
+          "part": "tail",
+          "at": "tip",
+          "self": "base"
+        },
+        "anchors_px": {
+          "front": {
+            "base": [
+              388,
+              598
+            ],
+            "tip": [
+              432,
+              570
+            ],
+            "width_px": 45
+          },
+          "side": {
+            "base": [
+              105,
+              590
+            ],
+            "tip": [
+              45,
+              550
+            ]
+          }
+        }
+      },
+      "notes": ""
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true
+  }
+}

@@ -1,0 +1,2394 @@
+{
+  "name": "treasure_chest",
+  "status": "passed",
+  "passed": true,
+  "steps": [
+    {
+      "n": 1,
+      "name": "import reference views",
+      "status": "ok",
+      "duration_s": 0.158
+    },
+    {
+      "n": 2,
+      "name": "alignment (axis conventions)",
+      "status": "ok",
+      "views": {
+        "front": "-Y",
+        "back": "+Y",
+        "side": "-X"
+      },
+      "duration_s": 0.0
+    },
+    {
+      "n": 3,
+      "name": "scale calibration",
+      "status": "ok",
+      "duration_s": 0.157
+    },
+    {
+      "n": 4,
+      "name": "bounding volume + reference planes",
+      "status": "ok",
+      "duration_s": 0.009
+    },
+    {
+      "n": 5,
+      "name": "blockout",
+      "status": "ok",
+      "duration_s": 0.598
+    },
+    {
+      "n": 6,
+      "name": "major proportions (axis scale)",
+      "status": "ok",
+      "duration_s": 0.0
+    },
+    {
+      "n": 7,
+      "name": "symmetry (mirror modifiers)",
+      "status": "ok",
+      "mirrored": [
+        "foot_front",
+        "foot_back",
+        "band_side",
+        "brk_low_front_f_v",
+        "brk_low_front_f_h",
+        "brk_low_front_s_v",
+        "brk_low_front_s_h",
+        "brk_up_front_f_v",
+        "brk_up_front_s_v",
+        "brk_low_back_f_v",
+        "brk_low_back_f_h",
+        "brk_low_back_s_v",
+        "brk_low_back_s_h",
+        "brk_up_back_f_v",
+        "brk_up_back_s_v",
+        "ring_plate",
+        "ring"
+      ],
+      "duration_s": 0.0
+    },
+    {
+      "n": 8,
+      "name": "primary components",
+      "status": "ok",
+      "duration_s": 2.461
+    },
+    {
+      "n": 9,
+      "name": "secondary + detail components",
+      "status": "ok",
+      "part_gaps": [],
+      "duration_s": 3.295
+    },
+    {
+      "n": 10,
+      "name": "boolean / cut",
+      "status": "ok",
+      "booleans": 0,
+      "duration_s": 0.001
+    },
+    {
+      "n": 11,
+      "name": "bevel",
+      "status": "ok",
+      "duration_s": 0.001
+    },
+    {
+      "n": 12,
+      "name": "normal cleanup + part textures",
+      "status": "ok",
+      "duration_s": 36.892
+    },
+    {
+      "n": 13,
+      "name": "reference comparison",
+      "status": "ok",
+      "duration_s": 0.247
+    },
+    {
+      "n": 14,
+      "name": "correction loop",
+      "status": "ok",
+      "note": "auto_correct disabled",
+      "duration_s": 0.0
+    },
+    {
+      "n": 15,
+      "name": "validation",
+      "status": "ok",
+      "duration_s": 16.334
+    },
+    {
+      "n": 16,
+      "name": "save outputs",
+      "status": "ok",
+      "duration_s": 0.022
+    }
+  ],
+  "outputs": {
+    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\report.json",
+    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_A_blockout.png",
+    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_B_primary.png",
+    "stage_secondary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_B2_secondary.png",
+    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\perspective.png",
+    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_C_final.png",
+    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\perspective_back.png",
+    "front_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\front_lit.png",
+    "side_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\side_lit.png",
+    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\top.png",
+    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_front.png",
+    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_back.png",
+    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_side.png",
+    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\comparison_sheet.png",
+    "turntable_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\turntable.png",
+    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\scene_spec_corrected.json",
+    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\treasure_chest.blend"
+  },
+  "config": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": false,
+    "consistency_gate": "warn",
+    "consistency_ignore_flags": [],
+    "consistency_roles_override": {},
+    "hull_resolution": 320,
+    "hull_margin": 0.03,
+    "top_consistency_tol": 0.15,
+    "smooth_iterations": 14,
+    "hull_min_iou": 0.95,
+    "render_scale": 1.0,
+    "bg_tolerance": 0.12,
+    "max_hole_frac": 0.002,
+    "min_component_frac": 0.0005,
+    "edge_distance_cap_px": 32,
+    "ref_plane_offset_factor": 0.75,
+    "ref_plane_offset_base": 0.1,
+    "view_weights": {}
+  },
+  "views": {
+    "front": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\front.png",
+      "camera_axis": "-Y",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "back": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\back.png",
+      "camera_axis": "+Y",
+      "roles": [
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    },
+    "side": {
+      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\side.png",
+      "camera_axis": "-X",
+      "roles": [
+        "carve",
+        "color",
+        "validate"
+      ],
+      "confidence": "observed"
+    }
+  },
+  "dimensions": {
+    "width": 0.8486,
+    "depth": 0.4745814977973568,
+    "height": 0.567
+  },
+  "provenance": {
+    "width": "known",
+    "height": "known (derived from width 0.8486 m of the silhouette in view front (1.2572 mm/px), silhouette height of that view)",
+    "depth": "derived:side"
+  },
+  "calibrations": {
+    "front": {
+      "view": "front",
+      "camera_axis": "-Y",
+      "image_size": [
+        761,
+        724
+      ],
+      "m_per_px": 0.0012572062084257206,
+      "origin_px": [
+        380.5,
+        586.0
+      ]
+    },
+    "back": {
+      "view": "back",
+      "camera_axis": "+Y",
+      "image_size": [
+        760,
+        724
+      ],
+      "m_per_px": 0.0012572062084257206,
+      "origin_px": [
+        380.0,
+        586.0
+      ]
+    },
+    "side": {
+      "view": "side",
+      "camera_axis": "-X",
+      "image_size": [
+        466,
+        724
+      ],
+      "m_per_px": 0.0012488986784140968,
+      "origin_px": [
+        233.0,
+        586.0
+      ]
+    }
+  },
+  "consistency": {
+    "thresholds": {
+      "carve_min_iou": 0.95,
+      "color_validate_min_iou": 0.92,
+      "scale_drift_tol": 0.02,
+      "shift_tol": 0.01,
+      "accessory_blob_frac": 0.01,
+      "mirrored_margin": 0.03,
+      "core_open_frac": 0.03,
+      "bbox_agree_tol": 0.015,
+      "accessory_open_frac": 0.015
+    },
+    "pairs": [
+      {
+        "a": "front",
+        "b": "back",
+        "iou_raw": 0.9929,
+        "iou_aligned": 0.9963,
+        "align": {
+          "scale": 1.0,
+          "dh_m": 0.00284,
+          "dz_m": 0.0
+        },
+        "iou_unmirrored": 0.9971,
+        "floor": 0.0071,
+        "bands": [
+          {
+            "z0": 0.0,
+            "z1": 0.125,
+            "width_a": 0.77192,
+            "width_b": 0.77192,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.125,
+            "z1": 0.25,
+            "width_a": 0.78701,
+            "width_b": 0.78953,
+            "rel_diff": -0.0032
+          },
+          {
+            "z0": 0.25,
+            "z1": 0.375,
+            "width_a": 0.77695,
+            "width_b": 0.77695,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.375,
+            "z1": 0.5,
+            "width_a": 0.84107,
+            "width_b": 0.83981,
+            "rel_diff": 0.0015
+          },
+          {
+            "z0": 0.5,
+            "z1": 0.625,
+            "width_a": 0.79958,
+            "width_b": 0.79958,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.625,
+            "z1": 0.75,
+            "width_a": 0.8021,
+            "width_b": 0.79958,
+            "rel_diff": 0.0031
+          },
+          {
+            "z0": 0.75,
+            "z1": 0.875,
+            "width_a": 0.79204,
+            "width_b": 0.79078,
+            "rel_diff": 0.0016
+          },
+          {
+            "z0": 0.875,
+            "z1": 1.0,
+            "width_a": 0.75307,
+            "width_b": 0.75181,
+            "rel_diff": 0.0017
+          }
+        ],
+        "blobs": {}
+      }
+    ],
+    "views": {
+      "front": {
+        "axis": "-Y",
+        "m_per_px": 0.001257,
+        "core_top_z": 0.5657427937915742,
+        "core_bottom_z": 0.0,
+        "core_height": 0.5657427937915742,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.5682572062084257,
+        "pair": "back",
+        "pair_iou": 0.9929,
+        "floor": 0.0071,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "verdict": "ok",
+        "error": 0.02471,
+        "excess_error": 0.01761
+      },
+      "back": {
+        "axis": "+Y",
+        "m_per_px": 0.001257,
+        "core_top_z": 0.5657427937915742,
+        "core_bottom_z": 0.0,
+        "core_height": 0.5657427937915742,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.5682572062084257,
+        "pair": "front",
+        "pair_iou": 0.9929,
+        "floor": 0.0071,
+        "current_roles": [
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "color",
+          "validate"
+        ],
+        "verdict": "ok",
+        "error": 0.02501,
+        "excess_error": 0.01791
+      },
+      "side": {
+        "axis": "-X",
+        "m_per_px": 0.001249,
+        "core_top_z": 0.5645022026431717,
+        "core_bottom_z": 0.0,
+        "core_height": 0.5645022026431717,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.567,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "verdict": "unpaired",
+        "floor": null,
+        "pair": null,
+        "pair_iou": null
+      }
+    },
+    "flags": [],
+    "symmetry": [
+      {
+        "view": "front",
+        "iou": 0.9951,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0,
+        "asymmetric": [],
+        "suggested_blank": [],
+        "iou_suggested": null,
+        "labelled": false,
+        "axis_shift_px": 0,
+        "explanation": "0.995 raw -> suggest symmetry.x = true"
+      },
+      {
+        "view": "back",
+        "iou": 0.9944,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0,
+        "asymmetric": [],
+        "suggested_blank": [],
+        "iou_suggested": null,
+        "labelled": false,
+        "axis_shift_px": 0,
+        "explanation": "0.994 raw -> suggest symmetry.x = true"
+      }
+    ],
+    "ignored_flags": [],
+    "overrides": {},
+    "bbox_heights_agree": false,
+    "roles_to_change": [],
+    "passed": true
+  },
+  "blockout": {
+    "gate": "passed",
+    "mode": "components",
+    "error": 0.053237085128648186,
+    "threshold": 0.12
+  },
+  "part_gaps": [],
+  "iterations": [
+    {
+      "iteration": 0,
+      "total_error": 0.026413619984212322,
+      "per_view": {
+        "front": 0.02471,
+        "back": 0.02501,
+        "side": 0.02952
+      },
+      "accepted": true
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "geometry": {
+      "passed": true,
+      "checks": {
+        "dimensions": {
+          "passed": true,
+          "actual": {
+            "width": 0.8419999703764915,
+            "depth": 0.4708350012078881,
+            "height": 0.56700499355793
+          },
+          "target": {
+            "width": 0.8486,
+            "depth": 0.4745814977973568,
+            "height": 0.567
+          },
+          "relative_error": {
+            "width": -0.00777755081723841,
+            "depth": -0.007894316585996375,
+            "height": 8.806980476228077e-06
+          },
+          "tolerance": 0.03,
+          "floor_z": -4.999339580535889e-06
+        },
+        "scale": {
+          "passed": true,
+          "non_unit_scale": {}
+        },
+        "modifiers": {
+          "passed": true,
+          "wrong_order": {}
+        },
+        "materials": {
+          "passed": true,
+          "without_material": []
+        },
+        "scene_structure": {
+          "passed": true,
+          "missing_collections": [],
+          "without_agent_id": [],
+          "duplicate_agent_ids": {},
+          "origin_empty": true
+        }
+      }
+    },
+    "soft_checks": {
+      "symmetry": {
+        "passed": true,
+        "centre_offset_ratio": {
+          "x": 1.3273006280972394e-08
+        }
+      },
+      "normals": {
+        "passed": true,
+        "inverted": []
+      },
+      "non_manifold": {
+        "passed": true,
+        "non_manifold_edges": {}
+      }
+    },
+    "warnings": [],
+    "warning_details": [],
+    "reference_match": {
+      "passed": true,
+      "total_error": 0.026413619984212322,
+      "threshold": 0.08,
+      "front_error": 0.024712355804095476,
+      "back_error": 0.025005696696663082,
+      "side_error": 0.029522807451878408,
+      "per_view": {
+        "front": {
+          "iou": 0.9752876441959045,
+          "error": 0.024712355804095476,
+          "error_pct": 2.47,
+          "edge_px": 3.470036029815674,
+          "width_ratio": 0.9911111111111112,
+          "height_ratio": 1.0,
+          "line": "Front Error : 2.5%",
+          "bbox_delta_m": {
+            "left": -0.0037716186252771617,
+            "right": -0.0037716186252771617,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "excess",
+            "area_px": 1037,
+            "bbox_px": [
+              64,
+              145,
+              99,
+              227
+            ],
+            "center_world": [
+              -0.37590465631929043,
+              null,
+              0.5028824833702882
+            ],
+            "world_bbox": {
+              "min": [
+                -0.39790576496674057,
+                null,
+                0.4513370288248337
+              ],
+              "max": [
+                -0.35390354767184035,
+                null,
+                0.5544279379157427
+              ]
+            }
+          },
+          "components_in_region": [
+            "lid"
+          ],
+          "color_error": 0.01941,
+          "floor": 0.0071,
+          "excess_error": 0.01761
+        },
+        "back": {
+          "iou": 0.9749943033033369,
+          "error": 0.025005696696663082,
+          "error_pct": 2.5,
+          "edge_px": 3.575559616088867,
+          "width_ratio": 0.9940652818991098,
+          "height_ratio": 1.0,
+          "line": "Back Error : 2.5%",
+          "bbox_delta_m": {
+            "left": -0.002514412416851441,
+            "right": -0.002514412416851441,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1163,
+            "bbox_px": [
+              688,
+              296,
+              716,
+              552
+            ],
+            "center_world": [
+              -0.40482039911308204,
+              null,
+              0.20366740576496672
+            ],
+            "world_bbox": {
+              "min": [
+                -0.4224212860310421,
+                null,
+                0.0427450110864745
+              ],
+              "max": [
+                -0.3872195121951219,
+                null,
+                0.36458980044345896
+              ]
+            }
+          },
+          "components_in_region": [
+            "body",
+            "rim_band",
+            "lid",
+            "brk_low_front_f_v",
+            "brk_low_front_f_h",
+            "brk_low_front_s_v",
+            "brk_low_front_s_h",
+            "brk_up_front_f_v",
+            "brk_up_front_s_v",
+            "brk_low_back_f_v",
+            "brk_low_back_f_h",
+            "brk_low_back_s_v",
+            "brk_low_back_s_h",
+            "brk_up_back_f_v",
+            "brk_up_back_s_v",
+            "ring_plate"
+          ],
+          "color_error": 0.01944,
+          "floor": 0.0071,
+          "excess_error": 0.01791
+        },
+        "side": {
+          "iou": 0.9704771925481216,
+          "error": 0.029522807451878408,
+          "error_pct": 2.95,
+          "edge_px": 3.5721893310546875,
+          "width_ratio": 0.9921052631578947,
+          "height_ratio": 1.0,
+          "line": "Side Error : 3.0%",
+          "bbox_delta_m": {
+            "left": -0.0037466960352422907,
+            "right": 0.0,
+            "top": 0.0,
+            "bottom": 0.0
+          },
+          "largest_mismatch_region": {
+            "kind": "missing",
+            "area_px": 1029,
+            "bbox_px": [
+              46,
+              145,
+              157,
+              297
+            ],
+            "center_world": [
+              null,
+              0.16423017621145372,
+              0.45584801762114535
+            ],
+            "world_bbox": {
+              "min": [
+                null,
+                0.09491629955947135,
+                0.360931718061674
+              ],
+              "max": [
+                null,
+                0.2335440528634361,
+                0.5507643171806167
+              ]
+            }
+          },
+          "components_in_region": [
+            "lid",
+            "band_centre",
+            "band_side"
+          ],
+          "color_error": 0.01864
+        }
+      }
+    },
+    "diagnosis": [],
+    "recommendation": "Reconstruction matches the references within tolerance."
+  },
+  "reference_match": {
+    "passed": true,
+    "total_error": 0.026413619984212322,
+    "threshold": 0.08,
+    "front_error": 0.024712355804095476,
+    "back_error": 0.025005696696663082,
+    "side_error": 0.029522807451878408,
+    "per_view": {
+      "front": {
+        "iou": 0.9752876441959045,
+        "error": 0.024712355804095476,
+        "error_pct": 2.47,
+        "edge_px": 3.470036029815674,
+        "width_ratio": 0.9911111111111112,
+        "height_ratio": 1.0,
+        "line": "Front Error : 2.5%",
+        "bbox_delta_m": {
+          "left": -0.0037716186252771617,
+          "right": -0.0037716186252771617,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "excess",
+          "area_px": 1037,
+          "bbox_px": [
+            64,
+            145,
+            99,
+            227
+          ],
+          "center_world": [
+            -0.37590465631929043,
+            null,
+            0.5028824833702882
+          ],
+          "world_bbox": {
+            "min": [
+              -0.39790576496674057,
+              null,
+              0.4513370288248337
+            ],
+            "max": [
+              -0.35390354767184035,
+              null,
+              0.5544279379157427
+            ]
+          }
+        },
+        "components_in_region": [
+          "lid"
+        ],
+        "color_error": 0.01941,
+        "floor": 0.0071,
+        "excess_error": 0.01761
+      },
+      "back": {
+        "iou": 0.9749943033033369,
+        "error": 0.025005696696663082,
+        "error_pct": 2.5,
+        "edge_px": 3.575559616088867,
+        "width_ratio": 0.9940652818991098,
+        "height_ratio": 1.0,
+        "line": "Back Error : 2.5%",
+        "bbox_delta_m": {
+          "left": -0.002514412416851441,
+          "right": -0.002514412416851441,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1163,
+          "bbox_px": [
+            688,
+            296,
+            716,
+            552
+          ],
+          "center_world": [
+            -0.40482039911308204,
+            null,
+            0.20366740576496672
+          ],
+          "world_bbox": {
+            "min": [
+              -0.4224212860310421,
+              null,
+              0.0427450110864745
+            ],
+            "max": [
+              -0.3872195121951219,
+              null,
+              0.36458980044345896
+            ]
+          }
+        },
+        "components_in_region": [
+          "body",
+          "rim_band",
+          "lid",
+          "brk_low_front_f_v",
+          "brk_low_front_f_h",
+          "brk_low_front_s_v",
+          "brk_low_front_s_h",
+          "brk_up_front_f_v",
+          "brk_up_front_s_v",
+          "brk_low_back_f_v",
+          "brk_low_back_f_h",
+          "brk_low_back_s_v",
+          "brk_low_back_s_h",
+          "brk_up_back_f_v",
+          "brk_up_back_s_v",
+          "ring_plate"
+        ],
+        "color_error": 0.01944,
+        "floor": 0.0071,
+        "excess_error": 0.01791
+      },
+      "side": {
+        "iou": 0.9704771925481216,
+        "error": 0.029522807451878408,
+        "error_pct": 2.95,
+        "edge_px": 3.5721893310546875,
+        "width_ratio": 0.9921052631578947,
+        "height_ratio": 1.0,
+        "line": "Side Error : 3.0%",
+        "bbox_delta_m": {
+          "left": -0.0037466960352422907,
+          "right": 0.0,
+          "top": 0.0,
+          "bottom": 0.0
+        },
+        "largest_mismatch_region": {
+          "kind": "missing",
+          "area_px": 1029,
+          "bbox_px": [
+            46,
+            145,
+            157,
+            297
+          ],
+          "center_world": [
+            null,
+            0.16423017621145372,
+            0.45584801762114535
+          ],
+          "world_bbox": {
+            "min": [
+              null,
+              0.09491629955947135,
+              0.360931718061674
+            ],
+            "max": [
+              null,
+              0.2335440528634361,
+              0.5507643171806167
+            ]
+          }
+        },
+        "components_in_region": [
+          "lid",
+          "band_centre",
+          "band_side"
+        ],
+        "color_error": 0.01864
+      }
+    }
+  },
+  "color_match": {
+    "soft": true,
+    "per_view": {
+      "front": {
+        "error": 0.019413501045047025,
+        "pixels": 254768
+      },
+      "back": {
+        "error": 0.019438033710821128,
+        "pixels": 254840
+      },
+      "side": {
+        "error": 0.018635578661093246,
+        "pixels": 135760
+      }
+    }
+  },
+  "hull": {
+    "body": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0078,
+          0.0078
+        ],
+        "uv_max": [
+          0.9922,
+          0.8268
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 1024,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_body_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_body_source_map.png",
+        "covered_texels": 616325,
+        "coverage_pct": 58.8,
+        "texels_from_visible_samples_pct": 43.0,
+        "views": {
+          "front": 0.1421,
+          "back": 0.1487,
+          "side": 0.0696,
+          "mirror_side": 0.0699
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5697,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.00014,
+        "inpainted_uv_share": 0.0641,
+        "inpainted_3d_share": 0.5056,
+        "raster_s": 0.28,
+        "total_s": 16.63
+      }
+    },
+    "rim_band": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0078,
+          0.0078
+        ],
+        "uv_max": [
+          0.9922,
+          0.8284
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 1024,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_rim_band_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_rim_band_source_map.png",
+        "covered_texels": 683840,
+        "coverage_pct": 65.2,
+        "texels_from_visible_samples_pct": 13.2,
+        "views": {
+          "front": 0.0421,
+          "back": 0.0421,
+          "side": 0.024,
+          "mirror_side": 0.024
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.8678,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0002,
+        "inpainted_3d_share": 0.8676,
+        "raster_s": 0.26,
+        "total_s": 3.88
+      }
+    },
+    "lid": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0078,
+          0.0078
+        ],
+        "uv_max": [
+          0.8756,
+          0.9922
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 1024,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_lid_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_lid_source_map.png",
+        "covered_texels": 627779,
+        "coverage_pct": 59.9,
+        "texels_from_visible_samples_pct": 43.5,
+        "views": {
+          "front": 0.1479,
+          "back": 0.1496,
+          "side": 0.0686,
+          "mirror_side": 0.0687
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5653,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2011,
+        "inpainted_3d_share": 0.3642,
+        "raster_s": 0.36,
+        "total_s": 8.68
+      }
+    },
+    "foot_front": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.6788
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_front_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_front_source_map.png",
+        "covered_texels": 4285,
+        "coverage_pct": 26.2,
+        "texels_from_visible_samples_pct": 25.8,
+        "views": {
+          "front": 0.1274,
+          "back": 0.0002,
+          "side": 0.1305,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.7419,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1587,
+        "inpainted_3d_share": 0.5832,
+        "raster_s": 0.01,
+        "total_s": 0.25
+      }
+    },
+    "foot_back": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.6788
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_back_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_back_source_map.png",
+        "covered_texels": 4285,
+        "coverage_pct": 26.2,
+        "texels_from_visible_samples_pct": 25.2,
+        "views": {
+          "front": 0.0,
+          "back": 0.1239,
+          "side": 0.1277,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.7484,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0278,
+        "inpainted_3d_share": 0.7207,
+        "raster_s": 0.0,
+        "total_s": 0.25
+      }
+    },
+    "band_centre": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0313,
+          0.0312
+        ],
+        "uv_max": [
+          0.9688,
+          0.9338
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 256,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_centre_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_centre_source_map.png",
+        "covered_texels": 11051,
+        "coverage_pct": 16.9,
+        "texels_from_visible_samples_pct": 31.8,
+        "views": {
+          "front": 0.1574,
+          "back": 0.1589,
+          "side": 0.001,
+          "mirror_side": 0.0009
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6818,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2624,
+        "inpainted_3d_share": 0.4194,
+        "raster_s": 0.01,
+        "total_s": 0.63
+      }
+    },
+    "band_side": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0313,
+          0.0312
+        ],
+        "uv_max": [
+          0.9688,
+          0.9142
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 256,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_side_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_side_source_map.png",
+        "covered_texels": 11565,
+        "coverage_pct": 17.6,
+        "texels_from_visible_samples_pct": 40.9,
+        "views": {
+          "front": 0.1664,
+          "back": 0.1695,
+          "side": 0.0014,
+          "mirror_side": 0.0719
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5908,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1851,
+        "inpainted_3d_share": 0.4057,
+        "raster_s": 0.01,
+        "total_s": 0.78
+      }
+    },
+    "brk_low_front_f_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.7873
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_v_source_map.png",
+        "covered_texels": 3470,
+        "coverage_pct": 21.2,
+        "texels_from_visible_samples_pct": 39.7,
+        "views": {
+          "front": 0.3435,
+          "back": 0.0,
+          "side": 0.0,
+          "mirror_side": 0.0539
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6026,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0637,
+        "inpainted_3d_share": 0.5389,
+        "raster_s": 0.0,
+        "total_s": 0.36
+      }
+    },
+    "brk_low_front_f_h": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.9015
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_h_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_h_source_map.png",
+        "covered_texels": 4472,
+        "coverage_pct": 27.3,
+        "texels_from_visible_samples_pct": 38.4,
+        "views": {
+          "front": 0.3569,
+          "back": 0.0,
+          "side": 0.0,
+          "mirror_side": 0.0268
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6163,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0291,
+        "inpainted_3d_share": 0.5872,
+        "raster_s": 0.01,
+        "total_s": 0.36
+      }
+    },
+    "brk_low_front_s_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.8539
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_v_source_map.png",
+        "covered_texels": 4088,
+        "coverage_pct": 25.0,
+        "texels_from_visible_samples_pct": 39.8,
+        "views": {
+          "front": 0.0409,
+          "back": 0.0,
+          "side": 0.0,
+          "mirror_side": 0.3574
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6018,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0636,
+        "inpainted_3d_share": 0.5382,
+        "raster_s": 0.0,
+        "total_s": 0.28
+      }
+    },
+    "brk_low_front_s_h": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.87,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_h_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_h_source_map.png",
+        "covered_texels": 4312,
+        "coverage_pct": 26.3,
+        "texels_from_visible_samples_pct": 38.7,
+        "views": {
+          "front": 0.009,
+          "back": 0.0,
+          "side": 0.0,
+          "mirror_side": 0.378
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6129,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0332,
+        "inpainted_3d_share": 0.5798,
+        "raster_s": 0.0,
+        "total_s": 0.29
+      }
+    },
+    "brk_up_front_f_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9284,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_f_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_f_v_source_map.png",
+        "covered_texels": 6317,
+        "coverage_pct": 38.6,
+        "texels_from_visible_samples_pct": 44.2,
+        "views": {
+          "front": 0.3647,
+          "back": 0.0002,
+          "side": 0.003,
+          "mirror_side": 0.0744
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5577,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2397,
+        "inpainted_3d_share": 0.318,
+        "raster_s": 0.0,
+        "total_s": 0.26
+      }
+    },
+    "brk_up_front_s_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.8021,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_s_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_s_v_source_map.png",
+        "covered_texels": 5406,
+        "coverage_pct": 33.0,
+        "texels_from_visible_samples_pct": 44.8,
+        "views": {
+          "front": 0.0888,
+          "back": 0.0002,
+          "side": 0.0035,
+          "mirror_side": 0.3552
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5523,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2286,
+        "inpainted_3d_share": 0.3237,
+        "raster_s": 0.01,
+        "total_s": 0.23
+      }
+    },
+    "brk_low_back_f_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.7873
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_v_source_map.png",
+        "covered_texels": 3470,
+        "coverage_pct": 21.2,
+        "texels_from_visible_samples_pct": 41.3,
+        "views": {
+          "front": 0.0,
+          "back": 0.3421,
+          "side": 0.0003,
+          "mirror_side": 0.0706
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.587,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0758,
+        "inpainted_3d_share": 0.5112,
+        "raster_s": 0.0,
+        "total_s": 0.24
+      }
+    },
+    "brk_low_back_f_h": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.9015
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_h_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_h_source_map.png",
+        "covered_texels": 4472,
+        "coverage_pct": 27.3,
+        "texels_from_visible_samples_pct": 38.6,
+        "views": {
+          "front": 0.0,
+          "back": 0.3515,
+          "side": 0.0,
+          "mirror_side": 0.0342
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6143,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0271,
+        "inpainted_3d_share": 0.5872,
+        "raster_s": 0.0,
+        "total_s": 0.25
+      }
+    },
+    "brk_low_back_s_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.8539
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_v_source_map.png",
+        "covered_texels": 4088,
+        "coverage_pct": 25.0,
+        "texels_from_visible_samples_pct": 41.5,
+        "views": {
+          "front": 0.0,
+          "back": 0.0267,
+          "side": 0.0137,
+          "mirror_side": 0.3745
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5851,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.3637,
+        "inpainted_3d_share": 0.2214,
+        "raster_s": 0.0,
+        "total_s": 0.18
+      }
+    },
+    "brk_low_back_s_h": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.87,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_h_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_h_source_map.png",
+        "covered_texels": 4312,
+        "coverage_pct": 26.3,
+        "texels_from_visible_samples_pct": 39.2,
+        "views": {
+          "front": 0.0,
+          "back": 0.0093,
+          "side": 0.0,
+          "mirror_side": 0.3831
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.6076,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0329,
+        "inpainted_3d_share": 0.5747,
+        "raster_s": 0.0,
+        "total_s": 0.25
+      }
+    },
+    "brk_up_back_f_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9284,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_f_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_f_v_source_map.png",
+        "covered_texels": 6317,
+        "coverage_pct": 38.6,
+        "texels_from_visible_samples_pct": 43.8,
+        "views": {
+          "front": 0.0076,
+          "back": 0.3571,
+          "side": 0.0003,
+          "mirror_side": 0.0725
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5625,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.3153,
+        "inpainted_3d_share": 0.2471,
+        "raster_s": 0.0,
+        "total_s": 0.23
+      }
+    },
+    "brk_up_back_s_v": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.8021,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_s_v_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_s_v_source_map.png",
+        "covered_texels": 5406,
+        "coverage_pct": 33.0,
+        "texels_from_visible_samples_pct": 44.2,
+        "views": {
+          "front": 0.0089,
+          "back": 0.0799,
+          "side": 0.0004,
+          "mirror_side": 0.3526
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5583,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.2673,
+        "inpainted_3d_share": 0.291,
+        "raster_s": 0.0,
+        "total_s": 0.26
+      }
+    },
+    "hasp": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.7875,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_hasp_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_hasp_source_map.png",
+        "covered_texels": 3554,
+        "coverage_pct": 21.7,
+        "texels_from_visible_samples_pct": 24.9,
+        "views": {
+          "front": 0.2493,
+          "back": 0.0,
+          "side": 0.0,
+          "mirror_side": 0.0
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.7507,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1424,
+        "inpainted_3d_share": 0.6083,
+        "raster_s": 0.0,
+        "total_s": 0.15
+      }
+    },
+    "ring_plate": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.8485
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_plate_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_plate_source_map.png",
+        "covered_texels": 3787,
+        "coverage_pct": 23.1,
+        "texels_from_visible_samples_pct": 28.8,
+        "views": {
+          "front": 0.0285,
+          "back": 0.0214,
+          "side": 0.0,
+          "mirror_side": 0.2377
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.7124,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.1801,
+        "inpainted_3d_share": 0.5323,
+        "raster_s": 0.0,
+        "total_s": 0.17
+      }
+    },
+    "ring": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.9324
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_source_map.png",
+        "covered_texels": 1599,
+        "coverage_pct": 9.8,
+        "texels_from_visible_samples_pct": 55.7,
+        "views": {
+          "front": 0.0994,
+          "back": 0.1088,
+          "side": 0.0,
+          "mirror_side": 0.3427
+        },
+        "blend_share": 0.0056,
+        "inpainted_share": 0.4434,
+        "conflict_ratio": 0.0025,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.4434,
+        "inpainted_3d_share": 0.0,
+        "raster_s": 0.01,
+        "total_s": 0.18
+      }
+    },
+    "padlock_body": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9282,
+          0.9375
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_body_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_body_source_map.png",
+        "covered_texels": 7584,
+        "coverage_pct": 46.3,
+        "texels_from_visible_samples_pct": 42.4,
+        "views": {
+          "front": 0.3038,
+          "back": 0.0,
+          "side": 0.0583,
+          "mirror_side": 0.062
+        },
+        "blend_share": 0.0,
+        "inpainted_share": 0.5759,
+        "conflict_ratio": 0.0,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.0759,
+        "inpainted_3d_share": 0.5,
+        "raster_s": 0.0,
+        "total_s": 0.35
+      }
+    },
+    "padlock_shackle": {
+      "uv": {
+        "uv_layer": "UVMap",
+        "uv_min": [
+          0.0625,
+          0.0625
+        ],
+        "uv_max": [
+          0.9375,
+          0.8523
+        ]
+      },
+      "mirror_views": [
+        "mirror_side"
+      ],
+      "texture": {
+        "size": 128,
+        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_shackle_basecolor.png",
+        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_shackle_source_map.png",
+        "covered_texels": 1609,
+        "coverage_pct": 9.8,
+        "texels_from_visible_samples_pct": 30.0,
+        "views": {
+          "front": 0.1759,
+          "back": 0.0,
+          "side": 0.0603,
+          "mirror_side": 0.0622
+        },
+        "blend_share": 0.0019,
+        "inpainted_share": 0.6998,
+        "conflict_ratio": 0.0068,
+        "background_leak_ratio": 0.0,
+        "inpainted_uv_share": 0.5948,
+        "inpainted_3d_share": 0.105,
+        "raster_s": 0.01,
+        "total_s": 0.17
+      }
+    }
+  },
+  "confidence": {
+    "components": {
+      "body": "observed",
+      "rim_band": "observed",
+      "lid": "observed",
+      "foot_front": "observed",
+      "foot_back": "observed",
+      "band_centre": "observed",
+      "band_side": "observed",
+      "brk_low_front_f_v": "observed",
+      "brk_low_front_f_h": "observed",
+      "brk_low_front_s_v": "observed",
+      "brk_low_front_s_h": "observed",
+      "brk_up_front_f_v": "observed",
+      "brk_up_front_s_v": "observed",
+      "brk_low_back_f_v": "observed",
+      "brk_low_back_f_h": "observed",
+      "brk_low_back_s_v": "observed",
+      "brk_low_back_s_h": "observed",
+      "brk_up_back_f_v": "observed",
+      "brk_up_back_s_v": "observed",
+      "hasp": "observed",
+      "ring_plate": "observed",
+      "ring": "observed",
+      "padlock_body": "observed",
+      "padlock_shackle": "observed"
+    },
+    "counts": {
+      "observed": 24
+    },
+    "views": {
+      "front": "observed",
+      "back": "observed",
+      "side": "observed"
+    }
+  },
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part ring_plate (68% of camera-facing samples hidden in its best view side), occluded_part padlock_shackle (49% of camera-facing samples hidden in its best view front), occluded_part brk_low_front_s_h (48% of camera-facing samples hidden in its best view side), occluded_part band_side (48% of camera-facing samples hidden in its best view front), occluded_part band_centre (48% of camera-facing samples hidden in its best view back), occluded_part brk_low_back_s_h (47% of camera-facing samples hidden in its best view side), occluded_part ring (43% of camera-facing samples hidden in its best view back), occluded_part hasp (34% of camera-facing samples hidden in its best view front), misattribution brk_low_front_f_h (50% of texels sourced from brk_low_front_f_v), misattribution brk_low_back_f_h (47% of texels sourced from brk_low_back_f_v), misattribution brk_up_back_s_v (42% of texels sourced from brk_up_back_f_v), misattribution brk_low_back_s_v (40% of texels sourced from brk_low_back_f_v), misattribution brk_up_front_s_v (38% of texels sourced from brk_up_front_f_v), misattribution brk_low_back_s_h (34% of texels sourced from brk_low_back_s_v), misattribution brk_low_front_s_h (33% of texels sourced from brk_low_front_s_v), misattribution brk_low_front_s_v (30% of texels sourced from brk_low_front_f_v), misattribution brk_low_front_f_v (8% of texels sourced from brk_low_front_f_h), misattribution brk_low_back_f_v (7% of texels sourced from brk_low_back_f_h), misattribution padlock_shackle (5% of texels sourced from body), part_outside_reference padlock_body (only 70% of it on the reference silhouette)",
+  "diagnosis": [],
+  "warnings": [
+    "occluded_part:ring_plate",
+    "occluded_part:padlock_shackle",
+    "occluded_part:brk_low_front_s_h",
+    "occluded_part:band_side",
+    "occluded_part:band_centre",
+    "occluded_part:brk_low_back_s_h",
+    "occluded_part:ring",
+    "occluded_part:hasp",
+    "misattribution:brk_low_front_f_h",
+    "misattribution:brk_low_back_f_h",
+    "misattribution:brk_up_back_s_v",
+    "misattribution:brk_low_back_s_v",
+    "misattribution:brk_up_front_s_v",
+    "misattribution:brk_low_back_s_h",
+    "misattribution:brk_low_front_s_h",
+    "misattribution:brk_low_front_s_v",
+    "misattribution:brk_low_front_f_v",
+    "misattribution:brk_low_back_f_v",
+    "misattribution:padlock_shackle",
+    "part_outside_reference:padlock_body"
+  ],
+  "attribution": {
+    "views": [
+      "front",
+      "back",
+      "side"
+    ],
+    "samples": 151788,
+    "facing_threshold": 0.3,
+    "occlusion_warn": 0.3,
+    "misattribution_warn": 0.05,
+    "objects": {
+      "body": {
+        "samples": 52650,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.05497474450839892,
+        "best_view": "back",
+        "pooled_occlusion": 0.10985230712778644,
+        "hidden_share": 0.10877564161530678,
+        "occlusion_per_view": {
+          "front": 0.1059563360227812,
+          "back": 0.05497474450839892,
+          "side": 0.21271343344990742
+        }
+      },
+      "rim_band": {
+        "samples": 32801,
+        "misattribution": 0.004549103559004549,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.003211131924003211
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.0,
+        "hidden_share": 0.0,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 0.0,
+          "side": 0.0
+        }
+      },
+      "lid": {
+        "samples": 38865,
+        "misattribution": 0.0016498625114573786,
+        "top_confusion": {
+          "object": "band_side",
+          "share": 0.0011610143599144515
+        },
+        "occlusion_share": 0.0,
+        "best_view": "side",
+        "pooled_occlusion": 0.20334174022698612,
+        "hidden_share": 0.2032871516620134,
+        "occlusion_per_view": {
+          "front": 0.24356816542438087,
+          "back": 0.22731755424063116,
+          "side": 0.0
+        }
+      },
+      "foot_front": {
+        "samples": 1563,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.48179271708683474,
+        "hidden_share": 0.468975468975469,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 0.995850622406639,
+          "side": 0.4792626728110599
+        }
+      },
+      "foot_back": {
+        "samples": 1563,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.5006802721088436,
+        "hidden_share": 0.4929378531073446,
+        "occlusion_per_view": {
+          "front": 1.0,
+          "back": 0.0,
+          "side": 0.49606299212598426
+        }
+      },
+      "band_centre": {
+        "samples": 3499,
+        "misattribution": 0.020603384841795438,
+        "top_confusion": {
+          "object": "lid",
+          "share": 0.020603384841795438
+        },
+        "occlusion_share": 0.4756944444444444,
+        "best_view": "back",
+        "pooled_occlusion": 0.5486338797814208,
+        "hidden_share": 0.5349188372970932,
+        "occlusion_per_view": {
+          "front": 0.49345335515548283,
+          "back": 0.4756944444444444,
+          "side": 0.9568733153638814
+        }
+      },
+      "band_side": {
+        "samples": 7666,
+        "misattribution": 0.009705793145283591,
+        "top_confusion": {
+          "object": "lid",
+          "share": 0.009705793145283591
+        },
+        "occlusion_share": 0.4765450483991065,
+        "best_view": "front",
+        "pooled_occlusion": 0.48462301587301587,
+        "hidden_share": 0.478216473791695,
+        "occlusion_per_view": {
+          "front": 0.4765450483991065,
+          "back": 0.48484848484848486,
+          "side": 0.5152394775036284
+        }
+      },
+      "brk_low_front_f_v": {
+        "samples": 633,
+        "misattribution": 0.08482142857142858,
+        "top_confusion": {
+          "object": "brk_low_front_f_h",
+          "share": 0.05357142857142857
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.5410628019323671,
+        "hidden_share": 0.5391156462585034,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 0.9967845659163987,
+          "side": 0.4642857142857143
+        }
+      },
+      "brk_low_front_f_h": {
+        "samples": 600,
+        "misattribution": 0.4980694980694981,
+        "top_confusion": {
+          "object": "brk_low_front_f_v",
+          "share": 0.4826254826254826
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.46897810218978103,
+        "hidden_share": 0.46629213483146065,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.3939393939393939
+        }
+      },
+      "brk_low_front_s_v": {
+        "samples": 600,
+        "misattribution": 0.2953020134228188,
+        "top_confusion": {
+          "object": "brk_low_front_f_v",
+          "share": 0.2684563758389262
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.4516971279373368,
+        "hidden_share": 0.4365781710914454,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.430327868852459
+        }
+      },
+      "brk_low_front_s_h": {
+        "samples": 740,
+        "misattribution": 0.32919254658385094,
+        "top_confusion": {
+          "object": "brk_low_front_s_v",
+          "share": 0.22981366459627328
+        },
+        "occlusion_share": 0.4807692307692308,
+        "best_view": "side",
+        "pooled_occlusion": 0.48787061994609165,
+        "hidden_share": 0.4803370786516854,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.4807692307692308
+        }
+      },
+      "brk_up_front_f_v": {
+        "samples": 600,
+        "misattribution": 0.048327137546468404,
+        "top_confusion": {
+          "object": "brk_up_front_s_v",
+          "share": 0.048327137546468404
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.5181975736568457,
+        "hidden_share": 0.5018518518518519,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.45454545454545453
+        }
+      },
+      "brk_up_front_s_v": {
+        "samples": 600,
+        "misattribution": 0.3812154696132597,
+        "top_confusion": {
+          "object": "brk_up_front_f_v",
+          "share": 0.3812154696132597
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.5139949109414759,
+        "hidden_share": 0.49577464788732395,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.5076923076923077
+        }
+      },
+      "brk_low_back_f_v": {
+        "samples": 633,
+        "misattribution": 0.0657439446366782,
+        "top_confusion": {
+          "object": "brk_low_back_f_h",
+          "share": 0.03460207612456748
+        },
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.45792880258899676,
+        "hidden_share": 0.46219931271477666,
+        "occlusion_per_view": {
+          "front": 0.9770992366412213,
+          "back": 0.0,
+          "side": 0.391304347826087
+        }
+      },
+      "brk_low_back_f_h": {
+        "samples": 600,
+        "misattribution": 0.468503937007874,
+        "top_confusion": {
+          "object": "brk_low_back_f_v",
+          "share": 0.4448818897637795
+        },
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.49458483754512633,
+        "hidden_share": 0.4944029850746269,
+        "occlusion_per_view": {
+          "front": 0.9849056603773585,
+          "back": 0.0,
+          "side": 0.38235294117647056
+        }
+      },
+      "brk_low_back_s_v": {
+        "samples": 600,
+        "misattribution": 0.3950617283950617,
+        "top_confusion": {
+          "object": "brk_low_back_f_v",
+          "share": 0.36419753086419754
+        },
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.43672456575682383,
+        "hidden_share": 0.43909348441926344,
+        "occlusion_per_view": {
+          "front": 0.8524590163934426,
+          "back": 0.0,
+          "side": 0.49206349206349204
+        }
+      },
+      "brk_low_back_s_h": {
+        "samples": 740,
+        "misattribution": 0.3448275862068966,
+        "top_confusion": {
+          "object": "brk_low_back_s_v",
+          "share": 0.2471264367816092
+        },
+        "occlusion_share": 0.4744744744744745,
+        "best_view": "side",
+        "pooled_occlusion": 0.45789473684210524,
+        "hidden_share": 0.46195652173913043,
+        "occlusion_per_view": {
+          "front": 0.8888888888888888,
+          "back": 0.0,
+          "side": 0.4744744744744745
+        }
+      },
+      "brk_up_back_f_v": {
+        "samples": 600,
+        "misattribution": 0.03873239436619718,
+        "top_confusion": {
+          "object": "brk_up_back_s_v",
+          "share": 0.03873239436619718
+        },
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.45137614678899085,
+        "hidden_share": 0.44874274661508706,
+        "occlusion_per_view": {
+          "front": 0.9782608695652174,
+          "back": 0.0,
+          "side": 0.38181818181818183
+        }
+      },
+      "brk_up_back_s_v": {
+        "samples": 600,
+        "misattribution": 0.42408376963350786,
+        "top_confusion": {
+          "object": "brk_up_back_f_v",
+          "share": 0.42408376963350786
+        },
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.46770025839793283,
+        "hidden_share": 0.4602272727272727,
+        "occlusion_per_view": {
+          "front": 0.8840579710144928,
+          "back": 0.0,
+          "side": 0.4878048780487805
+        }
+      },
+      "hasp": {
+        "samples": 600,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.34285714285714286,
+        "best_view": "front",
+        "pooled_occlusion": 0.6767068273092369,
+        "hidden_share": 0.6767068273092369,
+        "occlusion_per_view": {
+          "front": 0.34285714285714286,
+          "back": 1.0,
+          "side": 1.0
+        }
+      },
+      "ring_plate": {
+        "samples": 1707,
+        "misattribution": 0.002932551319648094,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.002932551319648094
+        },
+        "occlusion_share": 0.6829896907216495,
+        "best_view": "side",
+        "pooled_occlusion": 0.6049661399548533,
+        "hidden_share": 0.6039488966318235,
+        "occlusion_per_view": {
+          "front": 0.08620689655172414,
+          "back": 0.019230769230769232,
+          "side": 0.6829896907216495
+        }
+      },
+      "ring": {
+        "samples": 1887,
+        "misattribution": 0.014970059880239521,
+        "top_confusion": {
+          "object": "ring_plate",
+          "share": 0.008982035928143712
+        },
+        "occlusion_share": 0.42828685258964144,
+        "best_view": "back",
+        "pooled_occlusion": 0.4669811320754717,
+        "hidden_share": 0.3947175348495965,
+        "occlusion_per_view": {
+          "front": 0.44349680170575695,
+          "back": 0.42828685258964144,
+          "side": 0.5089655172413793
+        }
+      },
+      "padlock_body": {
+        "samples": 841,
+        "misattribution": 0.0028169014084507044,
+        "top_confusion": {
+          "object": "padlock_shackle",
+          "share": 0.0028169014084507044
+        },
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.40718562874251496,
+        "hidden_share": 0.4024767801857585,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "back": 1.0,
+          "side": 0.0
+        }
+      },
+      "padlock_shackle": {
+        "samples": 600,
+        "misattribution": 0.05235602094240838,
+        "top_confusion": {
+          "object": "body",
+          "share": 0.02617801047120419
+        },
+        "occlusion_share": 0.49327354260089684,
+        "best_view": "front",
+        "pooled_occlusion": 0.7414860681114551,
+        "hidden_share": 0.7186311787072244,
+        "occlusion_per_view": {
+          "front": 0.49327354260089684,
+          "back": 1.0,
+          "side": 0.7272727272727273
+        }
+      }
+    },
+    "misattribution_max": {
+      "object": "brk_low_front_f_h",
+      "share": 0.4980694980694981
+    },
+    "occlusion_max": {
+      "object": "ring_plate",
+      "share": 0.6829896907216495
+    },
+    "occluded_objects": [
+      "ring_plate",
+      "padlock_shackle",
+      "brk_low_front_s_h",
+      "band_side",
+      "band_centre",
+      "brk_low_back_s_h",
+      "ring",
+      "hasp"
+    ],
+    "misattributed_objects": [
+      "brk_low_front_f_h",
+      "brk_low_back_f_h",
+      "brk_up_back_s_v",
+      "brk_low_back_s_v",
+      "brk_up_front_s_v",
+      "brk_low_back_s_h",
+      "brk_low_front_s_h",
+      "brk_low_front_s_v",
+      "brk_low_front_f_v",
+      "brk_low_back_f_v",
+      "padlock_shackle"
+    ]
+  },
+  "part_iou": {
+    "parts": {
+      "padlock_body": {
+        "type": "box",
+        "stage": "detail",
+        "views": {
+          "front": {
+            "visible": true,
+            "iou": 0.5844982698961938,
+            "precision": 1.0,
+            "part_px": 4223,
+            "model_iou": 1.0
+          },
+          "back": {
+            "visible": true,
+            "iou": 0.5842214532871972,
+            "precision": 1.0,
+            "part_px": 4221,
+            "model_iou": 1.0
+          },
+          "side": {
+            "visible": true,
+            "iou": 0.39055441478439423,
+            "precision": 0.6977256052824652,
+            "part_px": 1363,
+            "model_iou": 0.7938398357289528
+          }
+        },
+        "mean_iou": 0.5197580459892618,
+        "min_precision": 0.6977256052824652
+      },
+      "padlock_shackle": {
+        "type": "torus",
+        "stage": "detail",
+        "views": {
+          "front": {
+            "visible": true,
+            "iou": 0.23991642441860464,
+            "precision": 1.0,
+            "part_px": 2641,
+            "model_iou": 1.0
+          },
+          "back": {
+            "visible": true,
+            "iou": 0.2411764705882353,
+            "precision": 1.0,
+            "part_px": 2624,
+            "model_iou": 1.0
+          },
+          "side": {
+            "visible": true,
+            "iou": 0.32214001138303927,
+            "precision": 0.909967845659164,
+            "part_px": 1244,
+            "model_iou": 0.8052182898475846
+          }
+        },
+        "mean_iou": 0.26774430212995975,
+        "min_precision": 0.909967845659164
+      }
+    },
+    "outside_warn": 0.7,
+    "parts_outside_reference": [
+      "padlock_body"
+    ]
+  },
+  "holdout": {},
+  "warning_details": [
+    "occluded_part ring_plate (68% of camera-facing samples hidden in its best view side)",
+    "occluded_part padlock_shackle (49% of camera-facing samples hidden in its best view front)",
+    "occluded_part brk_low_front_s_h (48% of camera-facing samples hidden in its best view side)",
+    "occluded_part band_side (48% of camera-facing samples hidden in its best view front)",
+    "occluded_part band_centre (48% of camera-facing samples hidden in its best view back)",
+    "occluded_part brk_low_back_s_h (47% of camera-facing samples hidden in its best view side)",
+    "occluded_part ring (43% of camera-facing samples hidden in its best view back)",
+    "occluded_part hasp (34% of camera-facing samples hidden in its best view front)",
+    "misattribution brk_low_front_f_h (50% of texels sourced from brk_low_front_f_v)",
+    "misattribution brk_low_back_f_h (47% of texels sourced from brk_low_back_f_v)",
+    "misattribution brk_up_back_s_v (42% of texels sourced from brk_up_back_f_v)",
+    "misattribution brk_low_back_s_v (40% of texels sourced from brk_low_back_f_v)",
+    "misattribution brk_up_front_s_v (38% of texels sourced from brk_up_front_f_v)",
+    "misattribution brk_low_back_s_h (34% of texels sourced from brk_low_back_s_v)",
+    "misattribution brk_low_front_s_h (33% of texels sourced from brk_low_front_s_v)",
+    "misattribution brk_low_front_s_v (30% of texels sourced from brk_low_front_f_v)",
+    "misattribution brk_low_front_f_v (8% of texels sourced from brk_low_front_f_h)",
+    "misattribution brk_low_back_f_v (7% of texels sourced from brk_low_back_f_h)",
+    "misattribution padlock_shackle (5% of texels sourced from body)",
+    "part_outside_reference padlock_body (only 70% of it on the reference silhouette)"
+  ],
+  "elapsed_s": 62.34
+}

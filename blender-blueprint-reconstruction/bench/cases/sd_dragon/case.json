@@ -1,0 +1,8 @@
+{
+  "name": "sd_dragon",
+  "kind": "regression",
+  "view_spec": "view_spec.json",
+  "scene_spec": "scene_spec.json",
+  "perturbation": null,
+  "notes": "regression case from blind run 7 (SD baby dragon from a generated turnaround sheet, FAILED on width -3.7 % vs a 3 % tolerance; silhouette total 6.7 %, front 3.6, side 5.4, back 11.1 = the floor). Run-6 labels; wings and ear fins as `plate` parts (label outline in the face-on view, plane fitted from the other views), hull debris dropped (tail-tip specks by the feet), dimension tolerance 5 % for the AI sheet (reference_quality.ai_generated). No ground truth. Watch: dimensions, hull_debris, floating_part, turntable."
+}

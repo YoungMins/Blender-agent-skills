@@ -1,0 +1,393 @@
+{
+  "spec_version": "0.1",
+  "name": "sd_fox",
+  "category": "character",
+  "object_type": "sd_fox",
+  "units": "meters",
+  "dimensions": {
+    "width": null,
+    "depth": null,
+    "height": 0.6
+  },
+  "symmetry": {
+    "x": false,
+    "y": false,
+    "z": false
+  },
+  "style": {
+    "hard_surface": false,
+    "bevel": false,
+    "weighted_normals": false
+  },
+  "materials": {},
+  "parts_labels": "labels.json",
+  "components": [
+    {
+      "id": "body",
+      "type": "silhouette_hull",
+      "stage": "primary",
+      "confidence": "observed",
+      "location": [
+        0,
+        0,
+        0
+      ],
+      "params": {
+        "resolution": 320,
+        "carve_views": [
+          "front",
+          "side"
+        ],
+        "cross_section": "superellipse",
+        "exponent": 2.0,
+        "color_views": [
+          "front",
+          "side",
+          "back"
+        ],
+        "smooth_iterations": 40,
+        "color_projection": true,
+        "exclude_components": [
+          "ear_l",
+          "ear_r",
+          "arm_l",
+          "arm_r",
+          "hand_l",
+          "hand_r",
+          "tail",
+          "lantern"
+        ],
+        "exclude_dilate_px": 1,
+        "mirror_color_views": [
+          "side"
+        ],
+        "asymmetric_parts": [
+          "tail",
+          "lantern"
+        ],
+        "post_smooth_iterations": 12
+      }
+    },
+    {
+      "id": "ear_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.45,
+        "segments": 20,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              155,
+              128
+            ],
+            "mid": [
+              134,
+              76
+            ],
+            "tip": [
+              118,
+              23
+            ],
+            "radius_px": [
+              52,
+              3
+            ]
+          },
+          "side": {
+            "base": [
+              238,
+              112
+            ],
+            "mid": [
+              252,
+              68
+            ],
+            "tip": [
+              268,
+              24
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "ear_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 0.45,
+        "segments": 20,
+        "sides": 16,
+        "mirror_of": "ear_l",
+        "anchors_px": {
+          "front": {
+            "base": [
+              337,
+              128
+            ],
+            "mid": [
+              358,
+              76
+            ],
+            "tip": [
+              378,
+              23
+            ],
+            "radius_px": [
+              52,
+              3
+            ]
+          }
+        }
+      },
+      "notes": "y from ear_l (side view shows both ears overlapped)"
+    },
+    {
+      "id": "arm_l",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 1.0,
+        "segments": 16,
+        "sides": 16,
+        "anchors_px": {
+          "front": {
+            "base": [
+              172,
+              398
+            ],
+            "mid": [
+              141,
+              432
+            ],
+            "tip": [
+              111,
+              466
+            ],
+            "radius_px": [
+              46,
+              38
+            ]
+          },
+          "side": {
+            "base": [
+              248,
+              375
+            ],
+            "mid": [
+              249,
+              413
+            ],
+            "tip": [
+              249,
+              452
+            ]
+          }
+        }
+      },
+      "notes": "sleeve"
+    },
+    {
+      "id": "arm_r",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "flatten": 1.0,
+        "segments": 16,
+        "sides": 16,
+        "mirror_of": "arm_l",
+        "anchors_px": {
+          "front": {
+            "base": [
+              320,
+              398
+            ],
+            "mid": [
+              351,
+              432
+            ],
+            "tip": [
+              381,
+              466
+            ],
+            "radius_px": [
+              46,
+              38
+            ]
+          }
+        }
+      },
+      "notes": "sleeve; y from arm_l"
+    },
+    {
+      "id": "hand_l",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              98,
+              470
+            ],
+            "tip": [
+              48,
+              505
+            ],
+            "radius_px": [
+              16,
+              12
+            ]
+          },
+          "side": {
+            "base": [
+              245,
+              470
+            ],
+            "tip": [
+              243,
+              520
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "hand_r",
+      "type": "capsule",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "segments": 16,
+        "color_projection": true,
+        "mirror_of": "hand_l",
+        "anchors_px": {
+          "front": {
+            "base": [
+              394,
+              470
+            ],
+            "tip": [
+              444,
+              505
+            ],
+            "radius_px": [
+              16,
+              12
+            ]
+          }
+        }
+      },
+      "notes": ""
+    },
+    {
+      "id": "tail",
+      "type": "cone",
+      "stage": "secondary",
+      "confidence": "inferred",
+      "params": {
+        "flatten": 1.0,
+        "segments": 24,
+        "sides": 20,
+        "anchors_px": {
+          "front": {
+            "base": [
+              226,
+              545
+            ],
+            "mid": [
+              140,
+              600
+            ],
+            "tip": [
+              125,
+              480
+            ],
+            "radius_px": [
+              60,
+              42
+            ]
+          },
+          "side": {
+            "base": [
+              200,
+              525
+            ],
+            "mid": [
+              118,
+              585
+            ],
+            "tip": [
+              62,
+              465
+            ]
+          }
+        }
+      },
+      "notes": "tail tip hidden behind the arm in front; curl read from side"
+    },
+    {
+      "id": "lantern",
+      "type": "cylinder",
+      "stage": "secondary",
+      "confidence": "observed",
+      "params": {
+        "vertices": 12,
+        "color_projection": true,
+        "anchors_px": {
+          "front": {
+            "base": [
+              332,
+              582
+            ],
+            "tip": [
+              332,
+              512
+            ],
+            "radius_px": 24
+          },
+          "side": {
+            "base": [
+              340,
+              578
+            ],
+            "tip": [
+              340,
+              512
+            ]
+          }
+        }
+      },
+      "notes": "on the +X hip; mostly hidden in the -X side view"
+    }
+  ],
+  "workflow": {
+    "max_iterations": 3,
+    "error_threshold": 0.08,
+    "blockout_threshold": 0.12,
+    "auto_correct": true,
+    "consistency": {
+      "ignore_flags": [
+        "missing_accessory"
+      ],
+      "roles_override": {
+        "front": [
+          "carve",
+          "color",
+          "validate"
+        ]
+      }
+    }
+  }
+}
