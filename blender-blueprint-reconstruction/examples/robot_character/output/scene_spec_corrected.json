@@ -19,7 +19,9 @@
     "bevel": false,
     "bevel_width": 0.003,
     "bevel_segments": 2,
-    "weighted_normals": false
+    "weighted_normals": false,
+    "texture": "auto",
+    "pbr": "auto"
   },
   "materials": {},
   "components": [

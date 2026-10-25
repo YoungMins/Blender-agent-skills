@@ -1,6 +1,6 @@
 # 인수인계 (HANDOFF) — Blender 블루프린트 재구성 스킬
 
-마지막 업데이트: 2026-10-25 · 이전 작업: 로컬 Claude Code 세션 `2710d383` (2026-10-22 ~ 2026-10-23 13:31 KST, 주간 사용량 한도에 걸려 중단)
+마지막 업데이트: 2026-10-25 (클라우드 세션: WI-1 완료) · 이전 작업: 로컬 Claude Code 세션 `2710d383` (2026-10-22 ~ 2026-10-23 13:31 KST, 주간 사용량 한도에 걸려 중단)
 
 ## 1. 프로젝트 목표
 
@@ -43,55 +43,39 @@
 
 레퍼런스 이미지는 [generated-images/](generated-images/)에 있다. 블라인드 작업 폴더(`.omc/blind/`)는 용량이 커서 git에서 제외했다.
 
-## 3. 중단 지점: WI-1 (PBR 재질 클래스 + 미리보기 월드)
+## 3. WI-1 (PBR 재질 클래스 + 미리보기 월드): 완료
 
 사용자 피드백(2026-10-23): "재질을 적당히 구분하고 UV를 잘 맞추면 결과물이 훨씬 좋아 보일 것."
-Opus 설계 리뷰 결과 전문: [docs/materials-uv-design.md](docs/materials-uv-design.md). WI-1~WI-4 정의, 수용 기준, 위험이 들어 있다.
+설계 전문: [docs/materials-uv-design.md](docs/materials-uv-design.md).
 
-진단 요약:
-1. 스펙에 적은 재질이 텍스처 단계에서 기본값(roughness 0.6, metallic 0)으로 덮어써진다.
-2. 미리보기 환경광이 Cycles에 전달되지 않는다. `world.color`만 설정하고 있어서 금속이 검게 나온다.
-3. 하드서피스 부품의 텍셀 밀도가 부족하다. 보물상자 부품 24개 중 17개가 레퍼런스 1px당 1텍셀 미만이다(WI-2에서 다룸).
-4. 캐릭터 hull UV는 이미 충분하다(1.5~2 텍셀/px). UV를 다시 펴도 효과가 거의 없다.
+로컬 세션에서 executor가 넣은 변경(`core/pbr.py`, spec/schema, `material.py`, `hullpost.py`, `partstex.py`, `components.py`, `render.preview_world`, 문서)을 클라우드 세션(2026-10-25)에서 검증하고 마무리했다.
 
-### WI-1에서 이미 적용된 변경 (검증 안 됨)
-
-executor 에이전트가 2026-10-23 13:25~13:31에 아래 변경을 넣다가 한도에 걸려 멈췄다. 테스트, 스모크, 예제 재생성은 하나도 돌리지 않았다.
-
-| 파일 | 변경 |
+| 항목 | 결과 |
 |---|---|
-| `scripts/bbr/core/pbr.py` (신규) | `CLASSES`(physical/stylized 두 열), `ALIASES`, `resolve`, `column_for`, `entry_for` |
-| `scripts/bbr/core/spec.py` | `style.pbr` 기본값 `auto`. 컴포넌트 `material`에 클래스 이름 허용 |
-| `schemas/scene_spec.schema.json` | `materials.<key>`에 class, coat 등 키 추가. `style.pbr` 추가 |
-| `scripts/bbr/blender/material.py` | `_apply_pbr`, `ensure_material(pbr=)`, `ensure_texture_material(pbr=, maps=)`, emission 연결 |
-| `scripts/bbr/blender/hullpost.py` | `assign_texture_material(..., pbr, maps)` |
-| `scripts/bbr/blender/partstex.py` | `bake_object`에서 컴포넌트 재질을 해석해 `stats["material"]`에 기록 |
-| `scripts/bbr/blender/components.py` | `material_for`가 pbr 값을 해석 |
-| `scripts/bbr/blender/render.py` | `preview_world()` 그라디언트 월드 컨텍스트 매니저를 lit preview에 적용 |
-| `reconstruction.py`, `core/texelproj.py`, `tests/test_texel_projection.py` | 쓸모없던 `double_face` / `upper_front_conflict` 경고와 테스트 제거 |
-| `references/hard-surface-rules.md`, `character-cheatsheet.md`, `SKILL.md`, `THIRD_PARTY_NOTICES.md` | 재질 클래스 표, 바이저 레시피, SKILL.md 규칙 8번, MIT 표기 |
-| `examples/treasure_chest`, `examples/mushroom_house` `scene_spec.json` | 재질 클래스 지정 |
+| `test_scene_spec` gold 케이스 | 존재하지 않는 `unobtanium`으로 교체 |
+| `tests/test_pbr.py` | 15개: 프리셋+오버라이드, 별칭, 열 선택, 알 수 없는 클래스 거부, 스키마 enum과 `class_names()` 일치 |
+| `test_partfit` 콘 끝 반지름 | 4px 반지름에 rel 5%는 마스크 양자화보다 작아 Linux에서 실패(0.00427). 반 픽셀 절대 허용오차로 변경 |
+| Blender 스모크 `check_materials` | (a) hull(stylized)과 평면 부품(physical)에 클래스 값 적용, `M_ref_texture` 접두사, 활성 노드 `bbr_basecolor` (b) 클래스 유무로 `render_color`가 `np.array_equal` (c) lit preview 뒤 `scene.world` 복원, 임시 월드 없음 → `SMOKE OK` |
+| hull 몸체 / face layer | 둘 다 `bake_object`에서 `comp.material`을 해석함을 확인(스모크 a). 바이저는 `"material": "visor"` |
+| sd_warrior 클래스 | horn → plastic, pommel → metal_gold, grip/칼집(`sword_blade`, 레퍼런스상 갈색 칼집)/손 → leather, 팔 → metal_steel, shield → wood, face → skin. body hull은 WI-3 전까지 default |
+| `RIG_POWER_PER_M2` A/B (12/18/24) | 18 유지. 24는 전사 갑옷이 하얗게 날아가고, 12는 상자가 어두움 |
 
-현재 상태에서 pytest 결과: **457개 통과, 1개 실패** (아래 7절 참고)
+수용 기준 (Linux, bpy 5.1.1):
+
+| 기준 | 결과 |
+|---|---|
+| color_match 오차 불변 | 전사를 클래스 있음/없음으로 단독 실행하면 세 뷰 모두 비트 단위로 같음. 커밋된 Windows 결과와는 1e-4~1e-3 차이(로봇처럼 클래스 없는 예제도 같은 폭: 플랫폼 차이) |
+| 휘도 0.05 미만 픽셀 증가 ≤ 2%p | 상자 0.67% → 1.06%(+0.39%p), 전사 0.50% → 0.07%, 로봇 0.11% → 0% |
+| 로봇 평균 휘도 ±15% | 0.630 → 0.659 (+4.7%) |
+| lit 렌더 시간 ≤ 1.2배 | 같은 .blend에서 월드 없음 대비 상자 1.12배, 전사 1.13배 |
+
+발견한 것: 손 같은 부품의 UV `pack_islands(shape_method="CONCAVE")`는 기계 부하에 따라 결과가 달라진다(같은 메시, 병렬 4개 실행 vs 단독 실행). 단독 실행끼리는 결정론적이다. 벤치를 병렬로 돌릴 때 색 오차가 1e-4 수준으로 흔들릴 수 있다.
+
+예제 output(상자, 전사, 로봇, 테이블, 의자)을 Linux에서 다시 만들었다. 버섯 집은 원래 output을 커밋하지 않았다.
 
 ## 4. 다음 할 일 (우선순위 순)
 
-1. **WI-1 마무리와 검증**
-   - [ ] `tests/test_scene_spec.py::test_invalid[<lambda>-gold]` 수정: 이제 `gold`가 유효한 별칭(metal_gold)이므로, 테스트에 쓰는 재질 이름을 존재하지 않는 값(예: `unobtanium`)으로 바꾼다
-   - [ ] `tests/test_pbr.py` 작성: 프리셋+오버라이드 해석, 별칭, 열 선택, 알 수 없는 클래스 거부
-   - [ ] `examples/sd_warrior/scene_spec.json`에 클래스 지정: sword_blade → metal_steel, 방패 등. 몸체 hull은 WI-3 전까지 default 유지
-   - [ ] hull 몸체와 face layer가 `material`을 받는지 확인. 우주인 바이저는 `"material": "visor"`
-   - [ ] Blender 스모크 테스트 추가
-     - (a) 재질 값이 적용되고, `M_ref_texture:` 접두사가 유지되고, `nodes.active.name == "bbr_basecolor"`
-     - (b) 클래스 유무에 따라 `render_color` 결과가 `np.array_equal`
-     - (c) lit preview 후 `scene.world`가 복원되고 임시 월드가 남지 않음
-   - [ ] `RIG_POWER_PER_M2` A/B 재조정(보물상자, 전사)
-   - [ ] 보물상자, 버섯 집, 전사 재실행
-     - `color_match.per_view.*.error`가 현재 `examples/*/output/report.json`과 같아야 함
-     - perspective.png에서 휘도 0.05 미만 픽셀 비율 증가가 2%p 이하
-     - robot_character 평균 휘도 변화 ±15% 이내
-     - lit 렌더 시간 1.2배 이하
-   - [ ] 예제 output 재생성, pytest 전부 통과, `__pycache__` 정리
+1. ~~WI-1 마무리와 검증~~ (완료, 3절)
 2. **WI-2**: UV 통계(`core/uvstats.py`)를 리포트에 넣고, 하드서피스 텍셀 예산(`core/uvbudget.py`, `uv_budget` 플래그)을 만든다. 벤치 A/B 후 하드서피스 기본값을 켠다.
 3. **WI-3**: 텍셀 단위 재질 클래스. `materials.json` 라벨, `prepare_references.py materials --suggest`, `core/matclass.py`. 전사 갑옷·망토·피부, 우주인 헬멧·슈트를 구분한다.
 4. **WI-4**(보류): 뷰 정렬 UV 차트. WI-2 수치에서 p05 < 1.0일 때만 진행한다.
@@ -99,8 +83,8 @@ executor 에이전트가 2026-10-23 13:25~13:31에 아래 변경을 넣다가 �
 
 ## 5. 환경 메모 (클라우드에서 이어갈 때)
 
+- 클라우드(Linux) 세션: `.claude/settings.json`의 SessionStart 훅(`.claude/hooks/install_blender.sh`)이 PyPI `bpy==5.1.1`, numpy/Pillow/pytest, EGL 라이브러리를 설치하고 `/usr/local/bin/blender` 래퍼(`.claude/hooks/blender_shim.py`)를 만든다. download.blender.org는 프록시에서 막혀 있고 PyPI만 열려 있어서 이 방식을 쓴다. 래퍼는 `-b`, `--factory-startup`, `-P`, `--python-expr`, `--python-exit-code`, `--`를 지원한다. 예제 하나가 단독 실행으로 4~9분 걸린다.
 - 로컬 환경: Windows, Blender 5.1.1 (`C:\Program Files\Blender Foundation\Blender 5.1\blender.exe`), Python 3.13 + numpy, Pillow, pytest
-- 클라우드(Linux)에서는 Blender 5.1+를 따로 설치해야 파이프라인, 스모크 테스트, 벤치를 돌릴 수 있다. Blender 없이는 `python3 -m pytest -q tests`만 가능하다.
 - pytest 전체 실행에 약 1.5~4분 걸린다.
 - 커밋에서 제외한 것(용량 문제):
   - `.omc/`의 scratch, blind, archive (수 GB)
@@ -121,7 +105,6 @@ executor 에이전트가 2026-10-23 13:25~13:31에 아래 변경을 넣다가 �
 
 ## 7. 커밋 시점 상태
 
-- pytest(2026-10-25, 로컬 Windows, Python 3.13): **457개 통과, 1개 실패**, 94초
-  - 실패: `tests/test_scene_spec.py::test_invalid[<lambda>-gold]`. WI-1에서 `gold`를 재질 별칭으로 추가한 데 따른 예상된 결과다. 코드 회귀가 아니라 테스트를 갱신해야 한다.
-  - 이전 459개에서 `double_face` 테스트 1개가 제거됐다. `test_pbr.py`는 아직 없다.
-- Blender 스모크 테스트와 벤치는 WI-1 변경 후 아직 돌리지 않았다.
+- pytest(2026-10-25, 클라우드 Linux, Python 3.13, numpy 2.5.3): **473개 전부 통과**, 약 4분
+- Blender 스모크(bpy 5.1.1): `SMOKE OK` (`MATERIALS OK` 포함)
+- 벤치(`bench/run_bench.py`)는 WI-1 후 아직 돌리지 않았다.

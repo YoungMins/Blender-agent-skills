@@ -19,7 +19,9 @@
     "bevel": true,
     "bevel_width": 0.003,
     "bevel_segments": 2,
-    "weighted_normals": true
+    "weighted_normals": true,
+    "texture": "auto",
+    "pbr": "auto"
   },
   "materials": {
     "wood": {

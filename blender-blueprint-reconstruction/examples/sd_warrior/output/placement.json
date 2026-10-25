@@ -3,22 +3,22 @@
     "type": "cone",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.03377,
+    "clearance_radius": 0.03395,
     "keypoints": {
       "base": [
-        -0.12606,
-        0.01288,
-        0.49572
+        -0.12612,
+        0.01311,
+        0.49566
       ],
       "tip": [
-        -0.10809,
-        0.02689,
-        0.58304
+        -0.10842,
+        0.0267,
+        0.58273
       ],
       "mid": [
-        -0.1393,
-        0.03332,
-        0.54273
+        -0.13923,
+        0.0332,
+        0.5425
       ]
     },
     "sources": {
@@ -50,31 +50,31 @@
       }
     },
     "location": [
-      -0.12606,
-      0.01288,
-      0.49572
+      -0.12612,
+      0.01311,
+      0.49566
     ]
   },
   "horn_r": {
     "type": "cone",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.03377,
+    "clearance_radius": 0.03395,
     "keypoints": {
       "base": [
-        0.12606,
-        0.01288,
-        0.49572
+        0.12612,
+        0.01311,
+        0.49566
       ],
       "tip": [
-        0.10809,
-        0.02689,
-        0.58304
+        0.10842,
+        0.0267,
+        0.58273
       ],
       "mid": [
-        0.1393,
-        0.03332,
-        0.54273
+        0.13923,
+        0.0332,
+        0.5425
       ]
     },
     "sources": {
@@ -100,20 +100,20 @@
       "mid": {}
     },
     "location": [
-      0.12606,
-      0.01288,
-      0.49572
+      0.12612,
+      0.01311,
+      0.49566
     ]
   },
   "sword_pommel": {
     "type": "sphere",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.00762,
+    "clearance_radius": 0.00777,
     "keypoints": {
       "center": [
-        0.05397,
-        -0.07946,
+        0.0541,
+        -0.07944,
         0.24564
       ]
     },
@@ -130,8 +130,8 @@
       }
     },
     "location": [
-      0.05397,
-      -0.07946,
+      0.0541,
+      -0.07944,
       0.24564
     ]
   },
@@ -139,17 +139,17 @@
     "type": "cylinder",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.0083,
+    "clearance_radius": 0.00834,
     "keypoints": {
       "base": [
-        0.0557,
-        -0.07443,
-        0.24002
+        0.05692,
+        -0.07496,
+        0.24
       ],
       "tip": [
-        0.06926,
-        -0.06097,
-        0.19609
+        0.06711,
+        -0.0603,
+        0.19587
       ]
     },
     "sources": {
@@ -173,26 +173,26 @@
       }
     },
     "location": [
-      0.06248,
-      -0.0677,
-      0.21805
+      0.06201,
+      -0.06763,
+      0.21793
     ]
   },
   "sword_blade": {
     "type": "blade",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.00792,
+    "clearance_radius": 0.00787,
     "keypoints": {
       "base": [
-        0.07195,
-        -0.06288,
-        0.20588
+        0.072,
+        -0.06308,
+        0.20598
       ],
       "tip": [
-        0.10904,
-        -0.01571,
-        0.0893
+        0.10917,
+        -0.01604,
+        0.08918
       ]
     },
     "sources": {
@@ -217,69 +217,26 @@
       }
     },
     "location": [
-      0.07195,
-      -0.06288,
-      0.20588
-    ]
-  },
-  "arm_l_upper": {
-    "type": "capsule",
-    "inferred": false,
-    "warnings": [
-      "arm_l_upper.tip: its anchors are 16 mm from the joint with arm_l_fore.base; the joint wins"
-    ],
-    "clearance_radius": 0.02998,
-    "keypoints": {
-      "base": [
-        -0.07606,
-        -0.01923,
-        0.2829
-      ],
-      "tip": [
-        -0.10632,
-        0.01571,
-        0.24468
-      ]
-    },
-    "sources": {
-      "base": {
-        "x": "fit:front+side+back+front+back",
-        "y": "fit:front+side+back+front+back",
-        "z": "fit:front+side+back+front+back"
-      },
-      "tip": {
-        "x": "fit:front+side+back+front+back",
-        "y": "fit:front+side+back+front+back",
-        "z": "fit:front+side+back+front+back"
-      }
-    },
-    "view_spread_mm": {
-      "base": {
-        "z": 4.13
-      },
-      "tip": {}
-    },
-    "location": [
-      -0.09119,
-      -0.00176,
-      0.26379
+      0.072,
+      -0.06308,
+      0.20598
     ]
   },
   "arm_l_fore": {
     "type": "capsule",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.02419,
+    "clearance_radius": 0.02423,
     "keypoints": {
       "base": [
-        -0.10412,
-        0.01203,
-        0.25272
+        -0.10445,
+        0.01634,
+        0.25202
       ],
       "tip": [
-        -0.14628,
-        0.0117,
-        0.20954
+        -0.14649,
+        0.005,
+        0.20942
       ]
     },
     "sources": {
@@ -303,9 +260,52 @@
       }
     },
     "location": [
-      -0.1252,
-      0.01187,
-      0.23113
+      -0.12547,
+      0.01067,
+      0.23072
+    ]
+  },
+  "arm_l_upper": {
+    "type": "capsule",
+    "inferred": false,
+    "warnings": [
+      "arm_l_upper.tip: its anchors are 16 mm from the joint with arm_l_fore.base; the joint wins"
+    ],
+    "clearance_radius": 0.03081,
+    "keypoints": {
+      "base": [
+        -0.07511,
+        -0.01891,
+        0.28021
+      ],
+      "tip": [
+        -0.10546,
+        0.02082,
+        0.2442
+      ]
+    },
+    "sources": {
+      "base": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      },
+      "tip": {
+        "x": "fit:front+side+back+front+back",
+        "y": "fit:front+side+back+front+back",
+        "z": "fit:front+side+back+front+back"
+      }
+    },
+    "view_spread_mm": {
+      "base": {
+        "z": 4.13
+      },
+      "tip": {}
+    },
+    "location": [
+      -0.09028,
+      0.00096,
+      0.2622
     ]
   },
   "hand_l": {
@@ -314,12 +314,12 @@
     "warnings": [
       "hand_l.center: views disagree on z by 7.1 mm (views:front+side); mean used"
     ],
-    "clearance_radius": 0.02008,
+    "clearance_radius": 0.01995,
     "keypoints": {
       "center": [
-        -0.1523,
-        0.00518,
-        0.19669
+        -0.15227,
+        0.00622,
+        0.19634
       ]
     },
     "sources": {
@@ -335,26 +335,26 @@
       }
     },
     "location": [
-      -0.1523,
-      0.00518,
-      0.19669
+      -0.15227,
+      0.00622,
+      0.19634
     ]
   },
   "arm_r_upper": {
     "type": "capsule",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.02998,
+    "clearance_radius": 0.03081,
     "keypoints": {
       "base": [
-        0.07606,
-        -0.01923,
-        0.2829
+        0.07511,
+        -0.01891,
+        0.28021
       ],
       "tip": [
-        0.10632,
-        0.01571,
-        0.24468
+        0.10546,
+        0.02082,
+        0.2442
       ]
     },
     "sources": {
@@ -374,26 +374,26 @@
       "tip": {}
     },
     "location": [
-      0.09119,
-      -0.00176,
-      0.26379
+      0.09028,
+      0.00096,
+      0.2622
     ]
   },
   "arm_r_fore": {
     "type": "capsule",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.02419,
+    "clearance_radius": 0.02423,
     "keypoints": {
       "base": [
-        0.10412,
-        0.01203,
-        0.25272
+        0.10445,
+        0.01634,
+        0.25202
       ],
       "tip": [
-        0.14628,
-        0.0117,
-        0.20954
+        0.14649,
+        0.005,
+        0.20942
       ]
     },
     "sources": {
@@ -413,21 +413,21 @@
       "tip": {}
     },
     "location": [
-      0.1252,
-      0.01187,
-      0.23113
+      0.12547,
+      0.01067,
+      0.23072
     ]
   },
   "hand_r": {
     "type": "sphere",
     "inferred": true,
     "warnings": [],
-    "clearance_radius": 0.02008,
+    "clearance_radius": 0.01995,
     "keypoints": {
       "center": [
-        0.1523,
-        0.00518,
-        0.19669
+        0.15227,
+        0.00622,
+        0.19634
       ]
     },
     "sources": {
@@ -441,21 +441,21 @@
       "center": {}
     },
     "location": [
-      0.1523,
-      0.00518,
-      0.19669
+      0.15227,
+      0.00622,
+      0.19634
     ]
   },
   "shield": {
     "type": "disc",
     "inferred": false,
     "warnings": [],
-    "clearance_radius": 0.07327,
+    "clearance_radius": 0.07315,
     "keypoints": {
       "center": [
-        0.00095,
-        0.08746,
-        0.24345
+        0.00081,
+        0.0875,
+        0.24338
       ]
     },
     "sources": {
@@ -469,9 +469,9 @@
       "center": {}
     },
     "location": [
-      0.00095,
-      0.08746,
-      0.24345
+      0.00081,
+      0.0875,
+      0.24338
     ]
   }
 }

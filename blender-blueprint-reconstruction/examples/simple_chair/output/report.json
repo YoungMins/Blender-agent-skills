@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.116
+      "duration_s": 0.086
     },
     {
       "n": 2,
@@ -25,20 +25,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.0
+      "duration_s": 0.125
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.028
+      "duration_s": 0.043
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 1.835
+      "duration_s": 0.984
     },
     {
       "n": 6,
@@ -62,13 +62,36 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 0.159
+      "duration_s": 19.558
     },
     {
       "n": 9,
       "name": "secondary + detail components",
       "status": "ok",
-      "duration_s": 0.021
+      "part_gaps": [],
+      "floating_parts": [],
+      "dimension_check": {
+        "passed": true,
+        "actual": {
+          "width": 0.45000000670552254,
+          "depth": 0.4500000039115548,
+          "height": 0.8499999791383743
+        },
+        "target": {
+          "width": 0.45,
+          "depth": 0.45,
+          "height": 0.85
+        },
+        "relative_error": {
+          "width": 1.4901161193847656e-08,
+          "depth": 8.692343955729598e-09,
+          "height": -2.4543089005568675e-08
+        },
+        "tolerance": 0.03,
+        "floor_z": 0.0,
+        "tolerance_source": "synthetic / blueprint references"
+      },
+      "duration_s": 59.147
     },
     {
       "n": 10,
@@ -81,19 +104,19 @@
       "n": 11,
       "name": "bevel",
       "status": "ok",
-      "duration_s": 0.0
+      "duration_s": 0.001
     },
     {
       "n": 12,
-      "name": "normal cleanup",
+      "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 0.001
+      "duration_s": 0.01
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 0.371
+      "duration_s": 1.07
     },
     {
       "n": 14,
@@ -106,40 +129,48 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 0.937
+      "duration_s": 83.235
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.034
+      "duration_s": 0.032
     }
   ],
   "outputs": {
-    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\report.json",
-    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_A_blockout.png",
-    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_B_primary.png",
-    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\perspective.png",
-    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\stage_C_final.png",
-    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\perspective_back.png",
-    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\previews\\top.png",
-    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_front.png",
-    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_side.png",
-    "compare_top": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_top.png",
-    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\compare_back.png",
-    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\comparison_sheet.png",
-    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\scene_spec_corrected.json",
-    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\output\\simple_chair.blend"
+    "report": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/report.json",
+    "stage_blockout_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/stage_A_blockout.png",
+    "stage_primary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/stage_B_primary.png",
+    "stage_secondary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/stage_B2_secondary.png",
+    "perspective_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/perspective.png",
+    "stage_final_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/stage_C_final.png",
+    "perspective_back_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/perspective_back.png",
+    "front_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/front_lit.png",
+    "side_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/side_lit.png",
+    "top_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/top.png",
+    "compare_front": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/compare_front.png",
+    "compare_side": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/compare_side.png",
+    "compare_top": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/compare_top.png",
+    "compare_back": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/compare_back.png",
+    "comparison_sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/comparison_sheet.png",
+    "turntable_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/previews/turntable.png",
+    "scene_spec_corrected": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/scene_spec_corrected.json",
+    "blend": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/output/simple_chair.blend"
   },
   "config": {
     "max_iterations": 3,
     "error_threshold": 0.05,
     "blockout_threshold": 0.12,
     "auto_correct": true,
-    "hull_resolution": 192,
+    "consistency_gate": "warn",
+    "consistency_ignore_flags": [],
+    "consistency_roles_override": {},
+    "dimension_tolerance": null,
+    "hull_resolution": 320,
     "hull_margin": 0.03,
     "top_consistency_tol": 0.15,
-    "smooth_iterations": 2,
+    "smooth_iterations": 14,
     "hull_min_iou": 0.95,
     "render_scale": 1.0,
     "bg_tolerance": 0.12,
@@ -152,7 +183,7 @@
   },
   "views": {
     "front": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\front.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/references/front.png",
       "camera_axis": "-Y",
       "roles": [
         "carve",
@@ -162,7 +193,7 @@
       "confidence": "observed"
     },
     "side": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\side.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/references/side.png",
       "camera_axis": "-X",
       "roles": [
         "carve",
@@ -172,7 +203,7 @@
       "confidence": "observed"
     },
     "top": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\top.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/references/top.png",
       "camera_axis": "+Z",
       "roles": [
         "validate"
@@ -180,7 +211,7 @@
       "confidence": "observed"
     },
     "back": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_chair\\references\\back.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_chair/references/back.png",
       "camera_axis": "+Y",
       "roles": [
         "color",
@@ -253,6 +284,207 @@
       ]
     }
   },
+  "frame_offset_m": {
+    "x": 0.0,
+    "y": -0.0
+  },
+  "consistency": {
+    "thresholds": {
+      "carve_min_iou": 0.95,
+      "color_validate_min_iou": 0.92,
+      "scale_drift_tol": 0.02,
+      "shift_tol": 0.01,
+      "accessory_blob_frac": 0.01,
+      "mirrored_margin": 0.03,
+      "core_open_frac": 0.03,
+      "bbox_agree_tol": 0.015,
+      "accessory_open_frac": 0.015
+    },
+    "pairs": [
+      {
+        "a": "front",
+        "b": "back",
+        "iou_raw": 0.9719,
+        "iou_aligned": 0.9865,
+        "align": {
+          "scale": 1.0,
+          "dh_m": -0.00426,
+          "dz_m": 0.0
+        },
+        "iou_unmirrored": 1.0,
+        "floor": 0.0281,
+        "bands": [
+          {
+            "z0": 0.0,
+            "z1": 0.125,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.125,
+            "z1": 0.25,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.25,
+            "z1": 0.375,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.375,
+            "z1": 0.5,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.5,
+            "z1": 0.625,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.625,
+            "z1": 0.75,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.75,
+            "z1": 0.875,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          },
+          {
+            "z0": 0.875,
+            "z1": 1.0,
+            "width_a": 0.452,
+            "width_b": 0.452,
+            "rel_diff": 0.0
+          }
+        ],
+        "blobs": {},
+        "single_part_differs": false
+      }
+    ],
+    "views": {
+      "front": {
+        "axis": "-Y",
+        "m_per_px": 0.002,
+        "core_top_z": 0.852,
+        "core_bottom_z": 0.42,
+        "core_height": 0.432,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.852,
+        "pair": "back",
+        "pair_iou": 0.9719,
+        "floor": 0.0281,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "verdict": "ok",
+        "error": 0.00015,
+        "excess_error": -0.02795
+      },
+      "side": {
+        "axis": "-X",
+        "m_per_px": 0.002,
+        "core_top_z": 0.852,
+        "core_bottom_z": 0.0,
+        "core_height": 0.852,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.852,
+        "current_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "carve",
+          "color",
+          "validate"
+        ],
+        "verdict": "unpaired",
+        "floor": null,
+        "pair": null,
+        "pair_iou": null
+      },
+      "back": {
+        "axis": "+Y",
+        "m_per_px": 0.002,
+        "core_top_z": 0.852,
+        "core_bottom_z": 0.42,
+        "core_height": 0.432,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.852,
+        "pair": "front",
+        "pair_iou": 0.9719,
+        "floor": 0.0281,
+        "current_roles": [
+          "color",
+          "validate"
+        ],
+        "recommended_roles": [
+          "color",
+          "validate"
+        ],
+        "verdict": "ok",
+        "error": 0.00015,
+        "excess_error": -0.02795
+      }
+    },
+    "flags": [],
+    "symmetry": [
+      {
+        "view": "front",
+        "iou": 1.0,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0,
+        "asymmetric": [],
+        "suggested_blank": [],
+        "iou_suggested": null,
+        "labelled": false,
+        "axis_shift_px": 0,
+        "explanation": "1.000 raw -> suggest symmetry.x = true"
+      },
+      {
+        "view": "back",
+        "iou": 1.0,
+        "iou_blanked": null,
+        "threshold": 0.95,
+        "suggest_x": true,
+        "blanked_frac": 0.0,
+        "asymmetric": [],
+        "suggested_blank": [],
+        "iou_suggested": null,
+        "labelled": false,
+        "axis_shift_px": 0,
+        "explanation": "1.000 raw -> suggest symmetry.x = true"
+      }
+    ],
+    "ignored_flags": [],
+    "overrides": {},
+    "bbox_heights_agree": true,
+    "roles_to_change": [],
+    "passed": true
+  },
   "blockout": {
     "gate": "passed",
     "mode": "bbox_fallback",
@@ -276,6 +508,29 @@
         "height_ratio": 1.0
       }
     }
+  },
+  "part_gaps": [],
+  "floating_parts": [],
+  "dimension_check": {
+    "passed": true,
+    "actual": {
+      "width": 0.45000000670552254,
+      "depth": 0.4500000039115548,
+      "height": 0.8499999791383743
+    },
+    "target": {
+      "width": 0.45,
+      "depth": 0.45,
+      "height": 0.85
+    },
+    "relative_error": {
+      "width": 1.4901161193847656e-08,
+      "depth": 8.692343955729598e-09,
+      "height": -2.4543089005568675e-08
+    },
+    "tolerance": 0.03,
+    "floor_z": 0.0,
+    "tolerance_source": "synthetic / blueprint references"
   },
   "iterations": [
     {
@@ -312,6 +567,7 @@
             "depth": 8.692343955729598e-09,
             "height": -2.4543089005568675e-08
           },
+          "tolerance": 0.03,
           "floor_z": 0.0
         },
         "scale": {
@@ -406,7 +662,10 @@
           "components_in_region": [
             "backrest",
             "back_post"
-          ]
+          ],
+          "color_error": 0.0,
+          "floor": 0.0281,
+          "excess_error": -0.02795
         },
         "side": {
           "iou": 0.9995562599049128,
@@ -451,7 +710,8 @@
           },
           "components_in_region": [
             "back_post"
-          ]
+          ],
+          "color_error": 0.0
         },
         "top": {
           "iou": 0.9999604938271605,
@@ -498,7 +758,8 @@
             "seat",
             "leg_rear",
             "back_post"
-          ]
+          ],
+          "color_error": 0.0
         },
         "back": {
           "iou": 0.9998464818763326,
@@ -544,7 +805,10 @@
           "components_in_region": [
             "backrest",
             "back_post"
-          ]
+          ],
+          "color_error": 0.0,
+          "floor": 0.0281,
+          "excess_error": -0.02795
         }
       }
     },
@@ -604,7 +868,10 @@
         "components_in_region": [
           "backrest",
           "back_post"
-        ]
+        ],
+        "color_error": 0.0,
+        "floor": 0.0281,
+        "excess_error": -0.02795
       },
       "side": {
         "iou": 0.9995562599049128,
@@ -649,7 +916,8 @@
         },
         "components_in_region": [
           "back_post"
-        ]
+        ],
+        "color_error": 0.0
       },
       "top": {
         "iou": 0.9999604938271605,
@@ -696,7 +964,8 @@
           "seat",
           "leg_rear",
           "back_post"
-        ]
+        ],
+        "color_error": 0.0
       },
       "back": {
         "iou": 0.9998464818763326,
@@ -742,7 +1011,31 @@
         "components_in_region": [
           "backrest",
           "back_post"
-        ]
+        ],
+        "color_error": 0.0,
+        "floor": 0.0281,
+        "excess_error": -0.02795
+      }
+    }
+  },
+  "color_match": {
+    "soft": true,
+    "per_view": {
+      "front": {
+        "error": 0.0,
+        "pixels": 54485
+      },
+      "side": {
+        "error": 0.0,
+        "pixels": 12351
+      },
+      "top": {
+        "error": 0.0,
+        "pixels": 48841
+      },
+      "back": {
+        "error": 0.0,
+        "pixels": 54485
       }
     }
   },
@@ -769,5 +1062,118 @@
   "recommendation": "Reconstruction matches the references within tolerance.",
   "diagnosis": [],
   "warnings": [],
-  "elapsed_s": 3.76
+  "attribution": {
+    "views": [
+      "front",
+      "side",
+      "back"
+    ],
+    "samples": 150000,
+    "facing_threshold": 0.3,
+    "occlusion_warn": 0.3,
+    "misattribution_warn": 0.05,
+    "objects": {
+      "seat": {
+        "samples": 56200,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.0,
+        "hidden_share": 0.0,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 0.0,
+          "back": 0.0
+        }
+      },
+      "leg_front": {
+        "samples": 16738,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.4997788263049248,
+        "hidden_share": 0.4818932655654384,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 0.49790055248618786,
+          "back": 1.0
+        }
+      },
+      "leg_rear": {
+        "samples": 16738,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "back",
+        "pooled_occlusion": 0.4976473224288595,
+        "hidden_share": 0.4810560740208981,
+        "occlusion_per_view": {
+          "front": 1.0,
+          "side": 0.5076370170709793,
+          "back": 0.0
+        }
+      },
+      "backrest": {
+        "samples": 40874,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.036145827931338484,
+        "hidden_share": 0.025124573826383424,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 1.0,
+          "back": 0.0
+        }
+      },
+      "back_post": {
+        "samples": 15973,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.16936660268714013,
+        "hidden_share": 0.1416244918277607,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 0.5078268876611418,
+          "back": 0.0
+        }
+      },
+      "rear_support": {
+        "samples": 3477,
+        "misattribution": 0.0,
+        "top_confusion": null,
+        "occlusion_share": 0.0,
+        "best_view": "front",
+        "pooled_occlusion": 0.026291512915129153,
+        "hidden_share": 0.01813953488372093,
+        "occlusion_per_view": {
+          "front": 0.0,
+          "side": 1.0,
+          "back": 0.0
+        }
+      }
+    },
+    "misattribution_max": {
+      "object": "seat",
+      "share": 0.0
+    },
+    "occlusion_max": {
+      "object": "seat",
+      "share": 0.0
+    },
+    "occluded_objects": [],
+    "misattributed_objects": []
+  },
+  "part_iou": {
+    "parts": {},
+    "outside_warn": 0.7,
+    "parts_outside_reference": []
+  },
+  "holdout": {},
+  "elapsed_s": 195.57
 }

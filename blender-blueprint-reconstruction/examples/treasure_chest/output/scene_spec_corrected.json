@@ -20,10 +20,12 @@
     "bevel_width": 0.002,
     "bevel_segments": 2,
     "weighted_normals": true,
-    "texture": "project"
+    "texture": "project",
+    "pbr": "auto"
   },
   "materials": {
     "wood": {
+      "class": "wood",
       "base_color": [
         0.22,
         0.1,
@@ -33,6 +35,7 @@
       "roughness": 0.7
     },
     "iron": {
+      "class": "metal_steel",
       "base_color": [
         0.1,
         0.1,
@@ -43,6 +46,7 @@
       "metallic": 0.9
     },
     "brass": {
+      "class": "metal_brass",
       "base_color": [
         0.7,
         0.5,

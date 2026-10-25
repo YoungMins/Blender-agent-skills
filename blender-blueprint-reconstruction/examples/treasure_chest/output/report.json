@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.158
+      "duration_s": 0.373
     },
     {
       "n": 2,
@@ -24,19 +24,19 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.157
+      "duration_s": 0.294
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.009
+      "duration_s": 0.034
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
-      "duration_s": 0.598
+      "duration_s": 2.026
     },
     {
       "n": 6,
@@ -73,21 +73,43 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 2.461
+      "duration_s": 28.421
     },
     {
       "n": 9,
       "name": "secondary + detail components",
       "status": "ok",
       "part_gaps": [],
-      "duration_s": 3.295
+      "floating_parts": [],
+      "dimension_check": {
+        "passed": true,
+        "actual": {
+          "width": 0.8419999703764915,
+          "depth": 0.4708350012078881,
+          "height": 0.56700499355793
+        },
+        "target": {
+          "width": 0.8486,
+          "depth": 0.4745814977973568,
+          "height": 0.567
+        },
+        "relative_error": {
+          "width": -0.00777755081723841,
+          "depth": -0.007894316585996375,
+          "height": 8.806980476228077e-06
+        },
+        "tolerance": 0.03,
+        "floor_z": -4.999339580535889e-06,
+        "tolerance_source": "synthetic / blueprint references"
+      },
+      "duration_s": 131.268
     },
     {
       "n": 10,
       "name": "boolean / cut",
       "status": "ok",
       "booleans": 0,
-      "duration_s": 0.001
+      "duration_s": 0.0
     },
     {
       "n": 11,
@@ -99,13 +121,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 36.892
+      "duration_s": 145.289
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 0.247
+      "duration_s": 1.538
     },
     {
       "n": 14,
@@ -118,33 +140,33 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 16.334
+      "duration_s": 113.838
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.022
+      "duration_s": 0.043
     }
   ],
   "outputs": {
-    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\report.json",
-    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_A_blockout.png",
-    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_B_primary.png",
-    "stage_secondary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_B2_secondary.png",
-    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\perspective.png",
-    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\stage_C_final.png",
-    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\perspective_back.png",
-    "front_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\front_lit.png",
-    "side_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\side_lit.png",
-    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\top.png",
-    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_front.png",
-    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_back.png",
-    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\compare_side.png",
-    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\comparison_sheet.png",
-    "turntable_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\previews\\turntable.png",
-    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\scene_spec_corrected.json",
-    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\treasure_chest.blend"
+    "report": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/report.json",
+    "stage_blockout_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/stage_A_blockout.png",
+    "stage_primary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/stage_B_primary.png",
+    "stage_secondary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/stage_B2_secondary.png",
+    "perspective_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/perspective.png",
+    "stage_final_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/stage_C_final.png",
+    "perspective_back_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/perspective_back.png",
+    "front_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/front_lit.png",
+    "side_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/side_lit.png",
+    "top_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/top.png",
+    "compare_front": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/compare_front.png",
+    "compare_back": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/compare_back.png",
+    "compare_side": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/compare_side.png",
+    "comparison_sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/comparison_sheet.png",
+    "turntable_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/previews/turntable.png",
+    "scene_spec_corrected": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/scene_spec_corrected.json",
+    "blend": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/treasure_chest.blend"
   },
   "config": {
     "max_iterations": 3,
@@ -154,6 +176,7 @@
     "consistency_gate": "warn",
     "consistency_ignore_flags": [],
     "consistency_roles_override": {},
+    "dimension_tolerance": null,
     "hull_resolution": 320,
     "hull_margin": 0.03,
     "top_consistency_tol": 0.15,
@@ -170,7 +193,7 @@
   },
   "views": {
     "front": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\front.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/references/front.png",
       "camera_axis": "-Y",
       "roles": [
         "carve",
@@ -180,7 +203,7 @@
       "confidence": "observed"
     },
     "back": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\back.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/references/back.png",
       "camera_axis": "+Y",
       "roles": [
         "color",
@@ -189,7 +212,7 @@
       "confidence": "observed"
     },
     "side": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\references\\side.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/references/side.png",
       "camera_axis": "-X",
       "roles": [
         "carve",
@@ -249,6 +272,10 @@
         586.0
       ]
     }
+  },
+  "frame_offset_m": {
+    "x": 0.0,
+    "y": -0.0
   },
   "consistency": {
     "thresholds": {
@@ -333,7 +360,8 @@
             "rel_diff": 0.0017
           }
         ],
-        "blobs": {}
+        "blobs": {},
+        "single_part_differs": false
       }
     ],
     "views": {
@@ -453,14 +481,36 @@
     "threshold": 0.12
   },
   "part_gaps": [],
+  "floating_parts": [],
+  "dimension_check": {
+    "passed": true,
+    "actual": {
+      "width": 0.8419999703764915,
+      "depth": 0.4708350012078881,
+      "height": 0.56700499355793
+    },
+    "target": {
+      "width": 0.8486,
+      "depth": 0.4745814977973568,
+      "height": 0.567
+    },
+    "relative_error": {
+      "width": -0.00777755081723841,
+      "depth": -0.007894316585996375,
+      "height": 8.806980476228077e-06
+    },
+    "tolerance": 0.03,
+    "floor_z": -4.999339580535889e-06,
+    "tolerance_source": "synthetic / blueprint references"
+  },
   "iterations": [
     {
       "iteration": 0,
-      "total_error": 0.026413619984212322,
+      "total_error": 0.026415912305623308,
       "per_view": {
         "front": 0.02471,
         "back": 0.02501,
-        "side": 0.02952
+        "side": 0.02953
       },
       "accepted": true
     }
@@ -531,11 +581,11 @@
     "warning_details": [],
     "reference_match": {
       "passed": true,
-      "total_error": 0.026413619984212322,
+      "total_error": 0.026415912305623308,
       "threshold": 0.08,
       "front_error": 0.024712355804095476,
       "back_error": 0.025005696696663082,
-      "side_error": 0.029522807451878408,
+      "side_error": 0.029529684416111368,
       "per_view": {
         "front": {
           "iou": 0.9752876441959045,
@@ -581,7 +631,7 @@
           "components_in_region": [
             "lid"
           ],
-          "color_error": 0.01941,
+          "color_error": 0.01944,
           "floor": 0.0071,
           "excess_error": 0.01761
         },
@@ -644,15 +694,15 @@
             "brk_up_back_s_v",
             "ring_plate"
           ],
-          "color_error": 0.01944,
+          "color_error": 0.01942,
           "floor": 0.0071,
           "excess_error": 0.01791
         },
         "side": {
-          "iou": 0.9704771925481216,
-          "error": 0.029522807451878408,
+          "iou": 0.9704703155838886,
+          "error": 0.029529684416111368,
           "error_pct": 2.95,
-          "edge_px": 3.5721893310546875,
+          "edge_px": 3.5771408081054688,
           "width_ratio": 0.9921052631578947,
           "height_ratio": 1.0,
           "line": "Side Error : 3.0%",
@@ -694,7 +744,7 @@
             "band_centre",
             "band_side"
           ],
-          "color_error": 0.01864
+          "color_error": 0.01861
         }
       }
     },
@@ -703,11 +753,11 @@
   },
   "reference_match": {
     "passed": true,
-    "total_error": 0.026413619984212322,
+    "total_error": 0.026415912305623308,
     "threshold": 0.08,
     "front_error": 0.024712355804095476,
     "back_error": 0.025005696696663082,
-    "side_error": 0.029522807451878408,
+    "side_error": 0.029529684416111368,
     "per_view": {
       "front": {
         "iou": 0.9752876441959045,
@@ -753,7 +803,7 @@
         "components_in_region": [
           "lid"
         ],
-        "color_error": 0.01941,
+        "color_error": 0.01944,
         "floor": 0.0071,
         "excess_error": 0.01761
       },
@@ -816,15 +866,15 @@
           "brk_up_back_s_v",
           "ring_plate"
         ],
-        "color_error": 0.01944,
+        "color_error": 0.01942,
         "floor": 0.0071,
         "excess_error": 0.01791
       },
       "side": {
-        "iou": 0.9704771925481216,
-        "error": 0.029522807451878408,
+        "iou": 0.9704703155838886,
+        "error": 0.029529684416111368,
         "error_pct": 2.95,
-        "edge_px": 3.5721893310546875,
+        "edge_px": 3.5771408081054688,
         "width_ratio": 0.9921052631578947,
         "height_ratio": 1.0,
         "line": "Side Error : 3.0%",
@@ -866,7 +916,7 @@
           "band_centre",
           "band_side"
         ],
-        "color_error": 0.01864
+        "color_error": 0.01861
       }
     }
   },
@@ -874,15 +924,15 @@
     "soft": true,
     "per_view": {
       "front": {
-        "error": 0.019413501045047025,
+        "error": 0.019442741406482472,
         "pixels": 254768
       },
       "back": {
-        "error": 0.019438033710821128,
+        "error": 0.01942065963716082,
         "pixels": 254840
       },
       "side": {
-        "error": 0.018635578661093246,
+        "error": 0.018608453957870877,
         "pixels": 135760
       }
     }
@@ -905,8 +955,8 @@
       ],
       "texture": {
         "size": 1024,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_body_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_body_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_body_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_body_source_map.png",
         "covered_texels": 616325,
         "coverage_pct": 58.8,
         "texels_from_visible_samples_pct": 43.0,
@@ -922,8 +972,12 @@
         "background_leak_ratio": 0.00014,
         "inpainted_uv_share": 0.0641,
         "inpainted_3d_share": 0.5056,
-        "raster_s": 0.28,
-        "total_s": 16.63
+        "raster_s": 0.76,
+        "total_s": 73.47
+      },
+      "material": {
+        "key": "wood",
+        "roughness": 0.7
       }
     },
     "rim_band": {
@@ -943,8 +997,8 @@
       ],
       "texture": {
         "size": 1024,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_rim_band_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_rim_band_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_rim_band_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_rim_band_source_map.png",
         "covered_texels": 683840,
         "coverage_pct": 65.2,
         "texels_from_visible_samples_pct": 13.2,
@@ -960,8 +1014,13 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.0002,
         "inpainted_3d_share": 0.8676,
-        "raster_s": 0.26,
-        "total_s": 3.88
+        "raster_s": 0.88,
+        "total_s": 16.02
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "lid": {
@@ -981,25 +1040,29 @@
       ],
       "texture": {
         "size": 1024,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_lid_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_lid_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_lid_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_lid_source_map.png",
         "covered_texels": 627779,
         "coverage_pct": 59.9,
         "texels_from_visible_samples_pct": 43.5,
         "views": {
-          "front": 0.1479,
-          "back": 0.1496,
+          "front": 0.1493,
+          "back": 0.1482,
           "side": 0.0686,
           "mirror_side": 0.0687
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.5653,
+        "inpainted_share": 0.5652,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2011,
-        "inpainted_3d_share": 0.3642,
-        "raster_s": 0.36,
-        "total_s": 8.68
+        "inpainted_uv_share": 0.2002,
+        "inpainted_3d_share": 0.365,
+        "raster_s": 2.44,
+        "total_s": 36.27
+      },
+      "material": {
+        "key": "wood",
+        "roughness": 0.7
       }
     },
     "foot_front": {
@@ -1019,8 +1082,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_front_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_front_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_foot_front_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_foot_front_source_map.png",
         "covered_texels": 4285,
         "coverage_pct": 26.2,
         "texels_from_visible_samples_pct": 25.8,
@@ -1034,10 +1097,14 @@
         "inpainted_share": 0.7419,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.1587,
-        "inpainted_3d_share": 0.5832,
+        "inpainted_uv_share": 0.0215,
+        "inpainted_3d_share": 0.7204,
         "raster_s": 0.01,
-        "total_s": 0.25
+        "total_s": 0.46
+      },
+      "material": {
+        "key": "wood",
+        "roughness": 0.7
       }
     },
     "foot_back": {
@@ -1057,8 +1124,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_back_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_foot_back_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_foot_back_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_foot_back_source_map.png",
         "covered_texels": 4285,
         "coverage_pct": 26.2,
         "texels_from_visible_samples_pct": 25.2,
@@ -1074,8 +1141,12 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.0278,
         "inpainted_3d_share": 0.7207,
-        "raster_s": 0.0,
-        "total_s": 0.25
+        "raster_s": 0.01,
+        "total_s": 0.51
+      },
+      "material": {
+        "key": "wood",
+        "roughness": 0.7
       }
     },
     "band_centre": {
@@ -1095,25 +1166,30 @@
       ],
       "texture": {
         "size": 256,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_centre_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_centre_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_band_centre_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_band_centre_source_map.png",
         "covered_texels": 11051,
         "coverage_pct": 16.9,
         "texels_from_visible_samples_pct": 31.8,
         "views": {
-          "front": 0.1574,
-          "back": 0.1589,
+          "front": 0.1593,
+          "back": 0.1566,
           "side": 0.001,
           "mirror_side": 0.0009
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.6818,
+        "inpainted_share": 0.6822,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2624,
-        "inpainted_3d_share": 0.4194,
+        "inpainted_uv_share": 0.2302,
+        "inpainted_3d_share": 0.452,
         "raster_s": 0.01,
-        "total_s": 0.63
+        "total_s": 1.13
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "band_side": {
@@ -1133,25 +1209,30 @@
       ],
       "texture": {
         "size": 256,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_side_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_band_side_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_band_side_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_band_side_source_map.png",
         "covered_texels": 11565,
         "coverage_pct": 17.6,
         "texels_from_visible_samples_pct": 40.9,
         "views": {
-          "front": 0.1664,
-          "back": 0.1695,
+          "front": 0.1703,
+          "back": 0.165,
           "side": 0.0014,
           "mirror_side": 0.0719
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.5908,
+        "inpainted_share": 0.5914,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.1851,
-        "inpainted_3d_share": 0.4057,
+        "inpainted_uv_share": 0.152,
+        "inpainted_3d_share": 0.4393,
         "raster_s": 0.01,
-        "total_s": 0.78
+        "total_s": 1.59
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_front_f_v": {
@@ -1171,8 +1252,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_f_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_f_v_source_map.png",
         "covered_texels": 3470,
         "coverage_pct": 21.2,
         "texels_from_visible_samples_pct": 39.7,
@@ -1186,10 +1267,15 @@
         "inpainted_share": 0.6026,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0637,
-        "inpainted_3d_share": 0.5389,
+        "inpainted_uv_share": 0.0455,
+        "inpainted_3d_share": 0.5571,
         "raster_s": 0.0,
-        "total_s": 0.36
+        "total_s": 0.33
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_front_f_h": {
@@ -1209,8 +1295,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_h_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_f_h_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_f_h_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_f_h_source_map.png",
         "covered_texels": 4472,
         "coverage_pct": 27.3,
         "texels_from_visible_samples_pct": 38.4,
@@ -1224,10 +1310,15 @@
         "inpainted_share": 0.6163,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0291,
-        "inpainted_3d_share": 0.5872,
+        "inpainted_uv_share": 0.021,
+        "inpainted_3d_share": 0.5953,
         "raster_s": 0.01,
-        "total_s": 0.36
+        "total_s": 0.56
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_front_s_v": {
@@ -1247,8 +1338,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_s_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_s_v_source_map.png",
         "covered_texels": 4088,
         "coverage_pct": 25.0,
         "texels_from_visible_samples_pct": 39.8,
@@ -1262,10 +1353,15 @@
         "inpainted_share": 0.6018,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0636,
-        "inpainted_3d_share": 0.5382,
+        "inpainted_uv_share": 0.0179,
+        "inpainted_3d_share": 0.5839,
         "raster_s": 0.0,
-        "total_s": 0.28
+        "total_s": 0.37
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_front_s_h": {
@@ -1285,8 +1381,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_h_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_front_s_h_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_s_h_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_front_s_h_source_map.png",
         "covered_texels": 4312,
         "coverage_pct": 26.3,
         "texels_from_visible_samples_pct": 38.7,
@@ -1300,10 +1396,15 @@
         "inpainted_share": 0.6129,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0332,
-        "inpainted_3d_share": 0.5798,
-        "raster_s": 0.0,
-        "total_s": 0.29
+        "inpainted_uv_share": 0.0167,
+        "inpainted_3d_share": 0.5962,
+        "raster_s": 0.01,
+        "total_s": 0.74
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_up_front_f_v": {
@@ -1323,8 +1424,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_f_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_f_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_front_f_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_front_f_v_source_map.png",
         "covered_texels": 6317,
         "coverage_pct": 38.6,
         "texels_from_visible_samples_pct": 44.2,
@@ -1338,10 +1439,15 @@
         "inpainted_share": 0.5577,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2397,
-        "inpainted_3d_share": 0.318,
-        "raster_s": 0.0,
-        "total_s": 0.26
+        "inpainted_uv_share": 0.051,
+        "inpainted_3d_share": 0.5067,
+        "raster_s": 0.02,
+        "total_s": 0.89
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_up_front_s_v": {
@@ -1361,8 +1467,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_s_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_front_s_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_front_s_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_front_s_v_source_map.png",
         "covered_texels": 5406,
         "coverage_pct": 33.0,
         "texels_from_visible_samples_pct": 44.8,
@@ -1376,10 +1482,15 @@
         "inpainted_share": 0.5523,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2286,
-        "inpainted_3d_share": 0.3237,
-        "raster_s": 0.01,
-        "total_s": 0.23
+        "inpainted_uv_share": 0.2127,
+        "inpainted_3d_share": 0.3396,
+        "raster_s": 0.0,
+        "total_s": 0.75
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_back_f_v": {
@@ -1399,8 +1510,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_f_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_f_v_source_map.png",
         "covered_texels": 3470,
         "coverage_pct": 21.2,
         "texels_from_visible_samples_pct": 41.3,
@@ -1414,10 +1525,15 @@
         "inpainted_share": 0.587,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0758,
-        "inpainted_3d_share": 0.5112,
-        "raster_s": 0.0,
-        "total_s": 0.24
+        "inpainted_uv_share": 0.0484,
+        "inpainted_3d_share": 0.5386,
+        "raster_s": 0.01,
+        "total_s": 0.62
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_back_f_h": {
@@ -1437,8 +1553,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_h_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_f_h_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_f_h_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_f_h_source_map.png",
         "covered_texels": 4472,
         "coverage_pct": 27.3,
         "texels_from_visible_samples_pct": 38.6,
@@ -1455,7 +1571,12 @@
         "inpainted_uv_share": 0.0271,
         "inpainted_3d_share": 0.5872,
         "raster_s": 0.0,
-        "total_s": 0.25
+        "total_s": 0.37
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_back_s_v": {
@@ -1475,8 +1596,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_s_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_s_v_source_map.png",
         "covered_texels": 4088,
         "coverage_pct": 25.0,
         "texels_from_visible_samples_pct": 41.5,
@@ -1490,10 +1611,15 @@
         "inpainted_share": 0.5851,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3637,
-        "inpainted_3d_share": 0.2214,
+        "inpainted_uv_share": 0.0007,
+        "inpainted_3d_share": 0.5844,
         "raster_s": 0.0,
-        "total_s": 0.18
+        "total_s": 0.5
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_low_back_s_h": {
@@ -1513,8 +1639,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_h_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_low_back_s_h_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_s_h_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_low_back_s_h_source_map.png",
         "covered_texels": 4312,
         "coverage_pct": 26.3,
         "texels_from_visible_samples_pct": 39.2,
@@ -1528,10 +1654,15 @@
         "inpainted_share": 0.6076,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0329,
-        "inpainted_3d_share": 0.5747,
-        "raster_s": 0.0,
-        "total_s": 0.25
+        "inpainted_uv_share": 0.0116,
+        "inpainted_3d_share": 0.596,
+        "raster_s": 0.01,
+        "total_s": 0.52
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_up_back_f_v": {
@@ -1551,8 +1682,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_f_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_f_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_back_f_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_back_f_v_source_map.png",
         "covered_texels": 6317,
         "coverage_pct": 38.6,
         "texels_from_visible_samples_pct": 43.8,
@@ -1566,10 +1697,15 @@
         "inpainted_share": 0.5625,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3153,
-        "inpainted_3d_share": 0.2471,
-        "raster_s": 0.0,
-        "total_s": 0.23
+        "inpainted_uv_share": 0.2769,
+        "inpainted_3d_share": 0.2856,
+        "raster_s": 0.01,
+        "total_s": 0.47
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "brk_up_back_s_v": {
@@ -1589,8 +1725,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_s_v_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_brk_up_back_s_v_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_back_s_v_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_brk_up_back_s_v_source_map.png",
         "covered_texels": 5406,
         "coverage_pct": 33.0,
         "texels_from_visible_samples_pct": 44.2,
@@ -1604,10 +1740,15 @@
         "inpainted_share": 0.5583,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2673,
-        "inpainted_3d_share": 0.291,
+        "inpainted_uv_share": 0.0825,
+        "inpainted_3d_share": 0.4758,
         "raster_s": 0.0,
-        "total_s": 0.26
+        "total_s": 0.61
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "hasp": {
@@ -1627,8 +1768,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_hasp_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_hasp_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_hasp_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_hasp_source_map.png",
         "covered_texels": 3554,
         "coverage_pct": 21.7,
         "texels_from_visible_samples_pct": 24.9,
@@ -1644,8 +1785,13 @@
         "background_leak_ratio": 0.0,
         "inpainted_uv_share": 0.1424,
         "inpainted_3d_share": 0.6083,
-        "raster_s": 0.0,
-        "total_s": 0.15
+        "raster_s": 0.01,
+        "total_s": 0.31
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "ring_plate": {
@@ -1665,8 +1811,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_plate_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_plate_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_ring_plate_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_ring_plate_source_map.png",
         "covered_texels": 3787,
         "coverage_pct": 23.1,
         "texels_from_visible_samples_pct": 28.8,
@@ -1683,7 +1829,12 @@
         "inpainted_uv_share": 0.1801,
         "inpainted_3d_share": 0.5323,
         "raster_s": 0.0,
-        "total_s": 0.17
+        "total_s": 0.2
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "ring": {
@@ -1703,25 +1854,30 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_ring_source_map.png",
-        "covered_texels": 1599,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_ring_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_ring_source_map.png",
+        "covered_texels": 1606,
         "coverage_pct": 9.8,
-        "texels_from_visible_samples_pct": 55.7,
+        "texels_from_visible_samples_pct": 55.4,
         "views": {
-          "front": 0.0994,
-          "back": 0.1088,
+          "front": 0.1052,
+          "back": 0.099,
           "side": 0.0,
-          "mirror_side": 0.3427
+          "mirror_side": 0.3425
         },
-        "blend_share": 0.0056,
-        "inpainted_share": 0.4434,
-        "conflict_ratio": 0.0025,
+        "blend_share": 0.0075,
+        "inpainted_share": 0.4458,
+        "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.4434,
+        "inpainted_uv_share": 0.4458,
         "inpainted_3d_share": 0.0,
         "raster_s": 0.01,
-        "total_s": 0.18
+        "total_s": 0.19
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     },
     "padlock_body": {
@@ -1741,8 +1897,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_body_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_body_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_padlock_body_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_padlock_body_source_map.png",
         "covered_texels": 7584,
         "coverage_pct": 46.3,
         "texels_from_visible_samples_pct": 42.4,
@@ -1756,10 +1912,15 @@
         "inpainted_share": 0.5759,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0759,
-        "inpainted_3d_share": 0.5,
-        "raster_s": 0.0,
-        "total_s": 0.35
+        "inpainted_uv_share": 0.075,
+        "inpainted_3d_share": 0.5009,
+        "raster_s": 0.01,
+        "total_s": 0.54
+      },
+      "material": {
+        "key": "brass",
+        "metallic": 0.9,
+        "roughness": 0.35
       }
     },
     "padlock_shackle": {
@@ -1779,8 +1940,8 @@
       ],
       "texture": {
         "size": 128,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_shackle_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\treasure_chest\\output\\textures\\treasure_chest_padlock_shackle_source_map.png",
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_padlock_shackle_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/treasure_chest/output/textures/treasure_chest_padlock_shackle_source_map.png",
         "covered_texels": 1609,
         "coverage_pct": 9.8,
         "texels_from_visible_samples_pct": 30.0,
@@ -1797,7 +1958,12 @@
         "inpainted_uv_share": 0.5948,
         "inpainted_3d_share": 0.105,
         "raster_s": 0.01,
-        "total_s": 0.17
+        "total_s": 0.32
+      },
+      "material": {
+        "key": "iron",
+        "metallic": 0.9,
+        "roughness": 0.45
       }
     }
   },
@@ -1837,7 +2003,7 @@
       "side": "observed"
     }
   },
-  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part ring_plate (68% of camera-facing samples hidden in its best view side), occluded_part padlock_shackle (49% of camera-facing samples hidden in its best view front), occluded_part brk_low_front_s_h (48% of camera-facing samples hidden in its best view side), occluded_part band_side (48% of camera-facing samples hidden in its best view front), occluded_part band_centre (48% of camera-facing samples hidden in its best view back), occluded_part brk_low_back_s_h (47% of camera-facing samples hidden in its best view side), occluded_part ring (43% of camera-facing samples hidden in its best view back), occluded_part hasp (34% of camera-facing samples hidden in its best view front), misattribution brk_low_front_f_h (50% of texels sourced from brk_low_front_f_v), misattribution brk_low_back_f_h (47% of texels sourced from brk_low_back_f_v), misattribution brk_up_back_s_v (42% of texels sourced from brk_up_back_f_v), misattribution brk_low_back_s_v (40% of texels sourced from brk_low_back_f_v), misattribution brk_up_front_s_v (38% of texels sourced from brk_up_front_f_v), misattribution brk_low_back_s_h (34% of texels sourced from brk_low_back_s_v), misattribution brk_low_front_s_h (33% of texels sourced from brk_low_front_s_v), misattribution brk_low_front_s_v (30% of texels sourced from brk_low_front_f_v), misattribution brk_low_front_f_v (8% of texels sourced from brk_low_front_f_h), misattribution brk_low_back_f_v (7% of texels sourced from brk_low_back_f_h), misattribution padlock_shackle (5% of texels sourced from body), part_outside_reference padlock_body (only 70% of it on the reference silhouette)",
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part ring_plate (68% of camera-facing samples hidden in its best view side), occluded_part padlock_shackle (49% of camera-facing samples hidden in its best view front), occluded_part brk_low_front_s_h (48% of camera-facing samples hidden in its best view side), occluded_part band_side (48% of camera-facing samples hidden in its best view front), occluded_part band_centre (48% of camera-facing samples hidden in its best view back), occluded_part brk_low_back_s_h (47% of camera-facing samples hidden in its best view side), occluded_part ring (43% of camera-facing samples hidden in its best view back), occluded_part hasp (34% of camera-facing samples hidden in its best view front), misattribution brk_low_front_f_h (50% of texels sourced from brk_low_front_f_v), misattribution brk_low_back_f_h (47% of texels sourced from brk_low_back_f_v), misattribution brk_low_back_s_v (40% of texels sourced from brk_low_back_f_v), misattribution brk_low_back_s_h (34% of texels sourced from brk_low_back_s_v), misattribution brk_up_back_s_v (34% of texels sourced from brk_up_back_f_v), misattribution brk_up_front_s_v (33% of texels sourced from brk_up_front_f_v), misattribution brk_low_front_s_h (33% of texels sourced from brk_low_front_s_v), misattribution brk_low_front_s_v (30% of texels sourced from brk_low_front_f_v), misattribution brk_low_front_f_v (8% of texels sourced from brk_low_front_f_h), misattribution brk_up_back_f_v (8% of texels sourced from brk_up_back_s_v), misattribution brk_low_back_f_v (7% of texels sourced from brk_low_back_f_h), misattribution brk_up_front_f_v (6% of texels sourced from brk_up_front_s_v), misattribution padlock_shackle (5% of texels sourced from body), part_outside_reference padlock_body (only 70% of it on the reference silhouette)",
   "diagnosis": [],
   "warnings": [
     "occluded_part:ring_plate",
@@ -1850,14 +2016,16 @@
     "occluded_part:hasp",
     "misattribution:brk_low_front_f_h",
     "misattribution:brk_low_back_f_h",
-    "misattribution:brk_up_back_s_v",
     "misattribution:brk_low_back_s_v",
-    "misattribution:brk_up_front_s_v",
     "misattribution:brk_low_back_s_h",
+    "misattribution:brk_up_back_s_v",
+    "misattribution:brk_up_front_s_v",
     "misattribution:brk_low_front_s_h",
     "misattribution:brk_low_front_s_v",
     "misattribution:brk_low_front_f_v",
+    "misattribution:brk_up_back_f_v",
     "misattribution:brk_low_back_f_v",
+    "misattribution:brk_up_front_f_v",
     "misattribution:padlock_shackle",
     "part_outside_reference:padlock_body"
   ],
@@ -2052,10 +2220,10 @@
       },
       "brk_up_front_f_v": {
         "samples": 600,
-        "misattribution": 0.048327137546468404,
+        "misattribution": 0.05947955390334572,
         "top_confusion": {
           "object": "brk_up_front_s_v",
-          "share": 0.048327137546468404
+          "share": 0.05947955390334572
         },
         "occlusion_share": 0.0,
         "best_view": "front",
@@ -2069,10 +2237,10 @@
       },
       "brk_up_front_s_v": {
         "samples": 600,
-        "misattribution": 0.3812154696132597,
+        "misattribution": 0.3314917127071823,
         "top_confusion": {
           "object": "brk_up_front_f_v",
-          "share": 0.3812154696132597
+          "share": 0.3314917127071823
         },
         "occlusion_share": 0.0,
         "best_view": "front",
@@ -2154,10 +2322,10 @@
       },
       "brk_up_back_f_v": {
         "samples": 600,
-        "misattribution": 0.03873239436619718,
+        "misattribution": 0.08098591549295775,
         "top_confusion": {
           "object": "brk_up_back_s_v",
-          "share": 0.03873239436619718
+          "share": 0.08098591549295775
         },
         "occlusion_share": 0.0,
         "best_view": "back",
@@ -2171,10 +2339,10 @@
       },
       "brk_up_back_s_v": {
         "samples": 600,
-        "misattribution": 0.42408376963350786,
+        "misattribution": 0.33507853403141363,
         "top_confusion": {
           "object": "brk_up_back_f_v",
-          "share": 0.42408376963350786
+          "share": 0.33507853403141363
         },
         "occlusion_share": 0.0,
         "best_view": "back",
@@ -2290,14 +2458,16 @@
     "misattributed_objects": [
       "brk_low_front_f_h",
       "brk_low_back_f_h",
-      "brk_up_back_s_v",
       "brk_low_back_s_v",
-      "brk_up_front_s_v",
       "brk_low_back_s_h",
+      "brk_up_back_s_v",
+      "brk_up_front_s_v",
       "brk_low_front_s_h",
       "brk_low_front_s_v",
       "brk_low_front_f_v",
+      "brk_up_back_f_v",
       "brk_low_back_f_v",
+      "brk_up_front_f_v",
       "padlock_shackle"
     ]
   },
@@ -2379,16 +2549,18 @@
     "occluded_part hasp (34% of camera-facing samples hidden in its best view front)",
     "misattribution brk_low_front_f_h (50% of texels sourced from brk_low_front_f_v)",
     "misattribution brk_low_back_f_h (47% of texels sourced from brk_low_back_f_v)",
-    "misattribution brk_up_back_s_v (42% of texels sourced from brk_up_back_f_v)",
     "misattribution brk_low_back_s_v (40% of texels sourced from brk_low_back_f_v)",
-    "misattribution brk_up_front_s_v (38% of texels sourced from brk_up_front_f_v)",
     "misattribution brk_low_back_s_h (34% of texels sourced from brk_low_back_s_v)",
+    "misattribution brk_up_back_s_v (34% of texels sourced from brk_up_back_f_v)",
+    "misattribution brk_up_front_s_v (33% of texels sourced from brk_up_front_f_v)",
     "misattribution brk_low_front_s_h (33% of texels sourced from brk_low_front_s_v)",
     "misattribution brk_low_front_s_v (30% of texels sourced from brk_low_front_f_v)",
     "misattribution brk_low_front_f_v (8% of texels sourced from brk_low_front_f_h)",
+    "misattribution brk_up_back_f_v (8% of texels sourced from brk_up_back_s_v)",
     "misattribution brk_low_back_f_v (7% of texels sourced from brk_low_back_f_h)",
+    "misattribution brk_up_front_f_v (6% of texels sourced from brk_up_front_s_v)",
     "misattribution padlock_shackle (5% of texels sourced from body)",
     "part_outside_reference padlock_body (only 70% of it on the reference silhouette)"
   ],
-  "elapsed_s": 62.34
+  "elapsed_s": 472.45
 }

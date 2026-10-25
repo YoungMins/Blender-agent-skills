@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.117
+      "duration_s": 0.23
     },
     {
       "n": 2,
@@ -24,20 +24,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.011
+      "duration_s": 0.034
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.008
+      "duration_s": 0.03
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 0.651
+      "duration_s": 1.203
     },
     {
       "n": 6,
@@ -59,13 +59,36 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 3.783
+      "duration_s": 17.425
     },
     {
       "n": 9,
       "name": "secondary + detail components",
       "status": "ok",
-      "duration_s": 0.01
+      "part_gaps": [],
+      "floating_parts": [],
+      "dimension_check": {
+        "passed": true,
+        "actual": {
+          "width": 1.2000000476837158,
+          "depth": 0.6000000238418579,
+          "height": 0.7199999857693911
+        },
+        "target": {
+          "width": 1.2,
+          "depth": 0.6,
+          "height": 0.72
+        },
+        "relative_error": {
+          "width": 3.9736429924275285e-08,
+          "depth": 3.9736429924275285e-08,
+          "height": -1.976473462672601e-08
+        },
+        "tolerance": 0.03,
+        "floor_z": 0.0,
+        "tolerance_source": "synthetic / blueprint references"
+      },
+      "duration_s": 38.983
     },
     {
       "n": 10,
@@ -84,13 +107,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 0.0
+      "duration_s": 0.001
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 0.228
+      "duration_s": 1.049
     },
     {
       "n": 14,
@@ -103,32 +126,33 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 10.074
+      "duration_s": 85.631
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.01
+      "duration_s": 0.018
     }
   ],
   "outputs": {
-    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\report.json",
-    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\stage_A_blockout.png",
-    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\stage_B_primary.png",
-    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\perspective.png",
-    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\stage_C_final.png",
-    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\perspective_back.png",
-    "front_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\front_lit.png",
-    "side_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\side_lit.png",
-    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\top.png",
-    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\compare_front.png",
-    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\compare_side.png",
-    "compare_top": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\compare_top.png",
-    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\comparison_sheet.png",
-    "turntable_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\previews\\turntable.png",
-    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\scene_spec_corrected.json",
-    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\output\\simple_table.blend"
+    "report": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/report.json",
+    "stage_blockout_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/stage_A_blockout.png",
+    "stage_primary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/stage_B_primary.png",
+    "stage_secondary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/stage_B2_secondary.png",
+    "perspective_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/perspective.png",
+    "stage_final_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/stage_C_final.png",
+    "perspective_back_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/perspective_back.png",
+    "front_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/front_lit.png",
+    "side_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/side_lit.png",
+    "top_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/top.png",
+    "compare_front": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/compare_front.png",
+    "compare_side": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/compare_side.png",
+    "compare_top": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/compare_top.png",
+    "comparison_sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/comparison_sheet.png",
+    "turntable_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/previews/turntable.png",
+    "scene_spec_corrected": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/scene_spec_corrected.json",
+    "blend": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/output/simple_table.blend"
   },
   "config": {
     "max_iterations": 3,
@@ -136,6 +160,9 @@
     "blockout_threshold": 0.12,
     "auto_correct": true,
     "consistency_gate": "warn",
+    "consistency_ignore_flags": [],
+    "consistency_roles_override": {},
+    "dimension_tolerance": null,
     "hull_resolution": 320,
     "hull_margin": 0.03,
     "top_consistency_tol": 0.15,
@@ -152,7 +179,7 @@
   },
   "views": {
     "front": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\references\\front.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/references/front.png",
       "camera_axis": "-Y",
       "roles": [
         "carve",
@@ -162,7 +189,7 @@
       "confidence": "observed"
     },
     "side": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\references\\side.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/references/side.png",
       "camera_axis": "-X",
       "roles": [
         "carve",
@@ -172,7 +199,7 @@
       "confidence": "observed"
     },
     "top": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\simple_table\\references\\top.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/simple_table/references/top.png",
       "camera_axis": "+Z",
       "roles": [
         "validate"
@@ -231,6 +258,10 @@
       ]
     }
   },
+  "frame_offset_m": {
+    "x": 0.0,
+    "y": -0.0
+  },
   "consistency": {
     "thresholds": {
       "carve_min_iou": 0.95,
@@ -240,6 +271,7 @@
       "accessory_blob_frac": 0.01,
       "mirrored_margin": 0.03,
       "core_open_frac": 0.03,
+      "bbox_agree_tol": 0.015,
       "accessory_open_frac": 0.015
     },
     "pairs": [],
@@ -250,6 +282,8 @@
         "core_top_z": 0.72,
         "core_bottom_z": 0.0,
         "core_height": 0.72,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.72,
         "current_roles": [
           "carve",
           "color",
@@ -271,6 +305,8 @@
         "core_top_z": 0.684,
         "core_bottom_z": 0.0,
         "core_height": 0.684,
+        "bbox_bottom_z": 0.0,
+        "bbox_height": 0.72,
         "current_roles": [
           "carve",
           "color",
@@ -287,26 +323,7 @@
         "pair_iou": null
       }
     },
-    "flags": [
-      {
-        "type": "scale_drift",
-        "severity": "error",
-        "views": [
-          "front"
-        ],
-        "value": 0.0526,
-        "detail": "front: core height 0.7200 m is +5.3% vs the other views (tolerance 2.0%)"
-      },
-      {
-        "type": "scale_drift",
-        "severity": "error",
-        "views": [
-          "side"
-        ],
-        "value": -0.05,
-        "detail": "side: core height 0.6840 m is -5.0% vs the other views (tolerance 2.0%)"
-      }
-    ],
+    "flags": [],
     "symmetry": [
       {
         "view": "front",
@@ -314,11 +331,20 @@
         "iou_blanked": null,
         "threshold": 0.95,
         "suggest_x": true,
-        "blanked_frac": 0.0
+        "blanked_frac": 0.0,
+        "asymmetric": [],
+        "suggested_blank": [],
+        "iou_suggested": null,
+        "labelled": false,
+        "axis_shift_px": 0,
+        "explanation": "1.000 raw -> suggest symmetry.x = true"
       }
     ],
+    "ignored_flags": [],
+    "overrides": {},
+    "bbox_heights_agree": true,
     "roles_to_change": [],
-    "passed": false
+    "passed": true
   },
   "blockout": {
     "gate": "passed",
@@ -339,6 +365,29 @@
         "height_ratio": 1.0
       }
     }
+  },
+  "part_gaps": [],
+  "floating_parts": [],
+  "dimension_check": {
+    "passed": true,
+    "actual": {
+      "width": 1.2000000476837158,
+      "depth": 0.6000000238418579,
+      "height": 0.7199999857693911
+    },
+    "target": {
+      "width": 1.2,
+      "depth": 0.6,
+      "height": 0.72
+    },
+    "relative_error": {
+      "width": 3.9736429924275285e-08,
+      "depth": 3.9736429924275285e-08,
+      "height": -1.976473462672601e-08
+    },
+    "tolerance": 0.03,
+    "floor_z": 0.0,
+    "tolerance_source": "synthetic / blueprint references"
   },
   "iterations": [
     {
@@ -374,6 +423,7 @@
             "depth": 3.9736429924275285e-08,
             "height": -1.976473462672601e-08
           },
+          "tolerance": 0.03,
           "floor_z": 0.0
         },
         "scale": {
@@ -815,5 +865,5 @@
   "warning_details": [
     "occluded_part leg_fl (49% of camera-facing samples hidden in its best view front)"
   ],
-  "elapsed_s": 19.56
+  "elapsed_s": 176.89
 }

@@ -7,7 +7,7 @@
       "n": 1,
       "name": "import reference views",
       "status": "ok",
-      "duration_s": 0.143
+      "duration_s": 0.3
     },
     {
       "n": 2,
@@ -24,20 +24,20 @@
       "n": 3,
       "name": "scale calibration",
       "status": "ok",
-      "duration_s": 0.107
+      "duration_s": 0.285
     },
     {
       "n": 4,
       "name": "bounding volume + reference planes",
       "status": "ok",
-      "duration_s": 0.008
+      "duration_s": 0.032
     },
     {
       "n": 5,
       "name": "blockout",
       "status": "ok",
       "note": "no blockout components: temporary bbox blockout from the resolved dimensions",
-      "duration_s": 0.578
+      "duration_s": 0.804
     },
     {
       "n": 6,
@@ -57,14 +57,36 @@
       "n": 8,
       "name": "primary components",
       "status": "ok",
-      "duration_s": 21.214
+      "duration_s": 51.514
     },
     {
       "n": 9,
       "name": "secondary + detail components",
       "status": "ok",
       "part_gaps": [],
-      "duration_s": 52.196
+      "floating_parts": [],
+      "dimension_check": {
+        "passed": true,
+        "actual": {
+          "width": 0.34444205835461617,
+          "depth": 0.24787797778844833,
+          "height": 0.5874787239299621
+        },
+        "target": {
+          "width": 0.35394088669950735,
+          "depth": 0.2504283965728274,
+          "height": 0.6
+        },
+        "relative_error": {
+          "width": -0.026837329909713437,
+          "depth": -0.010184223591582109,
+          "height": -0.020868793450063094
+        },
+        "tolerance": 0.05,
+        "floor_z": 0.0004624309076461941,
+        "tolerance_source": "AI-generated references"
+      },
+      "duration_s": 164.546
     },
     {
       "n": 10,
@@ -83,13 +105,13 @@
       "n": 12,
       "name": "normal cleanup + part textures",
       "status": "ok",
-      "duration_s": 121.848
+      "duration_s": 251.142
     },
     {
       "n": 13,
       "name": "reference comparison",
       "status": "ok",
-      "duration_s": 0.219
+      "duration_s": 1.052
     },
     {
       "n": 14,
@@ -102,33 +124,33 @@
       "n": 15,
       "name": "validation",
       "status": "ok",
-      "duration_s": 14.066
+      "duration_s": 59.827
     },
     {
       "n": 16,
       "name": "save outputs",
       "status": "ok",
-      "duration_s": 0.03
+      "duration_s": 0.059
     }
   ],
   "outputs": {
-    "report": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\report.json",
-    "stage_blockout_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\stage_A_blockout.png",
-    "stage_primary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\stage_B_primary.png",
-    "stage_secondary_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\stage_B2_secondary.png",
-    "perspective_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\perspective.png",
-    "stage_final_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\stage_C_final.png",
-    "perspective_back_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\perspective_back.png",
-    "front_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\front_lit.png",
-    "side_lit_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\side_lit.png",
-    "top_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\top.png",
-    "compare_front": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\compare_front.png",
-    "compare_side": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\compare_side.png",
-    "compare_back": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\compare_back.png",
-    "comparison_sheet": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\comparison_sheet.png",
-    "turntable_preview": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\previews\\turntable.png",
-    "scene_spec_corrected": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\scene_spec_corrected.json",
-    "blend": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\sd_warrior.blend"
+    "report": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/report.json",
+    "stage_blockout_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/stage_A_blockout.png",
+    "stage_primary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/stage_B_primary.png",
+    "stage_secondary_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/stage_B2_secondary.png",
+    "perspective_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/perspective.png",
+    "stage_final_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/stage_C_final.png",
+    "perspective_back_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/perspective_back.png",
+    "front_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/front_lit.png",
+    "side_lit_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/side_lit.png",
+    "top_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/top.png",
+    "compare_front": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/compare_front.png",
+    "compare_side": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/compare_side.png",
+    "compare_back": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/compare_back.png",
+    "comparison_sheet": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/comparison_sheet.png",
+    "turntable_preview": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/previews/turntable.png",
+    "scene_spec_corrected": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/scene_spec_corrected.json",
+    "blend": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/sd_warrior.blend"
   },
   "config": {
     "max_iterations": 3,
@@ -138,6 +160,7 @@
     "consistency_gate": "warn",
     "consistency_ignore_flags": [],
     "consistency_roles_override": {},
+    "dimension_tolerance": null,
     "hull_resolution": 320,
     "hull_margin": 0.03,
     "top_consistency_tol": 0.15,
@@ -154,7 +177,7 @@
   },
   "views": {
     "front": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\references\\front.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/references/front.png",
       "camera_axis": "-Y",
       "roles": [
         "carve",
@@ -164,7 +187,7 @@
       "confidence": "observed"
     },
     "side": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\references\\side.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/references/side.png",
       "camera_axis": "-X",
       "roles": [
         "carve",
@@ -174,7 +197,7 @@
       "confidence": "observed"
     },
     "back": {
-      "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\references\\back.png",
+      "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/references/back.png",
       "camera_axis": "+Y",
       "roles": [
         "color",
@@ -233,6 +256,10 @@
         851.0
       ]
     }
+  },
+  "frame_offset_m": {
+    "x": 0.0,
+    "y": -0.0
   },
   "consistency": {
     "thresholds": {
@@ -317,7 +344,8 @@
             "rel_diff": 0.0
           }
         ],
-        "blobs": {}
+        "blobs": {},
+        "single_part_differs": false
       }
     ],
     "views": {
@@ -342,8 +370,8 @@
           "validate"
         ],
         "verdict": "demote",
-        "error": 0.0329,
-        "excess_error": -0.022
+        "error": 0.03256,
+        "excess_error": -0.02234
       },
       "side": {
         "axis": "-X",
@@ -388,8 +416,8 @@
           "validate"
         ],
         "verdict": "ok",
-        "error": 0.06732,
-        "excess_error": 0.01242
+        "error": 0.0668,
+        "excess_error": 0.0119
       }
     },
     "flags": [],
@@ -456,14 +484,36 @@
     }
   },
   "part_gaps": [],
+  "floating_parts": [],
+  "dimension_check": {
+    "passed": true,
+    "actual": {
+      "width": 0.34444205835461617,
+      "depth": 0.24787797778844833,
+      "height": 0.5874787239299621
+    },
+    "target": {
+      "width": 0.35394088669950735,
+      "depth": 0.2504283965728274,
+      "height": 0.6
+    },
+    "relative_error": {
+      "width": -0.026837329909713437,
+      "depth": -0.010184223591582109,
+      "height": -0.020868793450063094
+    },
+    "tolerance": 0.05,
+    "floor_z": 0.0004624309076461941,
+    "tolerance_source": "AI-generated references"
+  },
   "iterations": [
     {
       "iteration": 0,
-      "total_error": 0.04977455182017724,
+      "total_error": 0.04961595442976733,
       "per_view": {
-        "front": 0.0329,
-        "side": 0.0491,
-        "back": 0.06732
+        "front": 0.03256,
+        "side": 0.04949,
+        "back": 0.0668
       },
       "accepted": true
     }
@@ -476,9 +526,9 @@
         "dimensions": {
           "passed": true,
           "actual": {
-            "width": 0.3447559215128422,
+            "width": 0.34444205835461617,
             "depth": 0.24787797778844833,
-            "height": 0.5876442087756004
+            "height": 0.5874787239299621
           },
           "target": {
             "width": 0.35394088669950735,
@@ -486,11 +536,11 @@
             "height": 0.6
           },
           "relative_error": {
-            "width": -0.02595056274033447,
+            "width": -0.026837329909713437,
             "depth": -0.010184223591582109,
-            "height": -0.02059298537399923
+            "height": -0.020868793450063094
           },
-          "tolerance": 0.03,
+          "tolerance": 0.05,
           "floor_z": 0.0004624309076461941
         },
         "scale": {
@@ -532,17 +582,17 @@
     "warning_details": [],
     "reference_match": {
       "passed": true,
-      "total_error": 0.04977455182017724,
+      "total_error": 0.04961595442976733,
       "threshold": 0.08,
-      "front_error": 0.03290099289808013,
-      "side_error": 0.049100303951367774,
-      "back_error": 0.06732235861108382,
+      "front_error": 0.032562125107112205,
+      "side_error": 0.049485450997793445,
+      "back_error": 0.06680028718439635,
       "per_view": {
         "front": {
-          "iou": 0.9670990071019199,
-          "error": 0.03290099289808013,
-          "error_pct": 3.29,
-          "edge_px": 2.2398929595947266,
+          "iou": 0.9674378748928878,
+          "error": 0.032562125107112205,
+          "error_pct": 3.26,
+          "edge_px": 2.1768836975097656,
           "width_ratio": 0.9749478079331941,
           "height_ratio": 0.979064039408867,
           "line": "Front Error : 3.3%",
@@ -553,18 +603,18 @@
             "bottom": -0.0007389162561576354
           },
           "largest_mismatch_region": {
-            "kind": "excess",
-            "area_px": 976,
+            "kind": "missing",
+            "area_px": 852,
             "bbox_px": [
               454,
-              550,
+              587,
               514,
               627
             ],
             "center_world": [
               0.1548029556650246,
               null,
-              0.19396551724137928
+              0.18029556650246303
             ],
             "world_bbox": {
               "min": [
@@ -575,20 +625,20 @@
               "max": [
                 0.17697044334975368,
                 null,
-                0.22241379310344825
+                0.19507389162561575
               ]
             }
           },
           "components_in_region": [],
-          "color_error": 0.04972,
+          "color_error": 0.04968,
           "floor": 0.0549,
-          "excess_error": -0.022
+          "excess_error": -0.02234
         },
         "side": {
-          "iou": 0.9508996960486322,
-          "error": 0.049100303951367774,
-          "error_pct": 4.91,
-          "edge_px": 2.759357452392578,
+          "iou": 0.9505145490022066,
+          "error": 0.049485450997793445,
+          "error_pct": 4.95,
+          "edge_px": 2.796481132507324,
           "width_ratio": 0.9882697947214076,
           "height_ratio": 0.9791921664626683,
           "line": "Side Error : 4.9%",
@@ -600,16 +650,16 @@
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 4894,
+            "area_px": 4911,
             "bbox_px": [
-              44,
+              45,
               423,
               128,
               620
             ],
             "center_world": [
               null,
-              0.08776009791921664,
+              0.08739290085679315,
               0.2419828641370869
             ],
             "world_bbox": {
@@ -620,19 +670,19 @@
               ],
               "max": [
                 null,
-                0.11860465116279069,
+                0.1178702570379437,
                 0.3143206854345165
               ]
             }
           },
           "components_in_region": [],
-          "color_error": 0.07834
+          "color_error": 0.07841
         },
         "back": {
-          "iou": 0.9326776413889162,
-          "error": 0.06732235861108382,
-          "error_pct": 6.73,
-          "edge_px": 3.6170272827148438,
+          "iou": 0.9331997128156037,
+          "error": 0.06680028718439635,
+          "error_pct": 6.68,
+          "edge_px": 3.6109654903411865,
           "width_ratio": 0.9748427672955975,
           "height_ratio": 0.9790382244143033,
           "line": "Back Error : 6.7%",
@@ -644,23 +694,23 @@
           },
           "largest_mismatch_region": {
             "kind": "excess",
-            "area_px": 2922,
+            "area_px": 2891,
             "bbox_px": [
               106,
               522,
               170,
-              643
+              642
             ],
             "center_world": [
               0.1002466091245376,
               null,
-              0.19864364981504315
+              0.19901356350184954
             ],
             "world_bbox": {
               "min": [
                 0.07657213316892725,
                 null,
-                0.1538840937114673
+                0.15462392108508013
               ],
               "max": [
                 0.12392108508014796,
@@ -670,9 +720,9 @@
             }
           },
           "components_in_region": [],
-          "color_error": 0.0323,
+          "color_error": 0.03116,
           "floor": 0.0549,
-          "excess_error": 0.01242
+          "excess_error": 0.0119
         }
       }
     },
@@ -730,17 +780,17 @@
   },
   "reference_match": {
     "passed": true,
-    "total_error": 0.04977455182017724,
+    "total_error": 0.04961595442976733,
     "threshold": 0.08,
-    "front_error": 0.03290099289808013,
-    "side_error": 0.049100303951367774,
-    "back_error": 0.06732235861108382,
+    "front_error": 0.032562125107112205,
+    "side_error": 0.049485450997793445,
+    "back_error": 0.06680028718439635,
     "per_view": {
       "front": {
-        "iou": 0.9670990071019199,
-        "error": 0.03290099289808013,
-        "error_pct": 3.29,
-        "edge_px": 2.2398929595947266,
+        "iou": 0.9674378748928878,
+        "error": 0.032562125107112205,
+        "error_pct": 3.26,
+        "edge_px": 2.1768836975097656,
         "width_ratio": 0.9749478079331941,
         "height_ratio": 0.979064039408867,
         "line": "Front Error : 3.3%",
@@ -751,18 +801,18 @@
           "bottom": -0.0007389162561576354
         },
         "largest_mismatch_region": {
-          "kind": "excess",
-          "area_px": 976,
+          "kind": "missing",
+          "area_px": 852,
           "bbox_px": [
             454,
-            550,
+            587,
             514,
             627
           ],
           "center_world": [
             0.1548029556650246,
             null,
-            0.19396551724137928
+            0.18029556650246303
           ],
           "world_bbox": {
             "min": [
@@ -773,20 +823,20 @@
             "max": [
               0.17697044334975368,
               null,
-              0.22241379310344825
+              0.19507389162561575
             ]
           }
         },
         "components_in_region": [],
-        "color_error": 0.04972,
+        "color_error": 0.04968,
         "floor": 0.0549,
-        "excess_error": -0.022
+        "excess_error": -0.02234
       },
       "side": {
-        "iou": 0.9508996960486322,
-        "error": 0.049100303951367774,
-        "error_pct": 4.91,
-        "edge_px": 2.759357452392578,
+        "iou": 0.9505145490022066,
+        "error": 0.049485450997793445,
+        "error_pct": 4.95,
+        "edge_px": 2.796481132507324,
         "width_ratio": 0.9882697947214076,
         "height_ratio": 0.9791921664626683,
         "line": "Side Error : 4.9%",
@@ -798,16 +848,16 @@
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 4894,
+          "area_px": 4911,
           "bbox_px": [
-            44,
+            45,
             423,
             128,
             620
           ],
           "center_world": [
             null,
-            0.08776009791921664,
+            0.08739290085679315,
             0.2419828641370869
           ],
           "world_bbox": {
@@ -818,19 +868,19 @@
             ],
             "max": [
               null,
-              0.11860465116279069,
+              0.1178702570379437,
               0.3143206854345165
             ]
           }
         },
         "components_in_region": [],
-        "color_error": 0.07834
+        "color_error": 0.07841
       },
       "back": {
-        "iou": 0.9326776413889162,
-        "error": 0.06732235861108382,
-        "error_pct": 6.73,
-        "edge_px": 3.6170272827148438,
+        "iou": 0.9331997128156037,
+        "error": 0.06680028718439635,
+        "error_pct": 6.68,
+        "edge_px": 3.6109654903411865,
         "width_ratio": 0.9748427672955975,
         "height_ratio": 0.9790382244143033,
         "line": "Back Error : 6.7%",
@@ -842,23 +892,23 @@
         },
         "largest_mismatch_region": {
           "kind": "excess",
-          "area_px": 2922,
+          "area_px": 2891,
           "bbox_px": [
             106,
             522,
             170,
-            643
+            642
           ],
           "center_world": [
             0.1002466091245376,
             null,
-            0.19864364981504315
+            0.19901356350184954
           ],
           "world_bbox": {
             "min": [
               0.07657213316892725,
               null,
-              0.1538840937114673
+              0.15462392108508013
             ],
             "max": [
               0.12392108508014796,
@@ -868,9 +918,9 @@
           }
         },
         "components_in_region": [],
-        "color_error": 0.0323,
+        "color_error": 0.03116,
         "floor": 0.0549,
-        "excess_error": 0.01242
+        "excess_error": 0.0119
       }
     }
   },
@@ -878,16 +928,16 @@
     "soft": true,
     "per_view": {
       "front": {
-        "error": 0.04971777857007414,
-        "pixels": 215639
+        "error": 0.04967631237757955,
+        "pixels": 215709
       },
       "side": {
-        "error": 0.07834028186615308,
-        "pixels": 150055
+        "error": 0.07840534652033719,
+        "pixels": 150017
       },
       "back": {
-        "error": 0.032299723796659914,
-        "pixels": 208154
+        "error": 0.03116180181281812,
+        "pixels": 208253
       }
     }
   },
@@ -899,15 +949,15 @@
       ],
       "cleanup": {
         "voxel_size": 0.0024,
-        "faces_before": 164826,
-        "faces_after": 108118,
+        "faces_before": 164736,
+        "faces_after": 108076,
         "island_vertices_removed": 8,
         "non_manifold_edges": 0
       },
       "retopo": {
         "requested": "decimate",
         "target_faces": 20000,
-        "faces_before": 108118,
+        "faces_before": 108076,
         "method": "decimate",
         "faces_after": 20000,
         "non_manifold_edges": 0
@@ -919,14 +969,166 @@
           0.0039
         ],
         "uv_max": [
-          0.9944,
-          0.9932
+          0.9919,
+          0.9923
         ]
       },
       "rings": {
         "slice_coherence": 0.03,
         "ring_pct": 2.082
       },
+      "debris": [
+        {
+          "island": 6,
+          "voxels": 3121,
+          "volume_pct": 0.1926,
+          "box_m": [
+            [
+              0.0932,
+              -0.0379,
+              0.0814
+            ],
+            [
+              0.1171,
+              0.0456,
+              0.1052
+            ]
+          ],
+          "views": {
+            "front": {
+              "separate": false,
+              "label": "sword_blade"
+            },
+            "side": {
+              "separate": false,
+              "label": null
+            }
+          },
+          "dropped": false,
+          "rule": null,
+          "reason": "a detached part of the silhouette"
+        },
+        {
+          "island": 2,
+          "voxels": 828,
+          "volume_pct": 0.0511,
+          "box_m": [
+            [
+              -0.036,
+              -0.0876,
+              0.2364
+            ],
+            [
+              0.0376,
+              -0.0697,
+              0.2523
+            ]
+          ],
+          "views": {
+            "front": {
+              "separate": false,
+              "label": null
+            },
+            "side": {
+              "separate": true,
+              "label": null
+            }
+          },
+          "dropped": false,
+          "rule": null,
+          "reason": "a detached part of the silhouette"
+        },
+        {
+          "island": 3,
+          "voxels": 397,
+          "volume_pct": 0.0245,
+          "box_m": [
+            [
+              -0.024,
+              0.0694,
+              0.147
+            ],
+            [
+              0.0415,
+              0.0853,
+              0.1529
+            ]
+          ],
+          "views": {
+            "front": {
+              "separate": false,
+              "label": null
+            },
+            "side": {
+              "separate": false,
+              "label": null
+            }
+          },
+          "dropped": true,
+          "rule": "b",
+          "reason": "0.02% of the hull volume (< 0.3%) and under no labelled part"
+        },
+        {
+          "island": 4,
+          "voxels": 30,
+          "volume_pct": 0.0019,
+          "box_m": [
+            [
+              -0.0042,
+              0.0516,
+              0.1509
+            ],
+            [
+              0.0197,
+              0.0575,
+              0.1529
+            ]
+          ],
+          "views": {
+            "front": {
+              "separate": false,
+              "label": null
+            },
+            "side": {
+              "separate": false,
+              "label": null
+            }
+          },
+          "dropped": true,
+          "rule": "b",
+          "reason": "0.00% of the hull volume (< 0.3%) and under no labelled part"
+        },
+        {
+          "island": 5,
+          "voxels": 1,
+          "volume_pct": 0.0001,
+          "box_m": [
+            [
+              0.0912,
+              0.0913,
+              0.3378
+            ],
+            [
+              0.0932,
+              0.0933,
+              0.3397
+            ]
+          ],
+          "views": {
+            "front": {
+              "separate": false,
+              "label": "face"
+            },
+            "side": {
+              "separate": false,
+              "label": null
+            }
+          },
+          "dropped": false,
+          "rule": null,
+          "reason": "a detached part of the silhouette"
+        }
+      ],
       "exclusion": {
         "components": [
           "horn_l",
@@ -947,13 +1149,89 @@
             "mask_px_before": 231056,
             "mask_px_after": 198933,
             "part_px": 42538,
-            "source": "labels"
+            "source": "labels",
+            "parts": {
+              "horn_l": {
+                "removed_px": 7720,
+                "restored_px": 0
+              },
+              "horn_r": {
+                "removed_px": 7687,
+                "restored_px": 54
+              },
+              "sword_pommel": {
+                "removed_px": 0,
+                "restored_px": 278
+              },
+              "sword_grip": {
+                "removed_px": 0,
+                "restored_px": 1934
+              },
+              "sword_blade": {
+                "removed_px": 442,
+                "restored_px": 2856
+              },
+              "arm_l_upper": {
+                "removed_px": 1913,
+                "restored_px": 2737
+              },
+              "arm_l_fore": {
+                "removed_px": 3013,
+                "restored_px": 0
+              },
+              "hand_l": {
+                "removed_px": 3131,
+                "restored_px": 0
+              },
+              "arm_r_upper": {
+                "removed_px": 1769,
+                "restored_px": 2922
+              },
+              "arm_r_fore": {
+                "removed_px": 2777,
+                "restored_px": 0
+              },
+              "hand_r": {
+                "removed_px": 3305,
+                "restored_px": 0
+              }
+            }
           },
           "side": {
             "mask_px_before": 159199,
             "mask_px_after": 154644,
             "part_px": 24563,
-            "source": "labels"
+            "source": "labels",
+            "parts": {
+              "horn_l": {
+                "removed_px": 1882,
+                "restored_px": 6225
+              },
+              "sword_pommel": {
+                "removed_px": 233,
+                "restored_px": 99
+              },
+              "sword_grip": {
+                "removed_px": 838,
+                "restored_px": 114
+              },
+              "sword_blade": {
+                "removed_px": 1465,
+                "restored_px": 244
+              },
+              "arm_l_upper": {
+                "removed_px": 0,
+                "restored_px": 5582
+              },
+              "arm_l_fore": {
+                "removed_px": 0,
+                "restored_px": 2892
+              },
+              "hand_l": {
+                "removed_px": 0,
+                "restored_px": 4989
+              }
+            }
           }
         }
       },
@@ -970,26 +1248,26 @@
       ],
       "texture": {
         "size": 2048,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_body_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_body_source_map.png",
-        "covered_texels": 1973320,
-        "coverage_pct": 47.0,
-        "texels_from_visible_samples_pct": 72.7,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_body_source_map.png",
+        "covered_texels": 1982323,
+        "coverage_pct": 47.3,
+        "texels_from_visible_samples_pct": 72.8,
         "views": {
-          "front": 0.2196,
-          "side": 0.133,
-          "back": 0.2366,
-          "mirror_side": 0.1117
+          "front": 0.22,
+          "side": 0.1332,
+          "back": 0.2372,
+          "mirror_side": 0.1115
         },
         "blend_share": 0.0265,
-        "inpainted_share": 0.2726,
-        "conflict_ratio": 0.0906,
-        "background_leak_ratio": 6e-05,
-        "inpainted_uv_share": 0.2008,
-        "inpainted_3d_share": 0.0718,
-        "label_rejected_ratio": 0.0875,
-        "raster_s": 1.27,
-        "total_s": 12.81
+        "inpainted_share": 0.2716,
+        "conflict_ratio": 0.0908,
+        "background_leak_ratio": 5e-05,
+        "inpainted_uv_share": 0.1524,
+        "inpainted_3d_share": 0.1192,
+        "label_rejected_ratio": 0.0874,
+        "raster_s": 4.01,
+        "total_s": 35.67
       }
     },
     "face": {
@@ -1021,8 +1299,8 @@
           0.0156
         ],
         "uv_max": [
-          0.9834,
-          0.9525
+          0.9833,
+          0.9813
         ]
       },
       "mirror_views": [
@@ -1030,26 +1308,30 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_face_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_face_source_map.png",
-        "covered_texels": 71522,
-        "coverage_pct": 27.3,
-        "texels_from_visible_samples_pct": 47.6,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_face_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_face_source_map.png",
+        "covered_texels": 70702,
+        "coverage_pct": 27.0,
+        "texels_from_visible_samples_pct": 47.4,
         "views": {
-          "front": 0.3673,
-          "side": 0.0471,
+          "front": 0.3659,
+          "side": 0.0469,
           "back": 0.0,
-          "mirror_side": 0.0556
+          "mirror_side": 0.0551
         },
-        "blend_share": 0.0062,
-        "inpainted_share": 0.5238,
-        "conflict_ratio": 0.0812,
+        "blend_share": 0.0064,
+        "inpainted_share": 0.5257,
+        "conflict_ratio": 0.08,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3635,
-        "inpainted_3d_share": 0.1602,
-        "label_rejected_ratio": 0.0337,
-        "raster_s": 0.05,
-        "total_s": 2.57
+        "inpainted_uv_share": 0.3035,
+        "inpainted_3d_share": 0.2222,
+        "label_rejected_ratio": 0.0344,
+        "raster_s": 0.11,
+        "total_s": 9.52
+      },
+      "material": {
+        "key": "skin",
+        "roughness": 0.55
       }
     },
     "horn_l": {
@@ -1060,8 +1342,8 @@
           0.0156
         ],
         "uv_max": [
-          0.9821,
-          0.9821
+          0.9662,
+          0.972
         ]
       },
       "mirror_views": [
@@ -1069,26 +1351,30 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_horn_l_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_horn_l_source_map.png",
-        "covered_texels": 120154,
-        "coverage_pct": 45.8,
-        "texels_from_visible_samples_pct": 78.3,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_horn_l_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_horn_l_source_map.png",
+        "covered_texels": 114323,
+        "coverage_pct": 43.6,
+        "texels_from_visible_samples_pct": 78.0,
         "views": {
-          "front": 0.3173,
-          "side": 0.1779,
-          "back": 0.2581,
+          "front": 0.3158,
+          "side": 0.1782,
+          "back": 0.2565,
           "mirror_side": 0.0
         },
-        "blend_share": 0.0293,
-        "inpainted_share": 0.2174,
-        "conflict_ratio": 0.0178,
+        "blend_share": 0.0294,
+        "inpainted_share": 0.2201,
+        "conflict_ratio": 0.0176,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2148,
-        "inpainted_3d_share": 0.0027,
-        "label_rejected_ratio": 0.1404,
-        "raster_s": 0.08,
-        "total_s": 0.8
+        "inpainted_uv_share": 0.1641,
+        "inpainted_3d_share": 0.0559,
+        "label_rejected_ratio": 0.1411,
+        "raster_s": 0.14,
+        "total_s": 3.82
+      },
+      "material": {
+        "key": "plastic",
+        "roughness": 0.45
       }
     },
     "horn_r": {
@@ -1099,8 +1385,8 @@
           0.0156
         ],
         "uv_max": [
-          0.9645,
-          0.9207
+          0.9466,
+          0.9503
         ]
       },
       "mirror_views": [
@@ -1108,61 +1394,70 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_horn_r_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_horn_r_source_map.png",
-        "covered_texels": 116910,
-        "coverage_pct": 44.6,
-        "texels_from_visible_samples_pct": 81.2,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_horn_r_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_horn_r_source_map.png",
+        "covered_texels": 94393,
+        "coverage_pct": 36.0,
+        "texels_from_visible_samples_pct": 80.8,
         "views": {
-          "front": 0.3652,
+          "front": 0.3661,
           "side": 0.0,
-          "back": 0.3069,
-          "mirror_side": 0.1254
+          "back": 0.3026,
+          "mirror_side": 0.1222
         },
-        "blend_share": 0.0145,
-        "inpainted_share": 0.188,
-        "conflict_ratio": 0.0085,
+        "blend_share": 0.0167,
+        "inpainted_share": 0.1925,
+        "conflict_ratio": 0.0084,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.1845,
-        "inpainted_3d_share": 0.0035,
-        "label_rejected_ratio": 0.1093,
-        "raster_s": 0.08,
-        "total_s": 0.81
+        "inpainted_uv_share": 0.1581,
+        "inpainted_3d_share": 0.0344,
+        "label_rejected_ratio": 0.1073,
+        "raster_s": 0.1,
+        "total_s": 2.29
+      },
+      "material": {
+        "key": "plastic",
+        "roughness": 0.45
       }
     },
     "sword_pommel": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0162,
-          0.0158
+          0.0156,
+          0.0156
         ],
         "uv_max": [
-          0.9782,
-          0.9834
+          0.9844,
+          0.72
         ]
       },
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_pommel_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_pommel_source_map.png",
-        "covered_texels": 149067,
-        "coverage_pct": 56.9,
-        "texels_from_visible_samples_pct": 30.1,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_pommel_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_pommel_source_map.png",
+        "covered_texels": 119371,
+        "coverage_pct": 45.5,
+        "texels_from_visible_samples_pct": 29.9,
         "views": {
-          "front": 0.1363,
-          "side": 0.1641,
+          "front": 0.1332,
+          "side": 0.1646,
           "back": 0.0
         },
-        "blend_share": 0.0002,
-        "inpainted_share": 0.6995,
-        "conflict_ratio": 0.0028,
+        "blend_share": 0.0014,
+        "inpainted_share": 0.7008,
+        "conflict_ratio": 0.0042,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2612,
-        "inpainted_3d_share": 0.4383,
-        "label_rejected_ratio": 0.4722,
-        "raster_s": 0.08,
-        "total_s": 13.73
+        "inpainted_uv_share": 0.0015,
+        "inpainted_3d_share": 0.6993,
+        "label_rejected_ratio": 0.4708,
+        "raster_s": 0.12,
+        "total_s": 4.33
+      },
+      "material": {
+        "key": "metal_gold",
+        "metallic": 0.65,
+        "roughness": 0.35
       }
     },
     "sword_grip": {
@@ -1173,31 +1468,35 @@
           0.0156
         ],
         "uv_max": [
-          0.7817,
+          0.7878,
           0.9844
         ]
       },
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_grip_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_grip_source_map.png",
-        "covered_texels": 146735,
-        "coverage_pct": 56.0,
-        "texels_from_visible_samples_pct": 41.5,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_grip_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_grip_source_map.png",
+        "covered_texels": 147904,
+        "coverage_pct": 56.4,
+        "texels_from_visible_samples_pct": 41.6,
         "views": {
-          "front": 0.298,
-          "side": 0.1146,
+          "front": 0.3012,
+          "side": 0.1118,
           "back": 0.0
         },
-        "blend_share": 0.0027,
-        "inpainted_share": 0.5847,
-        "conflict_ratio": 0.006,
+        "blend_share": 0.0029,
+        "inpainted_share": 0.584,
+        "conflict_ratio": 0.0052,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3222,
-        "inpainted_3d_share": 0.2626,
-        "label_rejected_ratio": 0.1455,
-        "raster_s": 0.07,
-        "total_s": 3.37
+        "inpainted_uv_share": 0.0968,
+        "inpainted_3d_share": 0.4873,
+        "label_rejected_ratio": 0.1498,
+        "raster_s": 0.12,
+        "total_s": 4.11
+      },
+      "material": {
+        "key": "leather",
+        "roughness": 0.6
       }
     },
     "sword_blade": {
@@ -1208,31 +1507,35 @@
           0.0156
         ],
         "uv_max": [
-          0.789,
+          0.7841,
           0.9844
         ]
       },
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_blade_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_sword_blade_source_map.png",
-        "covered_texels": 123976,
-        "coverage_pct": 47.3,
-        "texels_from_visible_samples_pct": 26.3,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_blade_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_sword_blade_source_map.png",
+        "covered_texels": 122825,
+        "coverage_pct": 46.9,
+        "texels_from_visible_samples_pct": 26.2,
         "views": {
-          "front": 0.1475,
-          "side": 0.0714,
-          "back": 0.044
+          "front": 0.1488,
+          "side": 0.0712,
+          "back": 0.0418
         },
-        "blend_share": 0.0003,
-        "inpainted_share": 0.7369,
+        "blend_share": 0.0004,
+        "inpainted_share": 0.7378,
         "conflict_ratio": 0.0008,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.4374,
-        "inpainted_3d_share": 0.2995,
-        "label_rejected_ratio": 0.203,
-        "raster_s": 0.07,
-        "total_s": 0.99
+        "inpainted_uv_share": 0.2232,
+        "inpainted_3d_share": 0.5146,
+        "label_rejected_ratio": 0.202,
+        "raster_s": 0.1,
+        "total_s": 1.6
+      },
+      "material": {
+        "key": "leather",
+        "roughness": 0.6
       }
     },
     "arm_l_upper": {
@@ -1244,7 +1547,7 @@
         ],
         "uv_max": [
           0.9844,
-          0.774
+          0.7627
         ]
       },
       "mirror_views": [
@@ -1252,38 +1555,43 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_l_upper_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_l_upper_source_map.png",
-        "covered_texels": 128164,
-        "coverage_pct": 48.9,
-        "texels_from_visible_samples_pct": 31.3,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_upper_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_upper_source_map.png",
+        "covered_texels": 124240,
+        "coverage_pct": 47.4,
+        "texels_from_visible_samples_pct": 29.9,
         "views": {
-          "front": 0.1607,
-          "side": 0.0805,
-          "back": 0.0698,
+          "front": 0.154,
+          "side": 0.0623,
+          "back": 0.079,
           "mirror_side": 0.0
         },
-        "blend_share": 0.0025,
-        "inpainted_share": 0.6865,
-        "conflict_ratio": 0.0025,
+        "blend_share": 0.0039,
+        "inpainted_share": 0.7007,
+        "conflict_ratio": 0.0036,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.4204,
-        "inpainted_3d_share": 0.2661,
-        "label_rejected_ratio": 0.2334,
-        "raster_s": 0.08,
-        "total_s": 11.6
+        "inpainted_uv_share": 0.3304,
+        "inpainted_3d_share": 0.3703,
+        "label_rejected_ratio": 0.2282,
+        "raster_s": 0.12,
+        "total_s": 20.8
+      },
+      "material": {
+        "key": "metal_steel",
+        "metallic": 0.6,
+        "roughness": 0.45
       }
     },
     "arm_l_fore": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0158,
-          0.0161
+          0.0156,
+          0.0156
         ],
         "uv_max": [
-          0.9837,
-          0.911
+          0.9844,
+          0.8198
         ]
       },
       "mirror_views": [
@@ -1291,38 +1599,43 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_l_fore_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_l_fore_source_map.png",
-        "covered_texels": 122746,
-        "coverage_pct": 46.8,
-        "texels_from_visible_samples_pct": 48.4,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_fore_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_l_fore_source_map.png",
+        "covered_texels": 111945,
+        "coverage_pct": 42.7,
+        "texels_from_visible_samples_pct": 47.9,
         "views": {
-          "front": 0.182,
-          "side": 0.1457,
-          "back": 0.146,
+          "front": 0.1948,
+          "side": 0.1272,
+          "back": 0.1456,
           "mirror_side": 0.0
         },
-        "blend_share": 0.0102,
-        "inpainted_share": 0.516,
-        "conflict_ratio": 0.0642,
+        "blend_share": 0.0117,
+        "inpainted_share": 0.5207,
+        "conflict_ratio": 0.0604,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3165,
-        "inpainted_3d_share": 0.1995,
-        "label_rejected_ratio": 0.3556,
-        "raster_s": 0.07,
-        "total_s": 9.04
+        "inpainted_uv_share": 0.2061,
+        "inpainted_3d_share": 0.3146,
+        "label_rejected_ratio": 0.3348,
+        "raster_s": 0.14,
+        "total_s": 27.34
+      },
+      "material": {
+        "key": "metal_steel",
+        "metallic": 0.6,
+        "roughness": 0.45
       }
     },
     "hand_l": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0156,
-          0.0163
+          0.0159,
+          0.0157
         ],
         "uv_max": [
-          0.9838,
-          0.9487
+          0.9826,
+          0.972
         ]
       },
       "mirror_views": [
@@ -1330,26 +1643,30 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_hand_l_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_hand_l_source_map.png",
-        "covered_texels": 128770,
-        "coverage_pct": 49.1,
-        "texels_from_visible_samples_pct": 66.1,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_hand_l_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_hand_l_source_map.png",
+        "covered_texels": 135816,
+        "coverage_pct": 51.8,
+        "texels_from_visible_samples_pct": 67.3,
         "views": {
-          "front": 0.1939,
-          "side": 0.2898,
-          "back": 0.162,
+          "front": 0.1871,
+          "side": 0.2967,
+          "back": 0.1734,
           "mirror_side": 0.0
         },
-        "blend_share": 0.0158,
-        "inpainted_share": 0.3385,
-        "conflict_ratio": 0.0068,
+        "blend_share": 0.0156,
+        "inpainted_share": 0.3272,
+        "conflict_ratio": 0.0086,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3019,
-        "inpainted_3d_share": 0.0366,
-        "label_rejected_ratio": 0.1789,
-        "raster_s": 0.05,
-        "total_s": 1.96
+        "inpainted_uv_share": 0.1792,
+        "inpainted_3d_share": 0.148,
+        "label_rejected_ratio": 0.1678,
+        "raster_s": 0.13,
+        "total_s": 12.93
+      },
+      "material": {
+        "key": "leather",
+        "roughness": 0.6
       }
     },
     "arm_r_upper": {
@@ -1361,7 +1678,7 @@
         ],
         "uv_max": [
           0.9844,
-          0.774
+          0.7627
         ]
       },
       "mirror_views": [
@@ -1369,38 +1686,43 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_r_upper_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_r_upper_source_map.png",
-        "covered_texels": 128164,
-        "coverage_pct": 48.9,
-        "texels_from_visible_samples_pct": 30.5,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_upper_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_upper_source_map.png",
+        "covered_texels": 124240,
+        "coverage_pct": 47.4,
+        "texels_from_visible_samples_pct": 28.7,
         "views": {
-          "front": 0.1635,
+          "front": 0.1499,
           "side": 0.0,
-          "back": 0.0758,
-          "mirror_side": 0.0629
+          "back": 0.0835,
+          "mirror_side": 0.0503
         },
-        "blend_share": 0.0026,
-        "inpainted_share": 0.6952,
-        "conflict_ratio": 0.0017,
+        "blend_share": 0.0032,
+        "inpainted_share": 0.713,
+        "conflict_ratio": 0.0024,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3457,
-        "inpainted_3d_share": 0.3495,
-        "label_rejected_ratio": 0.2175,
-        "raster_s": 0.05,
-        "total_s": 11.53
+        "inpainted_uv_share": 0.3295,
+        "inpainted_3d_share": 0.3835,
+        "label_rejected_ratio": 0.2056,
+        "raster_s": 0.13,
+        "total_s": 20.35
+      },
+      "material": {
+        "key": "metal_steel",
+        "metallic": 0.6,
+        "roughness": 0.45
       }
     },
     "arm_r_fore": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0158,
-          0.0161
+          0.0156,
+          0.0156
         ],
         "uv_max": [
-          0.9837,
-          0.911
+          0.9844,
+          0.8198
         ]
       },
       "mirror_views": [
@@ -1408,38 +1730,43 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_r_fore_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_arm_r_fore_source_map.png",
-        "covered_texels": 122746,
-        "coverage_pct": 46.8,
-        "texels_from_visible_samples_pct": 49.0,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_fore_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_arm_r_fore_source_map.png",
+        "covered_texels": 111945,
+        "coverage_pct": 42.7,
+        "texels_from_visible_samples_pct": 51.2,
         "views": {
-          "front": 0.198,
+          "front": 0.1977,
           "side": 0.0,
-          "back": 0.1845,
-          "mirror_side": 0.1006
+          "back": 0.1791,
+          "mirror_side": 0.1233
         },
-        "blend_share": 0.0073,
-        "inpainted_share": 0.5095,
-        "conflict_ratio": 0.0275,
+        "blend_share": 0.0115,
+        "inpainted_share": 0.4884,
+        "conflict_ratio": 0.0266,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.3382,
-        "inpainted_3d_share": 0.1714,
-        "label_rejected_ratio": 0.3584,
-        "raster_s": 0.05,
-        "total_s": 7.84
+        "inpainted_uv_share": 0.1936,
+        "inpainted_3d_share": 0.2948,
+        "label_rejected_ratio": 0.3247,
+        "raster_s": 0.1,
+        "total_s": 24.09
+      },
+      "material": {
+        "key": "metal_steel",
+        "metallic": 0.6,
+        "roughness": 0.45
       }
     },
     "hand_r": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0156,
-          0.0163
+          0.0159,
+          0.0157
         ],
         "uv_max": [
-          0.9838,
-          0.9487
+          0.9826,
+          0.972
         ]
       },
       "mirror_views": [
@@ -1447,38 +1774,42 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_hand_r_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_hand_r_source_map.png",
-        "covered_texels": 128770,
-        "coverage_pct": 49.1,
-        "texels_from_visible_samples_pct": 68.1,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_hand_r_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_hand_r_source_map.png",
+        "covered_texels": 135816,
+        "coverage_pct": 51.8,
+        "texels_from_visible_samples_pct": 68.6,
         "views": {
-          "front": 0.2311,
+          "front": 0.2153,
           "side": 0.0,
-          "back": 0.1947,
-          "mirror_side": 0.2296
+          "back": 0.2099,
+          "mirror_side": 0.234
         },
-        "blend_share": 0.0257,
-        "inpainted_share": 0.319,
-        "conflict_ratio": 0.0091,
+        "blend_share": 0.0266,
+        "inpainted_share": 0.3143,
+        "conflict_ratio": 0.0102,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.2927,
-        "inpainted_3d_share": 0.0263,
-        "label_rejected_ratio": 0.1588,
-        "raster_s": 0.05,
-        "total_s": 1.62
+        "inpainted_uv_share": 0.2329,
+        "inpainted_3d_share": 0.0814,
+        "label_rejected_ratio": 0.1571,
+        "raster_s": 0.13,
+        "total_s": 10.83
+      },
+      "material": {
+        "key": "leather",
+        "roughness": 0.6
       }
     },
     "shield": {
       "uv": {
         "uv_layer": "UVMap",
         "uv_min": [
-          0.0158,
-          0.0158
+          0.0162,
+          0.0164
         ],
         "uv_max": [
-          0.9842,
-          0.9276
+          0.9808,
+          0.9808
         ]
       },
       "mirror_views": [
@@ -1486,26 +1817,30 @@
       ],
       "texture": {
         "size": 512,
-        "path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_shield_basecolor.png",
-        "source_map_path": "D:\\Git\\skills\\blender-agent-skills\\blender-blueprint-reconstruction\\examples\\sd_warrior\\output\\textures\\sd_warrior_shield_source_map.png",
-        "covered_texels": 125568,
-        "coverage_pct": 47.9,
-        "texels_from_visible_samples_pct": 43.2,
+        "path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_basecolor.png",
+        "source_map_path": "/home/user/Blender-agent-skills/blender-blueprint-reconstruction/examples/sd_warrior/output/textures/sd_warrior_shield_source_map.png",
+        "covered_texels": 145650,
+        "coverage_pct": 55.6,
+        "texels_from_visible_samples_pct": 43.1,
         "views": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.4318,
+          "back": 0.4313,
           "mirror_side": 0.0
         },
         "blend_share": 0.0,
-        "inpainted_share": 0.5682,
+        "inpainted_share": 0.5687,
         "conflict_ratio": 0.0,
         "background_leak_ratio": 0.0,
-        "inpainted_uv_share": 0.0618,
-        "inpainted_3d_share": 0.5064,
-        "label_rejected_ratio": 0.0568,
-        "raster_s": 0.09,
-        "total_s": 10.67
+        "inpainted_uv_share": 0.0243,
+        "inpainted_3d_share": 0.5444,
+        "label_rejected_ratio": 0.0565,
+        "raster_s": 0.23,
+        "total_s": 34.45
+      },
+      "material": {
+        "key": "wood",
+        "roughness": 0.7
       }
     }
   },
@@ -1536,7 +1871,7 @@
       "back": "observed"
     }
   },
-  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part arm_r_upper (35% of camera-facing samples hidden in its best view front), occluded_part arm_l_upper (32% of camera-facing samples hidden in its best view side), misattribution arm_r_upper (9% of texels sourced from body), misattribution arm_l_upper (7% of texels sourced from body), part_outside_reference shield (only 1% of it on the reference silhouette)",
+  "recommendation": "Reconstruction matches the references within tolerance; warnings: occluded_part arm_r_upper (43% of camera-facing samples hidden in its best view front), occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side), misattribution arm_r_upper (9% of texels sourced from body), misattribution arm_l_upper (8% of texels sourced from body), part_outside_reference shield (only 1% of it on the reference silhouette), hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)",
   "diagnosis": [
     {
       "view": "back",
@@ -1592,7 +1927,8 @@
     "occluded_part:arm_l_upper",
     "misattribution:arm_r_upper",
     "misattribution:arm_l_upper",
-    "part_outside_reference:shield"
+    "part_outside_reference:shield",
+    "hull_debris:body"
   ],
   "attribution": {
     "views": [
@@ -1600,73 +1936,73 @@
       "side",
       "back"
     ],
-    "samples": 150412,
+    "samples": 150417,
     "facing_threshold": 0.3,
     "occlusion_warn": 0.3,
     "misattribution_warn": 0.05,
     "objects": {
       "body": {
-        "samples": 102351,
-        "misattribution": 0.0033004235307449326,
+        "samples": 102163,
+        "misattribution": 0.0034262155245948253,
         "top_confusion": {
           "object": "arm_l_upper",
-          "share": 0.0008782242871510121
+          "share": 0.0011373329542223485
         },
-        "occlusion_share": 0.14112039578871158,
+        "occlusion_share": 0.14179647251348568,
         "best_view": "back",
-        "pooled_occlusion": 0.20242064962331727,
-        "hidden_share": 0.19678563540218535,
+        "pooled_occlusion": 0.2005680463558997,
+        "hidden_share": 0.19558735057937277,
         "occlusion_per_view": {
-          "front": 0.21280788177339902,
-          "side": 0.25760157273918743,
-          "back": 0.14112039578871158
+          "front": 0.20983448400615032,
+          "side": 0.254421858500528,
+          "back": 0.14179647251348568
         }
       },
       "horn_l": {
-        "samples": 3291,
-        "misattribution": 0.0013527223537368955,
+        "samples": 3295,
+        "misattribution": 0.0023688663282571912,
         "top_confusion": {
           "object": "body",
-          "share": 0.0013527223537368955
+          "share": 0.0023688663282571912
         },
         "occlusion_share": 0.0,
         "best_view": "side",
-        "pooled_occlusion": 0.028635458167330676,
-        "hidden_share": 0.036647546207775654,
+        "pooled_occlusion": 0.027867628763373974,
+        "hidden_share": 0.035578144853875476,
         "occlusion_per_view": {
-          "front": 0.06825297432686286,
+          "front": 0.06363069245165315,
           "side": 0.0,
-          "back": 0.004862236628849271
+          "back": 0.008097165991902834
         }
       },
       "horn_r": {
-        "samples": 3131,
-        "misattribution": 0.001987281399046105,
+        "samples": 3140,
+        "misattribution": 0.0015980823012385138,
         "top_confusion": {
           "object": "body",
-          "share": 0.001987281399046105
+          "share": 0.0015980823012385138
         },
-        "occlusion_share": 0.012305168170631665,
+        "occlusion_share": 0.013513513513513514,
         "best_view": "back",
-        "pooled_occlusion": 0.3489403647116806,
-        "hidden_share": 0.07395723799509288,
+        "pooled_occlusion": 0.3509639149777558,
+        "hidden_share": 0.08149702693249387,
         "occlusion_per_view": {
-          "front": 0.06623376623376623,
+          "front": 0.06598334401024984,
           "side": 1.0,
-          "back": 0.012305168170631665
+          "back": 0.013513513513513514
         }
       },
       "sword_pommel": {
         "samples": 600,
-        "misattribution": 0.0430622009569378,
+        "misattribution": 0.04176334106728538,
         "top_confusion": {
-          "object": "body",
-          "share": 0.023923444976076555
+          "object": "sword_grip",
+          "share": 0.025522041763341066
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.350076103500761,
-        "hidden_share": 0.31906614785992216,
+        "pooled_occlusion": 0.36186186186186187,
+        "hidden_share": 0.29158512720156554,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
@@ -1675,182 +2011,182 @@
       },
       "sword_grip": {
         "samples": 683,
-        "misattribution": 0.047752808988764044,
+        "misattribution": 0.024793388429752067,
         "top_confusion": {
           "object": "sword_blade",
-          "share": 0.02247191011235955
+          "share": 0.011019283746556474
         },
-        "occlusion_share": 0.014492753623188406,
+        "occlusion_share": 0.13229571984435798,
         "best_view": "front",
-        "pooled_occlusion": 0.44477611940298506,
-        "hidden_share": 0.4069097888675624,
+        "pooled_occlusion": 0.48370273794002605,
+        "hidden_share": 0.4737704918032787,
         "occlusion_per_view": {
-          "front": 0.014492753623188406,
-          "side": 0.24324324324324326,
+          "front": 0.13229571984435798,
+          "side": 0.23788546255506607,
           "back": 1.0
         }
       },
       "sword_blade": {
-        "samples": 2069,
-        "misattribution": 0.04460966542750929,
+        "samples": 2055,
+        "misattribution": 0.036057692307692304,
         "top_confusion": {
           "object": "sword_grip",
-          "share": 0.03469640644361834
+          "share": 0.026442307692307692
         },
-        "occlusion_share": 0.15,
+        "occlusion_share": 0.11414790996784566,
         "best_view": "front",
-        "pooled_occlusion": 0.5147679324894515,
-        "hidden_share": 0.5147679324894515,
+        "pooled_occlusion": 0.5056852184320766,
+        "hidden_share": 0.5056852184320766,
         "occlusion_per_view": {
-          "front": 0.15,
-          "side": 0.6053811659192825,
-          "back": 0.8516579406631762
+          "front": 0.11414790996784566,
+          "side": 0.6187214611872146,
+          "back": 0.823240589198036
         }
       },
       "arm_l_upper": {
-        "samples": 2543,
-        "misattribution": 0.07225433526011561,
+        "samples": 2680,
+        "misattribution": 0.07848568790397045,
         "top_confusion": {
           "object": "body",
-          "share": 0.05973025048169557
+          "share": 0.07109879963065559
         },
-        "occlusion_share": 0.3181818181818182,
+        "occlusion_share": 0.3376494023904382,
         "best_view": "side",
-        "pooled_occlusion": 0.45689019896831246,
-        "hidden_share": 0.50935960591133,
+        "pooled_occlusion": 0.46153846153846156,
+        "hidden_share": 0.5237242614145031,
         "occlusion_per_view": {
-          "front": 0.3695395513577332,
-          "side": 0.3181818181818182,
-          "back": 0.6885428253615128
+          "front": 0.4074427480916031,
+          "side": 0.3376494023904382,
+          "back": 0.6753246753246753
         }
       },
       "arm_l_fore": {
-        "samples": 1951,
-        "misattribution": 0.0210387902695595,
+        "samples": 1958,
+        "misattribution": 0.017484868863483525,
         "top_confusion": {
           "object": "arm_l_upper",
-          "share": 0.013149243918474688
+          "share": 0.0121049092131809
         },
-        "occlusion_share": 0.031117397454031116,
+        "occlusion_share": 0.0635593220338983,
         "best_view": "back",
-        "pooled_occlusion": 0.15307150050352467,
-        "hidden_share": 0.13736609955891618,
+        "pooled_occlusion": 0.15694372741352608,
+        "hidden_share": 0.14505776636713735,
         "occlusion_per_view": {
-          "front": 0.2222222222222222,
-          "side": 0.21870047543581617,
-          "back": 0.031117397454031116
+          "front": 0.1900958466453674,
+          "side": 0.23217247097844113,
+          "back": 0.0635593220338983
         }
       },
       "hand_l": {
-        "samples": 1925,
-        "misattribution": 0.03436426116838488,
+        "samples": 1910,
+        "misattribution": 0.02468265162200282,
         "top_confusion": {
           "object": "arm_l_fore",
-          "share": 0.02336769759450172
+          "share": 0.019746121297602257
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.011943539630836048,
-        "hidden_share": 0.014905149051490514,
+        "pooled_occlusion": 0.003320420586607637,
+        "hidden_share": 0.004152249134948097,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 0.0,
-          "back": 0.040145985401459854
+          "back": 0.011299435028248588
         }
       },
       "arm_r_upper": {
-        "samples": 2543,
-        "misattribution": 0.08690012970168612,
+        "samples": 2680,
+        "misattribution": 0.08942065491183879,
         "top_confusion": {
           "object": "body",
-          "share": 0.0648508430609598
+          "share": 0.05919395465994962
         },
-        "occlusion_share": 0.35322777101096225,
+        "occlusion_share": 0.43197616683217477,
         "best_view": "front",
-        "pooled_occlusion": 0.6888193901485535,
-        "hidden_share": 0.6141541444498303,
+        "pooled_occlusion": 0.6924480116745714,
+        "hidden_share": 0.6141876430205949,
         "occlusion_per_view": {
-          "front": 0.35322777101096225,
+          "front": 0.43197616683217477,
           "side": 1.0,
-          "back": 0.7128927410617552
+          "back": 0.6902857142857143
         }
       },
       "arm_r_fore": {
-        "samples": 1951,
-        "misattribution": 0.02142857142857143,
+        "samples": 1958,
+        "misattribution": 0.024354243542435424,
         "top_confusion": {
           "object": "arm_r_upper",
-          "share": 0.010714285714285714
+          "share": 0.014022140221402213
         },
-        "occlusion_share": 0.03385049365303244,
+        "occlusion_share": 0.07112375533428165,
         "best_view": "back",
-        "pooled_occlusion": 0.41268292682926827,
-        "hidden_share": 0.26270667483159826,
+        "pooled_occlusion": 0.4197651663405088,
+        "hidden_share": 0.2777101096224117,
         "occlusion_per_view": {
-          "front": 0.2171945701357466,
+          "front": 0.18251533742331288,
           "side": 1.0,
-          "back": 0.03385049365303244
+          "back": 0.07112375533428165
         }
       },
       "hand_r": {
-        "samples": 1925,
-        "misattribution": 0.02081447963800905,
+        "samples": 1910,
+        "misattribution": 0.016822429906542057,
         "top_confusion": {
           "object": "arm_r_fore",
-          "share": 0.02081447963800905
+          "share": 0.016822429906542057
         },
         "occlusion_share": 0.0,
         "best_view": "front",
-        "pooled_occlusion": 0.40597826086956523,
-        "hidden_share": 0.27084723148765844,
+        "pooled_occlusion": 0.3956164383561644,
+        "hidden_share": 0.2501699524133243,
         "occlusion_per_view": {
           "front": 0.0,
           "side": 1.0,
-          "back": 0.02872531418312388
+          "back": 0.0036496350364963502
         }
       },
       "shield": {
-        "samples": 9514,
-        "misattribution": 0.0030959752321981426,
+        "samples": 9476,
+        "misattribution": 0.006615670870374199,
         "top_confusion": {
           "object": "body",
-          "share": 0.0030959752321981426
+          "share": 0.006615670870374199
         },
         "occlusion_share": 0.0,
         "best_view": "back",
-        "pooled_occlusion": 0.44224211423699916,
-        "hidden_share": 0.45418193935354884,
+        "pooled_occlusion": 0.4412426352437065,
+        "hidden_share": 0.45239424042861925,
         "occlusion_per_view": {
           "front": 1.0,
-          "side": 0.0011655011655011655,
+          "side": 0.003484320557491289,
           "back": 0.0
         }
       },
       "face": {
-        "samples": 15935,
-        "misattribution": 0.013399153737658674,
+        "samples": 15909,
+        "misattribution": 0.009511641113003975,
         "top_confusion": {
           "object": "body",
-          "share": 0.013399153737658674
+          "share": 0.009511641113003975
         },
-        "occlusion_share": 0.010175922731976544,
+        "occlusion_share": 0.008333333333333333,
         "best_view": "front",
-        "pooled_occlusion": 0.5040220305819262,
-        "hidden_share": 0.49484368656110433,
+        "pooled_occlusion": 0.5033919323072434,
+        "hidden_share": 0.49531415532556433,
         "occlusion_per_view": {
-          "front": 0.010175922731976544,
-          "side": 0.5192307692307693,
-          "back": 0.9991248030806932
+          "front": 0.008333333333333333,
+          "side": 0.5141969831410825,
+          "back": 0.9998244073748902
         }
       }
     },
     "misattribution_max": {
       "object": "arm_r_upper",
-      "share": 0.08690012970168612
+      "share": 0.08942065491183879
     },
     "occlusion_max": {
       "object": "arm_r_upper",
-      "share": 0.35322777101096225
+      "share": 0.43197616683217477
     },
     "occluded_objects": [
       "arm_r_upper",
@@ -1869,34 +2205,34 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.6017486846177654,
-            "precision": 0.9558751229105211,
-            "part_px": 8136,
-            "model_iou": 0.926180721960269
+            "iou": 0.5999691928527419,
+            "precision": 0.9550079686159128,
+            "part_px": 8157,
+            "model_iou": 0.9267466912896276
           },
           "side": {
             "visible": true,
-            "iou": 0.3680033858850915,
-            "precision": 0.9937142857142857,
-            "part_px": 7000,
-            "model_iou": 0.9648714421754312
+            "iou": 0.3680862250262881,
+            "precision": 0.9943189887800028,
+            "part_px": 7041,
+            "model_iou": 0.9659831756046267
           },
           "back": {
             "visible": true,
-            "iou": 0.6037416275309878,
-            "precision": 0.9671928959052787,
-            "part_px": 8108,
-            "model_iou": 0.9264162561576355
+            "iou": 0.6039680098431252,
+            "precision": 0.9654578979717271,
+            "part_px": 8135,
+            "model_iou": 0.9258860613515799
           }
         },
-        "mean_iou": 0.5244978993446149,
-        "min_precision": 0.9558751229105211,
+        "mean_iou": 0.5240078092407184,
+        "min_precision": 0.9550079686159128,
         "label_iou": {
-          "front": 0.8331,
-          "side": 0.6944,
-          "back": 0.7874
+          "front": 0.8332,
+          "side": 0.6955,
+          "back": 0.7873
         },
-        "mean_label_iou": 0.7716333333333333
+        "mean_label_iou": 0.7719999999999999
       },
       "horn_r": {
         "type": "cone",
@@ -1904,33 +2240,33 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.5961598501404933,
-            "precision": 0.961601410046582,
-            "part_px": 7943,
-            "model_iou": 0.925183335933843
+            "iou": 0.5975039001560063,
+            "precision": 0.9607425059576069,
+            "part_px": 7973,
+            "model_iou": 0.9260876344924373
           },
           "side": {
             "visible": true,
-            "iou": 0.355154862464804,
-            "precision": 0.9959003947767993,
-            "part_px": 6586,
-            "model_iou": 0.9641330808763863
+            "iou": 0.35471718422044024,
+            "precision": 0.9968239564428312,
+            "part_px": 6612,
+            "model_iou": 0.965268817204301
           },
           "back": {
             "visible": true,
-            "iou": 0.594826230539393,
-            "precision": 0.9548150952921873,
-            "part_px": 7923,
-            "model_iou": 0.9215086646279307
+            "iou": 0.5961810466760962,
+            "precision": 0.953979630328178,
+            "part_px": 7953,
+            "model_iou": 0.9224198730507014
           }
         },
-        "mean_iou": 0.5153803143815634,
-        "min_precision": 0.9548150952921873,
+        "mean_iou": 0.5161340436841809,
+        "min_precision": 0.953979630328178,
         "label_iou": {
-          "front": 0.8417,
-          "back": 0.8315
+          "front": 0.8425,
+          "back": 0.8321
         },
-        "mean_label_iou": 0.8366
+        "mean_label_iou": 0.8372999999999999
       },
       "sword_blade": {
         "type": "blade",
@@ -1938,34 +2274,34 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.22124164668673163,
-            "precision": 0.9772420009013069,
-            "part_px": 4438,
-            "model_iou": 0.9705148444263381
+            "iou": 0.22125382262996943,
+            "precision": 0.9735366674142184,
+            "part_px": 4459,
+            "model_iou": 0.9698758396092001
           },
           "side": {
             "visible": true,
-            "iou": 0.21663513760908037,
-            "precision": 0.9955131800336512,
-            "part_px": 3566,
-            "model_iou": 0.9616383737086933
+            "iou": 0.2113741762265072,
+            "precision": 0.9951163458776213,
+            "part_px": 3481,
+            "model_iou": 0.9606741573033708
           },
           "back": {
             "visible": true,
-            "iou": 0.2544535110906792,
-            "precision": 0.9997742153985099,
-            "part_px": 4429,
-            "model_iou": 0.8352817219406954
+            "iou": 0.25570303970579783,
+            "precision": 0.9995507637017071,
+            "part_px": 4452,
+            "model_iou": 0.8362012742688005
           }
         },
-        "mean_iou": 0.23077676512883039,
-        "min_precision": 0.9772420009013069,
+        "mean_iou": 0.22944367952075817,
+        "min_precision": 0.9735366674142184,
         "label_iou": {
-          "front": 0.6941,
-          "side": 0.3634,
-          "back": 0.8256
+          "front": 0.692,
+          "side": 0.3683,
+          "back": 0.8311
         },
-        "mean_label_iou": 0.6277
+        "mean_label_iou": 0.6304666666666666
       },
       "arm_l_upper": {
         "type": "capsule",
@@ -1973,34 +2309,34 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.496040016673614,
-            "precision": 0.9602582206980028,
-            "part_px": 4957,
-            "model_iou": 0.9661387789122734
+            "iou": 0.49641136564742894,
+            "precision": 0.9668709306779012,
+            "part_px": 5222,
+            "model_iou": 0.9705043751843476
           },
           "side": {
             "visible": true,
-            "iou": 0.4604395604395604,
+            "iou": 0.4679950625991889,
             "precision": 1.0,
-            "part_px": 5028,
+            "part_px": 5308,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.5006374840628984,
-            "precision": 0.952881698685541,
-            "part_px": 4945,
-            "model_iou": 0.9421995417621329
+            "iou": 0.49934601066505685,
+            "precision": 0.9513130151428024,
+            "part_px": 5217,
+            "model_iou": 0.9429980276134122
           }
         },
-        "mean_iou": 0.48570568705869094,
-        "min_precision": 0.952881698685541,
+        "mean_iou": 0.4879174796372249,
+        "min_precision": 0.9513130151428024,
         "label_iou": {
-          "front": 0.6073,
-          "side": 0.2731,
-          "back": 0.53
+          "front": 0.6402,
+          "side": 0.2799,
+          "back": 0.5458
         },
-        "mean_label_iou": 0.47013333333333335
+        "mean_label_iou": 0.4886333333333333
       },
       "arm_l_fore": {
         "type": "capsule",
@@ -2008,34 +2344,34 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.557642220699109,
-            "precision": 0.9951076320939335,
-            "part_px": 4088,
-            "model_iou": 0.9408873720136519
+            "iou": 0.5593056894889104,
+            "precision": 0.9955860716037274,
+            "part_px": 4078,
+            "model_iou": 0.9426646500756222
           },
           "side": {
             "visible": true,
-            "iou": 0.4374414245548266,
+            "iou": 0.4492337164750958,
             "precision": 1.0,
-            "part_px": 3734,
+            "part_px": 3752,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.6419144538082366,
-            "precision": 0.9914047151277013,
+            "iou": 0.645770030385415,
+            "precision": 0.9916502946954814,
             "part_px": 4072,
-            "model_iou": 0.8300180831826401
+            "model_iou": 0.8324225865209471
           }
         },
-        "mean_iou": 0.545666033020724,
-        "min_precision": 0.9914047151277013,
+        "mean_iou": 0.5514364787831404,
+        "min_precision": 0.9916502946954814,
         "label_iou": {
-          "front": 0.9446,
-          "side": 0.8371,
-          "back": 0.9619
+          "front": 0.9418,
+          "side": 0.8408,
+          "back": 0.9604
         },
-        "mean_label_iou": 0.9145333333333333
+        "mean_label_iou": 0.9143333333333333
       },
       "arm_r_upper": {
         "type": "capsule",
@@ -2043,33 +2379,33 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.4961975205750599,
-            "precision": 0.9604759023996774,
-            "part_px": 4959,
-            "model_iou": 0.9676075408811582
+            "iou": 0.49601965601965603,
+            "precision": 0.9670434949223989,
+            "part_px": 5219,
+            "model_iou": 0.9719929245283019
           },
           "side": {
             "visible": true,
-            "iou": 0.4604395604395604,
+            "iou": 0.4679950625991889,
             "precision": 1.0,
-            "part_px": 5028,
+            "part_px": 5308,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.49903948772678763,
-            "precision": 0.9452193248433394,
-            "part_px": 4947,
-            "model_iou": 0.9345473465140479
+            "iou": 0.49591280653950953,
+            "precision": 0.942101226993865,
+            "part_px": 5216,
+            "model_iou": 0.9363421363815531
           }
         },
-        "mean_iou": 0.48522552291380266,
-        "min_precision": 0.9452193248433394,
+        "mean_iou": 0.48664250838611817,
+        "min_precision": 0.942101226993865,
         "label_iou": {
-          "front": 0.6061,
-          "back": 0.6088
+          "front": 0.6512,
+          "back": 0.623
         },
-        "mean_label_iou": 0.60745
+        "mean_label_iou": 0.6371
       },
       "arm_r_fore": {
         "type": "capsule",
@@ -2077,33 +2413,33 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.5517147151250171,
-            "precision": 0.9882525697503671,
-            "part_px": 4086,
-            "model_iou": 0.9454026891212821
+            "iou": 0.5535567151881351,
+            "precision": 0.9889597644749755,
+            "part_px": 4076,
+            "model_iou": 0.9480021893814997
           },
           "side": {
             "visible": true,
-            "iou": 0.4374414245548266,
+            "iou": 0.4492337164750958,
             "precision": 1.0,
-            "part_px": 3734,
+            "part_px": 3752,
             "model_iou": 1.0
           },
           "back": {
             "visible": true,
-            "iou": 0.6375039695141315,
-            "precision": 0.9864864864864865,
-            "part_px": 4070,
-            "model_iou": 0.8102060308364033
+            "iou": 0.6421842567459684,
+            "precision": 0.9865096884964435,
+            "part_px": 4077,
+            "model_iou": 0.813221550302364
           }
         },
-        "mean_iou": 0.5422200363979918,
-        "min_precision": 0.9864864864864865,
+        "mean_iou": 0.5483248961363998,
+        "min_precision": 0.9865096884964435,
         "label_iou": {
-          "front": 0.952,
-          "back": 0.9505
+          "front": 0.9503,
+          "back": 0.9506
         },
-        "mean_label_iou": 0.9512499999999999
+        "mean_label_iou": 0.95045
       },
       "shield": {
         "type": "disc",
@@ -2111,32 +2447,32 @@
         "views": {
           "front": {
             "visible": true,
-            "iou": 0.4760031720856463,
+            "iou": 0.475035685963521,
             "precision": 1.0,
-            "part_px": 30012,
-            "model_iou": 0.9964352482651542
+            "part_px": 29951,
+            "model_iou": 0.9968472250827801
           },
           "side": {
             "visible": true,
-            "iou": 0.0021984464311886266,
-            "precision": 0.009204336265084885,
-            "part_px": 4889,
-            "model_iou": 0.7452126882034791
+            "iou": 0.002635689183912534,
+            "precision": 0.010982306284319707,
+            "part_px": 4917,
+            "model_iou": 0.7418459741018402
           },
           "back": {
             "visible": true,
-            "iou": 0.48189455388180763,
+            "iou": 0.48184722625617193,
             "precision": 1.0,
-            "part_px": 29943,
-            "model_iou": 0.9727968262964013
+            "part_px": 29862,
+            "model_iou": 0.9740167430105828
           }
         },
-        "mean_iou": 0.32003205746621416,
-        "min_precision": 0.009204336265084885,
+        "mean_iou": 0.31983953380120184,
+        "min_precision": 0.010982306284319707,
         "label_iou": {
-          "back": 0.9598
+          "back": 0.9619
         },
-        "mean_label_iou": 0.9598
+        "mean_label_iou": 0.9619
       }
     },
     "outside_warn": 0.7,
@@ -2146,11 +2482,12 @@
   },
   "holdout": {},
   "warning_details": [
-    "occluded_part arm_r_upper (35% of camera-facing samples hidden in its best view front)",
-    "occluded_part arm_l_upper (32% of camera-facing samples hidden in its best view side)",
+    "occluded_part arm_r_upper (43% of camera-facing samples hidden in its best view front)",
+    "occluded_part arm_l_upper (34% of camera-facing samples hidden in its best view side)",
     "misattribution arm_r_upper (9% of texels sourced from body)",
-    "misattribution arm_l_upper (7% of texels sourced from body)",
-    "part_outside_reference shield (only 1% of it on the reference silhouette)"
+    "misattribution arm_l_upper (8% of texels sourced from body)",
+    "part_outside_reference shield (only 1% of it on the reference silhouette)",
+    "hull_debris body (2 floating fragments dropped, 0.03% of the hull volume; label a real part so it stays)"
   ],
-  "elapsed_s": 212.63
+  "elapsed_s": 540.37
 }
